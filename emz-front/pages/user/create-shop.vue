@@ -174,7 +174,7 @@ export default {
             this.$axios.post('shop/create-shop', this.form )
                 .then( response => {
                     this.$nuxt.$loading.finish();
-                    // this.$router.push('/user/dashboard')
+                    this.$router.push('/user/dashboard')
                 })
                 .catch( error => {
                     this.$nuxt.$loading.finish();
