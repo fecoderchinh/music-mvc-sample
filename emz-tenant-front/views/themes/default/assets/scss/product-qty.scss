@@ -1,0 +1,21 @@
+.product {
+  &-qty {
+    .inline-group {
+      max-width: 200px;
+      input {
+        text-align: center;
+        /* Chrome, Safari, Edge, Opera */
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        &[type=number] {
+          -moz-appearance: textfield;
+        }
+      }
+    }
+  }
+}

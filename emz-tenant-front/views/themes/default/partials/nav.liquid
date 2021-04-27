@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom collapse navbar-collapse" id="navbarSupportedContent2">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto w-50 mb-2 mb-lg-0">
+        <li class='nav-item w-100'>
+          {% render 'paths/searchform' %}
+        </li>
+      </ul>
+
+      <ul class='navbar-nav me-3 mb-2 mb-lg-0'>
+        <li class='nav-item dropdown'>
+          {% render 'paths/nav-notify' %}
+          {% render 'paths/nav-notify-dropdown' %}
+        </li>
+        <li class='nav-item'>
+          {% render 'paths/nav-login' %}
+        </li>
+        <li class='nav-item'>
+          {% render 'paths/nav-cart' %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src='https://picsum.photos/268/64' alt='IMG' class='w-100'>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Trang chủ</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sản phẩm
+          </a>
+          {% render 'paths/nav-dropdown' %}
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/blogs">Tin hot</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/about">Về chúng tôi</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#" >Liên hệ</a>
+        </li>
+
+        <li class='nav-item nav-search'>
+          {% render 'paths/searchform' %}
+        </li>
+      </ul>
+
+      <ul class='navbar-nav ms-auto mb-2 mb-lg-0 nav-svg'>
+        <li class='nav-item dropdown'>
+          {% render 'paths/nav-notify' %}
+          {% render 'paths/nav-notify-dropdown' %}
+        </li>
+        <li class='nav-item'>
+          {% render 'paths/nav-login' %}
+        </li>
+        <li class='nav-item'>
+          {% render 'paths/nav-cart' %}
+        </li>
+      </ul>
+
+      <button class="navbar-toggler-2 btn border" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-expand" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</nav>

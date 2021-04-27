@@ -1,0 +1,26 @@
+<form class='emz-form emz-form-auth p-4'>
+    <h3 class='emz-form-title'>
+        Lấy lại mật khẩu
+    </h3>
+    <div class='row'>
+        <div class='col-12 mb-3'>
+            {% comment %}<label for="inputResetCodeControl1" class="form-label">Email address</label>{% endcomment %}
+            <div class="input-group">
+                <input type="text" class="form-control" id='inputResetCodeControl1' placeholder="Doccocaubai@gmail.com" aria-label="Nhập email của bạn" aria-describedby="button-addon2">
+                <button class="emz-button btn btn-fill__dark-1/5 btn-size__md btn__text-white" type="button">Đã gửi mã</button>
+            </div>
+        </div>
+        <div class='col-12 mb-3'>
+            {% comment %}<label for="inputResetCodeControl2" class="form-label">Nhập mã xác nhận</label>{% endcomment %}
+            <input type="text" class="form-control" id="inputResetCodeControl2" placeholder="Nhập mã xác thực được gửi qua email của bạn">
+        </div>
+        <div class='col-12 mb-5'>
+            <button type="button" class="emz-button btn btn-fill__red btn-size__md btn__text-white w-100" data-bs-toggle="modal" data-bs-target="#modalResetPassword" data-bs-dismiss="modal">Xác thực</button>
+        </div>
+        <div class='col-12'>
+            <p class='emz-form-desc__bottom'>
+                <a href='#' data-bs-dismiss="modal" aria-label="Close">Quay lại đăng nhập</a>
+            </p>
+        </div>
+    </div>
+</form>

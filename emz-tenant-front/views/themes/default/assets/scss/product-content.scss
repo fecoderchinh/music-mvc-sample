@@ -1,0 +1,47 @@
+.emz-product-content {
+  .product-spacing {
+    margin-bottom: 30px;
+  }
+  &__item {
+    &-title {
+      font-size: $base;
+      color: $dark;
+      flex-grow: 1;
+    }
+    &-price {
+      > div {
+        display: inline-block;
+        margin-right: 20px;
+      }
+      &-new {
+        h3 {
+          font-size: $base;
+          font-weight: bold;
+          color: $red;
+          sup {
+            font-size: $s14;
+          }
+        }
+      }
+      &-old {
+        h3 {
+          font-size: $base;
+          color: rgba($dark, .5);
+          span {
+            font-size: $s14;
+          }
+        }
+      }
+      &-salepercent {
+        padding: 4px 10px;
+        background: $red;
+        border-radius: 4px;
+        h3 {
+          color: $white;
+          margin-bottom: 0;
+          font-size: $base;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,292 @@
+.table {
+  &-cart {
+    .table > :not(caption) > * > * {
+      border-bottom-width: 0 !important;
+    }
+    thead {
+      tr {
+        padding: 20px 0;
+        th {
+          border-bottom-color: transparent !important;
+          &:nth-child(2) {
+            min-width: 140px;
+            max-width: 140px;
+          }
+          &:nth-child(3) {
+            min-width: 180px;
+            max-width: 180px;
+          }
+          &:nth-child(4) {
+            min-width: 180px;
+            max-width: 180px;
+          }
+          &:nth-child(5) {
+            min-width: 80px;
+            max-width: 80px;
+          }
+          &:nth-child(6) {
+            min-width: 150px;
+            max-width: 150px;
+          }
+          &:nth-child(7) {
+            min-width: 100px;
+            max-width: 100px;
+          }
+          &:nth-child(8) {
+            min-width: 100px;
+            max-width: 100px;
+          }
+          &:nth-child(5),
+          &:nth-child(6),
+          &:nth-child(7),
+          &:nth-child(8) {
+            text-align: center;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          &:first-child {
+            border-bottom-color: transparent !important;
+          }
+          &:first-child, &:last-child {
+            border-right: 2px dotted rgba($dark, .25);;
+          }
+          &:not(:first-child) {
+            border-top: 2px dotted rgba($dark, .25);
+          }
+          &:nth-child(2) {
+            min-width: 140px;
+            max-width: 140px;
+          }
+          &:nth-child(3) {
+            min-width: 180px;
+            max-width: 180px;
+          }
+          &:nth-child(4) {
+            min-width: 180px;
+            max-width: 180px;
+          }
+          &:nth-child(5) {
+            min-width: 80px;
+            max-width: 80px;
+          }
+          &:nth-child(6) {
+            min-width: 150px;
+            max-width: 150px;
+          }
+          &:nth-child(7) {
+            min-width: 100px;
+            max-width: 100px;
+          }
+          &:nth-child(8) {
+            min-width: 100px;
+            max-width: 100px;
+          }
+        }
+      }
+    }
+    &__checkbox {
+      input[type=checkbox] {
+        &:checked {
+          background-color: $red;
+          border-color: $red;
+        }
+      }
+    }
+    &__title {
+      font-size: $base;
+      text-decoration: none;
+      color: $dark;
+    }
+    &__list {
+      &, > .form-sort {
+        font-size: $base;
+        color: rgba($dark, .5);
+      }
+      &-inline {
+        margin-top: 10px;
+      }
+    }
+    &__price {
+      font-size: $base;
+      color: $dark;
+    }
+    &__total {
+      font-size: $base;
+      color: $red;
+    }
+    &__qty {
+      .product-qty {
+        .btn {
+          padding: 0.375rem 0.5rem;
+        }
+        .inline-group {
+          max-width: 140px;
+        }
+        .quantity {
+          margin: 0 10px;
+        }
+      }
+    }
+    &__action {
+      text-align: center;
+      a {
+        &:hover,
+        &:focus {
+          svg {
+            fill: rgba($dark, .5)
+          }
+        }
+      }
+      svg {
+        fill: rgba($dark, .3)
+      }
+    }
+    &__footer {
+      td {
+        padding-top: 1.5rem;
+        &:nth-child(2) {
+          border-top: 2px dotted rgba($dark, .10);
+        }
+        &:last-child {
+          border-top: 2px dotted rgba($dark, .20);
+        }
+      }
+      @media (min-width: 992px) {
+        text-align: right;
+      }
+      span {
+        font-size: $base;
+        color: rgba($dark, .5);
+      }
+      &-price {
+        color: $red !important;
+      }
+    }
+  }
+  &-history {
+    .table > :not(caption) > * > * {
+      border-bottom-width: 0 !important;
+    }
+    tbody {
+      tr {
+        td {
+          border-top: 2px dotted rgba($dark, .25);
+          &:first-child {
+            border-bottom-color: transparent !important;
+          }
+          &:first-child {
+            border-left: 2px dotted rgba($dark, .25);
+          }
+          &:last-child {
+            border-right: 2px dotted rgba($dark, .25);
+          }
+          &:nth-child(1) {
+            min-width: 100px;
+            max-width: 100px;
+          }
+          &:nth-child(2) {
+            min-width: 180px;
+            max-width: 180px;
+          }
+          &:nth-child(3) {
+            min-width: 180px;
+            max-width: 180px;
+          }
+          &:nth-child(4) {
+            min-width: 80px;
+            max-width: 80px;
+          }
+          &:nth-child(5) {
+            min-width: 150px;
+            max-width: 150px;
+          }
+          &:nth-child(6) {
+            min-width: 100px;
+            max-width: 100px;
+          }
+          &:nth-child(7) {
+            min-width: 100px;
+            max-width: 100px;
+          }
+        }
+      }
+    }
+    &__checkbox {
+      input[type=checkbox] {
+        &:checked {
+          background-color: $red;
+          border-color: $red;
+        }
+      }
+    }
+    &__title {
+      font-size: $base;
+      text-decoration: none;
+      color: $dark;
+    }
+    &__list {
+      &, > .form-sort {
+        font-size: $base;
+        color: rgba($dark, .5);
+      }
+      &-inline {
+        margin-top: 10px;
+      }
+    }
+    &__price {
+      font-size: $base;
+      color: $dark;
+    }
+    &__total {
+      font-size: $base;
+      color: $red;
+    }
+    &__qty {
+      .product-qty {
+        .btn {
+          padding: 0.375rem 0.5rem;
+        }
+        .inline-group {
+          max-width: 140px;
+        }
+        .quantity {
+          margin: 0 10px;
+        }
+      }
+    }
+    &__action {
+      text-align: center;
+      a {
+        &:hover,
+        &:focus {
+          svg {
+            fill: rgba($dark, .5)
+          }
+        }
+      }
+      svg {
+        fill: rgba($dark, .3)
+      }
+    }
+    &__footer {
+      td {
+        padding-top: 1.5rem;
+        border-top: 2px dotted rgba($dark, .10);
+      }
+      @media (min-width: 992px) {
+        text-align: right;
+      }
+      span {
+        font-size: $base;
+        color: rgba($dark, .5);
+      }
+      &-price {
+        color: $red !important;
+      }
+    }
+  }
+}

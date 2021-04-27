@@ -1,0 +1,54 @@
+{% layout "layout.liquid" %}
+{% block content %}
+
+{% render 'paths/banner' %}
+
+<section class='content mt-4'>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='order-sm-2 col-xl-9 col-lg-8 col-md-8 col-sm-12'>
+                <div class='row'>
+                    <div class='col-12'>
+                        {% render 'paths/flashsale' %}
+                    </div>
+                    <div class='col-12'>
+                        {% render 'paths/flashsale-block' %}
+                    </div>
+                    <div class='col-12 text-center my-5'>
+                        <button type="button" class="emz-button btn btn-outline__dark-1/5 btn-size__md btn-pill btn__text-dark-7/10">Xem thêm</button>
+                    </div>
+                    <div class='col-12'>
+                        <header class='emz-header'>
+                            <h3 class='emz-header__name'>
+                                Sản phẩm mới
+                            </h3>
+                            <div class='emz-header__divider'></div>
+                        </header>
+                        {% render 'paths/product-items' %}
+                    </div>
+                    <div class='col-12 text-center my-5'>
+                        <button type="button" class="emz-button btn no-radius btn-outline__red btn-size__md btn__text-red">Xem thêm</button>
+                    </div>
+                    <div class='col-12'>
+                        <header class='emz-header'>
+                            <h3 class='emz-header__name'>
+                                Sản phẩm nổi bật
+                            </h3>
+                            <div class='emz-header__divider'></div>
+                        </header>
+                        {% render 'paths/product-items' %}
+                    </div>
+                    <div class='col-12 text-center my-5'>
+                        <button type="button" class="emz-button btn no-radius btn-outline__red btn-size__md btn__text-red">Xem thêm</button>
+                    </div>
+                </div>
+            </div>
+            <div class='order-sm-1 col-xl-3 col-lg-4 col-md-4 col-sm-12'>
+                {% render 'paths/widget-categories' %}
+                {% render 'paths/widget-online-support' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

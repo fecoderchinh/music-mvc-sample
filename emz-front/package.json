@@ -1,0 +1,28 @@
+{
+  "name": "emzsitenuxt",
+  "version": "1.0.0",
+  "description": "My bee&#39;s knees Nuxt.js project",
+  "author": "NhienPhan",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth-next": "5.0.0-1616003482.75c20e6",
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/toast": "^3.3.1",
+    "nuxt": "2.15.2",
+    "nuxt-validate": "^1.0.1",
+    "postcss-hexrgba": "^2.0.1",
+    "postcss-responsive-type": "^1.0.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1",
+    "vee-validate": "^3.4.5"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^1.0.0"
+  }
+}

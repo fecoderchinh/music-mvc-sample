@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  tenantcms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - ${APP_PORT}:${APP_PORT}
+    volumes: 
+      - ./:/app/
+      - /app/node_modules
+    networks:
+      - tada-network
+    environment:
+      - APP_PORT=${APP_PORT}
+    command: npm run serve
+
+networks:
+  tada-network:
+    external: true

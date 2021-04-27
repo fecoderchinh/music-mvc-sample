@@ -1,0 +1,30 @@
+.account {
+  &-history {
+    > b {
+      font-size: $lg;
+      font-weight: bold;
+    }
+    > p {
+      margin-top: 20px;
+      font-size: $base;
+    }
+  }
+  &-name {
+    font-size: $base;
+    color: $dark;
+    margin-bottom: 30px;
+    span {
+      @media (max-width: 992px) {
+        display: block;
+      }
+    }
+    a {
+      font-size: $s14;
+      color: $red;
+      text-decoration: none;
+      @media (min-width: 992px) {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+}

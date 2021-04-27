@@ -1,0 +1,9 @@
+.banner {
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  > .banner-inner {
+    height: 530px;
+  }
+}

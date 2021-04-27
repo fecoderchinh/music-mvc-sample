@@ -1,0 +1,45 @@
+{% layout "layout.liquid" %}
+{% block content %}
+
+<section class='my-5' id='checkout'>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-lg-8 col-sm-12'>
+                <div class='emz-ty'>
+                    <div class='row g-0'>
+                        <div class='col-xl-1 col-md-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                            </svg>
+                        </div>
+                        <div class='col-xl-11 col-md-10'>
+                            <h3>Cảm ơn bạn đã mua hàng!</h3>
+                            <p>Email đơn hàng đã được gưỉ đến linhngoc@gmail.com.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-12'>
+                    {% render 'paths/buyer-info' %}
+                </div>
+                <div class='col-12 text-lg-center'>
+                    <div class='w-100 my-5'>
+                        <button type="button" class="btn emz-button no-radius btn-size__md btn-outline__gray btn__text-gray mb-3 mb-sm-0 me-5 me-xs-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                                <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                                <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                            </svg>
+                            In đơn hàng
+                        </button>
+                        <button type="button" class="btn emz-button no-radius btn-size__md btn-fill__red btn__text-white">Tiếp tục mua hàng</button>
+                    </div>
+                </div>
+            </div>
+            <div class='col-lg-4 col-sm-12'>
+                {% render 'paths/form-checkout-detail-no-btn' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

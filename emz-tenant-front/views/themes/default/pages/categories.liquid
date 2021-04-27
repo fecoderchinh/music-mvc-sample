@@ -1,0 +1,47 @@
+{% layout "layout.liquid" %}
+{% block content %}
+
+<section class='content my-4' id='categories'>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='order-sm-2 col-xl-9 col-lg-8 col-md-8 col-sm-12'>
+                <div class='row'>
+                    <div class='col-12'>
+                        <header class='emz-header'>
+                            <h3 class='emz-header__name'>
+                                Giày thời trang nam
+                            </h3>
+                            <div class='emz-header__divider mb-3'></div>
+                            {% render 'paths/sort' %}
+                        </header>
+                        {% render 'paths/product-items' %}
+                    </div>
+                    <div class='col-12 text-center my-5'>
+                        <button type="button" class="emz-button btn no-radius btn-outline__red btn-size__md btn__text-red">Xem thêm</button>
+                    </div>
+                    <div class='col-12'>
+                        <div class='dotted mb-5'></div>
+                    </div>
+                    <div class='col-12'>
+                        <header class='emz-header'>
+                            <h3 class='emz-header__name'>
+                                Đề xuất cho bạn
+                            </h3>
+                            <div class='emz-header__divider'></div>
+                        </header>
+                        {% render 'paths/product-items' %}
+                    </div>
+                    <div class='col-12 text-center my-5'>
+                        <button type="button" class="emz-button btn no-radius btn-outline__red btn-size__md btn__text-red">Xem thêm</button>
+                    </div>
+                </div>
+            </div>
+            <div class='order-sm-1 col-xl-3 col-lg-4 col-md-4 col-sm-12'>
+                {% render 'paths/widget-categories' %}
+                {% render 'paths/widget-online-support' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

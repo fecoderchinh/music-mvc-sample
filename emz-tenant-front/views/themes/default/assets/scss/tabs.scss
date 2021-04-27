@@ -1,0 +1,32 @@
+.emz-tabs {
+  background: $white;
+  border-radius: 8px;
+  &.flex-fill-tabs {
+    .nav {
+      &-tabs {
+        display: flex;
+      }
+      &-item {
+        @media (min-width: 992px) {
+          flex: 1 1 auto;
+        }
+      }
+      &-link {
+        text-align: center;
+        padding: 15px;
+        font-size: $lg;
+        color: $placeholder;
+        border-bottom: 1px solid $placeholder;
+        &.active {
+          color: $red;
+          border-bottom-color:$red;
+        }
+      }
+    }
+  }
+  &-modal {
+    .tab-content {
+      padding: 30px 30px 50px;
+    }
+  }
+}

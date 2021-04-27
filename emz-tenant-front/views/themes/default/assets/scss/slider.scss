@@ -1,0 +1,47 @@
+.slider {
+  &-for {
+    &__item {
+      padding: 0 30px 30px;
+    }
+  }
+  &-nav {
+    @media (max-width: 992px) {
+      padding: 0 30px;
+    }
+    &__item {
+      padding: 0 10px;
+    }
+    &__prev, &__next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      > svg {
+        width: 32px;
+        height: 32px;
+        fill: rgba($dark, .15);
+      }
+      &:hover, &:focus {
+        > svg {
+          fill: rgba($dark, .5);
+        }
+      }
+    }
+    &__prev {
+      @media (min-width: 992px) {
+        left: -30px;
+      }
+      @media (max-width: 992px) {
+        left: 0px;
+      }
+    }
+    &__next {
+      @media (min-width: 992px) {
+        right: -30px;
+      }
+      @media (max-width: 992px) {
+        right: 0px;
+      }
+    }
+  }
+}

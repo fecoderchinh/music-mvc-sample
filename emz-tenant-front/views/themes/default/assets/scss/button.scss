@@ -1,0 +1,76 @@
+.emz-button {
+  &.btn {
+    &.no-radius {
+      border-radius: 0;
+    }
+    &-outline {
+      background-color: transparent;
+      &__gray {
+        border: 1px solid $gray;
+      }
+      &__red {
+        border: 1px solid $red;
+      }
+      &__dark {
+        border: 1px solid $dark;
+      }
+      &__dark-1\/5 {
+        border: 1px solid rgba($dark, .2);
+      }
+      &__dark-7\/10 {
+        border: 1px solid rgba($dark, .7);
+      }
+    }
+    &-fill {
+      &__gray {
+        background: rgba($dark, .1);
+      }
+      &__red {
+        background: $red;
+      }
+      &__dark {
+        background: $dark;
+      }
+      &__dark-1\/5 {
+        background: rgba($dark, .2);
+      }
+      &__dark-1\/2 {
+        background: rgba($dark, .5);
+      }
+      &__dark-7\/10 {
+        background: rgba($dark, .7);
+      }
+    }
+    &__text {
+      &-white {
+        color: $white;
+      }
+      &-gray {
+        color: $gray;
+      }
+      &-red {
+        color: $red;
+      }
+      &-dark {
+        color: $dark;
+      }
+      &-dark-1\/5 {
+        color: rgba($dark, .2);
+      }
+      &-dark-7\/10 {
+        color: rgba($dark, .7);
+      }
+    }
+    &-size {
+      &__sm {
+        padding: 10px 20px;
+      }
+      &__md {
+        padding: 10px 50px;
+      }
+    }
+    &-pill {
+      border-radius: 999px;
+    }
+  }
+}

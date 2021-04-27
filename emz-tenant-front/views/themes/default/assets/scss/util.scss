@@ -1,0 +1,53 @@
+@import "mixin";
+
+.emz-typo {
+  @include emz-typo;
+}
+
+.sample {
+  &-svg {
+    width: $s30;
+    height: $s30;
+    background: rgba($dark, .5);
+  }
+}
+
+.flex-row {
+  &.row {
+    @media (min-width: 481px) {
+      display: flex;
+      flex-wrap: wrap;
+      > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+      }
+      &:after, &:before {
+        display: flex;
+      }
+    }
+  }
+  &__wrap, &__caption {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+  }
+  &__this {
+    flex-grow: 1;
+  }
+}
+
+.text {
+  &-base {
+    font-size: $base;
+  }
+  &-dark {
+    color: $dark;
+  }
+}
+
+.fill {
+  &-dark-1\/2 {
+    fill: rgba($dark, .5)
+  }
+}
+
