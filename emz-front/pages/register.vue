@@ -111,7 +111,7 @@ export default {
     methods: {
         submitForm(){
             this.$nuxt.$loading.start();
-            this.$axios.post('users/register', this.form )
+            this.$axios.post('clients/register', this.form )
                 .then( async response => {
                     this.$nuxt.$loading.finish();
                     await this.$auth.setUserToken(response.data.token)
