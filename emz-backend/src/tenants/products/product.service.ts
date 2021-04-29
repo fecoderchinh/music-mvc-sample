@@ -1,22 +1,27 @@
 import { Injectable, Inject} from '@nestjs/common';
-import { Connection, MongoRepository, Repository } from 'typeorm';
-import { ProductEntity } from './product.entity';
 import { CreateProductDto } from './dtos/create-product.dto';
+import { Model, Connection } from 'mongoose';
+import { ProductSchema, ProductDocument } from './schemas/product.schema';
+import { InjectConnection } from '@nestjs/mongoose';
+import { GLOBAL_CONNECTION_NAME } from 'src/common/constances/app.constance';
 
 @Injectable()
 export class ProductService {
-    private productRepository: Repository<ProductEntity>
+   
+    private ProductModel: Model<any>;
 	constructor( 
-		@Inject('CONNECTION') connection: Connection
+        // @InjectConnection( GLOBAL_CONNECTION_NAME ) private connection: Connection,
+        @InjectConnection( 'tenant_connection' ) private tenantConnection: Connection
+		// @InjectConnection("tenant_connection") private connection: Connection
 	){
-       
-	    this.productRepository = connection.getRepository(ProductEntity)
+        console.log(this.tenantConnection)
+        this.ProductModel = this.tenantConnection.model("ProductModel", ProductSchema );
+    
 	}
 
-    async createproduct(createProductDto: CreateProductDto ): Promise<ProductEntity> {
-        const productE = new ProductEntity()
-        productE.productName = createProductDto.productName
-        return await this.productRepository.save(productE)
+    async createproduct(createProductDto: CreateProductDto ): Promise<ProductDocument> {
+        const productE = new this.ProductModel(createProductDto);
+        return await productE.save();
     }
 
 }
