@@ -12,7 +12,7 @@ export class ProductService {
 	constructor( 
         @Inject( 'TENANT_CONNECTION' ) private connection: Connection,
 	){
-        this.productModel = this.connection. model("ProductModel", ProductSchema );
+        this.productModel = this.connection.model("ProductModel", ProductSchema );
 	}
 
     async createproduct(createProductDto: CreateProductDto ): Promise<ProductDocument> {
