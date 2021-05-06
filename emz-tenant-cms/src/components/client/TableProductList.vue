@@ -139,6 +139,7 @@ import ModalProductDetailSaved from '@/components/client/ModalProductDetailSaved
 import {
   FilterSVG,
 } from '../SVGs.vue';
+import http from '@/config/http';
 
 export default {
   components: {
@@ -212,7 +213,17 @@ export default {
       ],
     };
   },
+  created() {
+    this.getProduct()
+  },
   methods: {
+    getProduct(){
+      http.get('product/shops').then( response => {
+        console.log(response)
+      }).catch(e => {
+        console.log(e)
+      })
+    },
     formatNumber(num) {
       return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     },
