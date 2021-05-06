@@ -25,24 +25,7 @@ import { TenancyConnectionModule } from './tenancy.module';
       useFactory: async (cfs: ConfigService) => await cfs.get('database'),
       inject: [ConfigService],
     }),
-
-    // // Tenant async configuration
-    // TenancyModule.forRootAsync({
-    //   imports: [TenantModule],
-    //   useFactory: async (tVal: CustomTenantValidator): Promise<TenancyModuleOptions> => {
-        
-    //     return {
-    //       // Base tenant configurations from request header
-    //       tenantIdentifier: 'x-tenant-id',
-    //       options: () => {},
-    //       uri: (tenantId: string) => `mongodb://localhost:27017/tenant-${tenantId}`,
-    //       // Custom validator to check if the tenant exist in common database
-    //       validator: (tenantId: string) => tVal.setTenantId(tenantId),
-    //     } as TenancyModuleOptions
-    //   },
-    //   inject: [CustomTenantValidator],
-    // }),
-
+    
     TenancyConnectionModule,
 
     JwtModule.register({

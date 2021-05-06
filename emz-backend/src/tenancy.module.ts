@@ -21,8 +21,6 @@ const connectionFactory = {
         const uri = `mongodb://localhost:27017/tenant-${shop.tenantUid}`;
 
         return await createConnection( uri )
-    
-        // return await mongo.connect( uri )
 
     },
     inject: [REQUEST, ShopService ],
