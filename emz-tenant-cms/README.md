@@ -1,13 +1,15 @@
 # emz-cms
 
 ## Project setup
-```
-yarn install
+``` bash
+# install dependencies
+$ yarn install
 ```
 
 ### Compiles and hot-reloads for development
-```
-yarn serve
+```bash
+# localhost:40001
+yarn serve 
 ```
 
 ### Compiles and minifies for production

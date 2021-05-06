@@ -7,7 +7,8 @@ cd tenant-front
 # Cài đặt thư viện
 npm install
 
-# Chạy để build server code
+# Chạy để build server code 
+# locahost:8001
 npm run start:dev 
 ```
 

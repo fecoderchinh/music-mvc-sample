@@ -1,14 +1,12 @@
-# emzsitenuxt
+# emzsite NuxtJs
 
-> My bee&#39;s knees Nuxt.js project
-
-## Build Setup
+## Run
 
 ``` bash
 # install dependencies
 $ yarn install
 
-# serve with hot reload at localhost:3000
+# serve with hot reload at localhost:8888
 $ yarn dev
 
 # build for production and launch server
