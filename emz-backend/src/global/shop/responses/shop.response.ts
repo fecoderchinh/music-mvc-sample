@@ -4,15 +4,15 @@ import { DomainResponse } from "./domain.response";
 export class ShopResponse{
   
     constructor( object: any ){
-        this.id = object.id || object._id
-        this.shop = object.shop
-        this.website = object.website
-        this.tracking = object.tracking
-        this.info = object.info
-        this.setting = object.setting
-        this.user = object.user
-        this.createdAt = object.createdAt
-        this.domains = object.domains.map( i => new DomainResponse(i) )
+        this.id = object.id || object._id;
+        this.shop = object.shop;
+        this.website = object.website;
+        this.tracking = object.tracking;
+        this.info = object.info;
+        this.setting = object.setting;
+        this.user = object.user;
+        this.createdAt = object.createdAt;
+        this.domains = object.domains.map( i => new DomainResponse(i) );
     }
     @ApiProperty()
     readonly id: string

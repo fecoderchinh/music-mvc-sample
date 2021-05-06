@@ -27,11 +27,11 @@ export class ShopController {
     @HttpCode(HttpStatus.OK)
     @UseGuards(JwtAuthGuard)
     async createShop( @Req() req, @Body() createShopDto: CreateShopDto ): Promise<any>{
-        createShopDto.shopDomain = createShopDto.shopDomain+APP_SUB_DOMAIN
-        const shop = await this.domainService.findDomainByName(createShopDto.shopDomain)
-        if(shop) throw new BadRequestException('Tên địa chỉ web shop đã được đăng ký')
-        const createShop = await this.shopService.createShop(req.user.id, createShopDto)
-        return new ResponseSuccess( new ShopResponse(createShop) )
+        const subDomain = createShopDto.shopDomain+APP_SUB_DOMAIN;
+        const shop = await this.domainService.findDomainByName(subDomain);
+        if(shop) throw new BadRequestException('Tên địa chỉ web shop đã được đăng ký');
+        const createShop = await this.shopService.createShop(req.user.id, createShopDto);
+        return new ResponseSuccess( new ShopResponse(createShop) );
     }
 
 

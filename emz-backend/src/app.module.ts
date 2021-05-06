@@ -1,55 +1,72 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ProductModule } from './tenants/products/product.module';
 import { ClientsModule } from './global/clients/clients.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './auth/constants';
 import { JwtStrategy } from './auth/jwt.strategy';
 import { ShopModule } from './global/shop/shop.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TenancyConnectionModule } from './tenant-connection.module';
-import { TenancyMongoConnectionModule } from './tenancy/tenancy.module';
-import { REQUEST } from '@nestjs/core';
-import { TenancyConnectionConfigService } from './tenancy/tenancy.service';
-
+import { LoggerMiddleware } from './common/middlewares/logger.middleware';
+import { ProductModule } from './tenants/products/product.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import configuration from './config';
+import { TenancyConnectionModule } from './tenancy.module';
 
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/emz',{
-      connectionName: 'emz_connection',
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
     }),
 
-    // MongooseModule.forRootAsync({
-    //   useClass: TenancyConnectionConfigService,
-    // }),
-    
-    // MongooseModule.forRootAsync({
-    //   imports: [],
-    //   useFactory: async (request) => ({
-    //     connectionName: "tenant_connection",
-    //     uri: 'mongodb://localhost:27017/' + request.headers['x-tenant-id']
-    //   }),
-    //   inject: [REQUEST],
+    // Mongoose default connection
+    MongooseModule.forRootAsync({
+      useFactory: async (cfs: ConfigService) => await cfs.get('database'),
+      inject: [ConfigService],
+    }),
+
+    // // Tenant async configuration
+    // TenancyModule.forRootAsync({
+    //   imports: [TenantModule],
+    //   useFactory: async (tVal: CustomTenantValidator): Promise<TenancyModuleOptions> => {
+        
+    //     return {
+    //       // Base tenant configurations from request header
+    //       tenantIdentifier: 'x-tenant-id',
+    //       options: () => {},
+    //       uri: (tenantId: string) => `mongodb://localhost:27017/tenant-${tenantId}`,
+    //       // Custom validator to check if the tenant exist in common database
+    //       validator: (tenantId: string) => tVal.setTenantId(tenantId),
+    //     } as TenancyModuleOptions
+    //   },
+    //   inject: [CustomTenantValidator],
     // }),
 
-    // TenancyMongoConnectionModule,
-  
+    TenancyConnectionModule,
+
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '30d' },
     }),
-    ProductModule,
+    // Global modules
     ClientsModule,
-    ShopModule
+    ShopModule,
+    // Tenant modules
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [
-    AppService,
     JwtStrategy
   ],
   exports: [
   ],
 })
-export class AppModule {}
+
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes('*');
+  }
+}

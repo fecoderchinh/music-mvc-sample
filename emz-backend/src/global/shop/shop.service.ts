@@ -2,23 +2,25 @@ import { Injectable, Inject } from '@nestjs/common';
 import { getShopByUserDto } from './dto/get-shop-by-user.dto';
 import { CreateShopDto } from './dto/create-shop.dto';
 import {ObjectID} from "mongodb";
-import { InjectConnection } from '@nestjs/mongoose';
+import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { ShopSchema, ShopDocument } from './schemas/shop.schema';
 import { Model, Connection } from 'mongoose';
 import { GLOBAL_CONNECTION_NAME, APP_SUB_DOMAIN } from 'src/common/constances/app.constance';
-import { DomainSchema } from './schemas/domain.schema';
+import { DomainSchema, DomainDocument } from './schemas/domain.schema';
 
 @Injectable()
 export class ShopService {
 
-    private ShopModel: Model<any>;
-    private DomainModel: Model<any>;
+    // private ShopModel: Model<any>;
+    // private DomainModel: Model<any>;
 
     constructor(
-        @InjectConnection( GLOBAL_CONNECTION_NAME ) private connection: Connection
+        @InjectModel('DomainModel') private DomainModel: Model<DomainDocument>,
+        @InjectModel('ShopModel') private ShopModel: Model<any>,
+        // @InjectConnection( GLOBAL_CONNECTION_NAME ) private connection: Connection
     ){
-        this.ShopModel = this.connection.model("ShopModel", ShopSchema );
-        this.DomainModel = this.connection.model("DomainModel", DomainSchema );
+        // this.ShopModel = this.connection.model("ShopModel", ShopSchema );
+        // this.DomainModel = this.connection.model("DomainModel", DomainSchema );
     }
 
     async getShopByUserId( userId: string ): Promise<ShopDocument[]>{
@@ -39,7 +41,7 @@ export class ShopService {
             
             // save domain to shop
             const domain = new this.DomainModel({
-                domainName: createShopDto.shopDomain,
+                domainName: createShopDto.shopDomain + APP_SUB_DOMAIN ,
                 isInternal: true
             })
             await domain.save(opts)
@@ -57,6 +59,7 @@ export class ShopService {
                     city: createShopDto.city,
                 },
                 user: new ObjectID(userId),
+                tenantUid: createShopDto.shopDomain,
                 domains: [new ObjectID(domain.id)]
             }
             const shop = new this.ShopModel( createShopData )
@@ -72,6 +75,14 @@ export class ShopService {
         }
         
 
+    }
+
+    async getTenantIdByDomainName( domainName: string ){
+        return await this.ShopModel.findOne().populate({
+            path: 'domains',
+            match: { domainName: domainName },
+            select: 'domainName'
+        }).exec();
     }
 
   

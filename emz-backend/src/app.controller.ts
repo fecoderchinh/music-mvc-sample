@@ -1,14 +1,13 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { AppService } from './app.service';
 import * as pcVN from 'pc-vn'
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor() {}
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return 'OK :)';
   }
   
   @Get('provinces')

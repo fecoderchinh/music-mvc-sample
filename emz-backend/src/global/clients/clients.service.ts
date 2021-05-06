@@ -1,19 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateClientDto } from './dto/create.client.dto';
 import { Connection as ConnectionMongosee, Model } from 'mongoose';
-import { InjectConnection } from '@nestjs/mongoose';
+import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { ClientInterface, ClientSchema } from './schemas/client.schema';
 import { GLOBAL_CONNECTION_NAME } from 'src/common/constances/app.constance';
 
 @Injectable()
 export class ClientsService {
     
-    private ClientModel: Model<any>;
-
+ 
     constructor(
-        @InjectConnection( GLOBAL_CONNECTION_NAME ) private connectionMongosee: ConnectionMongosee
+        @InjectModel( 'ClientModel' ) private ClientModel: Model<ClientInterface>
     ){
-        this.ClientModel = this.connectionMongosee.model("ClientModel", ClientSchema )
+       
     }
 
     async findUserByPhone( phone: string ) : Promise<ClientInterface>{

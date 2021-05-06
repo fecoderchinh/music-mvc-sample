@@ -39,6 +39,7 @@ export interface ShopDocument extends Document {
     }
 
     readonly user: string;
+    readonly tenantUid: string;
     readonly domains: DomainDocument[];
     readonly createdAt: Date;
 }
@@ -96,6 +97,11 @@ export const ShopSchema = new mongoose.Schema({
         ref: 'DomainModel',
         required: true
     }],
+
+    tenantUid: {
+        type: String,
+        required: true
+    }
 
 },{
     collection: 'shops'
