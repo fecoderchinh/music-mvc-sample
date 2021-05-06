@@ -78,10 +78,94 @@ server {
 127.0.0.1 emz.localhost *.emz.localhost
 
 
-# Mongo Replication
+# Mongo Replication config
 
+## Create DB folder
+```bash
+mkdir rs0
+mkdir rs1
+mkdir rs2
 ```
-rs.initiate( {
+## Create config file
+```bash
+# File: rs0.conf
+systemLog:
+   destination: file
+   path: "var/log/mongodb/mongod.log"
+   logAppend: true
+storage:
+   dbPath: "rs0"
+   journal:
+      enabled: true
+processManagement:
+   fork: true
+net:
+   bindIp: 127.0.0.1
+   port: 27017
+setParameter:
+   enableLocalhostAuthBypass: true
+replication:
+   oplogSizeMB: 10
+   replSetName: "rs0"
+```
+
+```bash
+# File rs1.conf
+systemLog:
+   destination: file
+   path: "var/log/mongodb/mongod.log"
+   logAppend: true
+storage:
+   dbPath: "rs1"
+   journal:
+      enabled: true
+processManagement:
+   fork: true
+net:
+   bindIp: 127.0.0.1
+   port: 27018
+setParameter:
+   enableLocalhostAuthBypass: true
+replication:
+   oplogSizeMB: 10
+   replSetName: "rs0"
+```
+```bash
+# File rs2.conf
+systemLog:
+   destination: file
+   path: "var/log/mongodb/mongod.log"
+   logAppend: true
+storage:
+   dbPath: "rs2"
+   journal:
+      enabled: true
+processManagement:
+   fork: true
+net:
+   bindIp: 127.0.0.1
+   port: 27019
+setParameter:
+   enableLocalhostAuthBypass: true
+replication:
+   oplogSizeMB: 10
+   replSetName: "rs0"
+```
+
+## Run setup mongod
+
+```bash
+mongod -f rs0.conf
+mongod -f rs1.conf
+mongod -f rs2.conf
+```
+
+## Create Replication
+```bash
+
+> mongo
+
+> rs.initiate( {
    _id : "rs0",
    members: [
       { _id: 0, host: "127.0.0.1:27017" },
