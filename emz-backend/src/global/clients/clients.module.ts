@@ -3,11 +3,11 @@ import { ClientsService } from './clients.service'
 import { ClientsController } from './clients.controller'
 import { PassportModule } from '@nestjs/passport'
 import { JwtModule } from '@nestjs/jwt'
-import { jwtConstants } from 'src/auth/constants'
 import { JwtStrategy } from 'src/auth/jwt.strategy'
 import { ShopModule } from '../shop/shop.module'
 import { MongooseModule } from '@nestjs/mongoose'
 import { ClientSchema } from './schemas/client.schema'
+import { ConfigService } from '@nestjs/config';
 
 
 @Module({
@@ -16,9 +16,14 @@ import { ClientSchema } from './schemas/client.schema'
       { name: 'ClientModel', schema: ClientSchema },
     ]),
     PassportModule,
-    JwtModule.register({
-        secret: jwtConstants.secret,
-        signOptions: { expiresIn: '30d' },
+    JwtModule.registerAsync({
+        useFactory: (configService: ConfigService) => ({
+            secret: configService.get('jwt_secret_key'),
+            signOptions: {
+                expiresIn: configService.get('jwt_ttl'),
+            },
+        }),
+        inject: [ConfigService],
     }),
     ShopModule,
 

@@ -1,8 +1,6 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { ClientsModule } from './global/clients/clients.module';
-import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './auth/constants';
 import { JwtStrategy } from './auth/jwt.strategy';
 import { ShopModule } from './global/shop/shop.module';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -28,10 +26,6 @@ import { TenancyConnectionModule } from './tenancy.module';
     
     TenancyConnectionModule,
 
-    JwtModule.register({
-      secret: jwtConstants.secret,
-      signOptions: { expiresIn: '30d' },
-    }),
     // Global modules
     ClientsModule,
     ShopModule,

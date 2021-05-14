@@ -1,13 +1,7 @@
-import { GLOBAL_CONNECTION_NAME } from "./common/constances/app.constance";
-import { MongooseModuleOptions } from "@nestjs/mongoose";
-
-const connectionOption: MongooseModuleOptions = {
-    uri: 'mongodb://localhost:27017/emz',
-    connectionName: GLOBAL_CONNECTION_NAME
-}
-
 export default () => ({
     database: {
-        uri: 'mongodb://localhost:27017/emz'
-    }
+        uri: process.env.MONGODB_URI
+    },
+    jwt_secret_key: process.env.JWT_SECRET_KEY,
+    jwt_ttl: process.env.JWT_TTL || '1d',
 });

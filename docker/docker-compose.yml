@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+  redis:
+    image: 'redis:latest'
+    container_name: redis
+    command:
+      - redis-server
+      - /etc/redis/redis.conf
+      - '--appendonly'
+      - 'yes'
+    ports:
+      - '${REDIS_CONNECTION_PORT}:6379'
+    volumes:
+      - './redis/data:/var/lib/redis'
+      - './redis/etc:/etc/redis/'
+  rabbitmq:
+    image: 'rabbitmq:3-management'
+    container_name: rabbitmq
+    volumes:
+      - './rabbitmq/etc:/etc/rabbitmq'
+      - './rabbitmq/data:/var/lib/rabbitmq'
+    environment:
+      RABBITMQ_ERLANG_COOKIE: '${RABBITMQ_ERLANG_COOKIE}'
+      RABBITMQ_DEFAULT_USER: '${RABBITMQ_DEFAULT_USER}'
+      RABBITMQ_DEFAULT_PASS: '${RABBITMQ_DEFAULT_PASS}'
+      RABBITMQ_LOG_BASE: /var/log/rabbitmq
+    ports:
+      - '${RABBITMQ_CONNECTION_PORT}:5672'
+      - '${RABBITMQ_CONNECTION_EXPORT}:15672'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+  mongo:
+    image: 'mongo:4.0.22'
+    command: mongod --config /etc/mongod.conf
+    environment: []
+    ports:
+      - '${MONGODB_PORT}:27017'
+    volumes:
+      - './mongodb/etc/mongod.conf:/etc/mongod.conf'
+      - './mongodb/data:/var/lib/mongodb'
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
