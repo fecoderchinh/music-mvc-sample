@@ -33,63 +33,48 @@ services:
         limits:
           cpus: '0.5'
     user: 1000:1000
+  mongo-setup:
+    image: 'mongo:4.0.22'
+    restart: on-failure
+    networks:
+      default:
+    volumes:
+    - ./mongodb/scripts:/scripts
+    entrypoint: [ "/scripts/setup.sh" ] # Make sure this file exists (see below for the setup.sh)
+    depends_on:
+      - mongo
+      - mongo1
+      - mongo2
   mongo:
     image: 'mongo:4.0.22'
-    container_name: mongodb
-    command: mongod --config /etc/mongod.conf
-    environment: []
+    expose:
+      - 27017
     ports:
-      - '${MONGODB_PORT}:27017'
+      - 27017:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
     volumes:
       - './mongodb/etc/mongod.conf:/etc/mongod.conf'
       - './mongodb/data:/var/lib/mongodb'
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-    user: 1000:1000
-  mongo_rs0_1:
+  mongo1:
     image: 'mongo:4.0.22'
-    container_name: mongodb_rs0_1
-    command: mongod --config /etc/mongod.conf
-    environment: []
+    expose:
+      - 27017
     ports:
-      - '${MONGODB_PORT}:27018'
+      - 27018:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
     volumes:
       - './mongodb/etc/mongod_rs0_1.conf:/etc/mongod.conf'
       - './mongodb/data_rs0_1:/var/lib/mongodb'
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-    user: 1000:1000
-  mongo_rs0_2:
+  mongo2:
     image: 'mongo:4.0.22'
-    container_name: mongodb_rs0_2
-    command: mongod --config /etc/mongod.conf
-    environment: []
+    expose:
+      - 27017
     ports:
-      - '${MONGODB_PORT}:27019'
+      - 27019:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
     volumes:
       - './mongodb/etc/mongod_rs0_2.conf:/etc/mongod.conf'
       - './mongodb/data_rs0_2:/var/lib/mongodb'
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-    user: 1000:1000
-  mongo_rs0_3:
-    image: 'mongo:4.0.22'
-    container_name: mongodb_rs0_3
-    command: mongod --config /etc/mongod.conf
-    environment: []
-    ports:
-      - '${MONGODB_PORT}:27020'
-    volumes:
-      - './mongodb/etc/mongod_rs0_3.conf:/etc/mongod.conf'
-      - './mongodb/data_rs0_3:/var/lib/mongodb'
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-    user: 1000:1000
