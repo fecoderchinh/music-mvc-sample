@@ -13,6 +13,7 @@ services:
     volumes:
       - './redis/data:/var/lib/redis'
       - './redis/etc:/etc/redis/'
+    user: 1000:1000
   rabbitmq:
     image: 'rabbitmq:3-management'
     container_name: rabbitmq
@@ -31,8 +32,10 @@ services:
       resources:
         limits:
           cpus: '0.5'
+    user: 1000:1000
   mongo:
     image: 'mongo:4.0.22'
+    container_name: mongodb
     command: mongod --config /etc/mongod.conf
     environment: []
     ports:
@@ -44,42 +47,49 @@ services:
       resources:
         limits:
           cpus: '2'
-   mongo:
+    user: 1000:1000
+  mongo_rs0_1:
     image: 'mongo:4.0.22'
-    command: mongod --config /etc/mongod_rs0_1.conf
+    container_name: mongodb_rs0_1
+    command: mongod --config /etc/mongod.conf
     environment: []
     ports:
       - '${MONGODB_PORT}:27018'
     volumes:
-      - './mongodb/etc/mongod_rs0_1.conf:/etc/mongod_rs0_1.conf'
-      - './mongodb/data_rs0_1:/var/lib/mongodb_rs0_1'
+      - './mongodb/etc/mongod_rs0_1.conf:/etc/mongod.conf'
+      - './mongodb/data_rs0_1:/var/lib/mongodb'
     deploy:
       resources:
         limits:
           cpus: '2'
-   mongo:
+    user: 1000:1000
+  mongo_rs0_2:
     image: 'mongo:4.0.22'
-    command: mongod --config /etc/mongod_rs0_2.conf
+    container_name: mongodb_rs0_2
+    command: mongod --config /etc/mongod.conf
     environment: []
     ports:
       - '${MONGODB_PORT}:27019'
     volumes:
-      - './mongodb/etc/mongod_rs0_2.conf:/etc/mongod_rs0_2.conf'
-      - './mongodb/data_rs0_2:/var/lib/mongodb_rs0_2'
+      - './mongodb/etc/mongod_rs0_2.conf:/etc/mongod.conf'
+      - './mongodb/data_rs0_2:/var/lib/mongodb'
     deploy:
       resources:
         limits:
           cpus: '2'
-   mongo:
+    user: 1000:1000
+  mongo_rs0_3:
     image: 'mongo:4.0.22'
-    command: mongod --config /etc/mongod_rs0_3.conf
+    container_name: mongodb_rs0_3
+    command: mongod --config /etc/mongod.conf
     environment: []
     ports:
       - '${MONGODB_PORT}:27020'
     volumes:
-      - './mongodb/etc/mongod_rs0_3.conf:/etc/mongod_rs0_3.conf'
-      - './mongodb/data_rs0_3:/var/lib/mongodb_rs0_3'
+      - './mongodb/etc/mongod_rs0_3.conf:/etc/mongod.conf'
+      - './mongodb/data_rs0_3:/var/lib/mongodb'
     deploy:
       resources:
         limits:
           cpus: '2'
+    user: 1000:1000
