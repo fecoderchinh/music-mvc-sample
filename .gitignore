@@ -1,7 +1,7 @@
-docker/mongodb
-docker/mysql
-docker/rabbitmq
-docker/redis
+docker/mongodb/data*
+docker/mysql/data
+docker/rabbitmq/data
+docker/redis/data
 
 # IDEs and editors
 .idea
