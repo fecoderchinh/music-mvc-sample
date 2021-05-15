@@ -44,3 +44,42 @@ services:
       resources:
         limits:
           cpus: '2'
+   mongo:
+    image: 'mongo:4.0.22'
+    command: mongod --config /etc/mongod_repl2.conf
+    environment: []
+    ports:
+      - '${MONGODB_PORT}:27018'
+    volumes:
+      - './mongodb/etc/mongod_repl1.conf:/etc/mongod_repl1.conf'
+      - './mongodb/data_repl1:/var/lib/mongodb'
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+   mongo:
+    image: 'mongo:4.0.22'
+    command: mongod --config /etc/mongod_repl2.conf
+    environment: []
+    ports:
+      - '${MONGODB_PORT}:27019'
+    volumes:
+      - './mongodb/etc/mongod_repl2.conf:/etc/mongod_repl2.conf'
+      - './mongodb/data_repl2:/var/lib/mongodb'
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+   mongo:
+    image: 'mongo:4.0.22'
+    command: mongod --config /etc/mongod_repl3.conf
+    environment: []
+    ports:
+      - '${MONGODB_PORT}:27020'
+    volumes:
+      - './mongodb/etc/mongod_repl3.conf:/etc/mongod_repl3.conf'
+      - './mongodb/data_repl3:/var/lib/mongodb'
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
