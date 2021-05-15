@@ -52,7 +52,7 @@ services:
     ports:
       - 27017:27017
     restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0", "--dbpath", "/var/lib/mongodb"]
     volumes:
       - './mongodb/etc/mongod.conf:/etc/mongod.conf'
       - './mongodb/data:/var/lib/mongodb'
@@ -63,7 +63,7 @@ services:
     ports:
       - 27018:27017
     restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0", "--dbpath", "/var/lib/mongodb" ]
     volumes:
       - './mongodb/etc/mongod_rs0_1.conf:/etc/mongod.conf'
       - './mongodb/data_rs0_1:/var/lib/mongodb'
@@ -74,7 +74,7 @@ services:
     ports:
       - 27019:27017
     restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0", "--dbpath", "/var/lib/mongodb" ]
     volumes:
       - './mongodb/etc/mongod_rs0_2.conf:/etc/mongod.conf'
       - './mongodb/data_rs0_2:/var/lib/mongodb'

@@ -7,12 +7,12 @@ import { ProductSchema, ProductDocument } from './schemas/product.schema';
 @Injectable()
 export class ProductService {
    
-    private productModel:Model<any>;
+    private productModel:Model<ProductDocument>;
     
 	constructor( 
         @Inject( 'TENANT_CONNECTION' ) private connection: Connection,
 	){
-        this.productModel = this.connection.model("ProductModel", ProductSchema );
+        this.productModel = this.connection.model<ProductDocument>("ProductModel", ProductSchema );
 	}
 
     async createproduct(createProductDto: CreateProductDto ): Promise<ProductDocument> {
@@ -21,7 +21,7 @@ export class ProductService {
     }
 
 
-    async getAllProduct(): Promise<any>{
+    async getAllProduct(): Promise<ProductDocument[]>{
         return await this.productModel.find().exec()
     }
 }

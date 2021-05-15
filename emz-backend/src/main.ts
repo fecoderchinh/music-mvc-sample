@@ -1,8 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, UnprocessableEntityException, HttpStatus } from '@nestjs/common';
 import * as mongoose from 'mongoose';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 // enable debug mongosee
 mongoose.set('debug', true);
@@ -22,9 +23,17 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, document)
 
+  app.useGlobalFilters(new HttpExceptionFilter());
 
-  app.useGlobalPipes(new ValidationPipe())
-  app.enableCors()
+  app.useGlobalPipes(
+      new ValidationPipe({
+          whitelist: true,
+          errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+          exceptionFactory: (errors) =>
+              new UnprocessableEntityException(errors),
+      }),
+  );
+  app.enableCors();
 
   await app.listen(3000, () => {
     console.log("API is starting localhost:3000")
