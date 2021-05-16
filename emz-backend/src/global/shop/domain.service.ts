@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Model, Connection } from 'mongoose';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { GLOBAL_CONNECTION_NAME } from 'src/common/constances/app.constance';
 import { DomainSchema, DomainDocument } from './schemas/domain.schema';
 import { ObjectID } from 'mongodb';
 
@@ -9,12 +8,9 @@ import { ObjectID } from 'mongodb';
 @Injectable()
 export class DomainService {
 
-    // private DomainModel: Model<any>
     constructor(
         @InjectModel('DomainModel') private DomainModel: Model<DomainDocument>,
-        // @InjectConnection( GLOBAL_CONNECTION_NAME ) private connection: Connection
     ){
-        // this.DomainModel = this.connection.model("DomainModel", DomainSchema )
     }
 
     async findDomainByName( domainName: string ): Promise<DomainDocument>{

@@ -11,16 +11,11 @@ import { DomainSchema, DomainDocument } from './schemas/domain.schema';
 @Injectable()
 export class ShopService {
 
-    // private ShopModel: Model<any>;
-    // private DomainModel: Model<any>;
-
     constructor(
         @InjectModel('DomainModel') private DomainModel: Model<DomainDocument>,
         @InjectModel('ShopModel') private ShopModel: Model<any>,
-        // @InjectConnection( GLOBAL_CONNECTION_NAME ) private connection: Connection
     ){
-        // this.ShopModel = this.connection.model("ShopModel", ShopSchema );
-        // this.DomainModel = this.connection.model("DomainModel", DomainSchema );
+    
     }
 
     async getShopByUserId( userId: string ): Promise<ShopDocument[]>{
