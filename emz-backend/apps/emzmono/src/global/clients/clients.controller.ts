@@ -1,16 +1,13 @@
-import { BadRequestException, Body, Controller, Get, Post, UnauthorizedException, UseGuards, HttpStatus, HttpCode, Req } from '@nestjs/common'
+import { BadRequestException, Body, Controller, Get, Post, UseGuards, HttpStatus, HttpCode, Req } from '@nestjs/common'
 import { ApiTags, ApiOkResponse, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'apps/emzmono/src/auth/jwt-auth.guard';
 import { CreateClientDto } from 'shared/dtos/client/create.client.dto';
-import { ClientsService } from 'shared/services/clients.service';
+import { ClientService } from 'shared/services/client.service';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from 'shared/dtos/client/login.dto';
 import * as bcrypt from 'bcrypt';
 import { ClientResponse } from './responses/client.response';
-import { IResponse } from '@emzmono/common/interfaces/response.interface';
 import { ResponseSuccess } from '@emzmono/common/interfaces/success-response.interface';
-import { CreateShopDto } from 'shared/dtos/shop/create-shop.dto';
-import { ShopResponse } from '../shop/responses/shop.response';
 import { ShopsResponse } from '../shop/responses/shops.response';
 import { ShopService } from 'shared/services/shop.service';
 import { DomainService } from 'shared/services/domain.service';
@@ -20,7 +17,7 @@ const saltOrRounds = 10;
 @Controller('clients')
 export class ClientsController {
     constructor(
-        private readonly clientService: ClientsService,
+        private readonly clientService: ClientService,
         private readonly shopService: ShopService,
         private readonly domainService: DomainService,
         private readonly jwtService: JwtService,

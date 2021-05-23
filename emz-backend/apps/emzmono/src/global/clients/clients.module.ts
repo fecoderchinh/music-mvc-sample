@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { ClientsService } from 'shared/services/clients.service'
+import { ClientService } from 'shared/services/client.service'
 import { ClientsController } from './clients.controller'
 import { PassportModule } from '@nestjs/passport'
 import { JwtModule } from '@nestjs/jwt'
@@ -29,13 +29,13 @@ import { ConfigService } from '@nestjs/config';
 
   ],
   providers: [
-    ClientsService, 
+    ClientService,
     JwtStrategy
   ],
   controllers: [
     ClientsController, 
   ],
-  exports: [ClientsService],
+  exports: [ClientService],
 })
 
 export class ClientsModule {}

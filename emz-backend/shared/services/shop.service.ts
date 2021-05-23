@@ -1,6 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { getShopByUserDto } from 'shared/dtos/shop/get-shop-by-user.dto';
-import { CreateShopDto } from 'shared/dtos/shop/create-shop.dto';
+import { CreateShopDto } from 'shared/dtos/shop/create.shop.dto';
 import {ObjectID} from "mongodb";
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { ShopSchema, ShopDocument } from 'shared/schemas/shop.schema';
