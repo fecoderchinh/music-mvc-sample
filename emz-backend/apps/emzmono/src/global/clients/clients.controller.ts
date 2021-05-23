@@ -1,14 +1,14 @@
 import { BadRequestException, Body, Controller, Get, Post, UnauthorizedException, UseGuards, HttpStatus, HttpCode, Req } from '@nestjs/common'
 import { ApiTags, ApiOkResponse, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'apps/emzmono/src/auth/jwt-auth.guard';
 import { CreateClientDto } from './dto/create.client.dto';
 import { ClientsService } from './clients.service';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 import * as bcrypt from 'bcrypt';
 import { ClientResponse } from './responses/client.response';
-import { IResponse } from 'src/common/interfaces/response.interface';
-import { ResponseSuccess } from 'src/common/interfaces/success-response.interface';
+import { IResponse } from '@emzmono/common/interfaces/response.interface';
+import { ResponseSuccess } from '@emzmono/common/interfaces/success-response.interface';
 import { CreateShopDto } from '../shop/dto/create-shop.dto';
 import { ShopResponse } from '../shop/responses/shop.response';
 import { ShopsResponse } from '../shop/responses/shops.response';

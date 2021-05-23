@@ -4,11 +4,11 @@ import { CreateShopDto } from './dto/create-shop.dto';
 import { getShopByUserDto } from './dto/get-shop-by-user.dto';
 import { DomainService } from './domain.service';
 import { ApiOkResponse, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ResponseSuccess } from 'src/common/interfaces/success-response.interface';
+import { JwtAuthGuard } from '@emzmono/auth/jwt-auth.guard';
+import { ResponseSuccess } from '@emzmono/common/interfaces/success-response.interface';
 import { ShopResponse } from './responses/shop.response';
-import { Roles } from 'src/common/decorators/roles.decorator';
-import { APP_SUB_DOMAIN } from 'src/common/constances/app.constance';
+import { Roles } from '@emzmono/common/decorators/roles.decorator';
+import { APP_SUB_DOMAIN } from '@emzmono/common/constances/app.constance';
 
 @ApiTags('shop')
 @Controller('shop')

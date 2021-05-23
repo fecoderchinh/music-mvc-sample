@@ -2,7 +2,7 @@ import { Controller, Post, Body, HttpCode, HttpStatus, Get } from '@nestjs/commo
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { ApiTags, ApiHeader } from '@nestjs/swagger';
-import { TenantHaders } from 'src/common/constances/swagger.constance';
+import { TenantHaders } from '@emzmono/common/constances/swagger.constance';
 import { ProductDocument } from './schemas/product.schema';
 
 

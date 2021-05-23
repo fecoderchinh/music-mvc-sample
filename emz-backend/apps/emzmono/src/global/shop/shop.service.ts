@@ -5,7 +5,7 @@ import {ObjectID} from "mongodb";
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { ShopSchema, ShopDocument } from './schemas/shop.schema';
 import { Model, Connection } from 'mongoose';
-import { GLOBAL_CONNECTION_NAME, APP_SUB_DOMAIN } from 'src/common/constances/app.constance';
+import { GLOBAL_CONNECTION_NAME, APP_SUB_DOMAIN } from '@emzmono/common/constances/app.constance';
 import { DomainSchema, DomainDocument } from './schemas/domain.schema';
 
 @Injectable()

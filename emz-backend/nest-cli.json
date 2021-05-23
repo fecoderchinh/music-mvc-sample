@@ -1,4 +1,30 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src"
+  "sourceRoot": "apps/emzmono/src",
+  "monorepo": true,
+  "root": "apps/emzmono",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/emzmono/tsconfig.app.json"
+  },
+  "projects": {
+    "emzmono": {
+      "type": "application",
+      "root": "apps/emzmono",
+      "entryFile": "main",
+      "sourceRoot": "apps/emzmono/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/emzmono/tsconfig.app.json"
+      }
+    },
+    "schedule": {
+      "type": "application",
+      "root": "apps/schedule",
+      "entryFile": "main",
+      "sourceRoot": "apps/schedule/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/schedule/tsconfig.app.json"
+      }
+    }
+  }
 }
