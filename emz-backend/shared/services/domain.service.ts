@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Model, Connection } from 'mongoose';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { DomainSchema, DomainDocument } from './schemas/domain.schema';
+import { DomainSchema, DomainDocument } from 'shared/schemas/domain.schema';
 import { ObjectID } from 'mongodb';
 
 

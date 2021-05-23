@@ -1,12 +1,12 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { getShopByUserDto } from './dto/get-shop-by-user.dto';
-import { CreateShopDto } from './dto/create-shop.dto';
+import { getShopByUserDto } from 'shared/dtos/shop/get-shop-by-user.dto';
+import { CreateShopDto } from 'shared/dtos/shop/create-shop.dto';
 import {ObjectID} from "mongodb";
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { ShopSchema, ShopDocument } from './schemas/shop.schema';
+import { ShopSchema, ShopDocument } from 'shared/schemas/shop.schema';
 import { Model, Connection } from 'mongoose';
 import { GLOBAL_CONNECTION_NAME, APP_SUB_DOMAIN } from '@emzmono/common/constances/app.constance';
-import { DomainSchema, DomainDocument } from './schemas/domain.schema';
+import { DomainSchema, DomainDocument } from 'shared/schemas/domain.schema';
 
 @Injectable()
 export class ShopService {

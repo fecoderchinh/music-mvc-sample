@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common'
-import { ClientsService } from './clients.service'
+import { ClientsService } from 'shared/services/clients.service'
 import { ClientsController } from './clients.controller'
 import { PassportModule } from '@nestjs/passport'
 import { JwtModule } from '@nestjs/jwt'
 import { JwtStrategy } from '@emzmono/auth/jwt.strategy'
 import { ShopModule } from '../shop/shop.module'
 import { MongooseModule } from '@nestjs/mongoose'
-import { ClientSchema } from './schemas/client.schema'
+import { ClientSchema } from 'shared/schemas/client.schema'
 import { ConfigService } from '@nestjs/config';
 
 

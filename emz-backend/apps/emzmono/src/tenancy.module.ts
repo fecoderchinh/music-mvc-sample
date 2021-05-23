@@ -1,6 +1,6 @@
 import { Global, Module, Scope, NotFoundException } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
-import { ShopService } from './global/shop/shop.service';
+import { ShopService } from 'shared/services/shop.service';
 import { ShopModule } from './global/shop/shop.module';
 import { Connection, createConnection } from 'mongoose';
 

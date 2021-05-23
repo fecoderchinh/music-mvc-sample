@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ShopService } from './shop.service';
+import { ShopService } from 'shared/services/shop.service';
 import { ShopController } from './shop.controller';
-import { DomainService } from './domain.service';
+import { DomainService } from 'shared/services/domain.service';
 import { DomainController } from './domain.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ShopSchema } from './schemas/shop.schema';
-import { DomainSchema } from './schemas/domain.schema';
+import { ShopSchema } from 'shared/schemas/shop.schema';
+import { DomainSchema } from 'shared/schemas/domain.schema';
 
 @Module({
   imports: [

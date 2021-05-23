@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateClientDto } from './dto/create.client.dto';
+import { CreateClientDto } from 'shared/dtos/client/create.client.dto';
 import { Connection as ConnectionMongosee, Model } from 'mongoose';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { ClientInterface, ClientSchema } from './schemas/client.schema';
+import { ClientInterface, ClientSchema } from 'shared/schemas/client.schema';
 import { GLOBAL_CONNECTION_NAME } from '@emzmono/common/constances/app.constance';
 
 @Injectable()

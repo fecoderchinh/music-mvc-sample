@@ -1,8 +1,8 @@
 import { Controller, Post, HttpCode, UseGuards, HttpStatus, Req, Body, BadRequestException } from '@nestjs/common';
-import { ShopService } from './shop.service';
-import { CreateShopDto } from './dto/create-shop.dto';
-import { getShopByUserDto } from './dto/get-shop-by-user.dto';
-import { DomainService } from './domain.service';
+import { ShopService } from 'shared/services/shop.service';
+import { CreateShopDto } from 'shared/dtos/shop/create-shop.dto';
+import { getShopByUserDto } from 'shared/dtos/shop/get-shop-by-user.dto';
+import { DomainService } from 'shared/services/domain.service';
 import { ApiOkResponse, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '@emzmono/auth/jwt-auth.guard';
 import { ResponseSuccess } from '@emzmono/common/interfaces/success-response.interface';
