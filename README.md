@@ -2,6 +2,7 @@
 ```
 server {
     listen          80;             # the port nginx is listening on
+    listen          [::]:80;
     server_name     emz.localhost;    # setup your domain here
 
     gzip            on;
@@ -24,6 +25,7 @@ server {
 
 server {
     listen          80;             # the port nginx is listening on
+    listen          [::]:80;
     server_name     api.emz.localhost;    # setup your domain here
 
     gzip            on;
@@ -47,6 +49,7 @@ server {
 
 server {
     listen          80;             # the port nginx is listening on
+    listen          [::]:80;
     server_name     sumishop.emz.localhost;    # setup your domain here
 
     gzip            on;

@@ -3,13 +3,11 @@ import { CreateProductDto } from 'shared/dtos/product/create.product.dto';
 import { Model, Connection } from 'mongoose';
 import { ProductSchema, ProductDocument } from 'shared/schemas/product.schema';
 
-
 @Injectable()
 export class ProductService {
-   
     private productModel:Model<ProductDocument>;
-    
-	constructor( 
+
+	constructor(
         @Inject( 'TENANT_CONNECTION' ) private connection: Connection,
 	){
         this.productModel = this.connection.model<ProductDocument>("ProductModel", ProductSchema );
