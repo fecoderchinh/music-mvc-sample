@@ -1,63 +1,57 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsPhoneNumber, IsEmail, MinLength } from "class-validator";
+import {JoiSchema} from "nestjs-joi";
+import * as Joi from "joi";
+import * as phoneNumber  from "joi-phone-number";
+const customJoi = Joi.extend(phoneNumber);
 
 export class CreateShopDto{
-   
     @ApiProperty({
         type: String,
         default: "sumishop"
     })
-    @IsNotEmpty()
-    @MinLength(6)
+    @JoiSchema(customJoi.string().required().max(255).min(6))
     shopDomain: string;
 
     @ApiProperty({
         type: String,
         default: "Nhien Phan Van"
     })
-    @IsNotEmpty()
-    @MinLength(6)
+    @JoiSchema(customJoi.string().required().max(255).min(6))
     shopOwnerName: string;
 
     @ApiProperty({
         type: String,
         default: "Sumishop Watch Pro"
     })
-    @IsNotEmpty()
-    @MinLength(8)
+    @JoiSchema(customJoi.string().required().max(255).min(8))
     shopName: string;
-
 
     @ApiProperty({
         type: String,
         default: "phanvannhien@gmail.com"
     })
-    @IsNotEmpty()
-    @MinLength(6)
-    @IsEmail()
+    @JoiSchema(customJoi.string().email().required().max(255))
     email: string;
 
     @ApiProperty({
         type: String,
         default: "1 Le Lai, Ben Thanh Q1"
     })
-    @IsNotEmpty()
-    @MinLength(6)
+    @JoiSchema(customJoi.string().required().max(255).min(6))
     shopAddress: string;
 
     @ApiProperty({
         type: String,
         default: "01"
     })
-    @IsNotEmpty()
+    @JoiSchema(Joi.string().required())
     city: string;
 
     @ApiProperty({
         type: String,
         default: '0902181852'
     })
-    @IsNotEmpty()
-    @IsPhoneNumber("VN")
+    @JoiSchema(customJoi.string().phoneNumber({ defaultCountry: 'VN', strict: true}).required().max(255))
     phone: string;
 
 }
