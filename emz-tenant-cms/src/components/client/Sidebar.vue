@@ -213,12 +213,12 @@ export default {
             },
             {
               subItem: 'Giao diện web',
-              subUrl: '#',
+              subUrl: '/dashboard/theme',
               subComponent: 'EllipseSVG',
             },
             {
               subItem: 'Các trang con',
-              subUrl: '#',
+              subUrl: '/dashboard/page',
               subComponent: 'EllipseSVG',
             },
           ],
