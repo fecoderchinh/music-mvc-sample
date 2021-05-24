@@ -4,14 +4,16 @@ import * as Joi from 'joi';
 import { Condition, Seo } from 'shared/schemas/category.schema';
 import {
     extensionImage,
-    addProductType,
-    conditionOperator,
-    conditionField,
-    allowCondition,
 } from 'shared/rules/common';
 
 import {JoiSchemaOptions} from "nestjs-joi";
-import {ADD_PRODUCT_AUTO} from "../../enums/category.enum";
+import {
+    ADD_PRODUCT_AUTO,
+    ADD_PRODUCT_TYPE,
+    CONDITION_FIELDS,
+    CONDITION_OPERATOR,
+    CONDITIONS
+} from "../../enums/category.enum";
 @JoiSchemaOptions({
     allowUnknown: false,
 })
@@ -55,22 +57,22 @@ export class CreateCategoryDto {
         type: String,
         default: "MANUAL"
     })
-    @JoiSchema(Joi.string().required().custom(addProductType))
+    @JoiSchema(Joi.string().required().valid(...ADD_PRODUCT_TYPE))
     addProductType: string;
 
     @ApiProperty({
         type: String,
         default: "AND"
     })
-    @JoiSchema(Joi.string().required().custom(conditionOperator).when('addProductType', {
+    @JoiSchema(Joi.string().required().valid(...CONDITION_OPERATOR).when('addProductType', {
         is: ADD_PRODUCT_AUTO,
         then: Joi.required(),
         otherwise: Joi.optional(),
     }))
     conditionOperator?: string;
     @JoiSchema(Joi.array().items(Joi.object().keys({
-        field: Joi.string().required().custom(conditionField),
-        condition: Joi.string().required().custom(allowCondition),
+        field: Joi.string().required().valid(...CONDITION_FIELDS),
+        condition: Joi.string().required().valid(...Object.keys(CONDITIONS)),
         value: Joi.string().required(),
     })).when('addProductType', {
         is: ADD_PRODUCT_AUTO,
