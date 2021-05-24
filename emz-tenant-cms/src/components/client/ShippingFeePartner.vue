@@ -18,7 +18,7 @@
               <h3 class="font-lato text-14px font-bold text-labelAndTitle">{{ data.name }}</h3>
             </div>
             <div class="col-span-3 sm:col-span-6 flex items-center">
-              <h3 class="font-lato text-14px font-normal text-labelAndTitle">{{ data.namePackage }}</h3>
+              <h3 class="font-lato text-14px font-normal text-buttonAndURL"><a href="#">{{ data.namePackage }}</a></h3>
             </div>
             <div class="col-span-3 sm:col-span-6 md:text-right">
               <Button @click="openModal" button-class="cms-button cms-button-white">
@@ -51,7 +51,7 @@ export default {
         {
           imgPath: 'https://picsum.photos/80/45',
           name: 'Giao hàng nhanh EMZ',
-          namePackage: 'Gói dịch vụ chuẩn',
+          namePackage: 'Kết nối ngay',
         },
       ],
     };
