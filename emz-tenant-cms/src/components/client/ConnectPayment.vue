@@ -7,7 +7,7 @@
         <p class="cms-typo text-14px text-menuItem mt-2">Bạn có thể tạo các hình thức thanh toán khác ngoài các phương thức online.</p>
       </div>
       <div class="col-span-3 sm:col-span-6" v-for="(data, index) in optionData" :key="index">
-        <BoxPartner :connectButton="data.connectURL">
+        <BoxPartner :connectButton="data.connectURL" @onClickButton="openModal">
           <div slot="content" class="relative text-standardCMS">
             <CheckType
               main-class="md:absolute sm:mb-3 top-0 right-0 sm:ml-0 rounded-checkbox no-mr"
@@ -30,7 +30,7 @@ import Box from '@/components/client/Box.vue';
 import BoxPartner from '@/components/client/BoxPartner.vue';
 import CheckType from '@/components/client/CheckType.vue';
 
-// import ModalShipping from '@/components/client/ModalShipping.vue';
+import ModalPayment from "@/components/client/ModalPayment";
 
 export default {
   components: {
@@ -57,20 +57,20 @@ export default {
     };
   },
   methods: {
-    // openModal() {
-    //   const options = {
-    //     class: 'cms-modal',
-    //   };
-    //   const style = {
-    //     width: 600, height: 'auto', shiftX: 0.5, adaptive: true,
-    //   };
-    //   const events = {
-    //     // opened: () => console.log('Opened'),
-    //     closed: () => this.$emit('close'),
-    //   };
-    //
-    //   this.$modal.show(ModalShipping, options, style, events);
-    // },
+    openModal() {
+      const options = {
+        class: 'cms-modal',
+      };
+      const style = {
+        width: 600, height: 'auto', shiftX: 0.5, adaptive: true,
+      };
+      const events = {
+        // opened: () => console.log('Opened'),
+        closed: () => this.$emit('close'),
+      };
+
+      this.$modal.show(ModalPayment, options, style, events);
+    },
     statusText(bool) {
       if (bool) return 'Đang sử dụng';
       return 'Ngừng sử dụng';
