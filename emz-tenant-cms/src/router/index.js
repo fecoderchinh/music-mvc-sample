@@ -21,6 +21,7 @@ import VoucherCreate from '../views/client/VoucherCreate.vue';
 import ComboCreate from '../views/client/ComboCreate.vue';
 import Connect from '../views/client/Connect.vue';
 import Settings from '../views/client/Settings.vue';
+import SettingConnectPayment from '../views/client/SettingConnectPayment.vue';
 import Shipping from '../views/client/Shipping.vue';
 import ShippingFeeSettings from '../views/client/ShippingFeeSettings.vue';
 import Warehouse from '../views/client/Warehouse.vue';
@@ -72,7 +73,7 @@ const routes = [
       authRequired: true,
     },
     children: [
-      
+
       {
         path: 'order-create', // empty item
         component: OrderCreate,
@@ -90,7 +91,7 @@ const routes = [
       {
         path: 'order-message', // notify
         component: OrderMessage,
-        
+
       },
       {
         path: 'order-note', // note
@@ -171,6 +172,10 @@ const routes = [
       {
         path: 'settings', // settings
         component: Settings,
+      },
+      {
+        path: 'connect-payment', // ket noi thanh toan
+        component: SettingConnectPayment,
       },
       {
         path: 'shipping', // shipping
@@ -300,22 +305,22 @@ const router = new VueRouter({
 });
 
 
-router.beforeEach((to, from, next) => {
-  if(to.matched.some(record => record.meta.authRequired)) {
-    if (localStorage.getItem('user') == null) {
-      next({
-        path: '/auth/tab-login',
-        params: { nextUrl: to.fullPath }
-      })
-    } 
-    else {
-      next()
-    }
-    
-  }else {
-    next() 
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if(to.matched.some(record => record.meta.authRequired)) {
+//     if (localStorage.getItem('user') == null) {
+//       next({
+//         path: '/auth/tab-login',
+//         params: { nextUrl: to.fullPath }
+//       })
+//     }
+//     else {
+//       next()
+//     }
+//
+//   }else {
+//     next()
+//   }
+// })
 
 
 export default router;
