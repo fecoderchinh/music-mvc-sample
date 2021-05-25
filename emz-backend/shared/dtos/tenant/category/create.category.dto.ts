@@ -44,7 +44,7 @@ export class CreateCategoryDto {
         type: Date,
         default: '2021-01-01'
     })
-    @JoiSchema(Joi.date().min('now'))
+    @JoiSchema(Joi.date().min('now').optional())
     publishSchedule?: Date;
 
     @ApiProperty({

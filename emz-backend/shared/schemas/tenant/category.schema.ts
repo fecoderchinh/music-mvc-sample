@@ -20,15 +20,15 @@ export interface ICategoryPaginator {
 }
 
 export interface ICategoryDocument extends Document {
-    readonly name: string;
+    name: string;
     readonly description: string;
     readonly isPublished: boolean;
-    readonly publishSchedule: Date;
+    publishSchedule: Date;
     readonly publishedAt: Date;
-    readonly image: string;
-    readonly addProductType: string;
-    readonly conditionOperator: string;
-    readonly conditions: Condition[];
+    image: string;
+    addProductType: string;
+    conditionOperator: string;
+    conditions: Condition[];
     readonly seo: Seo;
     readonly user: string;
     readonly createdAt: Date;

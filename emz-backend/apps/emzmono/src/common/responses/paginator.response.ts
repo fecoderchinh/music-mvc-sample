@@ -1,6 +1,6 @@
 import { IMetaPaginator, IPaginatorResponse } from "shared/paginator";
 
-export class PaginatorSuccessResponse implements IPaginatorResponse {
+export class PaginatorResponse implements IPaginatorResponse {
     items: any[];
     meta: IMetaPaginator;
 

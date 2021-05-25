@@ -30,7 +30,7 @@ export const CONDITION_NOT_EQUAL = 'NOT_EQUAL';
 export const CONDITIONS = {
     [CONDITION_EQUAL]: { $eq: 'KEYWORD'},
     [CONDITION_LIKE]: {$regex: 'KEYWORD', $options: 'uis'},
-    [CONDITION_LIKE_START]: {$regex: '^KEYWORD', '$options': 'uis'},
+    [CONDITION_LIKE_START]: {$regex: '^KEYWORD', $options: 'uis'},
     [CONDITION_LIKE_END]: {$regex: 'KEYWORD$', $options: 'uis'},
     [CONDITION_NOT_EQUAL]: { $not: 'KEYWORD'},
 };
