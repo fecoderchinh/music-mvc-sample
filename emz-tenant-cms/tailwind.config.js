@@ -117,6 +117,7 @@ module.exports = {
         cmsLight: '#f3fcfb',
       },
       fill: {
+        current: 'currentColor',
         menuItem: '#54698d',
         menuIcon: '#a8b7c7',
         labelAndTitle: '#16325c',
@@ -135,6 +136,7 @@ module.exports = {
         cmsLight: '#f3fcfb',
       },
       stroke: {
+        current: 'currentColor',
         menuItem: '#54698d',
         menuIcon: '#a8b7c7',
         labelAndTitle: '#16325c',
