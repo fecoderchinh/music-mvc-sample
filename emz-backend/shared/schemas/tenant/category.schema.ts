@@ -1,5 +1,6 @@
 import { Document, Schema }  from 'mongoose'
-import {ADD_PRODUCT_TYPE, CONDITION_OPERATOR} from 'shared/enums/category.enum'
+import { CONDITION_OPERATOR } from 'shared/enums/share.enum'
+import { ADD_PRODUCT_TYPE } from 'shared/enums/category.enum'
 import { IMetaPaginator } from "../../paginator";
 
 export interface Condition {
