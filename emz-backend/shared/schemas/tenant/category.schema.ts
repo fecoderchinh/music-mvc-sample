@@ -1,5 +1,6 @@
 import { Document, Schema }  from 'mongoose'
 import {ADD_PRODUCT_TYPE, CONDITION_OPERATOR} from 'shared/enums/category.enum'
+import { IMetaPaginator } from "../../paginator";
 
 export interface Condition {
     readonly field: string;
@@ -13,7 +14,12 @@ export interface Seo {
     readonly slug: string;
 }
 
-export interface CategoryDocument extends Document {
+export interface ICategoryPaginator {
+    readonly items: ICategoryDocument[];
+    readonly meta: IMetaPaginator;
+}
+
+export interface ICategoryDocument extends Document {
     readonly name: string;
     readonly description: string;
     readonly isPublished: boolean;
@@ -29,7 +35,7 @@ export interface CategoryDocument extends Document {
     readonly updatedAt: Date;
 }
 
-export const CategorySchema = new Schema<CategoryDocument>({
+export const CategorySchema = new Schema<ICategoryDocument>({
     name: { type: String, required: true },
     description: String,
     isPublished: Boolean,
@@ -66,14 +72,7 @@ export const CategorySchema = new Schema<CategoryDocument>({
         ref: 'ClientModel',
         required: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now()
-    },
 },{
-    collection: 'categories'
+    collection: 'categories',
+    timestamps: true,
 });

@@ -124,8 +124,6 @@ export class JoiPipe implements PipeTransform {
             DEFAULT_JOI_OPTS,
         );
 
-        console.log('error', payload);
-
         if (error) {
             const {
                 type,
