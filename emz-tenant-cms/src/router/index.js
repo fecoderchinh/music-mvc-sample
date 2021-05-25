@@ -52,6 +52,7 @@ import Store from '../views/theme/Store.vue';
 import THome from '../views/theme/THome.vue';
 import TCategory from '../views/theme/TCategory.vue';
 import TDetail from '../views/theme/TDetail.vue';
+import MenuSettings from "@/views/client/MenuSettings";
 
 Vue.use(VueRouter);
 
@@ -224,6 +225,10 @@ const routes = [
       {
         path: 'package', // Package
         component: Package,
+      },
+      {
+        path: 'menu-settings', // QUAN LY MENU
+        component: MenuSettings,
       },
     ],
   },
