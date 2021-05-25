@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { JoiSchema } from "nestjs-joi";
 import * as Joi from 'joi';
-import { Condition, Seo } from 'shared/schemas/category.schema';
+import { Condition, Seo } from 'shared/schemas/tenant/category.schema';
 import {
     extensionImage,
 } from 'shared/rules/common';
@@ -13,7 +13,8 @@ import {
     CONDITION_FIELDS,
     CONDITION_OPERATOR,
     CONDITIONS
-} from "../../enums/category.enum";
+} from "shared/enums/category.enum";
+
 @JoiSchemaOptions({
     allowUnknown: false,
 })

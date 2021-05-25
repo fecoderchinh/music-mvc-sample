@@ -1,6 +1,5 @@
 import * as mongoose from 'mongoose';
 
-
 export interface ClientInterface extends mongoose.Document {
     readonly fullName: string;
     readonly phone: string;
@@ -16,12 +15,9 @@ export const ClientSchema = new mongoose.Schema({
     password: String,
     email: String,
     avatar: String,
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    }
 },{
-    collection: 'clients'
+    collection: 'clients',
+    timestamps: true,
 });
 
 /* statics */

@@ -1,7 +1,7 @@
 import { Controller, Post, HttpCode, UseGuards, HttpStatus, Req, Body, BadRequestException } from '@nestjs/common';
-import { ShopService } from 'shared/services/shop.service';
-import { CreateShopDto } from 'shared/dtos/shop/create.shop.dto';
-import { DomainService } from 'shared/services/domain.service';
+import { ShopService } from 'shared/services/global/shop.service';
+import { CreateShopDto } from 'shared/dtos/global/shop/create.shop.dto';
+import { DomainService } from 'shared/services/global/domain.service';
 import { ApiOkResponse, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '@emzmono/auth/jwt-auth.guard';
 import { ResponseSuccess } from '@emzmono/common/interfaces/success-response.interface';
@@ -12,7 +12,7 @@ import { APP_SUB_DOMAIN } from '@emzmono/common/constances/app.constance';
 @ApiTags('shop')
 @Controller('shop')
 export class ShopController {
-    constructor( 
+    constructor(
         private shopService: ShopService,
         private domainService: DomainService,
 

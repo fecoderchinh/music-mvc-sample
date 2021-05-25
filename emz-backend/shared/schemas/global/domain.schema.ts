@@ -11,5 +11,6 @@ export const DomainSchema = new mongoose.Schema({
     isInternal: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now() },
 }, {
-    collection: 'domains'
+    collection: 'domains',
+    timestamps: true,
 });
