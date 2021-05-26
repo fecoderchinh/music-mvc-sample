@@ -13,7 +13,7 @@ services:
     volumes:
       - './redis/data:/var/lib/redis'
       - './redis/etc:/etc/redis/'
-    user: 1000:1000
+    user: '1000:1000'
   rabbitmq:
     image: 'rabbitmq:3-management'
     container_name: rabbitmq
@@ -32,49 +32,77 @@ services:
       resources:
         limits:
           cpus: '0.5'
-    user: 1000:1000
+    user: '1000:1000'
   mongo-setup:
     image: 'mongo:4.0.22'
-    restart: on-failure
+    #restart: on-failure
     networks:
-      default:
+      default: null
     volumes:
-    - ./mongodb/scripts:/scripts
-    entrypoint: [ "/scripts/setup.sh" ] # Make sure this file exists (see below for the setup.sh)
+      - './mongodb/scripts:/scripts'
+    entrypoint:
+      - /scripts/setup.sh
     depends_on:
-      - mongo
       - mongo1
       - mongo2
-  mongo:
-    image: 'mongo:4.0.22'
-    expose:
-      - 27017
-    ports:
-      - 27017:27017
-    restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0", "--dbpath", "/var/lib/mongodb"]
-    volumes:
-      - './mongodb/etc/mongod.conf:/etc/mongod.conf'
-      - './mongodb/data:/var/lib/mongodb'
+      - mongo3
   mongo1:
     image: 'mongo:4.0.22'
+    container_name: emz_mongo1
     expose:
       - 27017
     ports:
-      - 27018:27017
-    restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0", "--dbpath", "/var/lib/mongodb" ]
+      - '27017:27017'
+    command: mongod --config /etc/mongod.conf
+    #restart: always
+    # entrypoint:
+    #   - /usr/bin/mongod
+    #   - '--bind_ip_all'
+    #   - '--replSet'
+    #   - rs0
+    #   - '--dbpath'
+    #   - /var/lib/mongodb
     volumes:
-      - './mongodb/etc/mongod_rs0_1.conf:/etc/mongod.conf'
+      - './mongodb/etc/mongod.conf:/etc/mongod.conf'
       - './mongodb/data_rs0_1:/var/lib/mongodb'
+    user: '1000:1000'
   mongo2:
     image: 'mongo:4.0.22'
+    container_name: emz_mongo2
     expose:
       - 27017
     ports:
-      - 27019:27017
-    restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0", "--dbpath", "/var/lib/mongodb" ]
+      - '27018:27017'
+    command: mongod --config /etc/mongod.conf
+    #restart: always
+    # entrypoint:
+    #   - /usr/bin/mongod
+    #   - '--bind_ip_all'
+    #   - '--replSet'
+    #   - rs0
+    #   - '--dbpath'
+    #   - /var/lib/mongodb
     volumes:
-      - './mongodb/etc/mongod_rs0_2.conf:/etc/mongod.conf'
+      - './mongodb/etc/mongod.conf:/etc/mongod.conf'
       - './mongodb/data_rs0_2:/var/lib/mongodb'
+    user: '1000:1000'
+  mongo3:
+    image: 'mongo:4.0.22'
+    container_name: emz_mongo3
+    expose:
+      - 27017
+    ports:
+      - '27019:27017'
+    volumes:
+      - './mongodb/etc/mongod.conf:/etc/mongod.conf'
+      - './mongodb/data_rs0_3:/var/lib/mongodb:rw'
+    command: mongod --config /etc/mongod.conf
+    #restart: always
+    # entrypoint:
+    #   - /usr/bin/mongod
+    #   - '--bind_ip_all'
+    #   - '--replSet'
+    #   - rs0
+    #   - '--dbpath'
+    #   - /var/lib/mongodb
+    user: '1000:1000'
