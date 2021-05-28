@@ -23,28 +23,37 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-4 sm:grid-cols-1 gap-5">
-        <div class="col-span-1">
-          <SelectOption :option-data="this.optionDataSelect1"/>
+      <div class="table w-full">
+        <div class="table-row w-full">
+          <div class="table-cell">
+            <div class="grid grid-cols-4 sm:grid-cols-1 gap-5">
+              <div class="col-span-1">
+                <SelectOption :option-data="this.optionDataSelect1"/>
+              </div>
+              <div class="col-span-1">
+                <SelectOption :option-data="this.optionDataSelect2"/>
+              </div>
+              <div class="col-span-2 bg-gray-300">
+                <InputType
+                    id="add-product-name"
+                    name="add-product-name"
+                    button="reset"
+                    input-class="cms-input__default">
+                </InputType>
+              </div>
+            </div>
+          </div>
+          <div class="w-auto text-center text-placeholderStyle ml-3">
+            <DeleteSVG class="w-4 inline -mt-1 fill-current"/>
+          </div>
         </div>
-        <div class="col-span-1">
-          <SelectOption :option-data="this.optionDataSelect2"/>
-        </div>
-        <div class="col-span-2 bg-gray-300">
-          <InputType
-            id="add-product-name"
-            name="add-product-name"
-            button="reset"
-            input-class="cms-input__default">
-          </InputType>
       </div>
-    </div>
 
-    <Button button-class="cms-button cms-button-white mt-5">
-      <template slot="name">
-        + Thêm điều kiện
-      </template>
-    </Button>
+      <div class="grid grid-cols-6 gap-5 mt-5">
+        <div class="col-span-6 md:col-span-2">
+          <DropdownCondition/>
+        </div>
+      </div>
 
     </template>
   </Box>
@@ -55,7 +64,11 @@ import Box from '@/components/client/Box.vue';
 import Radio from '@/components/client/Radio.vue';
 import SelectOption from '@/components/client/SelectOption.vue';
 import InputType from '@/components/client/InputType.vue';
-import Button from '@/components/client/Button.vue';
+import DropdownCondition from '@/components/client/DropdownCondition.vue';
+
+import {
+  DeleteSVG,
+} from '@/components/SVGs';
 
 export default {
   components: {
@@ -63,7 +76,8 @@ export default {
     Radio,
     SelectOption,
     InputType,
-    Button,
+    DeleteSVG,
+    DropdownCondition
   },
   data() {
     return {

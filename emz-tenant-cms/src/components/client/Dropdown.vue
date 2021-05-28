@@ -1,57 +1,21 @@
 <template>
   <!-- eslint-disable max-len -->
   <div class="relative">
-    <div class="cms-dropdown" :class="this.show ? '' : 'hidden'">
-      <a href="#" class="cms-dropdown__item">
-        <AvatarSVG class="w-4 inline no-effect"/>
-        Tài khoản của tôi
-      </a>
-      <a href="#" class="cms-dropdown__item">
-        <AvatarSVG class="w-4 inline no-effect"/>
-        Gói dịch vụ
-      </a>
-      <a href="#" @click="logout" class="cms-dropdown__item">
-        <AvatarSVG class="w-4 inline no-effect"/>
-        Đăng xuất
-      </a>
-      <div class="divider divider-2/3"></div>
-      <a href="#" class="cms-dropdown__item">
-        <AvatarSVG class="w-4 inline no-effect"/>
-        Điều khoản dịch vụ
-      </a>
-      <a href="#" class="cms-dropdown__item">
-        <AvatarSVG class="w-4 inline no-effect"/>
-        Chính sách bảo mật
-      </a>
-      <div class="divider divider-1/3"></div>
-      <a href="#" class="cms-dropdown__item">
-        <AvatarSVG class="w-4 inline no-effect"/>
-        Hỗ trợ
-      </a>
-      <a href="#" class="cms-dropdown__item">
-        <AvatarSVG class="w-4 inline no-effect"/>
-        Hotline 24/7: <span class="text-buttonAndURL">0902 492 111</span>
-      </a>
-      <a href="#" class="cms-dropdown__item">
-        <AvatarSVG class="w-4 inline no-effect"/>
-        <span>Email: hotro@emz.vn</span>
-      </a>
+    <div class="cms-dropdown" :class="[
+        this.show ? '' : 'hidden',
+        dropdownClass
+    ]">
+      <slot/>
     </div>
   </div>
 </template>
 
 <script>
-import {
-  AvatarSVG,
-} from '@/components/SVGs.vue';
-
 export default {
   name: 'Dropdown',
-  components: {
-    AvatarSVG,
-  },
   props: {
     show: Boolean,
+    dropdownClass: String
   },
   methods: {
     logout(){
@@ -64,6 +28,12 @@ export default {
 
 <style lang="scss">
 .cms-dropdown {
+  &.no-top-arrow {
+    @apply mt-0 rounded-none shadow-none border #{!important};
+    &:before, &:after {
+      content: none;
+    }
+  }
   @apply cms-typo absolute mt-6 py-2 min-w-4 bg-white rounded shadow-fixed top-100;
   @media (min-width: 992px) {
     @apply left-50 transform -translate-x-1/2;
