@@ -1,7 +1,8 @@
+import { StoreController } from "./store.controller";
 import { Module } from '@nestjs/common';
-import { CategoryController } from './category.controller';
-import { CategoryService } from 'shared/services/category.service';
-import {JoiPipeModule} from "nestjs-joi";
+import { JoiPipeModule } from "nestjs-joi";
+import { StoreService } from "@shared/services/tenants/store.service";
+
 
 @Module({
     imports: [
@@ -12,11 +13,11 @@ import {JoiPipeModule} from "nestjs-joi";
         }),
     ],
     controllers: [
-        CategoryController
+        StoreController
     ],
     providers: [
-        CategoryService
+        StoreService
     ],
     exports: []
 })
-export class CategoryModule {}
+export class StoreModule {}
