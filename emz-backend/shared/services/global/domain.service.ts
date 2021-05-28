@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Model, Connection } from 'mongoose';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { DomainSchema, DomainDocument } from 'shared/schemas/domain.schema';
+import { DomainSchema, DomainDocument } from 'shared/schemas/global/domain.schema';
 import { ObjectID } from 'mongodb';
 
 
@@ -19,11 +19,11 @@ export class DomainService {
 
     async findInternalDomainByShopId( shopId: string ): Promise<DomainDocument>
     {
-        return await this.DomainModel.findOne({ 
+        return await this.DomainModel.findOne({
             shop: new ObjectID(shopId),
             isInternal: true
         }).exec()
     }
-    
- 
+
+
 }

@@ -87,11 +87,6 @@ export const ShopSchema = new mongoose.Schema({
         required: true
     },
 
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    },
-
     domains: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'DomainModel',
@@ -104,7 +99,8 @@ export const ShopSchema = new mongoose.Schema({
     }
 
 },{
-    collection: 'shops'
+    collection: 'shops',
+    timestamps: true,
 });
 
 /* statics */

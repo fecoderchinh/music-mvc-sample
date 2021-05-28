@@ -1,13 +1,13 @@
 import { Global, Module, Scope, NotFoundException } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
-import { ShopService } from 'shared/services/shop.service';
+import { ShopService } from 'shared/services/global/shop.service';
 import { ShopModule } from './global/shop/shop.module';
 import { Connection, createConnection } from 'mongoose';
 
 import * as mongoose from 'mongoose';
 
 const connectionFactory = {
-    
+
     provide: 'TENANT_CONNECTION',
     // scope: Scope.REQUEST,
     useFactory: async (req, shopService: ShopService) => {
@@ -16,7 +16,7 @@ const connectionFactory = {
         const hostName = urlObject.hostname;
 
         const shop = await shopService.getTenantIdByDomainName(hostName)
-  
+
         if (!shop) {
             throw new NotFoundException(`Domain not found`);
         }
@@ -29,12 +29,12 @@ const connectionFactory = {
         const foundConn = connections.find((con: Connection) => {
             return con.name === `tenant-${shop.tenantUid}`;
         });
- 
+
         // Check if connection exist and is ready to execute
         if (foundConn && foundConn.readyState === 1) {
             return foundConn;
         }
- 
+
         // Create a new connection
         return await createConnection( uri )
 

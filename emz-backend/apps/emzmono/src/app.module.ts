@@ -13,6 +13,7 @@ import { TenancyConnectionModule } from './tenancy.module';
 import {JoiPipeModule} from "nestjs-joi";
 import {APP_PIPE} from "@nestjs/core";
 import {JoiPipe} from "@emzmono/common/pipes/joi.pipe";
+import {MenuModule} from "@emzmono/tenants/menu/menu.module";
 
 
 @Module({
@@ -28,7 +29,7 @@ import {JoiPipe} from "@emzmono/common/pipes/joi.pipe";
       inject: [ConfigService],
     }),
     JoiPipeModule,
-    
+
     TenancyConnectionModule,
 
     // Global modules
@@ -36,7 +37,8 @@ import {JoiPipe} from "@emzmono/common/pipes/joi.pipe";
     ShopModule,
     // Tenant modules
     ProductModule,
-    CategoryModule
+    CategoryModule,
+    MenuModule,
   ],
   controllers: [AppController],
   providers: [
