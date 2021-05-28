@@ -28,6 +28,7 @@ export class CategoryService {
         const categoryData = {
             ...createCategoryDto,
             user: new ObjectID(userId),
+            publishSchedule: createCategoryDto?.isPublished ? null : createCategoryDto?.publishSchedule,
         };
         const category = new this.categoryModel(categoryData);
 
@@ -51,6 +52,16 @@ export class CategoryService {
         const [total, docs] = await Promise.all([countPromise, docsPromise]);
 
         return paginator.buildResponse(total, docs);
+    }
+
+    async getDetail(id: ObjectID): Promise<ICategoryDocument> {
+        const category:ICategoryDocument = await this.categoryModel.findById(id);
+
+        if (!category) {
+            throw new NotFoundException();
+        }
+
+        return category;
     }
 
     async destroy(id: ObjectID): Promise<void> {

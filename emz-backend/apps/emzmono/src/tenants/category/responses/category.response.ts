@@ -5,7 +5,7 @@ import {ConditionResponse} from "@emzmono/tenants/category/responses/condition.r
 
 export class CategoryResponse {
     constructor(object: ICategoryDocument) {
-        this.id = object.id;
+        this.id = object._id;
         this.name = object.name;
         this.description = object.description ?? null;
         this.isPublished = object.isPublished;
