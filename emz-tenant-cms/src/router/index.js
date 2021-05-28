@@ -21,6 +21,7 @@ import VoucherCreate from '../views/client/VoucherCreate.vue';
 import ComboCreate from '../views/client/ComboCreate.vue';
 import Connect from '../views/client/Connect.vue';
 import Settings from '../views/client/Settings.vue';
+import SettingConnectPayment from '../views/client/SettingConnectPayment.vue';
 import Shipping from '../views/client/Shipping.vue';
 import ShippingFeeSettings from '../views/client/ShippingFeeSettings.vue';
 import Warehouse from '../views/client/Warehouse.vue';
@@ -51,6 +52,7 @@ import Store from '../views/theme/Store.vue';
 import THome from '../views/theme/THome.vue';
 import TCategory from '../views/theme/TCategory.vue';
 import TDetail from '../views/theme/TDetail.vue';
+import MenuSettings from "@/views/client/MenuSettings";
 
 Vue.use(VueRouter);
 
@@ -72,7 +74,7 @@ const routes = [
       authRequired: true,
     },
     children: [
-      
+
       {
         path: 'order-create', // empty item
         component: OrderCreate,
@@ -90,7 +92,7 @@ const routes = [
       {
         path: 'order-message', // notify
         component: OrderMessage,
-        
+
       },
       {
         path: 'order-note', // note
@@ -173,6 +175,10 @@ const routes = [
         component: Settings,
       },
       {
+        path: 'connect-payment', // ket noi thanh toan
+        component: SettingConnectPayment,
+      },
+      {
         path: 'shipping', // shipping
         component: Shipping,
       },
@@ -219,6 +225,10 @@ const routes = [
       {
         path: 'package', // Package
         component: Package,
+      },
+      {
+        path: 'menu-settings', // QUAN LY MENU
+        component: MenuSettings,
       },
     ],
   },
@@ -307,13 +317,13 @@ router.beforeEach((to, from, next) => {
         path: '/auth/tab-login',
         params: { nextUrl: to.fullPath }
       })
-    } 
+    }
     else {
       next()
     }
-    
+
   }else {
-    next() 
+    next()
   }
 })
 

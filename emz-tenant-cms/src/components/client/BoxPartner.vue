@@ -6,7 +6,7 @@
         <slot name="content">default content</slot>
       </div>
       <div class="border-t px-5 py-10px text-right">
-        <Button :link="connectButton" button-class="cms-button cms-button-white" @click="$emit('onClickButton')">
+        <Button :link="connectButton" button-class="cms-button cms-button-white cursor-pointer" @click="$emit('onClickButton')">
           <template slot="name">
             <slot name="label">default label</slot>
           </template>

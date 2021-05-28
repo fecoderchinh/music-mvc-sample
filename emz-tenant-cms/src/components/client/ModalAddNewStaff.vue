@@ -140,7 +140,7 @@
                     <li class="block my-10px">
                       <CheckType
                         main-class="ml-0 no-mr"
-                        :id="'listbox1'+index">
+                        :id="'listbox2'+index">
                         <template slot="text"><h3 class="ml-2">{{ data }}</h3></template>
                       </CheckType>
                     </li>
@@ -154,7 +154,7 @@
                     <li class="block my-10px">
                       <CheckType
                         main-class="ml-0 no-mr"
-                        :id="'listbox1'+index">
+                        :id="'listbox3'+index">
                         <template slot="text"><h3 class="ml-2">{{ data }}</h3></template>
                       </CheckType>
                     </li>
@@ -171,7 +171,7 @@
                 <li class="block my-10px">
                   <CheckType
                     main-class="ml-0 no-mr"
-                    :id="'listbox1'+index">
+                    :id="'listbox4'+index">
                     <template slot="text"><h3 class="ml-2">{{ data }}</h3></template>
                   </CheckType>
                 </li>

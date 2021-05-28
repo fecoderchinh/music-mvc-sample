@@ -133,11 +133,10 @@
             </Button>
           </li>
           <li class="inline">
-            <Button button-class="cms-button cms-button-blue">
-              <template slot="name">
-                Lưu
-              </template>
-            </Button>
+            <button @click="saveStore" class="cms-button cms-button-blue">
+              Lưu
+              
+            </button>
           </li>
         </ul>
       </div>
@@ -153,6 +152,8 @@ import SelectOption from '@/components/client/SelectOption.vue';
 import InputType from '@/components/client/InputType.vue';
 import CheckType from '@/components/client/CheckType.vue';
 import Button from '@/components/client/Button.vue';
+
+import { create } from '@/apis/store-address.js';
 
 export default {
   components: {
@@ -179,6 +180,11 @@ export default {
         { name: 'Chọn phường xã' },
       ],
     };
+  },
+  methods: {
+    saveStore(){
+      create().then( res => console.log(res) );
+    }
   },
 };
 </script>

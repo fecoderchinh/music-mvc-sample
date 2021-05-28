@@ -17,6 +17,7 @@
       <!-- column -->
       <div class="col-span-6">
         <SiteInfo />
+        <ContactDetails/>
         <AdConfig />
         <div class="w-full no-pb">
           <div class="grid-cols relative">
@@ -54,6 +55,7 @@
 import Breadcrumb from '@/components/client/Breadcrumb.vue';
 import Header from '@/components/client/Header.vue';
 import SiteInfo from '@/components/client/SiteInfo.vue';
+import ContactDetails from "@/components/client/ContactDetails";
 import AdConfig from '@/components/client/AdConfig.vue';
 import Button from '@/components/client/Button.vue';
 import Footer from '@/components/client/Footer.vue';
@@ -63,6 +65,7 @@ export default {
     Breadcrumb,
     Header,
     SiteInfo,
+    ContactDetails,
     AdConfig,
     Button,
     Footer,

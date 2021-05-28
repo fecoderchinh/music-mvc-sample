@@ -66,7 +66,7 @@ export default {
           component: 'PaymentSVG',
           title: 'Kết nối thanh toán',
           content: 'Kết nối và quản lý các phương thức thanh toán trên website',
-          url: '',
+          url: '/dashboard/connect-payment',
         },
         {
           component: 'GlobeWWWSVG',
