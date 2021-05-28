@@ -54,6 +54,18 @@ export class CategoryController {
     }
 
     @UsePipes(RouteParamPipe)
+    @Get(':id')
+    @ApiBearerAuth()
+    @ApiHeader(TenantHaders)
+    @UseGuards(JwtAuthGuard)
+    @HttpCode(HttpStatus.OK)
+    async show(@Param('id') id:ObjectID) : Promise<IResponse> {
+        const category = await this.categoryService.getDetail(id);
+
+        return new ResponseSuccess(new CategoryResponse(category));
+    }
+
+    @UsePipes(RouteParamPipe)
     @Delete(':id')
     @ApiBearerAuth()
     @ApiHeader(TenantHaders)

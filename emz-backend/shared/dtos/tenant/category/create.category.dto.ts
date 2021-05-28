@@ -5,6 +5,7 @@ import { Condition, Seo } from 'shared/schemas/tenant/category.schema';
 import {
     extensionImage,
 } from 'shared/rules/common';
+import { validConditionByField } from "shared/rules/category";
 
 import {JoiSchemaOptions} from "nestjs-joi";
 import {
@@ -77,7 +78,7 @@ export class CreateCategoryDto {
         field: Joi.string().required().valid(...CONDITION_FIELDS),
         condition: Joi.string().required().valid(...Object.keys(CONDITIONS)),
         value: Joi.string().required(),
-    })).when('addProductType', {
+    }).custom(validConditionByField)).when('addProductType', {
         is: ADD_PRODUCT_AUTO,
         then: Joi.required(),
         otherwise: Joi.optional(),
