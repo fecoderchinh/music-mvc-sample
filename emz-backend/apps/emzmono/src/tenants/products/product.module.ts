@@ -1,12 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ProductController } from './product.controller';
-import { ProductService } from 'shared/services/product.service';
-import { ProductSchema } from 'shared/schemas/product.schema';
+import { ProductService } from 'shared/services/tenant/product.service';
 
 @Module({
-    imports: [
-        // TenancyModule.forFeature([{ name: 'ProductModel', schema: ProductSchema }])
-    ],
+    imports: [],
     controllers: [
         ProductController
     ],

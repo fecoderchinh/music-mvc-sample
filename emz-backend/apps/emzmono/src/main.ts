@@ -6,7 +6,7 @@ import * as mongoose from 'mongoose';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 // enable debug mongosee
-mongoose.set('debug', true);
+mongoose.set('debug', process.env.MONGODB_DEBUG);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -37,6 +37,6 @@ async function bootstrap() {
   await app.listen(3000, () => {
     console.log("API is starting localhost:3000")
   });
-  
+
 }
 bootstrap();

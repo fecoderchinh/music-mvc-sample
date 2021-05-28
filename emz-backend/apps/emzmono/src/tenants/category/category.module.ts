@@ -1,16 +1,8 @@
 import { Module } from '@nestjs/common';
 import { CategoryController } from './category.controller';
-import { CategoryService } from 'shared/services/category.service';
-import {JoiPipeModule} from "nestjs-joi";
+import { CategoryService } from 'shared/services/tenant/category.service';
 
 @Module({
-    imports: [
-        JoiPipeModule.forRoot({
-            pipeOpts: {
-                usePipeValidationException: false,
-            },
-        }),
-    ],
     controllers: [
         CategoryController
     ],

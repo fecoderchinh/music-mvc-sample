@@ -1,11 +1,11 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { CreateShopDto } from 'shared/dtos/shop/create.shop.dto';
+import { CreateShopDto } from 'shared/dtos/global/shop/create.shop.dto';
 import {ObjectID} from "mongodb";
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { ShopSchema, ShopDocument } from 'shared/schemas/shop.schema';
+import { ShopSchema, ShopDocument } from 'shared/schemas/global/shop.schema';
 import { Model, Connection } from 'mongoose';
 import { GLOBAL_CONNECTION_NAME, APP_SUB_DOMAIN } from '@emzmono/common/constances/app.constance';
-import { DomainSchema, DomainDocument } from 'shared/schemas/domain.schema';
+import { DomainSchema, DomainDocument } from 'shared/schemas/global/domain.schema';
 
 @Injectable()
 export class ShopService {
@@ -14,7 +14,7 @@ export class ShopService {
         @InjectModel('DomainModel') private DomainModel: Model<DomainDocument>,
         @InjectModel('ShopModel') private ShopModel: Model<any>,
     ){
-    
+
     }
 
     async getShopByUserId( userId: string ): Promise<ShopDocument[]>{
@@ -24,7 +24,7 @@ export class ShopService {
     }
 
     async createShop( userId: string, createShopDto: CreateShopDto ): Promise<any>{
-      
+
         await this.DomainModel.createCollection();
         await this.ShopModel.createCollection();
 
@@ -32,7 +32,7 @@ export class ShopService {
         session.startTransaction();
         try{
             const opts = { session };
-            
+
             // save domain to shop
             const domain = new this.DomainModel({
                 domainName: createShopDto.shopDomain + APP_SUB_DOMAIN ,
@@ -67,7 +67,7 @@ export class ShopService {
             session.endSession();
             throw e;
         }
-        
+
 
     }
 
@@ -79,5 +79,5 @@ export class ShopService {
         }).exec();
     }
 
-  
+
 }
