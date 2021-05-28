@@ -1,6 +1,6 @@
 ## Create data folder by exec
 ```
-generate.sh
+generate_db_folder.sh
 ```
 or running command line below:
 ```
@@ -21,7 +21,7 @@ Start docker mongo1, mongo2, mongo3
 start docker mongo-setup
 
 ```
-#### Run shell script for add hostname of relicateSet
+#### Run shell script for add hostname of relicateSet (for fix error Could not find address mongo[x])
 ```
 sudo ./add_hostname.sh
 ```

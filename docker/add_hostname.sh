@@ -22,6 +22,7 @@ done
 # echo ${ip_array}
 # for index in "${!ip_array[@]}"; do echo "$index ${ip_array[$index]}"; done
 
+touch mongodb/scripts/tmp_hostname
 # add hostname for container
 for index in "${!ip_array[@]}"
 do
@@ -31,4 +32,5 @@ do
     done
     # add hostname for machine
     echo "127.0.0.1 $index" >> /etc/hosts
+    echo "${ip_array[$index]} $index" >> mongodb/scripts/tmp_hostname
 done
