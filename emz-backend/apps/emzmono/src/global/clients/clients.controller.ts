@@ -1,16 +1,16 @@
 import { BadRequestException, Body, Controller, Get, Post, UseGuards, HttpStatus, HttpCode, Req } from '@nestjs/common'
 import { ApiTags, ApiOkResponse, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'apps/emzmono/src/auth/jwt-auth.guard';
-import { CreateClientDto } from 'shared/dtos/client/create.client.dto';
-import { ClientService } from 'shared/services/client.service';
+import { CreateClientDto } from 'shared/dtos/global/client/create.client.dto';
+import { ClientService } from 'shared/services/global/client.service';
 import { JwtService } from '@nestjs/jwt';
-import { LoginDto } from 'shared/dtos/client/login.dto';
+import { LoginDto } from 'shared/dtos/global/client/login.dto';
 import * as bcrypt from 'bcrypt';
 import { ClientResponse } from './responses/client.response';
 import { ResponseSuccess } from '@emzmono/common/interfaces/success-response.interface';
 import { ShopsResponse } from '../shop/responses/shops.response';
-import { ShopService } from 'shared/services/shop.service';
-import { DomainService } from 'shared/services/domain.service';
+import { ShopService } from 'shared/services/global/shop.service';
+import { DomainService } from 'shared/services/global/domain.service';
 const saltOrRounds = 10;
 
 @ApiTags('clients')
@@ -82,11 +82,11 @@ export class ClientsController {
     @UseGuards(JwtAuthGuard)
     async getShopByUser( @Req() req ): Promise<any>{
         const shops = await this.shopService.getShopByUserId( req.user.id )
-      
+
         return new ResponseSuccess( new ShopsResponse(shops) )
     }
 
-    
+
 
 
 

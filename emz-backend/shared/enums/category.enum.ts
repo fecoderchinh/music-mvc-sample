@@ -1,3 +1,6 @@
+export const PUBLISHED = true;
+export const UNPUBLISHED = false;
+
 export const ADD_PRODUCT_MANUAL = 'MANUAL';
 export const ADD_PRODUCT_AUTO = 'AUTO';
 
@@ -27,10 +30,14 @@ export const CONDITION_LIKE = 'LIKE';
 export const CONDITION_LIKE_START = 'LIKE_START';
 export const CONDITION_LIKE_END = 'LIKE_END';
 export const CONDITION_NOT_EQUAL = 'NOT_EQUAL';
+export const CONDITION_GREATER = 'GREATER';
+export const CONDITION_LESS = 'LESS';
 export const CONDITIONS = {
     [CONDITION_EQUAL]: { $eq: 'KEYWORD'},
     [CONDITION_LIKE]: {$regex: 'KEYWORD', $options: 'uis'},
-    [CONDITION_LIKE_START]: {$regex: '^KEYWORD', '$options': 'uis'},
+    [CONDITION_LIKE_START]: {$regex: '^KEYWORD', $options: 'uis'},
     [CONDITION_LIKE_END]: {$regex: 'KEYWORD$', $options: 'uis'},
-    [CONDITION_NOT_EQUAL]: { $not: 'KEYWORD'},
+    [CONDITION_NOT_EQUAL]: { $ne: 'KEYWORD'},
+    [CONDITION_GREATER]: { $gt: 'KEYWORD'},
+    [CONDITION_LESS]: { $lt: 'KEYWORD'},
 };

@@ -1,11 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Condition, Seo } from "../../../../../../shared/schemas/category.schema";
+import {ICategoryDocument, Condition, Seo} from "shared/schemas/tenant/category.schema";
 import {SeoResponse} from "@emzmono/tenants/category/responses/seo.response";
 import {ConditionResponse} from "@emzmono/tenants/category/responses/condition.response";
 
 export class CategoryResponse {
-    constructor(object: any) {
-        this.id = object.id;
+    constructor(object: ICategoryDocument) {
+        this.id = object._id;
         this.name = object.name;
         this.description = object.description ?? null;
         this.isPublished = object.isPublished;
@@ -13,6 +13,7 @@ export class CategoryResponse {
         this.conditionOperator = object.conditionOperator ?? null;
         this.conditions = object.conditions ? object.conditions.map(condition => new ConditionResponse(condition)) : null;
         this.seo = new SeoResponse(object.seo);
+        this.createdAt = object.createdAt;
     }
     @ApiProperty()
     readonly id: string;
@@ -21,7 +22,7 @@ export class CategoryResponse {
     readonly name: string;
 
     @ApiProperty()
-    readonly isPublished: string;
+    readonly isPublished: boolean;
 
     @ApiProperty({
         required: false
@@ -47,4 +48,7 @@ export class CategoryResponse {
         required: false
     })
     readonly seo?: Seo;
+
+    @ApiProperty({})
+    readonly createdAt: Date;
 }

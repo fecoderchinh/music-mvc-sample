@@ -1,19 +1,23 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { JoiSchema } from "nestjs-joi";
 import * as Joi from 'joi';
-import { Condition, Seo } from 'shared/schemas/category.schema';
+import { Condition, Seo } from 'shared/schemas/tenant/category.schema';
 import {
     extensionImage,
 } from 'shared/rules/common';
+import { validConditionByField } from "shared/rules/category";
 
 import {JoiSchemaOptions} from "nestjs-joi";
 import {
     ADD_PRODUCT_AUTO,
     ADD_PRODUCT_TYPE,
-    CONDITION_FIELDS,
+    CONDITION_FIELDS
+} from "shared/enums/category.enum";
+import {
     CONDITION_OPERATOR,
     CONDITIONS
-} from "../../enums/category.enum";
+} from "shared/enums/share.enum";
+
 @JoiSchemaOptions({
     allowUnknown: false,
 })
@@ -43,7 +47,7 @@ export class CreateCategoryDto {
         type: Date,
         default: '2021-01-01'
     })
-    @JoiSchema(Joi.date().min('now'))
+    @JoiSchema(Joi.date().min('now').optional())
     publishSchedule?: Date;
 
     @ApiProperty({
@@ -74,7 +78,7 @@ export class CreateCategoryDto {
         field: Joi.string().required().valid(...CONDITION_FIELDS),
         condition: Joi.string().required().valid(...Object.keys(CONDITIONS)),
         value: Joi.string().required(),
-    })).when('addProductType', {
+    }).custom(validConditionByField)).when('addProductType', {
         is: ADD_PRODUCT_AUTO,
         then: Joi.required(),
         otherwise: Joi.optional(),
