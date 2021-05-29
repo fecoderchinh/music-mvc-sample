@@ -70,7 +70,7 @@ export default {
     .circle {
       @apply w-4 h-4 inline-block mr-2 rounded-full border-2 border-gray-500 relative;
       @screen sm {
-        @apply float-left;
+        @apply float-left mt-px;
       }
       &-inner {
         @apply w-2 h-2 bg-transparent rounded-full absolute;

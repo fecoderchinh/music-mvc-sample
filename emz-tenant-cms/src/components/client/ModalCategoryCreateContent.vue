@@ -74,6 +74,26 @@
 
           <WidgetImageUploader/>
 
+          <Widget>
+            <template slot="title">
+              <label class="cursor-pointer">Gắn lên menu</label>
+              <ModalMenuPicker class="absolute top-0 right-0" button-class="text-buttonAndURL bg-transparent no-effect"/>
+            </template>
+            <template slot="content">
+              <h3 class="text-standardCMS text-menuIcon">Gắn danh mục vào Menu</h3>
+              <InlineTags :option-data="this.optionDataTags" tagClass="inline-tag__button-blue"/>
+            </template>
+          </Widget>
+
+          <Widget>
+            <template slot="title">
+              <label class="cursor-pointer">Khung giao diện</label>
+            </template>
+            <template slot="content">
+              <SelectOption :option-data="this.optionDataSelect2"/>
+            </template>
+          </Widget>
+
         </div>
         <!-- end column -->
 
@@ -113,6 +133,7 @@ import SelectOption from '@/components/client/SelectOption.vue';
 
 import ModalMenuPicker from '@/components/client/ModalMenuPicker.vue';
 
+import Widget from "@/components/client/Widget";
 import WidgetRadioStatus from '@/components/client/WidgetRadioStatus.vue';
 import WidgetImageUploader from '@/components/client/WidgetImageUploader.vue';
 
@@ -126,6 +147,7 @@ export default {
     ProductDescription,
     CategoryConditions,
     ProductSearchDisplay,
+    Widget,
     WidgetRadioStatus,
     WidgetImageUploader,
     ModalMenuPicker,
@@ -140,6 +162,9 @@ export default {
       ],
       optionDataSelect1: [
         { name: 'Sản phẩm' },
+      ],
+      optionDataSelect2: [
+        { name: 'collection' },
       ],
     };
   },

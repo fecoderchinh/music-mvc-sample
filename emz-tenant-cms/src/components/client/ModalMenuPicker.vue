@@ -1,5 +1,5 @@
 <template>
-  <Button @click="openModal" button-class="w-full cms-button cms-button-blue">
+  <Button @click="openModal" :button-class="buttonClass">
     <template slot="name">
       Chọn menu
     </template>
@@ -13,6 +13,12 @@ import ModalMenuPickerContent from '@/components/client/ModalMenuPickerContent.v
 export default {
   components: {
     Button,
+  },
+  props: {
+    buttonClass: {
+      type: String,
+      default: 'w-full cms-button cms-button-blue'
+    }
   },
   methods: {
     openModal() {
