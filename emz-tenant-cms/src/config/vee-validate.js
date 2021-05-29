@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import { ValidationObserver, ValidationProvider, extend, localize } from 'vee-validate';
+import { ValidationObserver, ValidationProvider, extend, 
+    localize } from 'vee-validate';
 import vi from 'vee-validate/dist/locale/vi.json';
 import * as rules from 'vee-validate/dist/rules';
 
@@ -19,4 +20,3 @@ extend('vietnamphone', value => {
 // Install components globally
 Vue.component('ValidationObserver', ValidationObserver)
 Vue.component('ValidationProvider', ValidationProvider)
-

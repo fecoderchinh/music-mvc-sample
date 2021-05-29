@@ -2,8 +2,14 @@
   <!-- eslint-disable max-len -->
   <div class="cms-select" :class="mainClass">
     <div class="cms-select__wrapper">
-      <select class="cms-select__wrapper-item" :class="selectClass" :id="selectId">
-        <option v-for="(data, index) in optionData" :key="index">{{ data.name }}</option>
+      <select 
+        class="cms-select__wrapper-item" 
+        :class="selectClass" 
+        :name="name"
+        @input="$emit('input',$event.target.value)"
+        v-on:change="$emit('change', $event)"
+        :id="selectId">
+        <option :value="data.id" v-for="(data, index) in optionData" :key="index">{{ data.name }}</option>
       </select>
       <slot name="label"></slot>
       <div class="pointer-events-none absolute top-50 transform -translate-y-1/2 right-0 flex items-center px-2 text-gray-700">
@@ -24,6 +30,7 @@ export default {
     AngleSVG,
   },
   props: {
+    name: String,
     mainClass: {
       type: String,
       default: 'w-full',
@@ -36,7 +43,7 @@ export default {
     optionData: {
       type: Array,
       default: () => [],
-    },
+    }
   },
 };
 </script>

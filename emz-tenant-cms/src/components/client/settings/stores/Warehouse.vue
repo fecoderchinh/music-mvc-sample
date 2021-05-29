@@ -15,7 +15,7 @@
           <div class="w-full" slot="content">
             <div class="grid grid-cols-6 gap-5 px-5 pt-5">
               <div class="col-span-3 sm:col-span-6">
-                <h3 class="font-lato text-14px font-bold text-labelAndTitle">{{ data.name }}</h3>
+                <h3 class="font-lato text-14px font-bold text-labelAndTitle">{{ data.addressTitle }}</h3>
               </div>
               <div
                 :class="[
@@ -25,13 +25,18 @@
                 <CheckType
                   :id="'warehouse-checkbox-'+index"
                   main-class="ml-0 no-mr rounded-checkbox"
-                  :checked="index+1 === selected">
+                  :checked="data.isDefault">
                   <h3 class="ml-2" slot="text">Cửa hàng chính</h3>
                 </CheckType>
               </div>
               <div class="col-span-6">
-                <p class="font-lato text-14px text-menuItem leading-6" v-html="data.content">
-                  {{ data.content }}
+                <p class="font-lato text-14px text-menuItem leading-6">
+                  <strong class="text-labelAndTitle">{{ data.phone }}</strong>
+                  <br>
+                  E: {{ data.email }}
+                  <br>
+                  A: Phường Lão Gia - Quận 1 - TP Hồ Chí Minh- Việt Nam
+
                 </p>
               </div>
             </div>
@@ -65,6 +70,8 @@ import Button from '@/components/client/Button.vue';
 
 import ModalEditShippingFee from '@/components/client/ModalEditShippingFee.vue';
 
+import { getAll } from '@/apis/store-address';
+
 export default {
   components: {
     Box,
@@ -74,33 +81,16 @@ export default {
   data() {
     return {
       selected: 1,
-      optionData: [
-        {
-          id: 1,
-          name: 'Tổng kho',
-          content: `<strong class="text-labelAndTitle">0983 453 005</strong>
-                  <br>
-                  Ngocptn@Gmail.com
-                  <br>
-                  100, Hoàng Quốc Việt, Cầu Giấy, Hà Nội
-                  <br>
-                  Phường Nghĩa Tân - Quận Cầu Giấy - Hà Nội - Việt Nam`,
-        },
-        {
-          id: 2,
-          name: 'Kho Sài Gòn',
-          content: `<strong class="text-labelAndTitle">0983 453 005</strong>
-                  <br>
-                  Nhienphan@Gmail.com
-                  <br>
-                  15, Tuệ Tĩnh, Q1, Sài Gòn
-                  <br>
-                  Phường Lão Gia - Quận 1 - TP Hồ Chí Minh- Việt Nam`,
-        },
-      ],
+      optionData: [],
     };
   },
+  created() {
+    this.get();
+  },
   methods: {
+    get(){
+      getAll().then( res => this.optionData = res.items )
+    },
     openModal() {
       const options = {
         class: 'cms-modal',

@@ -1,7 +1,9 @@
 <template>
+<ValidationObserver v-slot="{ handleSubmit }">
+      <form @submit.prevent="handleSubmit(onSubmit)">
   <!-- eslint-disable max-len -->
   <Modal @close="$emit('close')">
-
+    
     <div class="flex items-center" slot="header">
       <h3 class="text-18px cms-typo text-labelAndTitle">
         Thêm chi nhánh
@@ -9,21 +11,28 @@
     </div>
 
     <div class="w-full" slot="body">
-
+      
       <div class="grid grid-cols-6 gap-5">
-
+        
         <div class="col-span-6">
           <div class="cms-label text-14px mb-3 text-labelAndTitle">
             <label for="modal-nhaptendd" class="select-none cursor-pointer">Tên địa điểm<span class="cms-lato text-cmsRed text-14px">*</span></label>
           </div>
           <div class="w-full">
+            <ValidationProvider 
+              vid="formData.addressTitle"
+              name="Tên địa điểm" rules="required" v-slot="{ errors }">
+               
             <InputType
               input-type="text"
+              v-model="formData.addressTitle"
               id="modal-nhaptendd"
-              name="modal-nhaptendd"
+              name="addressTitle"
               placeholder="Nhập tên địa điểm"
               input-class="cms-input__default">
             </InputType>
+            <span class="error">{{ errors[0] }}</span>
+            </ValidationProvider>
           </div>
         </div>
 
@@ -32,13 +41,21 @@
             <label for="modal-nhaptensdt" class="select-none cursor-pointer">Số điện thoại<span class="cms-lato text-cmsRed text-14px">*</span></label>
           </div>
           <div class="w-full">
-            <InputType
-              input-type="text"
-              id="modal-nhaptensdt"
-              name="modal-nhaptensdt"
-              placeholder="Nhập số điện thoại"
-              input-class="cms-input__default">
-            </InputType>
+            <ValidationProvider 
+              vid="phone"
+              name="Số điện thoại" 
+              rules="required|vietnamphone" 
+              v-slot="{ errors }">
+              <InputType
+                input-type="text"
+                id="modal-nhaptensdt"
+                name="phone"
+                v-model="formData.phone"
+                placeholder="Nhập số điện thoại"
+                input-class="cms-input__default">
+              </InputType>
+              <span class="error">{{ errors[0] }}</span>
+            </ValidationProvider>
           </div>
         </div>
 
@@ -47,13 +64,16 @@
             <label for="modal-nhaptenemail" class="select-none cursor-pointer">Email</label>
           </div>
           <div class="w-full">
+            
             <InputType
               input-type="text"
               id="modal-nhaptenemail"
-              name="modal-nhaptenemail"
+              name="email"
+              v-model="formData.email"
               placeholder="Nhập email"
               input-class="cms-input__default">
             </InputType>
+            
           </div>
         </div>
 
@@ -62,40 +82,59 @@
             <label for="modal-nhaptendc" class="select-none cursor-pointer">Địa chỉ<span class="cms-lato text-cmsRed text-14px">*</span></label>
           </div>
           <div class="w-full">
+            <ValidationProvider 
+              vid="address"
+              name="Địa chỉ" 
+              rules="required"
+              v-slot="{ errors }">
             <InputType
               input-type="text"
               id="modal-nhaptendc"
-              name="modal-nhaptendc"
+              name="address"
+              v-model="formData.address"
               placeholder="Nhập địa chỉ"
               input-class="cms-input__default">
             </InputType>
+            <span class="error">{{ errors[0] }}</span>
+            </ValidationProvider>
           </div>
         </div>
 
-        <div class="col-span-3 sm:col-span-6">
+        <!-- <div class="col-span-3 sm:col-span-6">
           <div class="cms-label text-14px mb-3 text-labelAndTitle">
             <label for="modal-nhapcongty" class="select-none cursor-pointer">Quốc gia</label>
           </div>
           <div class="w-full select-none">
-            <SelectOption :option-data="this.optionDataSelect1"/>
+            <SelectOption :option-data="optionDataSelect1"/>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-span-3 sm:col-span-6">
           <div class="cms-label text-14px mb-3 text-labelAndTitle">
             <label for="modal-nhapcongty" class="select-none cursor-pointer">Tỉnh / Thành phố<span class="cms-lato text-cmsRed text-14px">*</span></label>
           </div>
           <div class="w-full select-none">
-            <SelectOption :option-data="this.optionDataSelect2"/>
+            <ValidationProvider 
+              vid="city"
+              name="Tỉnh / Thành phố" 
+              rules="required"
+              v-slot="{ errors }">
+            <SelectOption name="city" 
+              @change="onChangeCity"
+              v-model="formData.city"
+              :option-data="cities"/>
+            <span class="error">{{ errors[0] }}</span>
+            </ValidationProvider>
+
           </div>
         </div>
 
         <div class="col-span-3 sm:col-span-6">
           <div class="cms-label text-14px mb-3 text-labelAndTitle">
-            <label for="modal-nhapcongty" class="select-none cursor-pointer">Quận huyện<span class="cms-lato text-cmsRed text-14px">*</span></label>
+            <label for="modal-nhapcongty" class="select-none cursor-pointer">Quận/ huyện<span class="cms-lato text-cmsRed text-14px">*</span></label>
           </div>
           <div class="w-full select-none">
-            <SelectOption :option-data="this.optionDataSelect3"/>
+            <SelectOption :option-data="districts"/>
           </div>
         </div>
 
@@ -104,16 +143,16 @@
             <label for="modal-nhapcongty" class="select-none cursor-pointer">Phường Xã<span class="cms-lato text-cmsRed text-14px">*</span></label>
           </div>
           <div class="w-full select-none">
-            <SelectOption :option-data="this.optionDataSelect4"/>
+            <SelectOption :option-data="optionDataSelect4"/>
           </div>
         </div>
+
 
       </div>
 
     </div>
 
     <template slot="footer">
-
       <div class="md:flex">
         <div class="p-0 flex-1 md:flex items-center">
           <CheckType
@@ -133,17 +172,20 @@
             </Button>
           </li>
           <li class="inline">
-            <button @click="saveStore" class="cms-button cms-button-blue">
+            <button @click="saveStore" 
+              class="cms-button cms-button-blue">
               Lưu
-              
             </button>
           </li>
         </ul>
       </div>
-
     </template>
 
+   
+    
   </Modal>
+   </form>
+    </ValidationObserver>
 </template>
 
 <script>
@@ -152,8 +194,22 @@ import SelectOption from '@/components/client/SelectOption.vue';
 import InputType from '@/components/client/InputType.vue';
 import CheckType from '@/components/client/CheckType.vue';
 import Button from '@/components/client/Button.vue';
-
 import { create } from '@/apis/store-address.js';
+import { mapGetters } from "vuex";
+
+const defaultData = {
+  addressTitle: '',
+  phone: '',
+  email: '',
+  address: '',
+  country: '',
+  city: '',
+  district: '',
+  province: '',
+  ward: '',
+  isShippingAddress: false,
+  isDefault: false,
+}
 
 export default {
   components: {
@@ -163,16 +219,17 @@ export default {
     CheckType,
     Button,
   },
-  data() {
+  data(){
     return {
+      formData: defaultData,
       optionDataSelect1: [
         { name: 'Việt Nam' },
         { name: 'Lào' },
         { name: 'Campuchia' },
       ],
-      optionDataSelect2: [
-        { name: 'Chọn tỉnh thành' },
-      ],
+      // cities: [
+      //   { name: 'Chọn tỉnh thành' },
+      // ],
       optionDataSelect3: [
         { name: 'Chọn quận huyện' },
       ],
@@ -181,12 +238,33 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapGetters([
+      "cities",
+      "districts"
+    ])
+  },
+  created() {
+    this.$store.dispatch('getCity')
+  },
   methods: {
     saveStore(){
       create().then( res => console.log(res) );
+    },
+    onSubmit () {
+      alert('Form has been submitted!');
+    },
+    onChangeCity(e){
+      this.$store.dispatch('getDistrictByCity', e.target.value )
     }
   },
+ 
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.error{
+  font-size: 12px;
+  color: red;
+}
+</style>

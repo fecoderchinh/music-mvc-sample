@@ -11,7 +11,7 @@
           </div>
           <div class="col-span-3">
             <h3 class="cms-typo text-14px text-buttonAndURL">
-              <a :href="data.url">{{ data.title }}</a>
+              <router-link :to="data.url">{{ data.title }}</router-link>
             </h3>
             <p class="cms-typo text-14px text-menuItem">
               {{ data.content }}
