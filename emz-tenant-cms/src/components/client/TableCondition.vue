@@ -1,0 +1,167 @@
+<template>
+  <div class="w-full overflow-hidden">
+    <Table class="table-category-condition">
+      <tbody class="box-table-body table-category-condition__body" slot="body">
+
+      <tr v-for="(data, index) in optionDataTable" :key="index" class="px-3">
+        <td>
+          <div class="table-category-condition__body-content">
+            <div>
+              <template v-if="data.img">
+                <img :src="data.img" class="mx-auto w-10 h-10 max-w-10 min-w-10" alt="">
+              </template>
+              <template v-else>
+                <SquareSVG class="mx-auto w-10 h-10 max-w-10 min-w-10 fill-menuIcon hover:filter-none hover:fill-menuIcon"/>
+              </template>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="table-category-condition__body-content">
+            <h3 class="cms-typo text-sm text-buttonAndURL">{{ data.name }}</h3>
+          </div>
+        </td>
+        <td>
+          <div class="table-category-condition__body-content">
+            <h3 class="cms-typo text-14px text-menuItem">{{ data.count }}</h3>
+          </div>
+        </td>
+        <td>
+          <div class="table-category-condition__body-content">
+            <h3 class="cms-typo text-14px text-menuItem">{{ data.price }}</h3>
+          </div>
+        </td>
+        <td>
+          <div class="table-category-condition__body-content">
+            <a href="#" class="text-menuIcon"><CloseSVG class="mx-auto w-4 max-w-10 min-w-10 fill-current"/></a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+      <p class="cms-typo text-13px text-labelAndTitle mt-5" slot="outside">Hiển thị 100 kết quả của 385</p>
+    </Table>
+  </div>
+</template>
+
+<script>
+import Table from '@/components/client/Table.vue';
+
+import {
+  SquareSVG,
+  CloseSVG
+} from '@/components/SVGs'
+
+export default {
+  name: "TableCondition",
+  components: {
+    SquareSVG,
+    CloseSVG,
+    Table
+  },
+  data() {
+    return {
+      optionDataTable: [
+        {
+          img: 'https://picsum.photos/40',
+          name: 'Combo cần câu cá',
+          count: '1,789 sản phẩm',
+          price: '123,321,000đ',
+        },
+        {
+          img: 'https://picsum.photos/40',
+          name: 'Cần bạo lực',
+          count: '18 sản phẩm',
+          price: '3,321,000đ',
+        },
+        {
+          img: 'https://picsum.photos/40',
+          name: 'Combo cần câu cá cho gia đình, thư giản cuối tuần',
+          count: '0 sản phẩm',
+          price: '21,000đ',
+        },
+        {
+          img: 'https://picsum.photos/40',
+          name: 'Cần lure siêu chắc',
+          count: '12 sản phẩm',
+          price: '321,000đ',
+        },
+        {
+          name: 'Cần đánh lục xa bờ Navigod',
+          count: '356 sản phẩm',
+          price: '3,321,000đ',
+        },
+      ],
+    };
+  },
+}
+</script>
+
+<style lang="scss">
+.table {
+  &-category-condition {
+    &__header {
+      &-content {
+        width: calc( 100% - 1.25rem );
+      }
+      tr {
+        @apply py-10px border-b;
+        th {
+          &:nth-child(1) {
+            width: 60px;
+            min-width: 60px;
+            max-width: 60px;
+          }
+          &:nth-child(2) {
+            width: 280px;
+            min-width: 280px;
+            max-width: 280px;
+          }
+          &:nth-child(3) {
+            width: 150px;
+            min-width: 150px;
+            max-width: 150px;
+          }
+          &:nth-child(4) {
+            width: 150px;
+            min-width: 150px;
+            max-width: 150px;
+          }
+        }
+      }
+    }
+    &__body {
+      &-content {
+        width: calc( 100% - 1.25rem );
+      }
+      tr {
+        @apply py-15px border-b;
+        &:hover, .active {
+          @apply bg-gray-200;
+        }
+        td {
+          &:nth-child(1) {
+            width: 60px;
+            min-width: 60px;
+            max-width: 60px;
+          }
+          &:nth-child(2) {
+            width: 280px;
+            min-width: 280px;
+            max-width: 280px;
+          }
+          &:nth-child(3) {
+            width: 150px;
+            min-width: 150px;
+            max-width: 150px;
+          }
+          &:nth-child(4) {
+            width: 150px;
+            min-width: 150px;
+            max-width: 150px;
+          }
+        }
+      }
+    }
+  }
+}
+</style>

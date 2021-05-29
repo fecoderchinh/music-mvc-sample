@@ -12,11 +12,11 @@
       <div class="w-full mb-5">
         <div class="flex flex-wrap">
 
-          <Radio id="radio-condition-1" name="radio" label-class="text-labelAndTitle mr-3 md:mr-8 sm:mb-3">
+          <Radio id="radio-category-condition-1" name="radio-category-condition" label-class="text-labelAndTitle mr-3 md:mr-8 sm:mb-3">
             <template slot="radio-text">Tự động thêm sản phẩm</template>
           </Radio>
 
-          <Radio id="radio-condition-2" name="radio" label-class="text-labelAndTitle" checked>
+          <Radio id="radio-category-condition-2" name="radio-category-condition" label-class="text-labelAndTitle" checked>
             <template slot="radio-text">Thêm sản phẩm thủ công</template>
           </Radio>
 
@@ -53,6 +53,9 @@
         <div class="col-span-6 md:col-span-2">
           <DropdownCondition/>
         </div>
+        <div class="col-span-6 md:col-span-2 flex items-center">
+          <ModalDsThoaMan/>
+        </div>
       </div>
 
     </template>
@@ -65,6 +68,7 @@ import Radio from '@/components/client/Radio.vue';
 import SelectOption from '@/components/client/SelectOption.vue';
 import InputType from '@/components/client/InputType.vue';
 import DropdownCondition from '@/components/client/DropdownCondition.vue';
+import ModalDsThoaMan from "@/components/client/ModalDsThoaMan";
 
 import {
   DeleteSVG,
@@ -77,7 +81,8 @@ export default {
     SelectOption,
     InputType,
     DeleteSVG,
-    DropdownCondition
+    DropdownCondition,
+    ModalDsThoaMan
   },
   data() {
     return {
