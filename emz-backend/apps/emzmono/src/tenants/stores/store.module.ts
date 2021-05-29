@@ -1,7 +1,7 @@
 import { StoreController } from "./store.controller";
 import { Module } from '@nestjs/common';
 import { JoiPipeModule } from "nestjs-joi";
-import { StoreService } from "@shared/services/tenants/store.service";
+import { StoreService } from "@shared/services/tenant/store.service";
 
 
 @Module({
