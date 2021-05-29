@@ -69,6 +69,7 @@
       </div>
 
       <div class="w-full" v-else>
+        <ProductAdvanceSearch class="mb-5"/>
         <TableConditionAuto/>
       </div>
 
@@ -84,6 +85,7 @@ import InputType from '@/components/client/InputType.vue';
 import DropdownCondition from '@/components/client/DropdownCondition.vue';
 import ModalDsThoaMan from "@/components/client/ModalDsThoaMan";
 import TableConditionAuto from "@/components/client/TableConditionAuto";
+import ProductAdvanceSearch from "@/components/client/ProductAdvanceSearch";
 
 import {
   DeleteSVG,
@@ -98,7 +100,8 @@ export default {
     DeleteSVG,
     DropdownCondition,
     ModalDsThoaMan,
-    TableConditionAuto
+    TableConditionAuto,
+    ProductAdvanceSearch
   },
   data() {
     return {
