@@ -12,8 +12,7 @@ mkdir mongodb/data_rs0_3
 mkdir mysql/data
 ```
 
-## For replication of mongodb
-Start docker mongo1, mongo2, mongo3
+## Run Replication of mongodb
 
 ### For the first time, 
 #### Initial replicate config

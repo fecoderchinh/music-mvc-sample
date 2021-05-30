@@ -31,6 +31,7 @@ do
         docker exec -u 0 -it ${id} bash -c "echo '${ip_array[$index]} $index' | tee -a /etc/hosts"
     done
     # add hostname for machine
-    echo "127.0.0.1 $index" >> /etc/hosts
+    #echo "127.0.0.1 $index" >> /etc/hosts
+    echo "${ip_array[$index]} $index" >> /etc/hosts
     echo "${ip_array[$index]} $index" >> mongodb/scripts/tmp_hostname
 done
