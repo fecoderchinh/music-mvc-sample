@@ -14,6 +14,12 @@ import './config/vee-validate'
 // Load css
 import '@/styles/index.scss'
 
+// import plugin
+import VueToastr from "vue-toastr";
+// use plugin
+Vue.use(VueToastr, {
+  /* OverWrite Plugin Options if you need */
+});
 Vue.use(Vuex)
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
 Vue.config.productionTip = false

@@ -1,7 +1,13 @@
 <template>
   <!-- eslint-disable max-len -->
   <div class="cms-checkbox" :class="mainClass">
-    <input :id="id" type="checkbox" :name="name" :checked="checked ? 'checked' : ''" />
+    <input 
+      :id="id" 
+      type="checkbox"
+      :name="name"
+      :value="value"
+      @change="$emit('input', $event.target.value)"
+      />
     <label :for="id" class="text-standardCMS text-menuItem text-14px" :class="labelClass">
     <span class="square"><span class="square-inner"></span></span>
     <slot name="text"></slot>
@@ -20,6 +26,9 @@ export default {
       default: 'mr-2',
     },
     labelClass: String,
+    value: {
+      required: true
+    },
   },
 };
 </script>

@@ -20,11 +20,10 @@ import Customer from '../views/client/Customer.vue';
 import VoucherCreate from '../views/client/VoucherCreate.vue';
 import ComboCreate from '../views/client/ComboCreate.vue';
 import Connect from '../views/client/Connect.vue';
-import Settings from '../views/client/Settings.vue';
+
 import SettingConnectPayment from '../views/client/SettingConnectPayment.vue';
 import Shipping from '../views/client/Shipping.vue';
 import ShippingFeeSettings from '../views/client/ShippingFeeSettings.vue';
-import Warehouse from '../views/client/Warehouse.vue';
 import UserRoles from '../views/client/UserRoles.vue';
 import SettingsGeneral from '../views/client/SettingsGeneral.vue';
 import Domain from '../views/client/Domain.vue';
@@ -35,6 +34,11 @@ import SendMessage from '../views/client/SendMessage.vue';
 import Report from '../views/client/Report.vue';
 import Package from '../views/client/Package.vue';
 
+// settings
+import Settings from '../views/client/Settings.vue';
+import Warehouse from '../views/client/settings/Warehouse';
+
+// auths
 import Auth from '../views/auth/Auth.vue';
 import AuthLogin from '../views/auth/AuthLogin.vue';
 import AuthRegister from '../views/auth/AuthRegister.vue';
