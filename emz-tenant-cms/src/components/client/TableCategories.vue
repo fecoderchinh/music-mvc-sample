@@ -52,7 +52,7 @@
         <td>
           <div class="table-categories__body-content">
             <h3 class="cms-typo text-13px text-buttonAndURL">
-              {{ data.source }}
+              <a href="#" @click.self.prevent="openModal(data.modal, data.modalW)">{{ data.source }}</a>
             </h3>
           </div>
         </td>
@@ -83,6 +83,8 @@ import CheckType from '@/components/client/CheckType.vue';
 import {
   FilterSVG,
 } from '../SVGs.vue';
+import ModalDanhMucSp from "@/components/client/ModalDanhMucSp";
+import ModalDanhMucSpAuto from "@/components/client/ModalDanhMucSpAuto";
 
 export default {
   components: {
@@ -95,25 +97,39 @@ export default {
       optionDataTable: [
         {
           img: 'https://picsum.photos/60',
-          source: 'Tóc đẹp',
+          source: 'Modal danh mục sản phẩm',
           status: 'Hiển thị web',
           condition: 'Chứa từ tóc',
+          modal: ModalDanhMucSp,
+          modalW: 1200,
         },
         {
           img: 'https://picsum.photos/60',
-          source: 'Combo tóc',
+          source: 'Modal danh mục sản phẩm - Tự động',
           status: 'Ẩn',
           condition: 'Không chứa từ máy',
-        },
-        {
-          img: 'https://picsum.photos/60',
-          source: 'Uốn',
-          status: '—',
-          condition: '—',
+          modal: ModalDanhMucSpAuto,
+          modalW: 1200,
         },
       ],
     };
   },
+  methods: {
+    openModal(m, w = 1200) {
+      const options = {
+        class: 'cms-modal',
+      };
+      const style = {
+        width: w, height: 'auto', shiftX: 0.5, adaptive: true,
+      };
+      const events = {
+        // opened: () => console.log('Opened'),
+        closed: () => this.$emit('close'),
+      };
+
+      this.$modal.show(m, options, style, events);
+    },
+  }
 };
 </script>
 

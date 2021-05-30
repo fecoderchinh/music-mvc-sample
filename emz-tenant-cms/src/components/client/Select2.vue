@@ -31,7 +31,7 @@ export default {
       default: 'Tìm kiếm khách hàng'
     },
     settings: {
-      type: Array,
+      type: Object,
       default: () => ({
         multiple: true
       })

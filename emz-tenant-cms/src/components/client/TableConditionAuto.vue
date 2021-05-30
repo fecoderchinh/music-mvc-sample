@@ -28,7 +28,9 @@
         </td>
       </tr>
       </tbody>
-      <p class="cms-typo text-13px text-labelAndTitle mt-5" slot="outside">Hiển thị 100 kết quả của 385</p>
+      <p class="cms-typo text-13px text-buttonAndURL mt-5 text-center" slot="outside">
+        <a href="#">Xem thêm</a>
+      </p>
     </Table>
   </div>
 </template>
