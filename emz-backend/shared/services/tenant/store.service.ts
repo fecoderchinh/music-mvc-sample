@@ -19,7 +19,20 @@ export class StoreService {
         return await item.save();
     }
 
+    async update(id: string, createDto: CreateStoreDto ): Promise<StoreDocument> {
+        return await this.storeModel.findByIdAndUpdate(id, createDto);
+    }
+
     async getAll(): Promise<StoreDocument[]>{
         return await this.storeModel.find().exec()
+    }
+
+    async getById(id: string): Promise<StoreDocument>{
+        return await this.storeModel.findById(id).exec();
+    }
+    
+
+    async remove(id: string): Promise<StoreDocument>{
+        return await this.storeModel.findByIdAndDelete(id)
     }
 }

@@ -11,8 +11,8 @@ export class StoreResponse {
         this.country = object.country ?? null;
         this.city = object.city ?? null;
         this.district = object.district ?? null;
-        this.province = object.province ?? null;
         this.ward = object.ward ?? null;
+        this.fullAddress = object.fullAddress ?? null;
         this.isShippingAddress = object.isShippingAddress ?? null;
         this.isDefault = object.isDefault ?? null;
 
@@ -43,10 +43,10 @@ export class StoreResponse {
     readonly district: String;
 
     @ApiProperty()
-    readonly province: String;
+    readonly ward: String;
 
     @ApiProperty()
-    readonly ward: String;
+    readonly fullAddress: String;
 
     @ApiProperty()
     readonly isShippingAddress: Boolean;

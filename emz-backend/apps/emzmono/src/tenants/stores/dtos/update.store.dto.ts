@@ -5,7 +5,7 @@ import * as Joi from 'joi';
 @JoiSchemaOptions({
     allowUnknown: false,
 })
-export class CreateStoreDto {
+export class UpdateStoreDto {
     @ApiProperty({ type: String })
     @JoiSchema(Joi.string().required())
     addressTitle: string;

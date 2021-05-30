@@ -15,6 +15,7 @@ import {APP_PIPE} from "@nestjs/core";
 import {JoiPipe} from "@emzmono/common/pipes/joi.pipe";
 import {MenuModule} from "@emzmono/tenants/menu/menu.module";
 import { StoreModule } from './tenants/stores/store.module';
+import { LocationModule } from './modules/location/location.module';
 
 
 @Module({
@@ -41,7 +42,7 @@ import { StoreModule } from './tenants/stores/store.module';
     CategoryModule,
     MenuModule,
     StoreModule,
-    
+    LocationModule
   ],
   controllers: [AppController],
   providers: [

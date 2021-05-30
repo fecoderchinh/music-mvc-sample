@@ -8,8 +8,8 @@ export interface StoreDocument extends mongoose.Document {
     readonly country: String;
     readonly city: String;
     readonly district: String;
-    readonly province: String;
     readonly ward: String;
+    readonly fullAddress: String;
     readonly isShippingAddress: Boolean;
     readonly isDefault: Boolean;
 }
@@ -22,8 +22,8 @@ export const StoreSchema = new mongoose.Schema({
     country: { type: String, required: true },
     city: { type: String, required: true },
     district: { type: String, required: true },
-    province: { type: String, required: true },
     ward: { type: String, required: true },
+    fullAddress: { type: String, required: true },
     isShippingAddress: { type: Boolean, default: false },
     isDefault: { type: Boolean, default: false },
 }, {
