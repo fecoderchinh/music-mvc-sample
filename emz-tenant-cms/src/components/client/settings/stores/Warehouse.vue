@@ -22,12 +22,10 @@
                   'col-span-3 sm:col-span-6 flex md:justify-end',
                   index+1 !== selected ? 'opacity-50' : null
                 ]">
-                <CheckType
-                  :id="'warehouse-checkbox-'+index"
-                  main-class="ml-0 no-mr rounded-checkbox"
-                  :checked="data.isDefault">
-                  <h3 class="ml-2" slot="text">Cửa hàng chính</h3>
-                </CheckType>
+                
+                <h4 v-if="data.isDefault" class="text-red-500 text-14px">Cửa hàng chính</h4>
+                
+
               </div>
               <div class="col-span-6">
                 <p class="font-lato text-14px text-menuItem leading-6">
@@ -35,7 +33,7 @@
                   <br>
                   E: {{ data.email }}
                   <br>
-                  A: Phường Lão Gia - Quận 1 - TP Hồ Chí Minh- Việt Nam
+                  A: {{ data.fullAddress }}
 
                 </p>
               </div>
@@ -46,14 +44,18 @@
                   'col-span-3 sm:col-span-6 flex items-center',
                   index+1 === selected ? 'opacity-50' : null
                   ]">
-                <a href="#" class="text-cmsOrange cms-typo text-14px">Xóa địa chỉ</a>
+                  <button class="text-cmsOrange cms-typo text-14px" 
+                    type="button" 
+                    @click="deleteItem(data.id,index)">
+                    Xóa địa chỉ
+                  </button>
+               
               </div>
               <div class="col-span-3 sm:col-span-6 flex md:justify-end">
-                <Button button-class="cms-button cms-button-white">
-                  <template slot="name">
+                <button type="button" @click="openModal( data )" 
+                  class="cms-button cms-button-white">
                     Sửa địa chỉ
-                  </template>
-                </Button>
+                </button>
               </div>
             </div>
           </div>
@@ -65,18 +67,13 @@
 
 <script>
 import Box from '@/components/client/Box.vue';
-import CheckType from '@/components/client/CheckType.vue';
-import Button from '@/components/client/Button.vue';
+import ModalAddShippingAddress from '@/components/client/settings/stores/ModalAddShippingAddress.vue';
 
-import ModalEditShippingFee from '@/components/client/ModalEditShippingFee.vue';
-
-import { getAll } from '@/apis/store-address';
+import { getAll, remove } from '@/apis/store-address';
 
 export default {
   components: {
-    Box,
-    CheckType,
-    Button,
+    Box
   },
   data() {
     return {
@@ -91,9 +88,10 @@ export default {
     get(){
       getAll().then( res => this.optionData = res.items )
     },
-    openModal() {
+    openModal( data ) {
       const options = {
         class: 'cms-modal',
+        initData: data
       };
       const style = {
         width: 720, height: 'auto', shiftX: 0.5, adaptive: true,
@@ -103,8 +101,13 @@ export default {
         closed: () => this.$emit('close'),
       };
 
-      this.$modal.show(ModalEditShippingFee, options, style, events);
+      this.$modal.show(ModalAddShippingAddress, options, style, events);
     },
+    deleteItem(id, index){
+      remove(id).then( () => {
+        this.optionData.splice(index,1);
+      })
+    }
   },
 };
 </script>

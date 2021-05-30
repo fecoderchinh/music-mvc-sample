@@ -4,7 +4,7 @@ const common = {
     state: {
         cities: [],
         districts: [],
-        wards: ''
+        wards: []
     },
     getters: {
         cities: state => {
@@ -32,7 +32,7 @@ const common = {
         getCity: async(context) => {
             if( context.state.cities.length == 0 ){
                 const res = await getCity()
-                context.commit('setCity', res.data )
+                context.commit('setCity', res.data );
             }
         },
         getDistrictByCity: async(context, cityCode) => {
@@ -41,7 +41,10 @@ const common = {
         },
         getWardByDistrictCode: async(context, districtCode) => {
             const res = await getWardByDistrictCode(districtCode)
-            context.commit('setWard', res )
+            context.commit('setWard', res.data )
+        },
+        resetWard: (context) => {
+            context.commit('setWard', [] )
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
 <ValidationObserver v-slot="{ handleSubmit }">
-      <form @submit.prevent="handleSubmit(onSubmit)">
+  <form @submit.prevent="handleSubmit(onSubmit)">
   <!-- eslint-disable max-len -->
   <Modal @close="$emit('close')">
     
@@ -134,16 +134,33 @@
             <label for="modal-nhapcongty" class="select-none cursor-pointer">Quận/ huyện<span class="cms-lato text-cmsRed text-14px">*</span></label>
           </div>
           <div class="w-full select-none">
-            <SelectOption :option-data="districts"/>
+            <ValidationProvider 
+              vid="district"
+              name="Quận/ huyện" 
+              rules="required"
+              v-slot="{ errors }">
+              <SelectOption 
+                 @change="onChangeDistrict"
+                v-model="formData.district"
+                :option-data="districts"/>
+              <span class="error">{{ errors[0] }}</span>
+            </ValidationProvider>
           </div>
         </div>
 
         <div class="col-span-3 sm:col-span-6">
           <div class="cms-label text-14px mb-3 text-labelAndTitle">
-            <label for="modal-nhapcongty" class="select-none cursor-pointer">Phường Xã<span class="cms-lato text-cmsRed text-14px">*</span></label>
+            <label for="modal-nhapcongty" class="select-none cursor-pointer">Phường/ Xã<span class="cms-lato text-cmsRed text-14px">*</span></label>
           </div>
           <div class="w-full select-none">
-            <SelectOption :option-data="optionDataSelect4"/>
+            <ValidationProvider 
+              vid="ward"
+              name="Phường/ Xã" 
+              rules="required"
+              v-slot="{ errors }">
+            <SelectOption v-model="formData.ward" :option-data="wards"/>
+            <span class="error">{{ errors[0] }}</span>
+            </ValidationProvider>
           </div>
         </div>
 
@@ -155,24 +172,43 @@
     <template slot="footer">
       <div class="md:flex">
         <div class="p-0 flex-1 md:flex items-center">
-          <CheckType
-            main-class="ml-0 no-mr"
-            id="check-stock"
-            checked>
-            <template slot="text"><h3 class="ml-2">Địa chỉ lấy hàng</h3></template>
-          </CheckType>
+          <div class="cms-checkbox ml-0 no-mr">
+            <input 
+              type="checkbox"
+              id="check-is-primary"
+              v-model="formData.isShippingAddress"
+              />
+            <label for="check-is-primary" 
+              class="text-standardCMS text-menuItem text-14px">
+                <span class="square"><span class="square-inner"></span></span>
+                <h3 class="ml-2">Địa chỉ lấy hàng</h3>
+            </label>
+          </div>
+
+          <div class="cms-checkbox ml-2 no-mr">
+            <input 
+              type="checkbox"
+              id="check-is-default"
+              v-model="formData.isDefault"
+              />
+            <label for="check-is-default" 
+              class="text-standardCMS text-menuItem text-14px">
+                <span class="square"><span class="square-inner"></span></span>
+                <h3 class="ml-2">Địa chỉ mặc định</h3>
+            </label>
+          </div>
+
+         
         </div>
 
         <ul class="md:text-right sm:mt-5 list-none flex-1 items-center">
           <li class="inline mr-5">
-            <Button button-class="cms-button cms-button-white">
-              <template slot="name">
-                Hủy
-              </template>
-            </Button>
+            <button @click="$emit('close')" type="button" class="cms-button cms-button-white">
+             Hủy
+            </button>
           </li>
           <li class="inline">
-            <button @click="saveStore" 
+            <button type="submit"
               class="cms-button cms-button-blue">
               Lưu
             </button>
@@ -180,21 +216,17 @@
         </ul>
       </div>
     </template>
-
-   
     
   </Modal>
-   </form>
-    </ValidationObserver>
+  </form>
+  </ValidationObserver>
 </template>
 
 <script>
 import Modal from '@/components/client/Modal.vue';
 import SelectOption from '@/components/client/SelectOption.vue';
 import InputType from '@/components/client/InputType.vue';
-import CheckType from '@/components/client/CheckType.vue';
-import Button from '@/components/client/Button.vue';
-import { create } from '@/apis/store-address.js';
+import { create, get as getStoreDataEdit, update } from '@/apis/store-address.js';
 import { mapGetters } from "vuex";
 
 const defaultData = {
@@ -202,10 +234,9 @@ const defaultData = {
   phone: '',
   email: '',
   address: '',
-  country: '',
+  country: 'VN',
   city: '',
   district: '',
-  province: '',
   ward: '',
   isShippingAddress: false,
   isDefault: false,
@@ -215,47 +246,72 @@ export default {
   components: {
     Modal,
     SelectOption,
-    InputType,
-    CheckType,
-    Button,
+    InputType
   },
+  props: [
+    'initData'
+  ],
   data(){
     return {
       formData: defaultData,
-      optionDataSelect1: [
-        { name: 'Việt Nam' },
-        { name: 'Lào' },
-        { name: 'Campuchia' },
-      ],
-      // cities: [
-      //   { name: 'Chọn tỉnh thành' },
-      // ],
-      optionDataSelect3: [
-        { name: 'Chọn quận huyện' },
-      ],
-      optionDataSelect4: [
-        { name: 'Chọn phường xã' },
-      ],
     };
   },
   computed: {
     ...mapGetters([
       "cities",
-      "districts"
+      "districts",
+      "wards"
     ])
   },
   created() {
-    this.$store.dispatch('getCity')
+    this.$store.dispatch('getCity');
+    if( this.initData ){
+      this.$store.dispatch('getDistrictByCity', this.initData.city );
+      this.$store.dispatch('getWardByDistrictCode', this.initData.district );
+    }
+  },
+  mounted() {
+    if( this.initData ){ this.getEditData() }
   },
   methods: {
-    saveStore(){
-      create().then( res => console.log(res) );
+    
+    async onSubmit() {
+      if( this.initData ){
+        const updateData = Object.keys(this.formData).reduce((object, key) => {
+          if (key !== 'id' && key !== 'fullAddress' ) {
+            object[key] = this.formData[key]
+          }
+          return object
+        }, {})
+
+        const response = await update( this.initData.id, updateData );
+        if( response ){
+          this.$toastr.s('Sửa thành công')
+        }
+      }else{
+        const response = await create(this.formData);
+        if( response ){
+          this.$toastr.s('Tạo thành công')
+        }
+
+        
+      }
+     
     },
-    onSubmit () {
-      alert('Form has been submitted!');
+
+    getEditData(){
+      getStoreDataEdit(this.initData.id).then( res => this.formData = res )
     },
+
     onChangeCity(e){
       this.$store.dispatch('getDistrictByCity', e.target.value )
+      this.$store.dispatch('resetWard');
+      this.district = '';
+      this.ward = '';
+    },
+    onChangeDistrict(e){
+      this.$store.dispatch('getWardByDistrictCode', e.target.value );
+      this.ward = '';
     }
   },
  
