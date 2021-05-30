@@ -71,6 +71,7 @@
         <div class="col-span-6 xl:col-span-2">
 
           <WidgetRadioStatus/>
+          <WidgetRadioStatusSaved/>
 
           <WidgetImageUploader/>
 
@@ -136,6 +137,7 @@ import ModalMenuPicker from '@/components/client/ModalMenuPicker.vue';
 import Widget from "@/components/client/Widget";
 import WidgetRadioStatus from '@/components/client/WidgetRadioStatus.vue';
 import WidgetImageUploader from '@/components/client/WidgetImageUploader.vue';
+import WidgetRadioStatusSaved from "@/components/client/settings/WidgetRadioStatusSaved";
 
 export default {
   components: {
@@ -151,6 +153,7 @@ export default {
     WidgetRadioStatus,
     WidgetImageUploader,
     ModalMenuPicker,
+    WidgetRadioStatusSaved,
   },
   data() {
     return {
