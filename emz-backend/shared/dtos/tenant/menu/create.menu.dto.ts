@@ -27,8 +27,8 @@ export class CreateMenuDto {
         typeable: Joi.string().required(),
         value: Joi.string().required(),
         link: Joi.string().required(),
-        position: Joi.number().required().default(0),
-        children: Joi.array().required(),
+        position: Joi.number().required(),
+        depth: Joi.number().required(),
     })))
     menuItems?: IMenuItemDocument[];
 }

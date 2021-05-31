@@ -15,7 +15,8 @@ export class MenuResponse extends AbstractResponse {
         this.alias = object.alias;
         this.position = object.position;
         this.createdAt = object.createdAt;
-        this.menuItems = object.menuItems.length ? object.menuItems.map(menuItem => new MenuItemResponse(menuItem)) : null;
+        const menuItems = object.menuItems || [];
+        this.menuItems = menuItems.length ? menuItems.map(menuItem => new MenuItemResponse(menuItem)) : [];
         this.handleHiddenFields(hiddenFields);
     }
     @ApiProperty()

@@ -13,7 +13,6 @@ export class MenuItemResponse extends AbstractResponse {
         this.value = object.value;
         this.link = object.link;
         this.position = object.position;
-        this.depth = object.depth;
         const children = object.children || [];
         this.children = children ? this.buildResponse(children) : [];
         this.handleHiddenFields(hiddenFields);
