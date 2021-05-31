@@ -35,53 +35,35 @@ services:
     user: '1000:1000'
   mongo-setup:
     image: 'mongo:4.0.22'
-    #restart: on-failure
     networks:
       default: null
     volumes:
       - './mongodb/scripts:/scripts'
     entrypoint:
       - /scripts/setup.sh
-    depends_on:
+    links:
       - mongo1
       - mongo2
       - mongo3
   mongo1:
     image: 'mongo:4.0.22'
     container_name: emz_mongo1
-    expose:
-      - 27017
     ports:
       - '27017:27017'
     command: mongod --config /etc/mongod.conf
-    #restart: always
-    # entrypoint:
-    #   - /usr/bin/mongod
-    #   - '--bind_ip_all'
-    #   - '--replSet'
-    #   - rs0
-    #   - '--dbpath'
-    #   - /var/lib/mongodb
     volumes:
       - './mongodb/etc/mongod.conf:/etc/mongod.conf'
       - './mongodb/data_rs0_1:/var/lib/mongodb'
     user: '1000:1000'
+    links:
+      - mongo2
+      - mongo3
   mongo2:
     image: 'mongo:4.0.22'
     container_name: emz_mongo2
-    expose:
-      - 27017
     ports:
       - '27018:27017'
     command: mongod --config /etc/mongod.conf
-    #restart: always
-    # entrypoint:
-    #   - /usr/bin/mongod
-    #   - '--bind_ip_all'
-    #   - '--replSet'
-    #   - rs0
-    #   - '--dbpath'
-    #   - /var/lib/mongodb
     volumes:
       - './mongodb/etc/mongod.conf:/etc/mongod.conf'
       - './mongodb/data_rs0_2:/var/lib/mongodb'
@@ -89,20 +71,10 @@ services:
   mongo3:
     image: 'mongo:4.0.22'
     container_name: emz_mongo3
-    expose:
-      - 27017
     ports:
       - '27019:27017'
     volumes:
       - './mongodb/etc/mongod.conf:/etc/mongod.conf'
-      - './mongodb/data_rs0_3:/var/lib/mongodb:rw'
+      - './mongodb/data_rs0_3:/var/lib/mongodb'
     command: mongod --config /etc/mongod.conf
-    #restart: always
-    # entrypoint:
-    #   - /usr/bin/mongod
-    #   - '--bind_ip_all'
-    #   - '--replSet'
-    #   - rs0
-    #   - '--dbpath'
-    #   - /var/lib/mongodb
     user: '1000:1000'
