@@ -8,12 +8,13 @@ import { ShopModule } from '../shop/shop.module'
 import { MongooseModule } from '@nestjs/mongoose'
 import { ClientSchema } from 'shared/schemas/global/client.schema'
 import { ConfigService } from '@nestjs/config';
+import { CLIENT_MODEL } from 'shared/schemas/model.constant'
 
 
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: 'ClientModel', schema: ClientSchema },
+      { name: CLIENT_MODEL , schema: ClientSchema },
     ]),
     PassportModule,
     JwtModule.registerAsync({

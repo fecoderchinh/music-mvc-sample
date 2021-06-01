@@ -1,4 +1,5 @@
-import * as mongoose from 'mongoose'
+import * as mongoose from 'mongoose';
+import { CLIENT_MODEL, DOMAIN_MODEL } from '../model.constant';
 import { DomainDocument } from './domain.schema';
 
 export interface ShopDocument extends Document {
@@ -83,13 +84,13 @@ export const ShopSchema = new mongoose.Schema({
 
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'ClientModel',
+        ref: CLIENT_MODEL ,
         required: true
     },
 
     domains: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'DomainModel',
+        ref: DOMAIN_MODEL,
         required: true
     }],
 

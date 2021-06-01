@@ -16,6 +16,8 @@ import {JoiPipe} from "@emzmono/common/pipes/joi.pipe";
 import {MenuModule} from "@emzmono/tenants/menu/menu.module";
 import { StoreModule } from './tenants/stores/store.module';
 import { LocationModule } from './modules/location/location.module';
+import { ThemeModule } from './global/themes/theme.module';
+import { PackageModule } from './global/packages/package.module';
 
 
 @Module({
@@ -31,18 +33,22 @@ import { LocationModule } from './modules/location/location.module';
       inject: [ConfigService],
     }),
     JoiPipeModule,
-
     TenancyConnectionModule,
+    // global modules
+    LocationModule,
 
-    // Global modules
+    // Emz modules
     ClientsModule,
     ShopModule,
+    ThemeModule,
+    PackageModule,
     // Tenant modules
     ProductModule,
     CategoryModule,
     MenuModule,
     StoreModule,
-    LocationModule
+    
+
   ],
   controllers: [AppController],
   providers: [
