@@ -2,8 +2,8 @@ import * as mongoose from 'mongoose';
 
 export interface ThemeCategoryDocument extends mongoose.Document{
     readonly id: string;
-    readonly CategoryName: string;
-    readonly CategorySlug: string;
+    readonly categoryName: string;
+    readonly categorySlug: string;
     readonly thumbnail: string;
 }
 

@@ -4,6 +4,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { ValidationPipe, UnprocessableEntityException, HttpStatus } from '@nestjs/common';
 import * as mongoose from 'mongoose';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import {useContainer, Validator} from "class-validator";
 
 // enable debug mongosee
 mongoose.set('debug', process.env.MONGODB_DEBUG);
@@ -33,6 +34,8 @@ async function bootstrap() {
       }),
   );
   app.enableCors();
+
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   await app.listen(3000, () => {
     console.log("API is starting localhost:3000")
