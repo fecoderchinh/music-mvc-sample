@@ -1,4 +1,4 @@
-import { Global, Module, Scope, NotFoundException } from '@nestjs/common';
+import { Global, Module, Scope, NotFoundException, BadRequestException } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { ShopService } from 'shared/services/global/shop.service';
 import { ShopModule } from './global/shop/shop.module';
@@ -12,6 +12,10 @@ const connectionFactory = {
     // scope: Scope.REQUEST,
     useFactory: async (req, shopService: ShopService) => {
 
+        if(!req.headers['x-tenant-id']){
+            throw new BadRequestException(`Tenant id not provide`);
+        }
+
         const urlObject = new URL(req.headers['x-tenant-id']);
         const hostName = urlObject.hostname;
 
@@ -20,7 +24,7 @@ const connectionFactory = {
         if (!shop) {
             throw new NotFoundException(`Domain not found`);
         }
-        const uri = `mongodb://localhost:27017/tenant-${shop.tenantUid}`;
+        const uri = `mongodb://localhost:27017,localhost:27018,localhost:27019/tenant-${shop.tenantUid}?replicaSet=rs0`;
 
         // Get the underlying mongoose connections
         const connections: Connection[] = mongoose.connections;

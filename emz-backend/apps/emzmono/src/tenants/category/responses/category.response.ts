@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import {ICategoryDocument, Condition, Seo} from "shared/schemas/tenant/category.schema";
-import {SeoResponse} from "@emzmono/tenants/category/responses/seo.response";
 import {ConditionResponse} from "@emzmono/tenants/category/responses/condition.response";
+import { SeoResponse } from "shared/responses/seo.response";
 
 export class CategoryResponse {
     constructor(object: ICategoryDocument) {

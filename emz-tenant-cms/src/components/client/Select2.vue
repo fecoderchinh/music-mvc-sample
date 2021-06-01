@@ -5,12 +5,12 @@
       class="flex flex-col"
       v-model="myValue"
       :options="optionData"
-      :settings="{ multiple: true }"
+      :settings="settings"
       @change="myChangeEvent($event)"
       @select="mySelectEvent($event)"
       style="width: 100%"
-      placeholder="Tìm kiếm khách hàng" />
-      <TagInput v-model="myValue" v-if="myValue" placeholder=""/>
+      :placeholder="placeholder" />
+      <TagInput v-model="myValue" v-if="settings.multiple && myValue" placeholder=""/>
   </div>
 </template>
 <script>
@@ -26,6 +26,16 @@ export default {
   },
   props: {
     optionData: Array,
+    placeholder: {
+      type: String,
+      default: 'Tìm kiếm khách hàng'
+    },
+    settings: {
+      type: Object,
+      default: () => ({
+        multiple: true
+      })
+    }
   },
   data() {
     return {
@@ -34,11 +44,13 @@ export default {
     };
   },
   methods: {
+    // eslint-disable-next-line no-unused-vars
     myChangeEvent(val) {
-      console.log(val);
+      // console.log(val);
     },
+    // eslint-disable-next-line no-unused-vars
     mySelectEvent({ id, text }) {
-      console.log({ id, text });
+      // console.log({ id, text });
     },
   },
 };
@@ -46,6 +58,17 @@ export default {
 
 <style lang="scss">
 .cms-select2 {
+  &.center-placeholder {
+    .select2 {
+      &-search {
+        &__field {
+          &::placeholder {
+            @apply text-center;
+          }
+        }
+      }
+    }
+  }
   .select2 {
     &-search {
       @apply text-14px;

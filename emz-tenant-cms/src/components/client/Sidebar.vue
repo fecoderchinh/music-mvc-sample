@@ -51,7 +51,8 @@
         <!-- eslint-disable max-len -->
         <div class="pl-8 pr-4 w-full flex items-center h-35px pl-4 rounded-lg cursor-pointer hover:bg-sidebarHover">
           <SettingSVG class="h-icon w-icon mr-5 fill-menuIcon"/>
-          <a href="/dashboard/settings" class="text-standardCMS text-menuItem flex-auto font-medium">Cài đặt</a>
+          <router-link to="/dashboard/settings" 
+          class="text-standardCMS text-menuItem flex-auto font-medium">Cài đặt</router-link>
         </div>
       </div>
     </div>

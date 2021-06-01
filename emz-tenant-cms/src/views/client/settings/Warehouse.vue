@@ -3,7 +3,7 @@
   <div class="relative">
 
     <Breadcrumb>
-      <a href="/dashboard/settings" slot="content">Cài đặt</a>
+    <router-link to="/dashboard/settings"></router-link>
     </Breadcrumb>
 
     <!-- box title -->
@@ -40,9 +40,9 @@
 import Breadcrumb from '@/components/client/Breadcrumb.vue';
 import Header from '@/components/client/Header.vue';
 import Button from '@/components/client/Button.vue';
-import Warehouse from '@/components/client/Warehouse.vue';
+import Warehouse from '@/components/client/settings/stores/Warehouse.vue';
 
-import ModalAddShippingAddress from '@/components/client/ModalAddShippingAddress.vue';
+import ModalAddShippingAddress from '@/components/client/settings/stores/ModalAddShippingAddress.vue';
 
 export default {
   components: {

@@ -6,12 +6,13 @@ import { DomainController } from './domain.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ShopSchema } from 'shared/schemas/global/shop.schema';
 import { DomainSchema } from 'shared/schemas/global/domain.schema';
+import { DOMAIN_MODEL, SHOP_MODEL } from 'shared/schemas/model.constant';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: 'ShopModel', schema: ShopSchema },
-      { name: 'DomainModel', schema: DomainSchema }
+      { name: SHOP_MODEL , schema: ShopSchema },
+      { name: DOMAIN_MODEL, schema: DomainSchema }
     ])
   ],
   providers: [
