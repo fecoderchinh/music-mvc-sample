@@ -42,7 +42,6 @@ export const CategorySchema = new Schema<ICategoryDocument>({
     isPublished: Boolean,
     publishSchedule: {
         type: Date,
-        default: Date.now()
     },
     publishedAt: {
         type: Date,
