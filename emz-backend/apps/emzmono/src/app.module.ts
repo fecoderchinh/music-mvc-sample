@@ -18,6 +18,7 @@ import { StoreModule } from './tenants/stores/store.module';
 import { LocationModule } from './modules/location/location.module';
 import { ThemeModule } from './global/themes/theme.module';
 import { PackageModule } from './global/packages/package.module';
+import { AdminUsersModule } from './global/admin-users/admin-users.module';
 
 
 @Module({
@@ -35,6 +36,7 @@ import { PackageModule } from './global/packages/package.module';
     JoiPipeModule,
     TenancyConnectionModule,
     // global modules
+    AdminUsersModule,
     LocationModule,
 
     // Emz modules
