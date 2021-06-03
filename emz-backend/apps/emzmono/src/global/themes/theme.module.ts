@@ -18,7 +18,8 @@ import { ThemeController } from "./theme.controller";
     ],
     providers: [
         IsThemeCatSlugAlreadyExist, 
-        ThemeCategoryService
+        ThemeCategoryService,
+        ThemeService
     ],
     exports: [
 

@@ -25,6 +25,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/schedule/tsconfig.app.json"
       }
+    },
+    "tenant-front": {
+      "type": "application",
+      "root": "apps/tenant-front",
+      "entryFile": "main",
+      "sourceRoot": "apps/tenant-front/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/tenant-front/tsconfig.app.json"
+      }
     }
   }
 }

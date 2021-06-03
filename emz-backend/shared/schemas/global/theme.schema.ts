@@ -1,8 +1,11 @@
 import * as mongoose from 'mongoose';
 import { THEME_CATEGORY_MODEL } from '../model.constant';
+import { ThemeCategoryDocument } from './theme-category.schema';
 
-const slug = require('mongoose-slug-updater');
-mongoose.plugin( slug );
+export interface IThemeStyle{
+    styleName: String,
+    color: String
+}
 
 export interface ThemeDocument extends mongoose.Document{
     readonly id: string;
@@ -14,35 +17,23 @@ export interface ThemeDocument extends mongoose.Document{
     readonly salePrice: number;
     readonly themePath: string;
     readonly thumbnail: string;
+    readonly styles: IThemeStyle[];
+    readonly category: ThemeCategoryDocument;
 }
-
-const ThemeStyleSchema = new mongoose.Schema({
-    styleName: { type: String, required: true },
-    color: { type: String, required: true },
-})
 
 export const ThemeSchema = new mongoose.Schema({
     themeName: { type: String, required: true },
-    themeSlug: { 
-        type: String, 
-        required: true, 
-        slug: 'themeName', 
-        unique: true,
-        slugOn:{ 
-            save: true, 
-            update: false, 
-            updateOne: false, 
-            updateMany: false, 
-            findOneAndUpdate: false 
-        }
-    },
+    themeSlug: { type: String, required: true },
     shortDescription: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true, default: 0 },
     salePrice: { type: Number, required: true, default: 0 },
     themePath: { type: String, required: true },
     thumbnail: { type: String, required: true },
-    styles: [ThemeStyleSchema],
+    styles: [{
+        styleName: String,
+        color: String
+    }],
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: THEME_CATEGORY_MODEL

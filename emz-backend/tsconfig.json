@@ -12,9 +12,15 @@
     "incremental": true,
     "skipLibCheck": true,
     "paths": {
-      "@emzmono/common/*": ["apps/emzmono/src/common/*"],
-      "@emzmono/*": ["apps/emzmono/src/*"],
-      "@shared/services/*": ["shared/services/*"]
+      "@emzmono/common/*": [
+        "apps/emzmono/src/common/*"
+      ],
+      "@emzmono/*": [
+        "apps/emzmono/src/*"
+      ],
+      "@shared/services/*": [
+        "shared/services/*"
+      ]
     }
   },
   "exclude": [
