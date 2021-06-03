@@ -23,14 +23,25 @@ export class StoreService {
         return await this.storeModel.findByIdAndUpdate(id, createDto);
     }
 
-    async getAll(): Promise<StoreDocument[]>{
-        return await this.storeModel.find().exec()
+    async getAll(ids= []): Promise<StoreDocument[]>{
+	    let options = {};
+
+	    if (ids.length) {
+            options = {
+                _id: {
+                    $in: ids
+                }
+            };
+        }
+        const stores = await this.storeModel.find(options).exec();
+
+	    return stores;
     }
 
     async getById(id: string): Promise<StoreDocument>{
         return await this.storeModel.findById(id).exec();
     }
-    
+
 
     async remove(id: string): Promise<StoreDocument>{
         return await this.storeModel.findByIdAndDelete(id)

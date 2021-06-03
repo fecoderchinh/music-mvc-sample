@@ -2,7 +2,6 @@ import { ObjectID } from "mongodb";
 import {Injectable, Inject, NotFoundException} from '@nestjs/common';
 import { CreateCategoryDto } from 'shared/dtos/tenant/category/create.category.dto';
 import { Model, Connection } from 'mongoose';
-import { Request } from 'express';
 import {CategorySchema, ICategoryDocument, ICategoryPaginator} from 'shared/schemas/tenant/category.schema';
 import { Paginator } from 'shared/paginator';
 import { CategoryCriteria } from "shared/criteria/category.criteria";
@@ -38,15 +37,20 @@ export class CategoryService {
     /**
      * Get list a category
      *
-     * @param request
+     * @param queryParams
      */
-    async getList(request: Request): Promise<ICategoryPaginator> {
-        const paginator = new Paginator(request);
+    async getList(queryParams): Promise<ICategoryPaginator| ICategoryDocument[]> {
+        const builderOptions = (new CategoryCriteria(queryParams)).handle();
+        const query = this.categoryModel.find(...builderOptions);
+
+        if (Number(queryParams.limit) === 0) {
+            return await query.exec();
+        }
+
+        const paginator = new Paginator(queryParams);
         const options = paginator.getOptionQueryString();
-        const builderOptions = (new CategoryCriteria(request.query)).handle();
         const countPromise = this.categoryModel.countDocuments(...builderOptions).exec();
-        const docsPromise = this.categoryModel.find(...builderOptions)
-            .skip(options.offset)
+        const docsPromise = query.skip(options.offset)
             .limit(options.limit)
             .exec();
         const [total, docs] = await Promise.all([countPromise, docsPromise]);

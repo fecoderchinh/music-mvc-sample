@@ -1,7 +1,8 @@
 interface SearchCategoryDto {
     isPublished: boolean;
     addProductType: string;
-    keyword; string
+    keyword; string;
+    ids?; Array;
 }
 
 export class CategoryCriteria {
@@ -16,8 +17,8 @@ export class CategoryCriteria {
         const isPublished = this.query.isPublished || '';
         const addProductType = this.query.addProductType || '';
         const keyword = this.query.keyword || '';
+        const ids = this.query.ids || [];
 
-        console.log('this.query', this.query, addProductType);
         if (isPublished !== '') {
             builder.push({ isPublished: { $eq: isPublished} })
         }
@@ -28,6 +29,10 @@ export class CategoryCriteria {
 
         if (keyword !== '') {
             builder.push({ name: { $regex: keyword.toString(), $option: 'i' }});
+        }
+
+        if (ids.length) {
+            builder.push({ _id: { $in: ids }});
         }
 
         return builder;

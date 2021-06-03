@@ -24,6 +24,8 @@ import { PaginatorResponse } from "@emzmono/common/responses/paginator.response"
 import { ObjectID } from "mongodb";
 import {CategoryPaginatorResponse} from "@emzmono/tenants/category/responses/category-paginator.response";
 import {RouteParamPipe} from "@emzmono/common/pipes/route-param.pipe";
+import {CategoriesResponse} from "@emzmono/tenants/category/responses/categories.response";
+import {ICategoryPaginator} from "../../../../../shared/schemas/tenant/category.schema";
 
 @ApiTags('category')
 @Controller('categories')
@@ -47,10 +49,14 @@ export class CategoryController {
     @ApiHeader(TenantHaders)
     @UseGuards(JwtAuthGuard)
     @HttpCode(HttpStatus.OK)
-    async index(@Req() request) : Promise<IPaginatorResponse> {
-        const result = await this.categoryService.getList(request);
+    async index(@Req() request) : Promise<IPaginatorResponse|CategoriesResponse> {
+        const result = await this.categoryService.getList(request.query);
 
-        return new PaginatorResponse(new CategoryPaginatorResponse(result));
+        if (request.query.limit && Number(request.query.limit) === 0) {
+            return new CategoriesResponse(result);
+        }
+
+        return new PaginatorResponse(new CategoryPaginatorResponse(result as ICategoryPaginator));
     }
 
     @UsePipes(RouteParamPipe)
