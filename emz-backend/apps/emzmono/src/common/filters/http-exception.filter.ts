@@ -10,6 +10,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const statusCode = exception.getStatus();
         const data = exception.getResponse() as any;
         const errorResponse  = {} as any;
+        errorResponse.errors = data.errors;
 
         if (Joi.isError(data)) {
             errorResponse.statusCode = HttpStatus.UNPROCESSABLE_ENTITY;

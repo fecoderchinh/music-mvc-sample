@@ -5,6 +5,7 @@ import VModal from 'vue-js-modal'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import VueNestable from 'vue-nestable'
 import './config/vee-validate'
 // import { abilitiesPlugin } from '@casl/vue'
 // import ability from './config/ability'
@@ -20,6 +21,7 @@ import VueToastr from "vue-toastr";
 Vue.use(VueToastr, {
   /* OverWrite Plugin Options if you need */
 });
+Vue.use(VueNestable);
 Vue.use(Vuex)
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
 Vue.config.productionTip = false

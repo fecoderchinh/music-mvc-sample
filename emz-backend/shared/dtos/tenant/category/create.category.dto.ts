@@ -74,6 +74,7 @@ export class CreateCategoryDto {
         otherwise: Joi.optional(),
     }))
     conditionOperator?: string;
+
     @JoiSchema(Joi.array().items(Joi.object().keys({
         field: Joi.string().required().valid(...CONDITION_FIELDS),
         condition: Joi.string().required().valid(...Object.keys(CONDITIONS)),

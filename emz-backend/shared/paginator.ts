@@ -1,5 +1,3 @@
-import { Request } from 'express';
-
 export interface IMetaPaginator {
     total: number,
     currentPage: number,
@@ -17,10 +15,9 @@ export class Paginator {
     readonly offset: number;
     readonly currentPage: number;
 
-    constructor(private request: Request, options = { limit: 20}) {
-        const { query } = request;
-        this.limit = Number(query.limit) || options.limit;
-        this.currentPage =  Number(query.page) > 0 ? Number(query.page) : 1;
+    constructor(private queryParams, options = { limit: 20}) {
+        this.limit = Number(queryParams.limit) || options.limit;
+        this.currentPage =  Number(queryParams.page) > 0 ? Number(queryParams.page) : 1;
         this.offset = this.limit * (this.currentPage - 1);
     }
 
