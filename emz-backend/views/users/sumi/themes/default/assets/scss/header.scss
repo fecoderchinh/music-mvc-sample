@@ -1,0 +1,21 @@
+.emz-header {
+  display: flex;
+  margin-bottom: 30px;
+  @media (max-width: 992px) {
+    display: block;
+    .emz-header__divider {
+      margin-top: 1rem;
+    }
+  }
+  &__name {
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-size: $xxl;
+    margin-bottom: 0;
+  }
+  &__divider {
+    flex-grow: 1;
+    border-bottom: 2px dotted $placeholder;
+    margin-bottom: 5px;
+  }
+}

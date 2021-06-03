@@ -1,0 +1,39 @@
+@import "variable";
+@import "mixin";
+@import "size-spacing";
+@import "color";
+@import "util";
+@import "font-face";
+@import "reset";
+@import "form";
+@import "button";
+@import "navbar";
+@import "dropdown";
+@import "banner";
+@import "header";
+@import "widget";
+@import "modal";
+@import "tabs";
+@import "flashsale";
+@import "product-content";
+@import "slider";
+@import "product-qty";
+@import "product-item__content";
+@import "blog";
+@import "table";
+@import "card";
+@import "account";
+@import "proceed";
+
+body{
+    @extend .emz-typo;
+    font-size: 14px;
+    line-height: 1.2;
+}
+.container {
+    &, &-fluid {
+        @media (min-width: 1440px) {
+            width: 1400px;
+        }
+    }
+}

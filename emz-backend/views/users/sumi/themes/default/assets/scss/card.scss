@@ -1,0 +1,45 @@
+.emz-card {
+  border: 0 none;
+  .card-title,
+  .card-text {
+    font-size: $base;
+    color: $dark;
+  }
+  .card-title {
+    @media (min-width: 992px) {
+      max-width: 200px;
+    }
+  }
+  .card-text {
+    &.card-price {
+      @media (min-width: 992px) {
+        text-align: right;
+      }
+      margin-bottom: .5rem;
+      > span {
+        &:first-child {
+          color: rgba($dark, .7);
+          margin-right: 20px;
+        }
+        &:last-child {
+          color: rgba($dark, .5);
+        }
+      }
+    }
+    &.card-attr {
+      a {
+        color: rgba($dark, .5);
+        text-decoration: none;
+      }
+    }
+  }
+  .card-body {
+    &__img {
+      @media (max-width: 992px) {
+        max-width: 100px;
+        min-width: 100px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

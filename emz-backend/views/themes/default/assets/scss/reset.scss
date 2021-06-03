@@ -1,0 +1,29 @@
+//RESET PLACEHOLDER COLOR
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $placeholder !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $placeholder !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $placeholder !important;
+}
+
+/* clears the ‘X’ from Internet Explorer */
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+//REMOVE SHADOW WHEN FOCUS
+input, textarea, button, select {
+  &:focus {
+    box-shadow: none !important;
+  }
+}

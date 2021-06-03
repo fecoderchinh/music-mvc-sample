@@ -1,0 +1,232 @@
+.widget {
+  &-header {
+    background: $red;
+    padding: 2px 0;
+    &__inner {
+      border-top: 2px dashed $white;
+      border-bottom: 2px dashed $white;
+      display: flex;
+      align-items: center;
+      svg {
+        fill: $white;
+      }
+      span {
+        margin-left: 20px;
+      }
+      h3 {
+        font-size: $base;
+        text-transform: uppercase;
+        margin: 10px;
+        color: $white;
+      }
+    }
+  }
+  &-content {
+    &__inner {
+      margin-bottom: 30px;
+    }
+  }
+  &-menu {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    border: 3px dotted $placeholder;
+    border-top: 0 none;
+    &__item {
+      position: relative;
+      > a {
+        padding: 15px 40px 15px 0;
+        width: 100%;
+      }
+      &:not(:last-child) {
+        border-bottom: 3px dotted $placeholder !important;
+      }
+      &:hover {
+        > a {
+          > *, svg {
+            fill: $red;
+            color: $red;
+          }
+        }
+      }
+      > a {
+        display: flex;
+        span {
+          display: block;
+          &:last-child:not(.obj-more) {
+            position: absolute;
+            top: 15px;
+            right: 16px;
+          }
+        }
+      }
+      &-svg {
+        margin-left: 20px;
+        margin-right: 15px;
+        svg {
+          fill: rgba($placeholder, 1);
+        }
+      }
+      &-title {
+        font-size: $base;
+        color: $dark;
+        &.obj-more {
+          color:rgba($dark, .5);
+          margin-left: 45px;
+        }
+      }
+      &-sub {
+        svg {
+          fill: $dark;
+        }
+      }
+    }
+  }
+  &-staffphone {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 3px dotted $placeholder;
+    border-top: 0 none;
+    &__item {
+      padding: 15px;
+      &:not(:last-child) {
+        border-bottom: 3px dotted $placeholder;
+      }
+      &-svg {
+        margin-right: 10px;
+        svg {
+          fill: $red;
+        }
+      }
+      &-name {
+        font-family: 'Lato', sans-serif;
+        font-size: $base;
+        strong, b {
+          color: $dark;
+        }
+        span, b {
+          font-weight: normal;
+        }
+        span {
+          color: rgba($dark, .7);
+          display: block;
+          margin-top: 10px;
+          > b {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+  &-profile {
+    margin-bottom: 30px;
+    &__label {
+      font-size: $base;
+      color: $dark;
+      position: relative;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 20px;
+      @media (min-width: 1200px) {
+        display: flex;
+        justify-content: space-between;
+      }
+      > a {
+        text-transform: initial;
+        text-decoration: none;
+        color: $red;
+        font-weight: normal;
+        @media (min-width: 1200px) {
+          //position: absolute;
+          //top: 0;
+          //right: 0;
+          //margin-left: 0;
+          margin-left: 0;
+        }
+        @media (min-width: 321px) {
+          margin-left: 15px;
+        }
+        @media (max-width: 320px) {
+          display: block;
+        }
+        svg {
+          margin-bottom: .25rem;
+          margin-right: .25rem;
+        }
+        &.blue {
+          color: rgba($blue, .8);
+        }
+      }
+    }
+    &__list {
+      li {
+        margin-bottom: 10px;
+        font-size: $base;
+        color: $dark;
+        > span {
+          margin-left: 15px;
+        }
+      }
+      &-address {
+        color: rgba($dark, .8);
+      }
+    }
+    &__price {
+      font-size: $s14;
+      color: rgba($dark, .7);
+      li {
+        margin-bottom: 10px;
+        > span {
+          margin-left: 15px;
+        }
+      }
+    }
+    &__action {
+      font-size: $base;
+      @media (min-width: 1200px) {
+        display: flex;
+        justify-content: space-between;
+      }
+      > li {
+        > a {
+          color: $red;
+          text-decoration: none;
+        }
+      }
+      &-checkbox {
+        .form-check-input:checked {
+          background-color: $red;
+          border-color: $red;
+        }
+        label {
+          color: rgba($dark, .3) !important;
+        }
+        &.disabled {
+          .form-check-input:checked {
+            background-color: rgba($dark, .3);
+            border-color: rgba($dark, .2);
+          }
+          label {
+            color: rgba($dark, .8) !important;
+          }
+        }
+      }
+      &-nolabel {
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+      }
+    }
+    &__default {
+      font-size: $s12;
+      color: $white;
+      background-color: $red;
+      padding: 2px 4px;
+      border-radius: 2px;
+      &.bg-gray {
+        background-color: rgba($dark, .4);
+      }
+    }
+  }
+}

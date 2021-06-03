@@ -1,0 +1,276 @@
+.dropdown {
+  &-menu {
+    @include box-shadow;
+    border-radius: 0;
+    border-color: $placeholder;
+    margin: 0;
+    padding: 0;
+    > li {
+      position: relative;
+      &:not(:last-child) {
+        border-bottom: 1px solid $placeholder;
+      }
+    }
+    .dropdown {
+      &-item {
+        padding: 10px 40px 10px 0;
+        &:hover, &:focus {
+          background-color: transparent;
+          > *, svg {
+            fill: $red;
+            color: $red;
+          }
+        }
+        & {
+          display: flex;
+          > span {
+            display: block;
+            &:last-child:not(.dropdown-menu__item-title) {
+              position: absolute;
+              top: 10px;
+              right: 15px;
+            }
+          }
+        }
+      }
+      &-menu {
+        &__item {
+          &-svg {
+            margin-left: 20px;
+            margin-right: 15px;
+            svg {
+              fill: rgba($placeholder, 1);
+            }
+          }
+          &-title {
+            font-size: $base;
+            color: $dark;
+          }
+          &-sub {
+            margin-left: 15px;
+            svg {
+              fill: $dark;
+            }
+          }
+        }
+        &-level-2 {
+          position: relative;
+          z-index: 29;
+          @media (max-width: 992px) {
+            display: flex;
+            flex-direction: column;
+          }
+          @media (min-width: 992px) {
+            &:hover, &:focus, &:active {
+              > ul {
+                display: block;
+                &:hover, &:focus {
+                  + a {
+                    > *, svg {
+                      fill: $red;
+                      color: $red;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      &-level-2 {
+        padding: 0;
+        @media (max-width: 992px) {
+          background-color: rgba($placeholder, .25);
+          order: 2;
+          height: 0;
+          display: none;
+          transition: height .5s ease-in-out;
+          &.show {
+            height: auto;
+            display: block;
+          }
+          + a {
+            order: 1;
+          }
+        }
+        @media (min-width: 992px) {
+          position: absolute;
+          top: 0;
+          left: calc(100%);
+          background-color: $white;
+          @include box-shadow;
+          display: none;
+          z-index: 30;
+        }
+        list-style-type: none;
+        margin: 0;
+        > li {
+          &:not(:last-child) {
+            border-bottom: 1px solid $placeholder;
+          }
+          a {
+            padding: 10px 20px;
+          }
+        }
+      }
+    }
+    &__widget {
+      display: block;
+      position: static;
+      box-shadow: none;
+      .dropdown {
+        &-item {
+          padding: 15px 40px 15px 20px !important;
+        }
+      }
+      @media (max-width: 992px) {
+        .show {
+          width: 100%;
+        }
+      }
+    }
+  }
+  &-toggle {
+    &-notify {
+      &:after {
+        content: none;
+      }
+    }
+  }
+  &-notify {
+    z-index: 9;
+    margin-top: 10px;
+    @media (min-width: 992px) {
+      &:before, &:after {
+        content: '';
+        width: 0px;
+        height: 0px;
+        border-bottom: 15px solid $white;
+        border-right: 15px solid transparent;
+        border-left: 15px solid transparent;
+        position: absolute;
+        top: -14px;
+        right: 5px;
+      }
+      &:before {
+        top: -15px;
+        border-bottom-color: rgba(0,0,0, .1);
+      }
+    }
+    &-label {
+      font-size: $base;
+      color: rgba($dark, .5);
+      margin: 10px;
+    }
+    &-more {
+      margin: 15px;
+      text-align: center;
+      a {
+        color: $red;
+        font-size: $s14;
+        text-decoration: none;
+      }
+    }
+    .dropdown {
+      &-item {
+        padding: 10px 10px 10px 0;
+        display: flex;
+        &:hover, &:focus {
+          > *, svg {
+            fill: $dark;
+            color: $dark;
+          }
+        }
+        > * {
+          display: flex;
+        }
+        &__read {
+          a, svg, span, p {
+            color: rgba($dark, .5) !important;
+            fill: rgba($dark, .5)  !important;
+          }
+        }
+        &-red {
+          background-color: rgba($red, .2);
+        }
+        &-gray {
+          background-color: rgba($placeholder, .2);
+        }
+        &:hover, &:focus {
+          background-color: rgba($blue, .05);
+        }
+      }
+      &-menu {
+        &__item {
+          &-img {
+            min-width: 40px;
+            min-height: 40px;
+            max-width: 40px;
+            max-height: 40px;
+            margin: 0 10px;
+            img {
+              width: 100%;
+            }
+          }
+          &-title {
+            display: flex !important;
+            flex-direction: column;
+            white-space: initial;
+            @media (min-width: 992px) {
+              min-width: 340px;
+              max-width: 340px;
+            }
+            &-desc {
+              color: rgba($dark, .8);
+              font-size: $s14;
+              margin-top: 5px;
+            }
+          }
+        }
+      }
+    }
+    &.show-on-page {
+      @media (min-width: 992px) {
+        max-width: 840px;
+        margin: 0 auto;
+        .dropdown-menu__item-img {
+          min-width: 90px;
+          min-height: 90px;
+          max-width: 90px;
+          max-height: 90px;
+          margin-right: 20px;
+        }
+        .dropdown-menu__item-title {
+          min-width: 650px;
+          max-width: 650px;
+          font-size: $lg;
+          &-desc {
+            font-size: $base;
+            margin-top: 10px;
+          }
+        }
+      }
+      .dropdown-menu__item-title {
+        > a {
+          text-decoration: none;
+          color: $dark;
+        }
+        &-desc {
+          > a {
+            text-decoration: none;
+            color: $red;
+          }
+          &-date {
+            color: rgba($dark, .5);
+            margin-right: 15px;
+          }
+        }
+      }
+    }
+    &.no-border {
+      > li {
+        border: 0 none;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@mixin emz-typo {
+  font-family: $main-font;
+  font-weight: $main-font-weight;
+}
+@mixin text-base {
+  font-size: $base;
+}
+@mixin box-shadow {
+  box-shadow: $box-shadow;
+}
+@mixin drop-shadow {
+  filter: drop-shadow($box-shadow);
+}

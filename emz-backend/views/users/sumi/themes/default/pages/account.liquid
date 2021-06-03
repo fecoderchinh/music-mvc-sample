@@ -1,0 +1,30 @@
+{% layout "layout.liquid" %}
+{% block content %}
+
+<section class='my-5' id='search'>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-12'>
+                <header class='emz-header'>
+                    <h3 class='emz-header__name'>
+                        Thông tin tài khoản
+                    </h3>
+                    <div class='emz-header__divider'></div>
+                </header>
+            </div>
+            <div class='col-12'>
+                <div class='row'>
+                    <div class='col-xl-9 col-lg-12 col-sm-12'>
+                        {% render 'paths/account-history' %}
+                    </div>
+                    <div class='col-xl-3 col-lg-12 col-sm-12'>
+                        {% render 'paths/profile-default' %}
+                        {% render 'paths/profile-address' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

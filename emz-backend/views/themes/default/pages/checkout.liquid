@@ -1,0 +1,33 @@
+{% layout "layout.liquid" %}
+{% block content %}
+
+<section class='my-5' id='checkout'>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-12'>
+                <header class='emz-header'>
+                    <h3 class='emz-header__name'>
+                        Thanh toán
+                    </h3>
+                    <div class='emz-header__divider'></div>
+                </header>
+            </div>
+            <div class='col-12'>
+                <div class='row'>
+                    <div class='col-xl-4 col-lg-6 col-md-12 col-sm-12'>
+                        {% render 'paths/form-profile' %}
+                    </div>
+                    <div class='col-xl-4 col-lg-6 col-md-12 col-sm-12'>
+                        {% render 'paths/form-transport' %}
+                        {% render 'paths/form-payment' %}
+                    </div>
+                    <div class='col-xl-4 col-lg-6 col-md-12 col-sm-12'>
+                        {% render 'paths/form-checkout-detail' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+.emz {
+  &-ty {
+    margin-bottom: 30px;
+    svg {
+      fill: $green;
+    }
+    h3 {
+      font-size: $xxl;
+      color: $dark;
+    }
+    p {
+      font-size: $base;
+      color: rgba($dark, .5);
+    }
+  }
+  &-buyer {
+    h3 {
+      font-size: $base;
+      color: $dark;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: $base;
+      line-height: 1.88;
+      color: $dark;
+      margin-bottom: 20px;
+    }
+    input[type=radio] {
+      &:checked {
+        border-color: $red;
+        background-color: $red;
+      }
+    }
+  }
+}

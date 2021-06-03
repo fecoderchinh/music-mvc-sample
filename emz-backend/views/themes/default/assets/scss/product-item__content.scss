@@ -1,0 +1,29 @@
+.product {
+  &-item {
+    &__content {
+      margin: 50px 0;
+      img {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      h1, h2, h3, h4, h5, h6, p {
+        color: $dark;
+        margin-bottom: 20px;
+      }
+      h3 {
+        font-size: $xl;
+      }
+      p {
+        line-height: 1.88;
+        font-size: $base;
+      }
+    }
+  }
+  &-aside {
+    @media (min-width: 992px) {
+      margin-top: 50px;
+      padding-left: 20px;
+      border-left: 3px dotted rgba($placeholder, .5);
+    }
+  }
+}

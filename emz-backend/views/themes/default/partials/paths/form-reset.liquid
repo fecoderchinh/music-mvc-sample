@@ -1,0 +1,19 @@
+<form class='emz-form emz-form-auth p-4'>
+    <h3 class='emz-form-title'>
+        Lấy lại mật khẩu
+    </h3>
+    <div class='row'>
+        <div class='col-12 mb-3'>
+            {% comment %}<label for="inputResetControl1" class="form-label">Email address</label>{% endcomment %}
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id='inputResetControl1' placeholder="Nhập email của bạn" aria-label="Nhập email của bạn" aria-describedby="button-addon2">
+                <button class="emz-button btn btn-fill__red btn-size__md btn__text-white" type="button" data-bs-toggle="modal" data-bs-target="#modalResetCode" data-bs-dismiss="modal">Gửi mã</button>
+            </div>
+        </div>
+        <div class='col-12'>
+            <p class='emz-form-desc__bottom'>
+                <a href='#' data-bs-dismiss="modal" aria-label="Close">Quay lại đăng nhập</a>
+            </p>
+        </div>
+    </div>
+</form>
