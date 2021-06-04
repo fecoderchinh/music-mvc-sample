@@ -7,8 +7,8 @@
 
 <script>
 
-// import HeaderFull from '~/components/share/HeaderFull'
-import Header from '~/components/share/Header';
+import Header from '~/components/theme/Header';
+
 export default {
   components: {
     Header,
@@ -70,46 +70,6 @@ html {
   background-color: #35495e;
 }
 
-.cms {
-  &-button {
-    @apply text-14px font-medium py-2 px-4 rounded-sm;
-    &-rounded {
-      @apply rounded-full;
-    }
-    &-wrapper {
-      display: inherit;
-    }
-    &-white {
-      @apply bg-white border text-menuItem;
-    }
-    &-blue {
-      @apply bg-buttonAndURL text-white;
-    }
-    &-gray {
-      @apply bg-cmsGray;
-    }
-    &-orange {
-      @apply bg-cmsOrange text-white;
-    }
-    &-green {
-      @apply bg-cmsLightGreen border-cmsLightGreen text-white;
-      &.outline {
-        @apply bg-white border-cmsLightGreen border text-labelAndTitle;
-      }
-    }
-    &-disabled {
-      @apply bg-cmsGray text-white cursor-not-allowed;
-    }
-    &-lg {
-      @apply font-normal px-5;
-      @media (min-width: 1025px) {
-        @apply text-lg;
-      }
-      @media (max-width: 1024px) {
-        @apply text-base;
-      }
-    }
-  }
-}
+
 
 </style>

@@ -1,9 +1,10 @@
 export default function ({ $axios, error: nuxtError }) {
     $axios.onError(error => {
-      nuxtError({
-        statusCode: error.response.status,
-        message: error.message,
-      });
+      // nuxtError({
+      //   statusCode: error.response.status,
+      //   message: error.message,
+      // });
+      console.log(error.message);
       return Promise.resolve(false);
     })
 }

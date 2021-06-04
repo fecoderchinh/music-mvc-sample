@@ -108,7 +108,8 @@ export default {
   */
   plugins: [
     { src: '~/plugins/validation.js', mode: 'client' },
-    '~/plugins/axios'
+    '~/plugins/axios',
+    '~/plugins/vue-slick-carousel.js',
    
   ],
   /*
