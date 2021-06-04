@@ -28,7 +28,7 @@ export class CategoryCriteria {
         }
 
         if (keyword !== '') {
-            builder.push({ name: { $regex: keyword.toString(), $option: 'i' }});
+            builder.push({ name: { $regex: keyword.toString(), $options: 'i' }});
         }
 
         if (ids.length) {

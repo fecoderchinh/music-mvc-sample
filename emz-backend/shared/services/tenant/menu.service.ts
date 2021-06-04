@@ -146,7 +146,6 @@ export class MenuService {
     async destroy(menuId: ObjectID): Promise<void> {
         const menu = await this.menuModel.findById(menuId);
 
-        console.log('menu', menu);
         if (!menu) {
             throw new NotFoundException();
         }
