@@ -2,9 +2,9 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class SeoResponse {
     constructor( object: any) {
-        this.metaTitle = object.metaTitle ?? null;
-        this.metaDescription = object.metaDescription ?? null;
-        this.slug = object.slug ?? null;
+        this.metaTitle = object.metaTitle;
+        this.metaDescription = object.metaDescription;
+        this.slug = object.slug;
     }
 
     @ApiProperty()

@@ -9,8 +9,8 @@ import { ShopResponse } from './responses/shop.response';
 import { Roles } from '@emzmono/common/decorators/roles.decorator';
 import { APP_SUB_DOMAIN } from '@emzmono/common/constances/app.constance';
 
-@ApiTags('shop')
-@Controller('shop')
+@ApiTags('shops')
+@Controller('shops')
 export class ShopController {
     constructor(
         private shopService: ShopService,
@@ -22,7 +22,7 @@ export class ShopController {
         type: ShopResponse
     })
     @ApiBearerAuth()
-    @Post('create-shop')
+    @Post()
     @HttpCode(HttpStatus.OK)
     @UseGuards(JwtAuthGuard)
     async createShop( @Req() req, @Body() createShopDto: CreateShopDto ): Promise<any>{

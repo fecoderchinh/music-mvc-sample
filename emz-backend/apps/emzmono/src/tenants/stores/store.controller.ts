@@ -9,10 +9,10 @@ import { CreateStoreDto } from "./dtos/create.store.dto";
 import { StoreResponse } from "./responses/store.response";
 import { StoresResponse } from "./responses/stores.response";
 
-@ApiTags('store')
-@Controller('store')
+@ApiTags('stores')
+@Controller('stores')
 export class StoreController{
-    constructor( 
+    constructor(
         private readonly storeService: StoreService,
         private readonly locationService: LocationService
     ){}
@@ -53,7 +53,7 @@ export class StoreController{
     @Put(':id')
     @ApiHeader(TenantHaders)
     @HttpCode( HttpStatus.OK )
-    async update( 
+    async update(
         @Param( 'id', new MongoIdValidationPipe()) id: string,
         @Body() body: CreateStoreDto ): Promise<StoreResponse>
     {

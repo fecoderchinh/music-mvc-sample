@@ -2,6 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import {ICategoryDocument, Condition, Seo} from "shared/schemas/tenant/category.schema";
 import {ConditionResponse} from "@emzmono/tenants/category/responses/condition.response";
 import { SeoResponse } from "shared/responses/seo.response";
+import {seoDefault} from "shared/utils/seo.utils";
 
 export class CategoryResponse {
     constructor(object: ICategoryDocument) {
@@ -12,7 +13,8 @@ export class CategoryResponse {
         this.addProductType = object.addProductType;
         this.conditionOperator = object.conditionOperator ?? null;
         this.conditions = object.conditions ? object.conditions.map(condition => new ConditionResponse(condition)) : null;
-        this.seo = new SeoResponse(object.seo);
+        const seo = object.seo || seoDefault;
+        this.seo = new SeoResponse(seo);
         this.createdAt = object.createdAt;
     }
     @ApiProperty()

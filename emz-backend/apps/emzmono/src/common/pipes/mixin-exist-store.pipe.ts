@@ -23,9 +23,10 @@ export function MixinExistStorePipe(): Type<PipeTransform> {
 
         async transform(value: any, metadata: ArgumentMetadata) {
             const errors = [];
-            if (value.variants.length) {
+            const variants = value.variants || [];
+            if (variants.length) {
                 const storeIdsDto = [];
-                value.variants.forEach(variant => {
+                variants.forEach(variant => {
                     variant.inventories.forEach(inventory => {
                         storeIdsDto.push(new ObjectID(inventory.storeId));
                     })
