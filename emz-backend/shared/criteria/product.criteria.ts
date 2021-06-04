@@ -53,7 +53,11 @@ export class ProductCriteria {
         }
 
         if (keyword !== '') {
-            builder = { ...builder, name: { $regex: keyword.toString(), $options: 'i' }};
+            builder = { ...builder, $or: [
+                {name: {$regex: keyword.toString(), $options: 'i' }},
+                {description: {$regex: keyword.toString(), $options: 'i' }},
+                {shortDescription: {$regex: keyword.toString(), $options: 'i' }},
+            ]};
         }
 
         return builder;
