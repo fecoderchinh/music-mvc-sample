@@ -16,6 +16,7 @@ import {BrandSchema, IBrandDocument} from "shared/schemas/tenant/brand.schema";
 import {Paginator} from "shared/paginator";
 import {seoDefault} from "shared/utils/seo.utils";
 import {InjectModel} from "@nestjs/mongoose";
+import {ProductCriteria} from "../../criteria/product.criteria";
 
 @Injectable()
 export class ProductService {
@@ -128,8 +129,11 @@ export class ProductService {
     async getList(queryParams: object): Promise<any>{
         const paginator = new Paginator(queryParams);
         const options = paginator.getOptionQueryString();
+        const builderOptions = (new ProductCriteria(queryParams)).handle();
+
         const countPromise = this.productModel.aggregate([
-            { '$unwind': { path: '$variants', preserveNullAndEmptyArrays: true } },
+            { $unwind: { path: '$variants', preserveNullAndEmptyArrays: true } },
+            { $match: builderOptions },
             { $group: { _id: null, total: { $sum: 1 } } },
             { $project: { _id: 0 } },
         ]).exec();
@@ -143,6 +147,8 @@ export class ProductService {
                     foreignField: "_id",
                     as: "categories",
                 },
+            }, {
+                $match: builderOptions ,
             }, {
                 $skip: options.offset,
             }, {
