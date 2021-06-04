@@ -19,9 +19,40 @@
 
 
     <ThemeTop :slideData="sData"/>
+    <THeader class="pt-10">
+      <div class="md:px-5 sm:px-5" slot="content">
+        <h1 class="text-cmsLightGreen text-3xl font-extrabold">
+          Styles Hot
+          <span class="md:ml-5 sm:block font-normal text-base text-placeholderStyle">
+            Những theme đang rất được yêu thích
+          </span>
+        </h1>
+      </div>
+    </THeader>
+    <TList :themeList="tData"/>
 
+    <THeader class="pt-10">
+      <div class="md:px-5 sm:px-5" slot="content">
+        <h1 class="text-cmsLightGreen text-3xl font-extrabold">
+          Khuyên dùng cho bạn
+          <span class="md:ml-5 sm:block font-normal text-base text-placeholderStyle">
+            Những theme có thể phù hợp cho lĩnh vực của bạn
+          </span>
+        </h1>
+      </div>
+    </THeader>
     <TList :themeList="tData"/>
-    <TList :themeList="tData"/>
+
+    <THeader class="pt-10">
+      <div class="md:px-5 sm:px-5" slot="content">
+        <h1 class="text-cmsLightGreen text-3xl font-extrabold">
+          Mới cập nhật
+          <span class="md:ml-5 sm:block font-normal text-base text-placeholderStyle">
+            Bộ sưu tập các theme mới nhất
+          </span>
+        </h1>
+      </div>
+    </THeader>
     <TList :themeList="tData"/>
 
     <ThemeCategoryGrid :themeCategories="cData"/>
@@ -34,7 +65,8 @@
 import ThemeTop from '~/components/theme/ThemeTop'
 import ThemeGrid from '~/components/theme/ThemeGrid'
 import ThemeCategoryGrid from '~/components/theme/ThemeCategoryGrid'
-import TList from '@/components/theme/TList.vue';
+import TList from '~/components/theme/TList.vue';
+import THeader from '~/components/theme/THeader.vue';
 
 export default {
   layout: "theme",
@@ -42,7 +74,8 @@ export default {
     ThemeTop,
     ThemeGrid,
     ThemeCategoryGrid,
-    TList
+    TList,
+    THeader
   },
   data(){
     return {
@@ -56,7 +89,7 @@ export default {
           newPrice: '499,000đ',
           oldPrice: '1,500,000đ',
           hrefPreview: '#',
-          hrefDetail: '/theme/123',
+          hrefDetail: 't3',
         },
         {
           desktopImg: 'https://picsum.photos/670/380',
@@ -67,19 +100,9 @@ export default {
           newPrice: '499,000đ',
           oldPrice: '1,500,000đ',
           hrefPreview: '#',
-          hrefDetail: '/theme/234',
+          hrefDetail: 't4',
         },
-        {
-          desktopImg: 'https://picsum.photos/670/380',
-          mobileImg: 'https://picsum.photos/220/340',
-          name: 'Emi Store',
-          desc: 'Được thiết kế để bán hàng online nhanh chóng, nổi bật',
-          style: '3 styles',
-          newPrice: '499,000đ',
-          oldPrice: '1,500,000đ',
-          hrefPreview: '#',
-          hrefDetail: '/theme/345',
-        },
+        
       ],
       tData: [
         {
@@ -89,7 +112,7 @@ export default {
           newPrice: '399,000đ',
           oldPrice: '1,500,000đ',
           hrefPreview: '#',
-          hrefDetail: 'abc',
+          hrefDetail: 't1',
         },
         {
           img: 'https://picsum.photos/270/340',
@@ -98,51 +121,21 @@ export default {
           newPrice: '399,000đ',
           oldPrice: '1,500,000đ',
           hrefPreview: '#',
-          hrefDetail: 'abcd',
+          hrefDetail: 't2',
         },
         
       ],
       cData: [
         {
-          href: '/store/category',
+          href: 'c1',
           img: 'https://picsum.photos/270/180',
           name: 'Thời Trang',
         },
         {
-          href: '/store/category',
+          href: 'c2',
           img: 'https://picsum.photos/270/180',
           name: 'Mỹ Phẩm',
-        },
-        {
-          href: '/store/category',
-          img: 'https://picsum.photos/270/180',
-          name: 'Công Nghệ',
-        },
-        {
-          href: '/store/category',
-          img: 'https://picsum.photos/270/180',
-          name: 'Thực Phẩm',
-        },
-        {
-          href: '/store/category',
-          img: 'https://picsum.photos/270/180',
-          name: 'Nội Thất',
-        },
-        {
-          href: '/store/category',
-          img: 'https://picsum.photos/270/180',
-          name: 'Gia Dụng',
-        },
-        {
-          href: '/store/category',
-          img: 'https://picsum.photos/270/180',
-          name: 'Văn Phòng Phẩm',
-        },
-        {
-          href: '/store/category',
-          img: 'https://picsum.photos/270/180',
-          name: 'Thủ Công Mỹ Nghệ',
-        },
+        }
       ],
     }
   }
