@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import {JoiSchema, JoiSchemaOptions} from "nestjs-joi";
 import * as Joi from "joi";
 import {Decimal128} from "mongoose";
-import {IAttributes, IImage, IVariant, Seo} from "../../../schemas/tenant/product.schema";
+import {IAttributes, IImage, IInventory, IVariant, Seo} from "../../../schemas/tenant/product.schema";
 import {extensionImage, validMongoId} from "../../../rules/common";
 
 const requiredIfNotVariant = {
@@ -89,6 +89,12 @@ export class CreateProductDto{
 
     @JoiSchema(Joi.array().required().items(Joi.string().custom(validMongoId)))
     categories?: Array<string>;
+
+    @JoiSchema(Joi.array().required().items(Joi.object().required().keys({
+        storeId: Joi.string().required().custom(validMongoId),
+        quantity: Joi.number().integer().min(0).required(),
+    })).when('attributes', requiredIfNotVariant))
+    inventories: IInventory[];
 
     // @JoiSchema(Joi.array().required().valid(validMongoId))
     systemCategories?: Array<string>;

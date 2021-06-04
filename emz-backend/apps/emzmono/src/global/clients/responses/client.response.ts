@@ -1,13 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class ClientResponse{
-  
+
     constructor( object: any ){
-        this.id         = object.id
-        this.fullName   = object.fullName
-        this.phone      = object.phone
-        this.email      = object.email ?? ''
-        this.avatar     = object.avatar ?? ''
+        this.id         = object.id;
+        this.fullName   = object.fullName;
+        this.phone      = object.phone;
+        this.email      = object.email ?? '';
+        this.avatar     = object.avatar ?? '';
     }
     @ApiProperty()
     readonly id: string

@@ -1,29 +1,40 @@
 import { Injectable, Inject} from '@nestjs/common';
 import { CreateProductDto } from 'shared/dtos/tenant/product/create.product.dto';
-import { Model, Connection } from 'mongoose';
-import { ProductSchema, ProductDocument } from 'shared/schemas/tenant/product.schema';
+import {Model, Connection} from 'mongoose';
+import { ProductSchema, IProductDocument } from 'shared/schemas/tenant/product.schema';
 import {AttributeSchema, IAttributeDocument} from "shared/schemas/tenant/attribute.schema";
 import {IProductTagDocument, ProductTagSchema} from "shared/schemas/tenant/product-tag.schema";
-import {ATTRIBUTE_MODEL, BRAND_MODEL, PRODUCT_MODEL, PRODUCT_TAG_MODEL} from "shared/schemas/model.constant";
+import { ObjectID } from "mongodb";
+import {
+    ATTRIBUTE_MODEL,
+    BRAND_MODEL,
+    CLIENT_MODEL,
+    PRODUCT_MODEL,
+    PRODUCT_TAG_MODEL
+} from "shared/schemas/model.constant";
 import {BrandSchema, IBrandDocument} from "shared/schemas/tenant/brand.schema";
+import {Paginator} from "shared/paginator";
+import {seoDefault} from "shared/utils/seo.utils";
+import {InjectModel} from "@nestjs/mongoose";
 
 @Injectable()
 export class ProductService {
-    private productModel:Model<ProductDocument>;
+    private productModel:Model<IProductDocument>;
     private attributeModel:Model<IAttributeDocument>;
     private productTagModel:Model<IProductTagDocument>;
     private brandModel:Model<IBrandDocument>;
 
 	constructor(
         @Inject('TENANT_CONNECTION') private connection: Connection,
-	){
-        this.productModel = this.connection.model<ProductDocument>(PRODUCT_MODEL, ProductSchema);
+        @InjectModel(CLIENT_MODEL) private clientModel: Model<any>,
+	) {
+        this.productModel = this.connection.model<IProductDocument>(PRODUCT_MODEL, ProductSchema);
         this.attributeModel = this.connection.model<IAttributeDocument>(ATTRIBUTE_MODEL, AttributeSchema);
         this.productTagModel = this.connection.model<IProductTagDocument>(PRODUCT_TAG_MODEL, ProductTagSchema);
         this.brandModel = this.connection.model<IBrandDocument>(BRAND_MODEL, BrandSchema);
 	}
 
-    async create(createProductDto: CreateProductDto): Promise<ProductDocument> {
+    async create(userId: ObjectID, createProductDto: CreateProductDto): Promise<IProductDocument> {
 	    const attributesDto = createProductDto.attributes || [];
 	    const tagsDto = createProductDto.tags || [];
 	    const brandsDto = createProductDto.brands || [];
@@ -91,13 +102,17 @@ export class ProductService {
                 }))
             });
 
-            if (tagPromises.length) {
+            if (brandPromises.length) {
                 await Promise.all(brandPromises);
             }
 
+            const seo = createProductDto.seo || seoDefault;
+
             const productModel = new this.productModel({
+                user: userId,
                 ...createProductDto,
-                ...(variantData && {variants: variantData})
+                ...(variantData && {variants: variantData}),
+                seo,
             });
             const product = await productModel.save({ session });
             await session.commitTransaction();
@@ -110,9 +125,59 @@ export class ProductService {
         }
     }
 
+    async getList(queryParams: object): Promise<any>{
+        const paginator = new Paginator(queryParams);
+        const options = paginator.getOptionQueryString();
+        const countPromise = this.productModel.aggregate([
+            { '$unwind': { path: '$variants', preserveNullAndEmptyArrays: true } },
+            { $group: { _id: null, total: { $sum: 1 } } },
+            { $project: { _id: 0 } },
+        ]).exec();
+        const docsPromise = this.productModel
+            .aggregate([{
+                $unwind: {path: "$variants", preserveNullAndEmptyArrays: true }
+            }, {
+                $lookup: {
+                    from: "categories",
+                    localField: "categories",
+                    foreignField: "_id",
+                    as: "categories",
+                },
+            }, {
+                $skip: options.offset,
+            }, {
+                $limit: options.limit,
+            }])
+            .exec();
 
-    async getAllProduct(): Promise<ProductDocument[]>{
-        return await this.productModel.find().exec()
+        const [totalResult, docs] = await Promise.all([countPromise, docsPromise]);
+        const total = totalResult.length ? totalResult[0].total : 0;
+        const tmp = await this.buildResponse(docs);
+
+        return paginator.buildResponse(total, tmp);
+    }
+
+    private async buildResponse(products: IProductDocument[]) {
+	    const userIds = [];
+        products.forEach(product => {
+            userIds.push(product.user);
+        });
+
+        const users = await this.clientModel.find({
+            _id: {
+                $in: userIds.filter(userId => userId),
+            }
+        }).select({ _id: 1, fullName: 1, phone: 1});
+
+        return products.map(product => {
+            const user = users.find(user => user.equals(product.user));
+            return {
+                ...product,
+                user,
+            }
+        });
+
+
     }
 
 }

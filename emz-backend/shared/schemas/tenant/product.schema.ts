@@ -1,6 +1,6 @@
 import {Decimal128, Document, ObjectId, Schema} from 'mongoose'
 import {ICategoryDocument} from "./category.schema";
-import {ATTRIBUTE_MODEL, CATEGORY_MODEL, STORE_MODEL} from "../model.constant";
+import {ATTRIBUTE_MODEL, CATEGORY_MODEL, CLIENT_MODEL, STORE_MODEL} from "../model.constant";
 
 export interface Seo {
     readonly metaTitle: string;
@@ -14,7 +14,7 @@ export interface IImage {
 }
 
 export interface IInventory {
-    store: any;
+    store: ObjectId;
     quantity: number;
 }
 
@@ -40,7 +40,7 @@ export interface IVariant {
     inventories: IInventory[];
 }
 
-export interface ProductDocument extends Document {
+export interface IProductDocument extends Document {
     productName: string;
     name: string;
     description: string;
@@ -67,9 +67,12 @@ export interface ProductDocument extends Document {
     seo: Seo[];
     attributes?: IAttributes[];
     variants?: IVariant[];
+    inventories?: IInventory[];
+    createdAt?: Date;
+    user: ObjectId;
 }
 
-export const ProductSchema = new Schema<ProductDocument>({
+export const ProductSchema = new Schema<IProductDocument>({
     name: { type: String, required: true },
     description: String,
     shortDescription: String,
@@ -133,7 +136,16 @@ export const ProductSchema = new Schema<ProductDocument>({
             storeId: { type: Schema.Types.ObjectId, ref: STORE_MODEL, },
             quantity: Number,
         }]
-    }]
+    }],
+    inventories: [{
+        storeId: { type: Schema.Types.ObjectId, ref: STORE_MODEL, },
+        quantity: Number,
+    }],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: CLIENT_MODEL,
+        required: true
+    },
 }, {
     collection: 'products',
     timestamps: true,
