@@ -4,7 +4,7 @@ import { JoiSchema } from 'nestjs-joi';
 
 export class CreateAdminUserDto {
     @ApiProperty({
-        default: 'admin@admmin.com'
+        default: 'admin@admin.com'
     })
     @JoiSchema( Joi.string().required().email() )
     email: string;
