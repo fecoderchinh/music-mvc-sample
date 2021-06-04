@@ -73,7 +73,7 @@
 								<div class="flex relative whitespace-no-wrap lg:ml-auto">
 									<div class="cms-button-wrapper">
 									<a 
-									:href="'http://admin.'+domain.domainName" target="blank"
+									:href="'http://'+domain.domainName+'/admin' " target="blank"
 									class="text-center inline-block bg-cmsDarkGreen group text-white text-base hover:bg-cmsLightGreen rounded-sm px-5 py-2 relative"> 
 									Vào trang quản trị </a>
 									</div>
