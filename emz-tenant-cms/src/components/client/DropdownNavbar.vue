@@ -74,6 +74,10 @@ export default {
     hideOnClickOutside() {
       this.dropDownOpen = false;
     },
+    logout() {
+      this.$store.dispatch('logout')
+      this.$router.push('auth/tab-login')
+    }
   },
   mounted() {
     this.popupItem = this.$el;
