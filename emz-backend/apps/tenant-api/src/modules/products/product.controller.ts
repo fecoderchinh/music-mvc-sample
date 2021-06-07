@@ -40,6 +40,7 @@ export class ProductController {
     @HttpCode( HttpStatus.OK )
     async index(@Req() request): Promise<PaginatorResponse>{
         const result = await this.productService.getList(request.query);
+        console.log('result', result);
         return new PaginatorResponse(new ProductPaginatorResponse(result));
     }
 

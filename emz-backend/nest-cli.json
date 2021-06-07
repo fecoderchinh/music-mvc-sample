@@ -41,7 +41,20 @@
       "entryFile": "main",
       "sourceRoot": "apps/tenant-api/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/tenant-api/tsconfig.app.json"
+        "tsConfigPath": "apps/tenant-api/tsconfig.app.json",
+        "assets": ["_proto/**/*.proto"],
+        "watchAssets": true
+      }
+    },
+    "grpc": {
+      "type": "application",
+      "root": "apps/grpc",
+      "entryFile": "main",
+      "sourceRoot": "apps/grpc/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/grpc/tsconfig.app.json",
+        "assets": ["_proto/**/*.proto"],
+        "watchAssets": true
       }
     }
   }

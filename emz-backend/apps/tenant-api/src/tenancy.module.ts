@@ -1,17 +1,15 @@
 import { Global, Module, Scope, NotFoundException, BadRequestException } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
-import { ShopService } from 'shared/services/global/shop.service';
 import { Connection, createConnection } from 'mongoose';
 
 import * as mongoose from 'mongoose';
-import {ShopModule} from "@emzmono/global/shop/shop.module";
+import {ShopGRpcServices} from "./modules/shop-grpc.services";
 
 const connectionFactory = {
 
     provide: 'TENANT_CONNECTION',
     // scope: Scope.REQUEST,
-    useFactory: async (req, shopService: ShopService) => {
-
+    useFactory: async (req, shopGrpcService:ShopGRpcServices) => {
         if(!req.headers['x-tenant-id']){
             throw new BadRequestException(`Tenant id not provide`);
         }
@@ -19,7 +17,7 @@ const connectionFactory = {
         const urlObject = new URL(req.headers['x-tenant-id']);
         const hostName = urlObject.hostname;
 
-        const shop = await shopService.getTenantIdByDomainName(hostName)
+        const shop = await shopGrpcService.getByHostName(hostName);
 
         if (!shop) {
             throw new NotFoundException(`Domain not found`);
@@ -43,13 +41,13 @@ const connectionFactory = {
         return await createConnection( uri )
 
     },
-    inject: [REQUEST, ShopService ],
+    inject: [REQUEST, ShopGRpcServices ],
 };
 
 @Global()
 @Module({
-    imports: [ ShopModule ],
-    providers: [connectionFactory],
+    imports: [],
+    providers: [connectionFactory, ShopGRpcServices],
     exports: ['TENANT_CONNECTION'],
 })
 export class TenancyConnectionModule {}
