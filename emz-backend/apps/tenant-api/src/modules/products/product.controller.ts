@@ -9,7 +9,7 @@ import { MixinExistCategoryPipe } from "@emzmono/common/pipes/mixin-exist-catego
 import { ValidationVariantPipe } from "@emzmono/common/pipes/validation-variant.pipe";
 import {JwtAuthGuard} from "@emzmono/auth/jwt-auth.guard";
 import {PaginatorResponse} from "@emzmono/common/responses/paginator.response";
-import {ProductPaginatorResponse} from "@emzmono/tenants/products/responses/product-paginator.response";
+import {ProductPaginatorResponse} from "./responses/product-paginator.response";
 
 
 @ApiTags('products')

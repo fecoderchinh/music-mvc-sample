@@ -20,9 +20,9 @@ import {CreateMenuDto} from "shared/dtos/tenant/menu/create.menu.dto";
 import {MenuService} from "@shared/services/tenant/menu.service";
 import {RouteParamPipe} from "@emzmono/common/pipes/route-param.pipe";
 import {UpdateMenuDto} from "shared/dtos/tenant/menu/update.menu.dto";
-import {MenuResponse} from "@emzmono/tenants/menu/responses/menu.response";
+import {MenuResponse} from "./responses/menu.response";
 import {ObjectID} from "mongodb";
-import {MenusResponse} from "@emzmono/tenants/menu/responses/menus.response";
+import {MenusResponse} from "./responses/menus.response";
 
 @ApiTags('menu')
 @Controller('menus')

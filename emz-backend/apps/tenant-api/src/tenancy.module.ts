@@ -1,10 +1,10 @@
 import { Global, Module, Scope, NotFoundException, BadRequestException } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { ShopService } from 'shared/services/global/shop.service';
-import { ShopModule } from './global/shop/shop.module';
 import { Connection, createConnection } from 'mongoose';
 
 import * as mongoose from 'mongoose';
+import {ShopModule} from "@emzmono/global/shop/shop.module";
 
 const connectionFactory = {
 

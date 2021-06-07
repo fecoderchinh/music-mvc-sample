@@ -2,7 +2,7 @@ import { ObjectID } from "mongodb";
 import { Injectable, Inject} from '@nestjs/common';
 import { Model, Connection } from 'mongoose';
 import { StoreDocument, StoreSchema } from "shared/schemas/tenant/store.schema";
-import { CreateStoreDto } from "@emzmono/tenants/stores/dtos/create.store.dto";
+import {CreateStoreDto} from "apps/tenant-api/src/modules/stores/dtos/create.store.dto";
 
 @Injectable()
 export class StoreService {

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import {MenuController} from "@emzmono/tenants/menu/menu.controller";
+import {MenuController} from "./menu.controller";
 import {MenuService} from "@shared/services/tenant/menu.service";
 
 @Module({

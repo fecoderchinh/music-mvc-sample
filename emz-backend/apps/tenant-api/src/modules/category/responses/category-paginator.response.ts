@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { ICategoryPaginator } from "shared/schemas/tenant/category.schema";
-import { CategoryResponse } from "@emzmono/tenants/category/responses/category.response";
+import { CategoryResponse } from "./category.response";
 import { IMetaPaginator, IPaginatorResponse } from "shared/paginator";
 
 export class CategoryPaginatorResponse implements IPaginatorResponse {

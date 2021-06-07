@@ -2,10 +2,11 @@ import { ApiProperty } from "@nestjs/swagger";
 import {ICategoryDocument, Condition, Seo} from "shared/schemas/tenant/category.schema";
 import { SeoResponse } from "shared/responses/seo.response";
 import {IProductDocument, IVariant} from "shared/schemas/tenant/product.schema";
-import {CategoryResponse} from "@emzmono/tenants/category/responses/category.response";
+
 import {Decimal128} from "mongoose";
 import {seoDefault} from "shared/utils/seo.utils";
 import {ClientResponse} from "@emzmono/global/clients/responses/client.response";
+import {CategoryResponse} from "../../category/responses/category.response";
 
 export class ProductResponse {
     constructor(object: IProductDocument) {

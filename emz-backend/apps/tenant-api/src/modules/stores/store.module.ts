@@ -2,6 +2,7 @@ import { StoreController } from "./store.controller";
 import { Module } from '@nestjs/common';
 import { JoiPipeModule } from "nestjs-joi";
 import { StoreService } from "@shared/services/tenant/store.service";
+import {LocationService} from "@shared/services/location.service";
 
 
 @Module({
@@ -16,7 +17,8 @@ import { StoreService } from "@shared/services/tenant/store.service";
         StoreController
     ],
     providers: [
-        StoreService
+        StoreService,
+        LocationService
     ],
     exports: []
 })

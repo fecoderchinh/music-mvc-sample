@@ -1,4 +1,4 @@
-import {CategoryResponse} from "@emzmono/tenants/category/responses/category.response";
+import {CategoryResponse} from "./category.response";
 import {ApiProperty} from "@nestjs/swagger";
 import {ResponseSuccess} from "@emzmono/common/interfaces/success-response.interface";
 

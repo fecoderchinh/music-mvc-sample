@@ -16,7 +16,7 @@ export class CreateStoreDto {
 
     @ApiProperty({ type: String, required: false })
     @JoiSchema(Joi.string().optional().allow(""))
-    email: String;
+    email: string;
 
     @ApiProperty({ type: String })
     @JoiSchema(Joi.string().required())
@@ -40,9 +40,9 @@ export class CreateStoreDto {
 
     @ApiProperty({ type: Boolean, default: false })
     @JoiSchema(Joi.boolean().required())
-    isShippingAddress: Boolean;
+    isShippingAddress: boolean;
 
     @ApiProperty({ type: Boolean, default: false })
     @JoiSchema(Joi.boolean().required())
-    isDefault: Boolean;
+    isDefault: boolean;
 }

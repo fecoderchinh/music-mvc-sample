@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import {IMenuDocument} from "shared/schemas/tenant/menu.schema";
 import {ObjectId} from "mongoose";
 import {AbstractResponse} from "@emzmono/common/responses/abstract.response";
-import {MenuItemResponse} from "@emzmono/tenants/menu/responses/menu-item.response";
+import {MenuItemResponse} from "./menu-item.response";
 
 export class MenuResponse extends AbstractResponse {
 

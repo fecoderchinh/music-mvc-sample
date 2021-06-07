@@ -22,10 +22,11 @@ import {IResponse} from "@emzmono/common/interfaces/response.interface";
 import { IPaginatorResponse } from "shared/paginator";
 import { PaginatorResponse } from "@emzmono/common/responses/paginator.response";
 import { ObjectID } from "mongodb";
-import {CategoryPaginatorResponse} from "@emzmono/tenants/category/responses/category-paginator.response";
+
 import {RouteParamPipe} from "@emzmono/common/pipes/route-param.pipe";
-import {CategoriesResponse} from "@emzmono/tenants/category/responses/categories.response";
 import {ICategoryPaginator} from "../../../../../shared/schemas/tenant/category.schema";
+import {CategoriesResponse} from "./responses/categories.response";
+import {CategoryPaginatorResponse} from "./responses/category-paginator.response";
 
 @ApiTags('category')
 @Controller('categories')
