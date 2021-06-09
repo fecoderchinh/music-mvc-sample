@@ -1,6 +1,18 @@
 import { TenantHaders } from "@emzmono/common/constances/swagger.constance";
 import { MongoIdValidationPipe } from "@emzmono/common/pipes/parse-mongo-id";
-import { BadRequestException, Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from "@nestjs/common";
+import {
+    BadRequestException,
+    Body,
+    Controller,
+    Delete,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Param,
+    Post,
+    Put,
+    Request
+} from "@nestjs/common";
 import { ApiHeader, ApiTags } from "@nestjs/swagger";
 import { LocationService } from "@shared/services/location.service";
 import { StoreService } from "@shared/services/tenant/store.service";
@@ -36,8 +48,8 @@ export class StoreController{
     @Get()
     @ApiHeader(TenantHaders)
     @HttpCode( HttpStatus.OK )
-    async getStores(): Promise<StoresResponse>{
-        const stores: StoreDocument[] = await this.storeService.getAll();
+    async getStores(@Request() request): Promise<StoresResponse>{
+        const stores: StoreDocument[] = await this.storeService.getList(request.query);
         return new StoresResponse(stores);
     }
 

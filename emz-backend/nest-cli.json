@@ -42,7 +42,9 @@
       "sourceRoot": "apps/tenant-api/src",
       "compilerOptions": {
         "tsConfigPath": "apps/tenant-api/tsconfig.app.json",
-        "assets": ["_proto/**/*.proto"],
+        "assets": [
+          "_proto/**/*.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -53,7 +55,22 @@
       "sourceRoot": "apps/grpc/src",
       "compilerOptions": {
         "tsConfigPath": "apps/grpc/tsconfig.app.json",
-        "assets": ["_proto/**/*.proto"],
+        "assets": [
+          "_proto/**/*.proto"
+        ],
+        "watchAssets": true
+      }
+    },
+    "grpc-client": {
+      "type": "application",
+      "root": "apps/grpc-client",
+      "entryFile": "main",
+      "sourceRoot": "apps/grpc-client/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/grpc-client/tsconfig.app.json",
+        "assets": [
+          "_proto/**/*.proto"
+        ],
         "watchAssets": true
       }
     }

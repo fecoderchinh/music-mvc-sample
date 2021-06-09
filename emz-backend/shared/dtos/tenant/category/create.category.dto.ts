@@ -11,12 +11,10 @@ import {JoiSchemaOptions} from "nestjs-joi";
 import {
     ADD_PRODUCT_AUTO,
     ADD_PRODUCT_TYPE,
-    CONDITION_FIELDS
-} from "shared/enums/category.enum";
-import {
+    CONDITION_FIELDS,
     CONDITION_OPERATOR,
     CONDITIONS
-} from "shared/enums/share.enum";
+} from "shared/enums/category.enum";
 
 @JoiSchemaOptions({
     allowUnknown: false,

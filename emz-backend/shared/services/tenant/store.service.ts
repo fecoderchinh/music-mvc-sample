@@ -23,8 +23,9 @@ export class StoreService {
         return await this.storeModel.findByIdAndUpdate(id, createDto);
     }
 
-    async getAll(ids= []): Promise<StoreDocument[]>{
+    async getList(query): Promise<StoreDocument[]>{
 	    let options = {};
+	    const ids = query.ids || [];
 
 	    if (ids.length) {
             options = {

@@ -16,7 +16,7 @@ const requiredIfNotVariant = {
 @JoiSchemaOptions({
     allowUnknown: false,
 })
-export class CreateProductDto{
+export class ProductDto {
     @ApiProperty()
     @JoiSchema(Joi.string().required().max(255))
     name: string;
@@ -90,10 +90,16 @@ export class CreateProductDto{
     @JoiSchema(Joi.array().required().items(Joi.string().custom(validMongoId)))
     categories?: Array<string>;
 
-    @JoiSchema(Joi.array().required().items(Joi.object().required().keys({
-        storeId: Joi.string().required().custom(validMongoId),
+    @JoiSchema(Joi.array().items(Joi.object().required().keys({
+        store: Joi.string().required().custom(validMongoId),
         quantity: Joi.number().integer().min(0).required(),
-    })).when('attributes', requiredIfNotVariant))
+    })).when('attributes', {
+        switch: [
+            { is: null, then: Joi.array().min(0).optional() },
+            { is: Joi.array().length(0), then: Joi.array().required() },
+        ],
+        otherwise: Joi.optional()
+    }))
     inventories: IInventory[];
 
     // @JoiSchema(Joi.array().required().valid(validMongoId))
@@ -130,7 +136,7 @@ export class CreateProductDto{
         sku: Joi.string().max(255).required(),
         barcode: Joi.string().max(255).required(),
         inventories: Joi.array().required().items(Joi.object().required().keys({
-            storeId: Joi.string().custom(validMongoId),
+            store: Joi.string().custom(validMongoId),
             quantity: Joi.number().integer().min(0),
         }))
     })))

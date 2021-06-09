@@ -3,7 +3,7 @@ import { REQUEST } from '@nestjs/core';
 import { Connection, createConnection } from 'mongoose';
 
 import * as mongoose from 'mongoose';
-import {ShopGRpcServices} from "./modules/shop-grpc.services";
+import {ShopGRpcServices} from "./grpc/shop-grpc.services";
 
 const connectionFactory = {
 
@@ -41,7 +41,7 @@ const connectionFactory = {
         return await createConnection( uri )
 
     },
-    inject: [REQUEST, ShopGRpcServices ],
+    inject: [REQUEST, ShopGRpcServices],
 };
 
 @Global()

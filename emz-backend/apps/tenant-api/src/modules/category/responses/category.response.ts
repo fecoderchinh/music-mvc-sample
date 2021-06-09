@@ -7,15 +7,15 @@ import {seoDefault} from "shared/utils/seo.utils";
 export class CategoryResponse {
     constructor(object: ICategoryDocument) {
         this.id = object._id;
-        this.name = object.name;
+        this.name = object.name ?? null;
         this.description = object.description ?? null;
-        this.isPublished = object.isPublished;
-        this.addProductType = object.addProductType;
+        this.isPublished = object.isPublished ?? null;
+        this.addProductType = object.addProductType ?? null;
         this.conditionOperator = object.conditionOperator ?? null;
         this.conditions = object.conditions ? object.conditions.map(condition => new ConditionResponse(condition)) : null;
         const seo = object.seo || seoDefault;
         this.seo = new SeoResponse(seo);
-        this.createdAt = object.createdAt;
+        this.createdAt = object.createdAt ?? null;
     }
     @ApiProperty()
     readonly id: string;

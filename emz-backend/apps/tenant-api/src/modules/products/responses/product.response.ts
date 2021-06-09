@@ -1,23 +1,24 @@
 import { ApiProperty } from "@nestjs/swagger";
-import {ICategoryDocument, Condition, Seo} from "shared/schemas/tenant/category.schema";
+import {ICategoryDocument, Seo} from "shared/schemas/tenant/category.schema";
 import { SeoResponse } from "shared/responses/seo.response";
-import {IProductDocument, IVariant} from "shared/schemas/tenant/product.schema";
-
+import {IAttributes, IInventory, IProductDocument, IVariant} from "shared/schemas/tenant/product.schema";
 import {Decimal128} from "mongoose";
+import {ObjectID} from "mongodb";
 import {seoDefault} from "shared/utils/seo.utils";
 import {ClientResponse} from "@emzmono/global/clients/responses/client.response";
 import {CategoryResponse} from "../../category/responses/category.response";
+import {StoreResponse} from "../../stores/responses/store.response";
 
 export class ProductResponse {
-    constructor(object: IProductDocument) {
+    constructor(object: IProductDocument, {user = null, categories = null } = {}) {
         this.id = object._id;
         this.name = object.name;
         this.description = object.description ?? null;
         this.isPublished = object.isPublished;
         this.tags = object.tags || [];
         this.brands = object.brands || [];
-        const categories = object.categories || [];
-        this.categories = categories.map(category => new CategoryResponse(category));
+        const categoriesMapper = categories || object.categories;
+        this.categories = categoriesMapper.map(category => new CategoryResponse(category));
         this.systemCategories = object.systemCategories || [];
         this.buyPrice = object.buyPrice;
         this.virtualPrice = object.virtualPrice;
@@ -27,12 +28,14 @@ export class ProductResponse {
         this.quantity = object.quantity || null;
         this.weight = object.weight;
         this.sizePacked = object.sizePacked;
-        this.user = new ClientResponse(object.user);
-        this.variants = object.variants || [];
-        const seo = object.seo || seoDefault;
-        this.seo = new SeoResponse(seo);
+        this.user = new ClientResponse(user || object.user);
+        this.inventories = this.buildInventoriesResponse(object.inventories || []);
+        this.attributes = object.attributes;
+        this.variants = this.buildVariantResponse(object.variants || []);
+        this.seo = new SeoResponse(object.seo || seoDefault);
         this.createdAt = object.createdAt;
     }
+
     @ApiProperty()
     readonly id: string;
 
@@ -52,8 +55,9 @@ export class ProductResponse {
     })
     readonly tags: Array<string>;
     readonly brands: Array<string>;
-    readonly categories: CategoryResponse[];
+    readonly categories: ObjectID[]|CategoryResponse[];
     readonly systemCategories: ICategoryDocument[];
+    readonly inventories: IInventory[];
 
     @ApiProperty({
         required: false
@@ -72,6 +76,7 @@ export class ProductResponse {
         required: false
     })
     readonly variants?: IVariant[];
+    readonly attributes?: IAttributes[];
 
     @ApiProperty({
         required: false
@@ -80,4 +85,18 @@ export class ProductResponse {
 
     @ApiProperty({})
     readonly createdAt: Date;
+
+    private buildInventoriesResponse(inventories) {
+        return inventories.map(inventory => {
+            inventory.store = new StoreResponse(inventory.store);
+            return inventory;
+        })
+    }
+
+    private buildVariantResponse(variants) {
+        return variants.map(variant => {
+            variant.inventories = this.buildInventoriesResponse(variant.inventories);
+            return variant;
+        });
+    }
 }

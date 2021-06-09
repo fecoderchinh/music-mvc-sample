@@ -4,7 +4,7 @@ import { CreateCategoryDto } from 'shared/dtos/tenant/category/create.category.d
 import { Model, Connection } from 'mongoose';
 import {CategorySchema, ICategoryDocument, ICategoryPaginator} from 'shared/schemas/tenant/category.schema';
 import { Paginator } from 'shared/paginator';
-import { CategoryCriteria } from "shared/criteria/category.criteria";
+import {CategoryAggregation} from "../../aggregation/category.aggregation";
 
 @Injectable()
 export class CategoryService {
@@ -40,7 +40,7 @@ export class CategoryService {
      * @param queryParams
      */
     async getList(queryParams): Promise<ICategoryPaginator| ICategoryDocument[]> {
-        const builderOptions = (new CategoryCriteria(queryParams)).handle();
+        const builderOptions = (new CategoryAggregation(queryParams)).build();
         const query = this.categoryModel.find(...builderOptions);
 
         if (Number(queryParams.limit) === 0) {
@@ -49,6 +49,7 @@ export class CategoryService {
 
         const paginator = new Paginator(queryParams);
         const options = paginator.getOptionQueryString();
+
         const countPromise = this.categoryModel.countDocuments(...builderOptions).exec();
         const docsPromise = query.skip(options.offset)
             .limit(options.limit)
