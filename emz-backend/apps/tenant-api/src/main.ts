@@ -3,9 +3,19 @@ import { ConfigService } from "@nestjs/config";
 import { TenantApiModule } from './tenant-api.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as mongoose from "mongoose";
+import {HttpExceptionFilter} from "@emzmono/common/filters/http-exception.filter";
+import {HttpStatus, UnprocessableEntityException, ValidationPipe} from "@nestjs/common";
 
 async function bootstrap() {
   const app = await NestFactory.create(TenantApiModule);
+  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalPipes(
+      new ValidationPipe({
+        errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+        exceptionFactory: (errors) =>
+            new UnprocessableEntityException(errors),
+      }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Emz Tenant API')

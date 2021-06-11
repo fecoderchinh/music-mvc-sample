@@ -1,5 +1,5 @@
 import { Document, Schema }  from 'mongoose'
-import { CONDITION_OPERATOR } from 'shared/enums/share.enum'
+import { CONDITION_OPERATOR } from 'shared/enums/category.enum'
 import { ADD_PRODUCT_TYPE } from 'shared/enums/category.enum'
 import { IMetaPaginator } from "../../paginator";
 import {CLIENT_MODEL} from "../model.constant";

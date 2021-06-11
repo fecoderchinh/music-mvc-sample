@@ -133,12 +133,12 @@ export const ProductSchema = new Schema<IProductDocument>({
         sku: String,
         barcode: String,
         inventories: [{
-            storeId: { type: Schema.Types.ObjectId, ref: STORE_MODEL, },
+            store: { type: Schema.Types.ObjectId, ref: STORE_MODEL, },
             quantity: Number,
         }]
     }],
     inventories: [{
-        storeId: { type: Schema.Types.ObjectId, ref: STORE_MODEL, },
+        store: { type: Schema.Types.ObjectId, ref: STORE_MODEL, },
         quantity: Number,
     }],
     user: {

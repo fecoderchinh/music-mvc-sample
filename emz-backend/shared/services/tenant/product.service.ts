@@ -1,5 +1,5 @@
-import { Injectable, Inject} from '@nestjs/common';
-import { CreateProductDto } from 'shared/dtos/tenant/product/create.product.dto';
+import {Injectable, Inject, NotFoundException} from '@nestjs/common';
+import { ProductDto } from 'shared/dtos/tenant/product/product.dto';
 import {Model, Connection} from 'mongoose';
 import { ProductSchema, IProductDocument } from 'shared/schemas/tenant/product.schema';
 import {AttributeSchema, IAttributeDocument} from "shared/schemas/tenant/attribute.schema";
@@ -8,15 +8,14 @@ import { ObjectID } from "mongodb";
 import {
     ATTRIBUTE_MODEL,
     BRAND_MODEL,
-    CLIENT_MODEL,
     PRODUCT_MODEL,
     PRODUCT_TAG_MODEL
 } from "shared/schemas/model.constant";
 import {BrandSchema, IBrandDocument} from "shared/schemas/tenant/brand.schema";
 import {Paginator} from "shared/paginator";
 import {seoDefault} from "shared/utils/seo.utils";
-import {InjectModel} from "@nestjs/mongoose";
-import {ProductCriteria} from "../../criteria/product.criteria";
+import {ProductAggregation} from "../../aggregation/product.aggregation";
+import {ProductConditionAggregation} from "shared/aggregation/product-condition.aggregation";
 
 @Injectable()
 export class ProductService {
@@ -26,8 +25,7 @@ export class ProductService {
     private brandModel:Model<IBrandDocument>;
 
 	constructor(
-        @Inject('TENANT_CONNECTION') private connection: Connection,
-        @InjectModel(CLIENT_MODEL) private clientModel: Model<any>,
+        @Inject('TENANT_CONNECTION') private connection: Connection
 	) {
         this.productModel = this.connection.model<IProductDocument>(PRODUCT_MODEL, ProductSchema);
         this.attributeModel = this.connection.model<IAttributeDocument>(ATTRIBUTE_MODEL, AttributeSchema);
@@ -35,16 +33,15 @@ export class ProductService {
         this.brandModel = this.connection.model<IBrandDocument>(BRAND_MODEL, BrandSchema);
 	}
 
-    async create(userId: ObjectID, createProductDto: CreateProductDto): Promise<IProductDocument> {
+    async create(userId: ObjectID, createProductDto: ProductDto): Promise<any> {
 	    const attributesDto = createProductDto.attributes || [];
 	    const tagsDto = createProductDto.tags || [];
 	    const brandsDto = createProductDto.brands || [];
-	    let variantData = createProductDto.variants || [];
+	    let variantDto = createProductDto.variants || [];
 	    delete createProductDto.attributes;
-	    const attributePromises = [],
+	    const attributes = [],
             tagPromises = [],
             brandPromises = [];
-
 
         await this.productModel.createCollection();
         await this.attributeModel.createCollection();
@@ -55,24 +52,24 @@ export class ProductService {
         session.startTransaction();
 
         try {
-            attributesDto.forEach(attribute => {
-                const name = attribute.name;
-                attributePromises.push(this.attributeModel.findOneAndUpdate({ name }, { name }, {
+            for (let i = 0; i < attributesDto.length; i++) {
+                const attributeDto = attributesDto[i];
+                const name = attributeDto.name;
+                attributes.push(await this.attributeModel.findOneAndUpdate({ name }, { name }, {
                     new: true,
                     upsert: true,
                     session,
                 }))
-            });
+            }
 
-            if (attributePromises.length) {
-                const attributes = await Promise.all(attributePromises);
+            if (attributes.length) {
                 createProductDto.attributes = [];
                 attributes.forEach(attribute => {
                     const attributeDto = attributesDto.find(item => item.name === attribute.name);
                     createProductDto.attributes.push({ _id: attribute._id, name: attribute.name, values: attributeDto.values });
                 });
 
-                variantData = variantData.map(variant => {
+                variantDto = variantDto.map(variant => {
                     const variantAttributes = variant.attributes.map(attributeDto => {
                         const attribute = attributes.find(item => item.name === attributeDto.name);
                         return {
@@ -98,7 +95,7 @@ export class ProductService {
             }
 
             brandsDto.forEach(brand => {
-                brandPromises.push(this.productTagModel.findOneAndUpdate({ name: brand }, { name: brand }, {
+                brandPromises.push(this.brandModel.findOneAndUpdate({ name: brand }, { name: brand }, {
                     upsert: true
                 }))
             });
@@ -112,13 +109,109 @@ export class ProductService {
             const productModel = new this.productModel({
                 user: userId,
                 ...createProductDto,
-                ...(variantData && {variants: variantData}),
+                ...(variantDto && {variants: variantDto}),
                 seo,
             });
             const product = await productModel.save({ session });
             await session.commitTransaction();
-            await session.endSession();
+            session.endSession();
             return product;
+        } catch (e) {
+            await session.abortTransaction();
+            session.endSession();
+            throw e;
+        }
+    }
+
+    async update(id: ObjectID, updateProductDto: ProductDto): Promise<IProductDocument> {
+        const attributesDto = updateProductDto.attributes || [];
+        const tagsDto = updateProductDto.tags || [];
+        const brandsDto = updateProductDto.brands || [];
+        let variantDto = updateProductDto.variants || [];
+        delete updateProductDto.attributes;
+        const attributes = [],
+            tagPromises = [],
+            brandPromises = [];
+
+        await this.productModel.createCollection();
+        await this.attributeModel.createCollection();
+        await this.productTagModel.createCollection();
+        await this.brandModel.createCollection();
+
+        const product = await this.productModel.findById(id);
+
+        if (!product) {
+            throw new NotFoundException('Product not found.');
+        }
+
+        const session = await this.productModel.startSession();
+        session.startTransaction();
+
+        try {
+            for (let i = 0; i < attributesDto.length; i++) {
+                const attributeDto = attributesDto[i];
+                const name = attributeDto.name;
+                attributes.push(await this.attributeModel.findOneAndUpdate({ name }, { name }, {
+                    new: true,
+                    upsert: true,
+                    session,
+                }))
+            }
+
+            if (attributes.length) {
+                updateProductDto.attributes = [];
+                attributes.forEach(attribute => {
+                    const attributeDto = attributesDto.find(item => item.name === attribute.name);
+                    updateProductDto.attributes.push({ _id: attribute._id, name: attribute.name, values: attributeDto.values });
+                });
+
+                variantDto = variantDto.map(variant => {
+                    const variantAttributes = variant.attributes.map(attributeDto => {
+                        const attribute = attributes.find(item => item.name === attributeDto.name);
+                        return {
+                            ...attributeDto,
+                            id: attribute.id
+                        };
+                    });
+                    return {
+                        ...variant,
+                        attributes: variantAttributes
+                    };
+                });
+            }
+
+            tagsDto.forEach(tag => {
+                tagPromises.push(this.productTagModel.findOneAndUpdate({ name: tag }, { name: tag }, {
+                    upsert: true
+                }))
+            });
+
+            if (tagPromises.length) {
+                await Promise.all(tagPromises);
+            }
+
+            brandsDto.forEach(brand => {
+                brandPromises.push(this.brandModel.findOneAndUpdate({ name: brand }, { name: brand }, {
+                    upsert: true
+                }))
+            });
+
+            if (brandPromises.length) {
+                await Promise.all(brandPromises);
+            }
+
+            const dataUpdating = {
+                ...updateProductDto,
+                ...(variantDto && {variants: variantDto}),
+            };
+
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore
+            const result = await this.productModel.findByIdAndUpdate(id, dataUpdating, { session, new: true });
+
+            await session.commitTransaction();
+            session.endSession();
+            return result;
         } catch (e) {
             await session.abortTransaction();
             session.endSession();
@@ -129,27 +222,18 @@ export class ProductService {
     async getList(queryParams: object): Promise<any>{
         const paginator = new Paginator(queryParams);
         const options = paginator.getOptionQueryString();
-        const builderOptions = (new ProductCriteria(queryParams)).handle();
+        const builderOptions = (new ProductAggregation(queryParams)).build();
 
         const countPromise = this.productModel.aggregate([
             { $unwind: { path: '$variants', preserveNullAndEmptyArrays: true } },
-            { $match: builderOptions },
+            ...builderOptions,
             { $group: { _id: null, total: { $sum: 1 } } },
             { $project: { _id: 0 } },
         ]).exec();
         const docsPromise = this.productModel
             .aggregate([{
                 $unwind: {path: "$variants", preserveNullAndEmptyArrays: true }
-            }, {
-                $lookup: {
-                    from: "categories",
-                    localField: "categories",
-                    foreignField: "_id",
-                    as: "categories",
-                },
-            }, {
-                $match: builderOptions ,
-            }, {
+            }, ...builderOptions, {
                 $skip: options.offset,
             }, {
                 $limit: options.limit,
@@ -158,30 +242,63 @@ export class ProductService {
 
         const [totalResult, docs] = await Promise.all([countPromise, docsPromise]);
         const total = totalResult.length ? totalResult[0].total : 0;
-        const tmp = await this.buildResponse(docs);
 
-        return paginator.buildResponse(total, tmp);
-    }
-
-    private async buildResponse(products: IProductDocument[]) {
-	    const userIds = [];
-        products.forEach(product => {
-            userIds.push(product.user);
+        const mapperDocs = docs.map(product => {
+           return {
+                ...product,
+                ...(product.variants && {variants: [product.variants]}),
+           }
         });
 
-        const users = await this.clientModel.find({
-            _id: {
-                $in: userIds.filter(userId => userId),
-            }
-        }).select({ _id: 1, fullName: 1, phone: 1});
+        return paginator.buildResponse(total, mapperDocs);
+    }
 
-        return products.map(product => {
-            const user = users.find(user => user.equals(product.user));
+    async getByConditions(queryParams: object): Promise<any>{
+        const paginator = new Paginator(queryParams);
+        const options = paginator.getOptionQueryString();
+        const builderOptions = (new ProductConditionAggregation(queryParams)).build();
+        const countPromise = this.productModel.aggregate([
+            { $unwind: { path: '$variants', preserveNullAndEmptyArrays: true } },
+            ...builderOptions,
+            { $group: { _id: null, total: { $sum: 1 } } },
+            { $project: { _id: 0 } },
+        ]).exec();
+        const docsPromise = this.productModel
+            .aggregate([{
+                $unwind: {path: "$variants", preserveNullAndEmptyArrays: true }
+            }, ...builderOptions, {
+                $skip: options.offset,
+            }, {
+                $limit: options.limit,
+            }])
+            .exec();
+
+        const [totalResult, docs] = await Promise.all([countPromise, docsPromise]);
+        const total = totalResult.length ? totalResult[0].total : 0;
+        const mapperDocs = docs.map(product => {
             return {
                 ...product,
-                user,
+                ...(product.variants && {variants: [product.variants]}),
             }
         });
+
+        return paginator.buildResponse(total, mapperDocs);
     }
 
+    async getDetail(productId, queryParams: any): Promise<IProductDocument>{
+        const includes = queryParams.includes || '';
+        const lookups = includes.split(',');
+
+        const query = this.productModel.findOne({ _id: productId });
+
+        if (lookups.indexOf('categories') !== -1) {
+            query.populate('categories');
+        }
+        if (lookups.indexOf('store') !== -1) {
+            query.populate('variants.inventories.store')
+                .populate('inventories.store');
+        }
+
+        return await query.exec();
+    }
 }

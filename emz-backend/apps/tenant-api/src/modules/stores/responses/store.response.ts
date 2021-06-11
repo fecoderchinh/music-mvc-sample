@@ -3,7 +3,7 @@ import { StoreDocument } from "shared/schemas/tenant/store.schema";
 
 export class StoreResponse {
     constructor( object:  StoreDocument ) {
-        this.id = object.id;
+        this.id = object._id;
         this.addressTitle = object.addressTitle ?? null;
         this.phone = object.phone ?? null;
         this.email = object.email ?? null;

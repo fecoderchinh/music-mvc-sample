@@ -13,7 +13,7 @@ import { REQUEST } from "@nestjs/core";
 
 export function MixinExistStorePipe(): Type<PipeTransform> {
     @Injectable({ scope: Scope.REQUEST })
-    class MixinProductPipe implements PipeTransform {
+    class ExistStorePipePipe implements PipeTransform {
         constructor(
             @Inject(forwardRef(() => StoreService)) private storeService: StoreService,
             @Inject(REQUEST) private request?: any,
@@ -28,16 +28,16 @@ export function MixinExistStorePipe(): Type<PipeTransform> {
                 const storeIdsDto = [];
                 variants.forEach(variant => {
                     variant.inventories.forEach(inventory => {
-                        storeIdsDto.push(new ObjectID(inventory.storeId));
+                        storeIdsDto.push(new ObjectID(inventory.store));
                     })
                 });
 
-                const stores = await this.storeService.getAll(storeIdsDto);
+                const stores = await this.storeService.getList({ ids: storeIdsDto });
                 const storeIds = stores.map(store => store._id.toString());
 
                 storeIdsDto.forEach((storeId, index) => {
                    if (! storeIds.includes(storeId.toString())) {
-                       errors.push({[`inventories.${index}.storeId`] : 'Cửa hàng không tồn tại.'})
+                       errors.push({[`inventories.${index}.store`] : 'Cửa hàng không tồn tại.'})
                    }
                 });
 
@@ -52,7 +52,7 @@ export function MixinExistStorePipe(): Type<PipeTransform> {
         }
     }
 
-    return mixin(MixinProductPipe);
+    return mixin(ExistStorePipePipe);
 }
 
 

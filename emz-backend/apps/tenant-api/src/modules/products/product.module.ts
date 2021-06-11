@@ -1,18 +1,14 @@
 import { Module } from '@nestjs/common';
+import {ConfigService} from "@nestjs/config";
 import { ProductController } from './product.controller';
 import { ProductService } from 'shared/services/tenant/product.service';
 import {StoreService} from "@shared/services/tenant/store.service";
 import {CategoryService} from "@shared/services/tenant/category.service";
-import {MongooseModule} from "@nestjs/mongoose";
-import {CLIENT_MODEL} from "../../../../../shared/schemas/model.constant";
-import {ClientSchema} from "../../../../../shared/schemas/global/client.schema";
+import {ClientGRpcServices} from "../../grpc/client-grpc.services";
+import {ClientProxyFactory} from "@nestjs/microservices";
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([
-            { name: CLIENT_MODEL , schema: ClientSchema },
-        ]),
-    ],
+    imports: [],
     controllers: [
         ProductController
     ],
@@ -20,6 +16,15 @@ import {ClientSchema} from "../../../../../shared/schemas/global/client.schema";
         ProductService,
         StoreService,
         CategoryService,
+        {
+            provide: 'CLIENT_GRPC_PROXY',
+            useFactory: (configService: ConfigService) => {
+                const config = configService.get('clientService');
+                return ClientProxyFactory.create(config);
+            },
+            inject: [ConfigService],
+        },
+        ClientGRpcServices,
     ],
     exports: []
 })

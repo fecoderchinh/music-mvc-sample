@@ -5,14 +5,14 @@ interface SearchCategoryDto {
     ids?; Array;
 }
 
-export class CategoryCriteria {
+export class CategoryAggregation {
     query: SearchCategoryDto;
 
     constructor(query: any) {
         this.query = query as SearchCategoryDto;
     }
 
-    handle() {
+    build() {
         const builder = [];
         const isPublished = this.query.isPublished || '';
         const addProductType = this.query.addProductType || '';

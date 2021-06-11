@@ -13,7 +13,7 @@ import { REQUEST } from "@nestjs/core";
 
 export function MixinExistCategoryPipe(): Type<PipeTransform> {
     @Injectable({ scope: Scope.REQUEST })
-    class MixinProductPipe implements PipeTransform {
+    class ExistCategoryPipe implements PipeTransform {
         constructor(
             @Inject(forwardRef(() => CategoryService)) private categoryService: CategoryService,
             @Inject(REQUEST) private request?: any,
@@ -24,9 +24,11 @@ export function MixinExistCategoryPipe(): Type<PipeTransform> {
         async transform(value: any, metadata: ArgumentMetadata) {
             const errors = [];
 
-            if (value.categories.length) {
+            const categoriesDto = value.categories || [];
+
+            if (categoriesDto.length) {
                 const categoryIdsDto = [];
-                value.categories.forEach(categoryId => {
+                categoriesDto.forEach(categoryId => {
                     categoryIdsDto.push(new ObjectID(categoryId));
                 });
                 const categories = await this.categoryService.getList({ limit: 0, ids: categoryIdsDto }) as any;
@@ -49,7 +51,7 @@ export function MixinExistCategoryPipe(): Type<PipeTransform> {
         }
     }
 
-    return mixin(MixinProductPipe);
+    return mixin(ExistCategoryPipe);
 }
 
 
