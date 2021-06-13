@@ -9,10 +9,10 @@ import {
     UseGuards,
     Delete,
     Param,
-    UsePipes
+    UsePipes, Put
 } from '@nestjs/common';
 import { CategoryService } from 'shared/services/tenant/category.service';
-import { CreateCategoryDto } from 'shared/dtos/tenant/category/create.category.dto';
+import { CategoryDto } from 'shared/dtos/tenant/category/category.dto';
 import {ApiTags, ApiHeader, ApiBearerAuth} from '@nestjs/swagger';
 import { TenantHaders } from '@emzmono/common/constances/swagger.constance';
 import {JwtAuthGuard} from "@emzmono/auth/jwt-auth.guard";
@@ -40,7 +40,7 @@ export class CategoryController {
     @ApiHeader(TenantHaders)
     @UseGuards(JwtAuthGuard)
     @HttpCode( HttpStatus.OK )
-    async create(@Req() req, @Body() body: CreateCategoryDto): Promise<IResponse> {
+    async create(@Req() req, @Body() body: CategoryDto): Promise<IResponse> {
         const category = await this.categoryService.create(req.user.id, body);
         return new ResponseSuccess(new CategoryResponse(category));
     }
@@ -68,6 +68,18 @@ export class CategoryController {
     @HttpCode(HttpStatus.OK)
     async show(@Param('id') id:ObjectID) : Promise<IResponse> {
         const category = await this.categoryService.getDetail(id);
+
+        return new ResponseSuccess(new CategoryResponse(category));
+    }
+
+    @UsePipes(RouteParamPipe)
+    @Put(':id')
+    @ApiBearerAuth()
+    @ApiHeader(TenantHaders)
+    @UseGuards(JwtAuthGuard)
+    @HttpCode(HttpStatus.OK)
+    async update(@Req() request, @Body() body: CategoryDto): Promise<IResponse> {
+        const category = await this.categoryService.update(request.params.id, body);
 
         return new ResponseSuccess(new CategoryResponse(category));
     }

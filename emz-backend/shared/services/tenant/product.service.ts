@@ -16,6 +16,7 @@ import {Paginator} from "shared/paginator";
 import {seoDefault} from "shared/utils/seo.utils";
 import {ProductAggregation} from "../../aggregation/product.aggregation";
 import {ProductConditionAggregation} from "shared/aggregation/product-condition.aggregation";
+import {WithoutCategoryAggregation} from "../../aggregation/without-category.aggregation";
 
 @Injectable()
 export class ProductService {
@@ -257,20 +258,24 @@ export class ProductService {
         const paginator = new Paginator(queryParams);
         const options = paginator.getOptionQueryString();
         const builderOptions = (new ProductConditionAggregation(queryParams)).build();
+        const withoutCategoryBuilder = (new WithoutCategoryAggregation(queryParams)).build();
         const countPromise = this.productModel.aggregate([
+            withoutCategoryBuilder,
             { $unwind: { path: '$variants', preserveNullAndEmptyArrays: true } },
             ...builderOptions,
             { $group: { _id: null, total: { $sum: 1 } } },
             { $project: { _id: 0 } },
-        ]).exec();
+        ].filter(pipeline => pipeline)).exec();
         const docsPromise = this.productModel
-            .aggregate([{
+            .aggregate([
+                withoutCategoryBuilder,
+            {
                 $unwind: {path: "$variants", preserveNullAndEmptyArrays: true }
             }, ...builderOptions, {
                 $skip: options.offset,
             }, {
                 $limit: options.limit,
-            }])
+            }].filter(pipeline => pipeline))
             .exec();
 
         const [totalResult, docs] = await Promise.all([countPromise, docsPromise]);

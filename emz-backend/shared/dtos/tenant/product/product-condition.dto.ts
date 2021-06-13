@@ -10,6 +10,7 @@ import {
     CONDITION_OPERATOR,
     CONDITIONS
 } from "shared/enums/category.enum";
+import {validMongoId} from "shared/rules/common";
 
 @JoiSchemaOptions({
     allowUnknown: false,
@@ -24,4 +25,7 @@ export class ProductConditionDto {
         value: Joi.string().required(),
     }).custom(validConditionByField)))
     conditions?: Condition[];
+
+    @JoiSchema(Joi.string().optional().custom(validMongoId))
+    withoutCategory?: string;
 }
