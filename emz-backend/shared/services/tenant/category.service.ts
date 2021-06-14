@@ -1,20 +1,25 @@
 import { ObjectID } from "mongodb";
 import {Injectable, Inject, NotFoundException} from '@nestjs/common';
-import { CreateCategoryDto } from 'shared/dtos/tenant/category/create.category.dto';
+import { CategoryDto } from 'shared/dtos/tenant/category/category.dto';
 import { Model, Connection } from 'mongoose';
 import {CategorySchema, ICategoryDocument, ICategoryPaginator} from 'shared/schemas/tenant/category.schema';
 import { Paginator } from 'shared/paginator';
 import {CategoryAggregation} from "../../aggregation/category.aggregation";
+import {IProductDocument, ProductSchema} from "../../schemas/tenant/product.schema";
+import {CATEGORY_MODEL, PRODUCT_MODEL} from "../../schemas/model.constant";
+import {ADD_PRODUCT_AUTO} from "../../enums/category.enum";
 
 @Injectable()
 export class CategoryService {
 
     private categoryModel:Model<ICategoryDocument>;
+    private productModel:Model<IProductDocument>;
 
     constructor(
         @Inject( 'TENANT_CONNECTION' ) private connection: Connection,
     ) {
-        this.categoryModel = this.connection.model<ICategoryDocument>("CategoryModel", CategorySchema);
+        this.categoryModel = this.connection.model<ICategoryDocument>(CATEGORY_MODEL, CategorySchema);
+        this.productModel = this.connection.model<IProductDocument>(PRODUCT_MODEL, ProductSchema);
     }
 
     /**
@@ -23,15 +28,65 @@ export class CategoryService {
      * @param userId
      * @param createCategoryDto
      */
-    async create (userId: string, createCategoryDto: CreateCategoryDto): Promise<ICategoryDocument> {
+    async create (userId: string, createCategoryDto: CategoryDto): Promise<ICategoryDocument> {
+
         const categoryData = {
             ...createCategoryDto,
             user: new ObjectID(userId),
             publishSchedule: createCategoryDto?.isPublished ? null : createCategoryDto?.publishSchedule,
         };
-        const category = new this.categoryModel(categoryData);
+        const categoryModel = new this.categoryModel(categoryData);
 
-        return await category.save();
+        const category = await categoryModel.save();
+
+        if (createCategoryDto.addProductType === ADD_PRODUCT_AUTO) {
+            await this.productModel.updateMany({
+                _id: {
+                    $in: createCategoryDto.products,
+                },
+            }, {
+                $addToSet: {
+                    categories: category._id
+                }
+            });
+        }
+
+        return category;
+    }
+
+    /**
+     * Update a category
+     *
+     * @param id
+     * @param updateCategoryDto
+     */
+    async update (id: ObjectID, updateCategoryDto: CategoryDto): Promise<ICategoryDocument> {
+        const category:ICategoryDocument = await this.categoryModel.findById(id);
+
+        if (!category) {
+            throw new NotFoundException();
+        }
+
+        const categoryData = {
+            ...updateCategoryDto,
+            publishSchedule: updateCategoryDto?.isPublished ? null : updateCategoryDto?.publishSchedule,
+        };
+
+        const result = await this.categoryModel.findByIdAndUpdate(id, categoryData, { new: true });
+
+        if (updateCategoryDto.addProductType === ADD_PRODUCT_AUTO) {
+            await this.productModel.updateMany({
+                _id: {
+                    $in: updateCategoryDto.products,
+                },
+            }, {
+                $addToSet: {
+                    categories: category._id
+                }
+            });
+        }
+
+        return result;
     }
 
     /**

@@ -1,6 +1,5 @@
 import {Condition} from "../schemas/tenant/category.schema";
 import {
-    CONDITION_NOT_EQUAL,
     CONDITION_PRODUCT_BRAND_FIELD,
     CONDITION_PRODUCT_CATEGORY_FIELD,
     CONDITION_PRODUCT_NAME_FIELD,
@@ -10,6 +9,9 @@ import {
     LOGICAL_OPERATORS,
     MATCH_OPERATORS
 } from "../enums/category.enum";
+
+import { ObjectID } from "mongodb";
+import {ObjectId} from "mongoose";
 
 interface ProductConditionDto {
     conditions: Condition[];
@@ -99,9 +101,7 @@ export class ProductConditionAggregation {
                 operatorParse[MATCH_OPERATORS[condition.condition]] = Number(value);
                 break;
             default:
-                // if (condition.condition !== CONDITION_NOT_EQUAL) {
-                    operatorParse[MATCH_OPERATORS[condition.condition]] = new RegExp(value);
-                // }
+                operatorParse[MATCH_OPERATORS[condition.condition]] = new RegExp(value);
         }
 
         return operatorParse;

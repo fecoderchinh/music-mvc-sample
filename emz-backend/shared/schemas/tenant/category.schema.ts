@@ -2,7 +2,7 @@ import { Document, Schema }  from 'mongoose'
 import { CONDITION_OPERATOR } from 'shared/enums/category.enum'
 import { ADD_PRODUCT_TYPE } from 'shared/enums/category.enum'
 import { IMetaPaginator } from "../../paginator";
-import {CLIENT_MODEL} from "../model.constant";
+import {CLIENT_MODEL, PRODUCT_MODEL} from "../model.constant";
 
 export interface Condition {
     readonly field: string;
@@ -72,7 +72,7 @@ export const CategorySchema = new Schema<ICategoryDocument>({
         type: Schema.Types.ObjectId,
         ref: CLIENT_MODEL,
         required: true
-    },
+    }
 },{
     collection: 'categories',
     timestamps: true,

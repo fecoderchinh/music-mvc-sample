@@ -1,9 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { JoiSchema } from "nestjs-joi";
 import * as Joi from 'joi';
-import { Condition, Seo } from 'shared/schemas/tenant/category.schema';
+import {Condition, Seo} from 'shared/schemas/tenant/category.schema';
 import {
-    extensionImage,
+    extensionImage, validMongoId,
 } from 'shared/rules/common';
 import { validConditionByField } from "shared/rules/category";
 
@@ -16,10 +16,16 @@ import {
     CONDITIONS
 } from "shared/enums/category.enum";
 
+const requiredIfAutoCondition = {
+    is: ADD_PRODUCT_AUTO,
+    then: Joi.required(),
+    otherwise: Joi.optional(),
+};
+
 @JoiSchemaOptions({
     allowUnknown: false,
 })
-export class CreateCategoryDto {
+export class CategoryDto {
     @ApiProperty({
         type: String,
         default: "Category"
@@ -66,23 +72,20 @@ export class CreateCategoryDto {
         type: String,
         default: "AND"
     })
-    @JoiSchema(Joi.string().required().valid(...CONDITION_OPERATOR).when('addProductType', {
-        is: ADD_PRODUCT_AUTO,
-        then: Joi.required(),
-        otherwise: Joi.optional(),
-    }))
+    @JoiSchema(Joi.string().required().valid(...CONDITION_OPERATOR).when('addProductType', requiredIfAutoCondition))
     conditionOperator?: string;
 
-    @JoiSchema(Joi.array().items(Joi.object().keys({
+    @JoiSchema(Joi.array().items(Joi.object().required().keys({
         field: Joi.string().required().valid(...CONDITION_FIELDS),
         condition: Joi.string().required().valid(...Object.keys(CONDITIONS)),
         value: Joi.string().required(),
-    }).custom(validConditionByField)).when('addProductType', {
-        is: ADD_PRODUCT_AUTO,
-        then: Joi.required(),
-        otherwise: Joi.optional(),
-    }))
+    }).custom(validConditionByField)).when('addProductType', requiredIfAutoCondition))
     conditions?: Condition[];
+
+    @JoiSchema(Joi.array().items(Joi.string().required().custom(validMongoId))
+        .custom(validConditionByField)
+        .when('addProductType', requiredIfAutoCondition))
+    products?: Array<string>;
 
     @JoiSchema(Joi.object().keys({
         metaTitle: Joi.string().max(255).optional(),
