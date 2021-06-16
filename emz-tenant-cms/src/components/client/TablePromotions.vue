@@ -44,7 +44,8 @@
           </div>
         </th>
       </tr>
-      <tbody class="box-table-body table-promotions__body" slot="body">
+    </thead>
+    <tbody class="box-table-body table-promotions__body" slot="body">
         <tr v-for="(data, index) in optionDataTable" :key="index" class="pl-3">
           <td>
             <div class="table-promotions__body-content">
@@ -95,14 +96,15 @@
           </td>
         </tr>
       </tbody>
-    </thead>
-    <p class="cms-typo text-13px text-labelAndTitle mt-5" slot="outside">Hiển thị 100 kết quả của 385</p>
+<!--    <p class="cms-typo text-13px text-labelAndTitle mt-5" slot="outside">Hiển thị 100 kết quả của 385</p>-->
+    <Pagination slot="outside" class="mt-5"/>
   </Table>
 </template>
 
 <script>
 import Table from '@/components/client/Table.vue';
 import CheckType from '@/components/client/CheckType.vue';
+import Pagination from "@/components/client/Pagination";
 
 import {
   FilterSVG,
@@ -115,6 +117,7 @@ export default {
     FilterSVG,
     CheckType,
     EllipseSVG,
+    Pagination
   },
   data() {
     return {

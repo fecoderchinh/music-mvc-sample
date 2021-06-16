@@ -132,13 +132,15 @@
         </td>
       </tr>
     </tbody>
-    <p class="cms-typo text-13px text-labelAndTitle mt-5" slot="outside">Hiển thị 100 kết quả của 385</p>
+<!--    <p class="cms-typo text-13px text-labelAndTitle mt-5" slot="outside">Hiển thị 100 kết quả của 385</p>-->
+    <Pagination slot="outside" class="mt-5"/>
   </Table>
 </template>
 
 <script>
 import Table from '@/components/client/Table.vue';
 import CheckType from '@/components/client/CheckType.vue';
+import Pagination from "@/components/client/Pagination";
 
 import ModalCustomerDetail from '@/components/client/ModalCustomerDetail.vue';
 
@@ -153,6 +155,7 @@ export default {
     FilterSVG,
     CheckType,
     AvatarSVG,
+    Pagination
   },
   data() {
     return {
