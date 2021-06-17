@@ -13,7 +13,7 @@
 
                 <Navbar v-on:toggle-sidebar="onToggleSidebarMethod" />
 
-                <div class="p-5 bg-gray-100 container mx-auto">
+                <div class="p-5 bg-gray-100 container mx-auto min-h-screen">
                     <router-view />
                 </div>
 

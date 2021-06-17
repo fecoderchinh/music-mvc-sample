@@ -36,6 +36,7 @@
       </tr>
     </thead>
     <tbody class="box-table-body table-categories__body" slot="body">
+    <Loader/>
       <tr v-for="(data, index) in optionDataTable" :key="index" class="pl-3">
         <td>
           <div class="table-categories__body-content">
@@ -87,9 +88,11 @@ import {
 } from '../SVGs.vue';
 import ModalDanhMucSp from "@/components/client/ModalDanhMucSp";
 import ModalDanhMucSpAuto from "@/components/client/ModalDanhMucSpAuto";
+import Loader from "@/components/Loader";
 
 export default {
   components: {
+    Loader,
     FilterSVG,
     CheckType,
     Table,

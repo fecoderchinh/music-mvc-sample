@@ -29,6 +29,7 @@ export default {};
       }
     }
     &-body {
+      @apply relative;
       th {
         @apply cms-typo text-13px text-menuItem;
       }
