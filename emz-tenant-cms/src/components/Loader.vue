@@ -1,5 +1,5 @@
 <template>
-  <div class="cms-loader" ref="cmsLoader">
+  <div v-if="loading" class="cms-loader" ref="cmsLoader">
     <div class="spinner"></div>
   </div>
 </template>
@@ -7,12 +7,15 @@
 <script>
 export default {
   name: "Loader",
+  props: ["loading"],
   data() {
     return {
-      height: 0
+      height: 0,
+      sidebarWidth: 0
     }
   },
   mounted() {
+    this.sidebarWidth = document.getElementById("main-sidebar").offsetWidth
     this.parentHeightCalc()
   },
   created() {
@@ -22,6 +25,7 @@ export default {
     parentHeightCalc() {
       this.height = this.$refs.cmsLoader.parentElement.offsetHeight
       this.$refs.cmsLoader.style.height = this.height+"px"
+      this.$refs.cmsLoader.style.paddingLeft = this.sidebarWidth+"px"
     }
   }
 }
@@ -29,7 +33,8 @@ export default {
 
 <style lang="scss">
 .cms-loader {
-  @apply absolute w-full flex justify-center items-center z-50 select-none;
+  //@apply absolute top-0 right-0 bottom-0 left-0 w-full flex justify-center items-center z-50 select-none;
+  @apply fixed top-0 right-0 bottom-0 left-0 w-full flex justify-center items-center z-20 select-none;
   &:before {
     content: '';
     @apply absolute top-0 right-0 bottom-0 left-0 w-full h-full bg-black opacity-50;

@@ -14,6 +14,7 @@
                 <Navbar v-on:toggle-sidebar="onToggleSidebarMethod" />
 
                 <div class="p-5 bg-gray-100 container mx-auto min-h-screen">
+                  <Loader :loading="false"/>
                     <router-view />
                 </div>
 
@@ -26,10 +27,12 @@
 
 import Sidebar from '@/components/client/Sidebar.vue';
 import Navbar from '@/components/client/Navbar.vue';
+import Loader from "@/components/Loader";
 
 export default {
   name: 'Dashboard',
   components: {
+    Loader,
     Sidebar,
     Navbar,
   },

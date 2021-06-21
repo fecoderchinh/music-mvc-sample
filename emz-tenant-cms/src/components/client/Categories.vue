@@ -5,6 +5,8 @@
     <!-- box content -->
     <div class="grid-box no-px">
 
+<!--      <Loader/>-->
+
       <CategoriesTab/>
 
     </div>
@@ -17,9 +19,11 @@
 <script>
 import Footer from './Footer.vue';
 import CategoriesTab from './CategoriesTab.vue';
+// import Loader from "@/components/Loader";
 
 export default {
   components: {
+    // Loader,
     Footer,
     CategoriesTab,
   },

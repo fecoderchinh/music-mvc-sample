@@ -1,7 +1,7 @@
 <template>
   <div class="pagination">
     <ul class="pagination__inner">
-      <li class="pageNumber"><a href="#" class="prev">Prev</a></li>
+      <li class="pageNumber disabled"><a href="#" class="prev">Prev</a></li>
       <li class="pageNumber active"><a href="#">1</a></li>
       <li class="pageNumber"><a href="#">2</a></li>
       <li class="pageNumber"><a href="#">3</a></li>
