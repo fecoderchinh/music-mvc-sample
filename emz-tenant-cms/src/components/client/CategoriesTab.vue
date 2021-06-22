@@ -26,15 +26,11 @@ export default {
     return {
       optionDataTags: [
         {
-          name: 'Chờ lấy hàng',
+          name: 'Tất cả',
           closeTag: true,
         },
         {
-          name: 'Đặt hôm nay',
-          closeTag: true,
-        },
-        {
-          name: 'Đơn từ website',
+          name: 'Thêm thủ công',
           closeTag: true,
         },
       ],

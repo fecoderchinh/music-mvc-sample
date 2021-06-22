@@ -107,10 +107,10 @@ import {
 import ModalDanhMucSp from "@/components/client/ModalDanhMucSp";
 import ModalDanhMucSpAuto from "@/components/client/ModalDanhMucSpAuto";
 import TableActions from "@/components/client/TableActions";
-import ModalUpdatePrice from "@/components/client/ModalUpdatePrice";
-import ModalCancelOrder from "@/components/client/ModalCancelOrder";
-import ModalConfirmOrderContent from "@/components/client/ModalConfirmOrderContent";
-import ModalReturnOrderContent from "@/components/client/ModalReturnOrderContent";
+// import ModalUpdatePrice from "@/components/client/ModalUpdatePrice";
+// import ModalCancelOrder from "@/components/client/ModalCancelOrder";
+// import ModalConfirmOrderContent from "@/components/client/ModalConfirmOrderContent";
+// import ModalReturnOrderContent from "@/components/client/ModalReturnOrderContent";
 // import Loader from "@/components/Loader";
 
 export default {
@@ -127,43 +127,57 @@ export default {
       showAction: false,
       showMenu: true,
       allCheckStatus: [],
+      // tableActionsData: [
+      //   {
+      //     label: 'Đã gói hàng',
+      //   },
+      //   {
+      //     label: 'Giao hàng',
+      //   },
+      //   {
+      //     label: 'Xác nhận thanh toán',
+      //     modal: ModalConfirmOrderContent,
+      //     width: 500,
+      //   },
+      //   {
+      //     label: 'Hủy đơn hàng',
+      //     modal: ModalCancelOrder,
+      //     width: 720,
+      //   },
+      //   {
+      //     label: 'Hoàn đơn hàng',
+      //     modal: ModalReturnOrderContent,
+      //     width: 720,
+      //   },
+      //   {
+      //     label: 'In đơn hàng',
+      //     modal: ModalUpdatePrice,
+      //     width: 500,
+      //   },
+      //   {
+      //     label: 'Lưu trữ',
+      //     reduceAttention: true,
+      //   },
+      //   {
+      //     label: 'Hủy lưu trữ',
+      //   },
+      //   {
+      //     label: 'Xóa đơn hàng',
+      //   },
+      // ],
       tableActionsData: [
         {
-          label: 'Đã gói hàng',
+          label: 'Ẩn danh mục',
         },
         {
-          label: 'Giao hàng',
+          label: 'Hiển thị danh mục',
         },
         {
-          label: 'Xác nhận thanh toán',
-          modal: ModalConfirmOrderContent,
-          width: 500,
+          label: 'Gắn vào danh mục khác',
         },
         {
-          label: 'Hủy đơn hàng',
-          modal: ModalCancelOrder,
-          width: 720,
-        },
-        {
-          label: 'Hoàn đơn hàng',
-          modal: ModalReturnOrderContent,
-          width: 720,
-        },
-        {
-          label: 'In đơn hàng',
-          modal: ModalUpdatePrice,
-          width: 500,
-        },
-        {
-          label: 'Lưu trữ',
-          reduceAttention: true,
-        },
-        {
-          label: 'Hủy lưu trữ',
-        },
-        {
-          label: 'Xóa đơn hàng',
-        },
+          label: 'Xóa danh mục',
+        }
       ],
       optionDataTable: [
         {

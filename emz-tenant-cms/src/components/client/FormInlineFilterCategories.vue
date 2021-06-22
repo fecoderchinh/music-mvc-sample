@@ -14,15 +14,15 @@
             input-type="text"
             id="search-customer"
             name="search-customer"
-            placeholder="Tìm kiếm khách hàng"
+            placeholder="Tìm kiếm menu"
             input-class="cms-input__with-icon rounded-l-none"
             button-class="absolute right-0 top-50 transform -translate-y-1/2 mr-4 focus:outline-none">
             <template slot="button-text"><SearchSVG class="h-4 w-4 fill-menuIcon" /></template>
           </InputType>
         </div>
-        <div class="flex">
-          <ModalFilterButton/>
-        </div>
+<!--        <div class="flex">-->
+<!--          <ModalFilterButton/>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
 <script>
 import SelectOption from '@/components/client/SelectOption.vue';
 import InputType from '@/components/client/InputType.vue';
-import ModalFilterButton from '@/components/client/ModalFilterButton.vue';
+// import ModalFilterButton from '@/components/client/ModalFilterButton.vue';
 
 import {
   SearchSVG,
@@ -42,19 +42,19 @@ export default {
     SelectOption,
     InputType,
     SearchSVG,
-    ModalFilterButton,
+    // ModalFilterButton,
   },
   data() {
     return {
       optionDataSelect1: [
-        { name: 'Lọc hiển thị' },
-        { name: 'Lặt ngày đọc' },
-        { name: 'Lọc ngặt đày' },
+        { name: 'Tất cả' },
+        { name: 'Đang ẩn' },
+        { name: 'Hiển thị' },
       ],
       optionDataSelect2: [
-        { name: 'Loại điều kiện' },
-        { name: 'Lơn nguồn đọc' },
-        { name: 'Lọc ngơn đuồn' },
+        { name: 'Tất cả' },
+        { name: 'Thêm thủ công' },
+        { name: 'Thêm tự động' },
       ],
     };
   },
