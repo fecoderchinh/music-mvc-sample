@@ -73,8 +73,8 @@ export default {
     }
     &__button {
       &-default {
-        @apply cms-typo bg-gray-200 border text-placeholderStyle;
-        @apply py-1 px-4 text-13px;
+        @apply cms-typo bg-gray-200 rounded text-placeholderStyle;
+        @apply py-1 px-3 text-13px;
       }
       &-blue {
         @apply cms-typo bg-gray-200 border text-buttonAndURL;

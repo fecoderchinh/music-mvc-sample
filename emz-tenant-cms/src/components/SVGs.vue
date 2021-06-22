@@ -37,6 +37,7 @@
 * 35. SquareSVG
 * 36. MenubarSVG
 * 37. LongArrowNewSVG
+* 38. DoubleAngleSVG
 */
 export const EllipseSVG = {
   render() {
@@ -412,6 +413,28 @@ export const LongArrowNewSVG = {
   },
 };
 
+export const DoubleAngleSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 25 21">
+          <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="7" y="5" width="7" height="11">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3644 14.3556L9.5172 10.5L13.3644 6.6444L12.18 5.46L7.14 10.5L12.18 15.54L13.3644 14.3556Z" fill="white"/>
+          </mask>
+          <g mask="url(#mask0)">
+            <rect width="21" height="21" fill="currentColor"/>
+          </g>
+          <mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="11" y="5" width="7" height="11">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.3644 14.3556L13.5172 10.5L17.3644 6.6444L16.18 5.46L11.14 10.5L16.18 15.54L17.3644 14.3556Z" fill="white"/>
+          </mask>
+          <g mask="url(#mask1)">
+            <rect x="4" width="21" height="21" fill="#currentColor"/>
+          </g>
+        </svg>
+
+    );
+  },
+};
+
 export default {
   EllipseSVG,
   AngleSVG,
@@ -450,5 +473,6 @@ export default {
   SquareSVG,
   MenubarSVG,
   LongArrowNewSVG,
+  DoubleAngleSVG
 };
 </script>

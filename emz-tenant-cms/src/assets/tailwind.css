@@ -426,7 +426,7 @@ textarea:focus {
 }
 svg:not(.no-effect):hover,
 svg:not(.no-effect):focus {
-  @apply fill-buttonAndURL svg-filter;
+  /*@apply fill-buttonAndURL svg-filter;*/
 }
 button:not(.no-effect):hover,
 button:not(.no-effect):focus {

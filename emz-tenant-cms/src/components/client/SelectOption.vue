@@ -2,9 +2,9 @@
   <!-- eslint-disable max-len -->
   <div class="cms-select" :class="mainClass">
     <div class="cms-select__wrapper">
-      <select 
-        class="cms-select__wrapper-item" 
-        :class="selectClass" 
+      <select
+        class="cms-select__wrapper-item"
+        :class="selectClass"
         :name="name"
         :value="value"
         @input="$emit('input',$event.target.value)"
@@ -12,11 +12,11 @@
         :id="selectId">
         <option>Chọn</option>
         <option
-          :value="data.id" v-for="(data, index) in optionData" 
+          :value="data.id" v-for="(data, index) in optionData"
           :key="index">{{ data.name }}</option>
       </select>
       <slot name="label"></slot>
-      <div class="pointer-events-none absolute top-50 transform -translate-y-1/2 right-0 flex items-center px-2 text-gray-700">
+      <div class="pointer-events-none absolute top-50 transform -translate-y-1/2 right-0 flex items-center pr-3 text-gray-700">
         <AngleSVG class="fill-menuIcon h-3 w-3"/>
       </div>
     </div>

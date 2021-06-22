@@ -4,7 +4,7 @@
 
     <div class="flex items-center" slot="header">
       <h3 class="text-18px cms-typo text-labelAndTitle">
-        Hủy đơn hàng
+        Đơn hàng bị hoàn
       </h3>
     </div>
 
