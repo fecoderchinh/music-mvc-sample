@@ -23,9 +23,11 @@ export default {
   },
   methods: {
     parentHeightCalc() {
-      this.height = this.$refs.cmsLoader.parentElement.offsetHeight
-      this.$refs.cmsLoader.style.height = this.height+"px"
-      this.$refs.cmsLoader.style.paddingLeft = this.sidebarWidth+"px"
+      if(this.$refs.cmsLoader) {
+        this.height = this.$refs.cmsLoader.parentElement.offsetHeight
+        this.$refs.cmsLoader.style.height = this.height+"px"
+        this.$refs.cmsLoader.style.paddingLeft = this.sidebarWidth+"px"
+      }
     }
   }
 }
