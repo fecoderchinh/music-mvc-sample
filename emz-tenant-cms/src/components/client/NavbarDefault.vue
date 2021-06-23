@@ -31,8 +31,8 @@
       </div>
       <div class="flex mx-5">
         <a href="#" class="text-buttonAndURL cms-typo text-14px flex h-full items-center relative sm:mr-2">
-          <EllipseSVG class="fill-buttonAndURL w-icon h-icon group-hover:fill-buttonAndURL" />
-          <span class="ml-2">Dashboard</span>
+          <DashboardSVG class="fill-buttonAndURL w-icon h-icon group-hover:fill-buttonAndURL" />
+          <span class="ml-2 pt-1">Dashboard</span>
         </a>
       </div>
       <div class="flex">
@@ -64,7 +64,7 @@ import UpgradeIcon from './UpgradeIcon.vue';
 import {
   MenubarSVG,
   SearchSVG,
-  EllipseSVG,
+  DashboardSVG,
 } from '../SVGs.vue';
 
 export default {
@@ -76,7 +76,7 @@ export default {
     SearchSVG,
     NotifyBell,
     NavbarAdvanceSearch,
-    EllipseSVG,
+    DashboardSVG,
   },
   data() {
     return {

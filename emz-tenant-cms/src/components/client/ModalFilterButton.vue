@@ -1,7 +1,7 @@
 <template>
   <Button @click="openModal" button-class="cms-button filter-button cms-button-white ml-5 no-py group">
     <template slot="name">
-      <HamburgerSVG class="w-6 fill-current"/>
+      <FilterSVG class="w-6 fill-current"/>
     </template>
   </Button>
 </template>
@@ -12,13 +12,13 @@ import Button from '@/components/client/Button.vue';
 import ModalFilterForm from '@/components/client/ModalFilterForm.vue';
 
 import {
-  HamburgerSVG,
+  FilterSVG,
 } from '@/components/SVGs.vue';
 
 export default {
   components: {
     Button,
-    HamburgerSVG,
+    FilterSVG,
   },
   methods: {
     openModal() {

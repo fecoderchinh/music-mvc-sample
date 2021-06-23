@@ -14,8 +14,8 @@
       <div class="flex flex-auto" v-for="(data, index) in menuData" :key="index" :class="classSingleItem(index)">
 
         <template v-if="( !data.subMenu || data.subMenu.length === 0 )">
-          <div class="pl-8 pr-4 w-full flex items-center h-35px pl-4 rounded-lg cursor-pointer hover:bg-sidebarHover">
-            <component v-bind:is="data.component" class="h-icon w-icon mr-5 fill-menuIcon -mt-px" />
+          <div class="pl-8 pr-4 w-full flex items-center h-35px pl-4 text-menuIcon hover:text-buttonAndURL rounded-lg cursor-pointer group group-hover:bg-sidebarHover">
+            <component v-bind:is="data.component" class="h-icon w-icon group-hover:fill-buttonAndURL mr-5 -mt-px" />
             <a href="#" class="text-standardCMS text-menuItem flex-auto" v-if="data.modal" @click.self.prevent="openModal(data.modal, data.modalW)">{{ data.item }}</a>
             <router-link :to="data.url" class="text-standardCMS text-menuItem flex-auto" v-else>{{ data.item }}</router-link>
           </div>
@@ -35,8 +35,8 @@
 
             <ul class="dd-menu">
               <li v-for="(subData, subIndex) in data.subMenu" :key="subIndex">
-                <div class="w-full flex items-center h-35px rounded-lg cursor-pointer">
-                  <component v-bind:is="subData.subComponent" class="h-icon w-icon mr-5 fill-menuIcon -mt-px" />
+                <div class="w-full flex items-center h-35px rounded-lg cursor-pointer text-menuIcon hover:text-buttonAndURL">
+                  <component v-bind:is="subData.subComponent" class="h-icon w-icon mr-5 -mt-px" />
                   <a href="#" class="text-standardCMS text-menuItem flex-auto" v-if="subData.modal" @click.self.prevent="openModal(subData.modal, subData.modalW)">{{ subData.subItem }}</a>
                   <router-link :to="subData.subUrl" class="text-standardCMS text-menuItem flex-auto" v-else>{{ subData.subItem }}</router-link>
                 </div>
@@ -49,9 +49,9 @@
 
       <div class="single-item flex fixed bottom-0 h-35px bg-white flex-auto shadow-fixed w-2/3 md:w-1/3 lg:w-64">
         <!-- eslint-disable max-len -->
-        <div class="pl-8 pr-4 w-full flex items-center h-35px pl-4 rounded-lg cursor-pointer hover:bg-sidebarHover">
-          <SettingSVG class="h-icon w-icon mr-5 fill-menuIcon"/>
-          <router-link to="/dashboard/settings" 
+        <div class="pl-8 pr-4 w-full flex items-center h-35px pl-4 rounded-lg cursor-pointer text-menuIcon hover:text-buttonAndURL hover:bg-sidebarHover">
+          <SettingSVG class="h-icon w-icon mr-5"/>
+          <router-link to="/dashboard/settings"
           class="text-standardCMS text-menuItem flex-auto font-medium">Cài đặt</router-link>
         </div>
       </div>
@@ -70,6 +70,11 @@ import {
   ArrowSVG,
   AvatarSVG,
   SettingSVG,
+    HomeSVG,
+    BellPlusSVG,
+  AirPlaneSVG,
+  ShoppingCartPlusSVG,
+  SnowFlowerSVG
 } from '../SVGs.vue';
 
 export default {
@@ -78,6 +83,11 @@ export default {
     ArrowSVG,
     AvatarSVG,
     SettingSVG,
+    HomeSVG,
+    BellPlusSVG,
+    AirPlaneSVG,
+    ShoppingCartPlusSVG,
+    SnowFlowerSVG
   },
   data() {
     return {
@@ -85,7 +95,7 @@ export default {
         {
           item: 'Tổng quan',
           url: '/dashboard',
-          component: 'EllipseSVG',
+          component: 'HomeSVG',
           subMenu: [],
         },
         {
@@ -96,22 +106,22 @@ export default {
             {
               subItem: 'Tạo đơn hàng',
               subUrl: '/dashboard/order-create',
-              subComponent: 'EllipseSVG',
+              subComponent: 'BellPlusSVG',
             },
             {
               subItem: 'Danh sách đơn hàng',
               subUrl: '/dashboard/order-list',
-              subComponent: 'EllipseSVG',
+              subComponent: 'AirPlaneSVG',
             },
             {
               subItem: 'Quản lý COD',
               subUrl: '/dashboard/order-cod',
-              subComponent: 'EllipseSVG',
+              subComponent: 'ShoppingCartPlusSVG',
             },
             {
               subItem: 'Đơn trong giỏ hàng',
               subUrl: '#',
-              subComponent: 'EllipseSVG',
+              subComponent: 'SnowFlowerSVG',
             },
           ],
         },
@@ -123,22 +133,22 @@ export default {
             {
               subItem: 'Thêm sản phẩm',
               subUrl: '/dashboard/product-create',
-              subComponent: 'EllipseSVG',
+              subComponent: 'BellPlusSVG',
             },
             {
               subItem: 'Danh sách sản phẩm',
               subUrl: '/dashboard/product-list',
-              subComponent: 'EllipseSVG',
+              subComponent: 'AirPlaneSVG',
             },
             {
               subItem: 'Danh mục',
               subUrl: '/dashboard/categories',
-              subComponent: 'EllipseSVG',
+              subComponent: 'ShoppingCartPlusSVG',
             },
             {
               subItem: 'Đơn trong giỏ hàng',
               subUrl: '#',
-              subComponent: 'EllipseSVG',
+              subComponent: 'SnowFlowerSVG',
             },
           ],
         },
@@ -150,14 +160,14 @@ export default {
             {
               subItem: 'Tạo khuyến mãi',
               subUrl: '/dashboard/promotion-create',
-              subComponent: 'EllipseSVG',
+              subComponent: 'BellPlusSVG',
               modal: ModalPromoPickerContent,
               modalW: 660,
             },
             {
               subItem: 'Danh sách khuyến mãi',
               subUrl: '/dashboard/promotions',
-              subComponent: 'EllipseSVG',
+              subComponent: 'AirPlaneSVG',
             },
           ],
         },
@@ -169,14 +179,14 @@ export default {
             {
               subItem: 'Gửi lời nhắn',
               subUrl: '/dashboard/send-msg',
-              subComponent: 'EllipseSVG',
+              subComponent: 'ShoppingCartPlusSVG',
               modal: ModalSendMsgContent,
               modalW: 720,
             },
             {
               subItem: 'Danh sách khách hàng',
               subUrl: '/dashboard/customer-list',
-              subComponent: 'EllipseSVG',
+              subComponent: 'SnowFlowerSVG',
             },
           ],
         },
@@ -188,17 +198,17 @@ export default {
             {
               subItem: 'Shopee',
               subUrl: '#',
-              subComponent: 'EllipseSVG',
+              subComponent: 'BellPlusSVG',
             },
             {
               subItem: 'Lazada',
               subUrl: '#',
-              subComponent: 'EllipseSVG',
+              subComponent: 'AirPlaneSVG',
             },
             {
               subItem: 'Facebook',
               subUrl: '#',
-              subComponent: 'EllipseSVG',
+              subComponent: 'ShoppingCartPlusSVG',
             },
           ],
         },
@@ -210,17 +220,17 @@ export default {
             {
               subItem: 'Tin bài',
               subUrl: '#',
-              subComponent: 'EllipseSVG',
+              subComponent: 'SnowFlowerSVG',
             },
             {
               subItem: 'Giao diện web',
               subUrl: '/dashboard/theme',
-              subComponent: 'EllipseSVG',
+              subComponent: 'BellPlusSVG',
             },
             {
               subItem: 'Các trang con',
               subUrl: '/dashboard/page',
-              subComponent: 'EllipseSVG',
+              subComponent: 'AirPlaneSVG',
             },
           ],
         },

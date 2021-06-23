@@ -8,7 +8,7 @@
 * 6. InformationSVG
 * 7. PlusSVG
 * 8. AvatarSVG
-* 9. FilterSVG
+* 9. ActionCheckboxSVG
 * 10. AccountCircleSVG
 * 11. ALTSVG
 * 12. LongArrowSVG
@@ -38,7 +38,14 @@
 * 36. MenubarSVG
 * 37. LongArrowNewSVG
 * 38. DoubleAngleSVG
-* 39. HamburgerSVG
+* 39. FilterSVG
+* 40. DashboardSVG
+* 41. UpgradeSVG
+* 42. HomeSVG
+* 43. BellPlusSVG
+* 44. AirPlaneSVG
+* 45. ShoppingCartPlusSVG
+* 46. SnowFlowerSVG
 */
 export const EllipseSVG = {
   render() {
@@ -115,14 +122,16 @@ export const PlusSVG = {
 export const AvatarSVG = {
   render() {
     return (
-      <svg viewBox="0 0 214.78 214.78" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
-        <path class="fil0" d="M107.39 0l0 0c59.3,0 107.39,48.09 107.39,107.39l0 0c0,59.3 -48.09,107.39 -107.39,107.39l0 0c-59.29,-0 -107.38,-48.09 -107.38,-107.39l-0 0c0,-59.3 48.09,-107.39 107.39,-107.39l0 -0zm56.38 147.23l0 5.26c0,6.2 -5.07,11.28 -11.28,11.28l-90.21 0c-6.2,0 -11.28,-5.07 -11.28,-11.28l0 -5.26c0,-13.72 15.97,-21.99 31.01,-28.57 0.56,-0.19 0.94,-0.38 1.5,-0.75 1.13,-0.56 2.44,-0.56 3.57,0.19 6.01,3.95 12.97,6.2 20.3,6.2 7.33,0 14.28,-2.25 20.3,-6.01 1.13,-0.75 2.44,-0.75 3.57,-0.19 0.56,0.19 0.94,0.38 1.5,0.75 15.03,6.39 31.01,14.66 31.01,28.38zm-56.38 -96.22c15.46,0 28,13.88 28,31.01 0,17.13 -12.54,31.01 -28,31.01 -15.46,0 -28,-13.88 -28,-31.01 0,-17.13 12.54,-31.01 28,-31.01z"/>
-      </svg>
+        <svg viewBox="0 0 31 32">
+          <rect x="0.452393" y="0.533325" width="30.0625" height="31" rx="15.0312" fill="currentColor"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M23.375 21.7838V22.5433C23.375 23.4385 22.6648 24.1708 21.7968 24.1708H9.17052C8.30247 24.1708 7.59224 23.4385 7.59224 22.5433V21.7838C7.59224 19.8037 9.82814 18.6102 11.9325 17.6608C12.0114 17.6337 12.064 17.6066 12.1429 17.5523C12.3008 17.471 12.4849 17.471 12.6427 17.5795C13.4845 18.1491 14.4578 18.4746 15.4836 18.4746C16.5095 18.4746 17.4828 18.1491 18.3245 17.6066C18.4824 17.4981 18.6665 17.4981 18.8243 17.5795C18.9033 17.6066 18.9559 17.6337 19.0348 17.688C21.1391 18.6102 23.375 19.8037 23.375 21.7838Z" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4837 7.89581C17.6483 7.89581 19.403 9.89954 19.403 12.3714C19.403 14.8433 17.6483 16.8471 15.4837 16.8471C13.319 16.8471 11.5643 14.8433 11.5643 12.3714C11.5643 9.89954 13.319 7.89581 15.4837 7.89581Z" fill="white"/>
+        </svg>
     );
   },
 };
 
-export const FilterSVG = {
+export const ActionCheckboxSVG = {
   render() {
     return (
       <svg viewBox="0 0 446.37 315.76" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
@@ -365,9 +374,15 @@ export const PaymentSVG = {
 export const SettingSVG = {
   render() {
     return (
-      <svg viewBox="0 0 34 34">
-        <path id="path-1" class="st1" d="M29.4,18.6c0.1-0.5,0.1-1.1,0.1-1.6s0-1.1-0.1-1.6l3.5-2.8c0.3-0.3,0.4-0.7,0.2-1.1l-3.3-5.8c-0.2-0.4-0.7-0.5-1-0.4l-4.1,1.7c-0.9-0.7-1.8-1.2-2.8-1.6L21.1,1c0-0.4-0.4-0.7-0.8-0.7h-6.7c-0.4,0-0.8,0.3-0.8,0.7l-0.6,4.4c-1,0.4-1.9,1-2.8,1.6L5.3,5.4c-0.4-0.2-0.8,0-1,0.4l-3.3,5.8c-0.2,0.4-0.1,0.8,0.2,1.1l3.5,2.8c-0.1,0.5-0.1,1.1-0.1,1.6s0,1.1,0.1,1.6l-3.5,2.8c-0.3,0.3-0.4,0.7-0.2,1.1l3.3,5.8c0.2,0.4,0.7,0.5,1,0.4l4.1-1.7c0.9,0.7,1.8,1.2,2.8,1.6l0.6,4.4c0,0.4,0.4,0.7,0.8,0.7h6.7c0.4,0,0.8-0.3,0.8-0.7l0.6-4.4c1-0.4,2-1,2.8-1.6l4.1,1.7c0.4,0.1,0.8,0,1-0.4l3.3-5.8c0.2-0.4,0.1-0.8-0.2-1.1L29.4,18.6L29.4,18.6z M17,22.8c-3.2,0-5.8-2.6-5.8-5.8s2.6-5.8,5.8-5.8s5.8,2.6,5.8,5.8S20.2,22.8,17,22.8L17,22.8z"/>
-      </svg>
+        <svg viewBox="0 0 20 20">
+          <mask id="SettingSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="18" height="18">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.25 10C16.25 10.2834 16.225 10.55 16.1917 10.8167L17.95 12.1917C18.1083 12.3167 18.15 12.5417 18.05 12.725L16.3833 15.6084C16.2833 15.7917 16.0667 15.8667 15.875 15.7917L13.8 14.9584C13.3667 15.2834 12.9 15.5667 12.3917 15.775L12.075 17.9834C12.05 18.1834 11.875 18.3334 11.6667 18.3334H8.33332C8.12499 18.3334 7.94999 18.1834 7.92499 17.9834L7.60832 15.775C7.09999 15.5667 6.63332 15.2917 6.19999 14.9584L4.12499 15.7917C3.94166 15.8584 3.71666 15.7917 3.61665 15.6084L1.94999 12.725C1.84999 12.5417 1.89165 12.3167 2.04999 12.1917L3.80832 10.8167C3.77499 10.55 3.74999 10.275 3.74999 10C3.74999 9.72502 3.77499 9.45002 3.80832 9.18335L2.04999 7.80835C1.89165 7.68335 1.84165 7.45835 1.94999 7.27502L3.61665 4.39169C3.71666 4.20835 3.93332 4.13335 4.12499 4.20835L6.19999 5.04169C6.63332 4.71669 7.09999 4.43335 7.60832 4.22502L7.92499 2.01669C7.94999 1.81669 8.12499 1.66669 8.33332 1.66669H11.6667C11.875 1.66669 12.05 1.81669 12.075 2.01669L12.3917 4.22502C12.9 4.43335 13.3667 4.70835 13.8 5.04169L15.875 4.20835C16.0583 4.14169 16.2833 4.20835 16.3833 4.39169L18.05 7.27502C18.15 7.45835 18.1083 7.68335 17.95 7.80835L16.1917 9.18335C16.225 9.45002 16.25 9.71669 16.25 10ZM7.08332 10C7.08332 11.6084 8.39165 12.9167 9.99999 12.9167C11.6083 12.9167 12.9167 11.6084 12.9167 10C12.9167 8.39169 11.6083 7.08335 9.99999 7.08335C8.39165 7.08335 7.08332 8.39169 7.08332 10Z" fill="white"/>
+          </mask>
+          <g mask="url(#SettingSVG0)">
+            <rect width="20" height="20" fill="currentColor"/>
+          </g>
+        </svg>
+
     );
   },
 };
@@ -436,18 +451,131 @@ export const DoubleAngleSVG = {
   },
 };
 
-export const HamburgerSVG = {
+export const FilterSVG = {
   render() {
     return (
         <svg viewBox="0 0 24 24">
-          <mask id="HamburgerSVGMask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="6" width="18" height="12">
+          <mask id="FilterSVGMask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="6" width="18" height="12">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6V8H21V6H3ZM10 18H14V16H10V18ZM18 13H6V11H18V13Z" fill="white"/>
           </mask>
-          <g mask="url(#HamburgerSVGMask0)">
+          <g mask="url(#FilterSVGMask0)">
             <rect x="-3" y="1" width="24" height="24" fill="currentColor"/>
           </g>
         </svg>
 
+
+    );
+  },
+};
+
+export const DashboardSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 21 22">
+          <mask id="DashboardSVGMask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="4" width="18" height="14">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.38263 4.1778H16.7437C17.6623 4.1778 18.4139 4.9528 18.4139 5.90002V16.2333C18.4139 17.1806 17.6623 17.9556 16.7437 17.9556H3.38263C2.46406 17.9556 1.7125 17.1806 1.7125 16.2333L1.72085 5.90002C1.72085 4.9528 2.46406 4.1778 3.38263 4.1778ZM3.38263 16.2333H12.5684V12.7889H3.38263V16.2333ZM12.5684 11.9278H3.38263V8.48335H12.5684V11.9278ZM13.4035 16.2333H16.7437V8.48335H13.4035V16.2333Z" fill="white"/>
+          </mask>
+          <g mask="url(#DashboardSVGMask0)">
+            <rect x="0.0423584" y="0.733337" width="20.0416" height="20.6667" fill="currentColor"/>
+          </g>
+        </svg>
+
+
+
+    );
+  },
+};
+
+export const UpgradeSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 21 22">
+          <mask id="UpgradeSVGMask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="3" width="19" height="17">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.87594 19.062L2.82544 19.062C1.89952 19.062 1.14194 18.2808 1.14194 17.326V5.17401C1.14194 4.21921 1.89952 3.43801 2.82544 3.43801L17.9769 3.43801C18.9029 3.43801 19.6604 4.21921 19.6604 5.17401V17.326C19.6604 18.2808 18.9029 19.062 17.9769 19.062H12.9264V17.3347H17.9769V5.15665L2.82544 5.15665V17.3347L7.87594 17.3347V19.062ZM7.03419 11.25L10.4012 7.77801L13.7682 11.25H11.2429L11.2429 19.062H9.55944L9.55944 11.25L7.03419 11.25Z" fill="white"/>
+          </mask>
+          <g mask="url(#UpgradeSVGMask0)">
+            <rect x="20.923" y="22.1" width="21.0437" height="21.7" transform="rotate(180 20.923 22.1)" fill="currentColor"/>
+          </g>
+        </svg>
+
+
+
+
+    );
+  },
+};
+
+export const HomeSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 20 20">
+          <mask id="HomeSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="2" width="18" height="15">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.33335 16.6667V11.6667H11.6667V16.6667H15.8334V10H18.3334L10 2.5L1.66669 10H4.16669V16.6667H8.33335Z" fill="white"/>
+          </mask>
+          <g mask="url(#HomeSVG0)">
+            <rect width="20" height="20" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
+export const BellPlusSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 20 20">
+          <mask id="BellPlusSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="1" width="16" height="19">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.7333 14.0167V9.16666C15.7333 6.45832 13.8583 4.19166 11.325 3.59166V2.99166C11.325 2.25832 10.7333 1.66666 10 1.66666C9.26667 1.66666 8.675 2.25832 8.675 2.99166V3.59166C6.14167 4.19166 4.26667 6.45832 4.26667 9.16666V14.0167L2.5 15.7833V16.6667H17.5V15.7833L15.7333 14.0167ZM8.34167 17.5083C8.34167 18.425 9.08333 19.1667 10 19.1667C10.9167 19.1667 11.6583 18.425 11.6583 17.5083H8.34167ZM10.8333 10.8417H13.3333V9.16666H10.8333V6.66666H9.16667V9.16666H6.66667V10.8417H9.16667V13.3417H10.8333V10.8417Z" fill="white"/>
+          </mask>
+          <g mask="url(#BellPlusSVG0)">
+            <rect width="20" height="20" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
+export const AirPlaneSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 20 20">
+          <mask id="AirPlaneSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="1" width="16" height="18">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.9166 13.3333V11.6667L11.25 7.49999V2.91666C11.25 2.22499 10.6916 1.66666 9.99998 1.66666C9.30831 1.66666 8.74998 2.22499 8.74998 2.91666V7.49999L2.08331 11.6667V13.3333L8.74998 11.25V15.8333L7.08331 17.0833V18.3333L9.99998 17.5L12.9166 18.3333V17.0833L11.25 15.8333V11.25L17.9166 13.3333Z" fill="white"/>
+          </mask>
+          <g mask="url(#AirPlaneSVG0)">
+            <rect width="20" height="20" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
+export const ShoppingCartPlusSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 20 20">
+          <mask id="ShoppingCartPlusSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="19">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.16665 7.50001H10.8333V5.00001H13.3333V3.33334H10.8333V0.833344H9.16665V3.33334H6.66665V5.00001H9.16665V7.50001ZM5.83331 15C4.91665 15 4.17498 15.75 4.17498 16.6667C4.17498 17.5833 4.91665 18.3333 5.83331 18.3333C6.74998 18.3333 7.49998 17.5833 7.49998 16.6667C7.49998 15.75 6.74998 15 5.83331 15ZM12.5083 16.6667C12.5083 15.75 13.25 15 14.1666 15C15.0833 15 15.8333 15.75 15.8333 16.6667C15.8333 17.5833 15.0833 18.3333 14.1666 18.3333C13.25 18.3333 12.5083 17.5833 12.5083 16.6667ZM5.97498 12.2917L5.99998 12.1917L6.74998 10.8333H12.9583C13.5833 10.8333 14.1333 10.4917 14.4166 9.97501L17.6333 4.13334L16.1833 3.33334H16.175L15.2583 5.00001L12.9583 9.16668H7.10831L6.99998 8.94168L5.13331 5.00001L4.34165 3.33334L3.55831 1.66668H0.833313V3.33334H2.49998L5.49998 9.65834L4.37498 11.7C4.24165 11.9333 4.16665 12.2083 4.16665 12.5C4.16665 13.4167 4.91665 14.1667 5.83331 14.1667H15.8333V12.5H6.18331C6.07498 12.5 5.97498 12.4083 5.97498 12.2917Z" fill="white"/>
+          </mask>
+          <g mask="url(#ShoppingCartPlusSVG0)">
+            <rect width="20" height="20" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
+export const SnowFlowerSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 20 20">
+          <mask id="SnowFlowerSVG" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="18" height="18">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3334 9.16667H14.8584L17.5584 6.46667L16.3834 5.28334L12.5 9.16667H10.8334V7.50001L14.7167 3.61667L13.5334 2.44167L10.8334 5.14167V1.66667H9.16669V5.14167L6.46669 2.44167L5.28335 3.61667L9.16669 7.50001V9.16667H7.50002L3.61669 5.28334L2.44169 6.46667L5.14169 9.16667H1.66669V10.8333H5.14169L2.44169 13.5333L3.61669 14.7167L7.50002 10.8333H9.16669V12.5L5.28335 16.3833L6.46669 17.5583L9.16669 14.8583V18.3333H10.8334V14.8583L13.5334 17.5583L14.7167 16.3833L10.8334 12.5V10.8333H12.5L16.3834 14.7167L17.5584 13.5333L14.8584 10.8333H18.3334V9.16667Z" fill="white"/>
+          </mask>
+          <g mask="url(#SnowFlowerSVG)">
+            <rect width="20" height="20" fill="currentColor"/>
+          </g>
+        </svg>
 
     );
   },
@@ -462,7 +590,7 @@ export default {
   InformationSVG,
   PlusSVG,
   AvatarSVG,
-  FilterSVG,
+  ActionCheckboxSVG,
   AccountCircleSVG,
   ALTSVG,
   LongArrowSVG,
@@ -492,6 +620,13 @@ export default {
   MenubarSVG,
   LongArrowNewSVG,
   DoubleAngleSVG,
-  HamburgerSVG
+  FilterSVG,
+  DashboardSVG,
+  UpgradeSVG,
+  HomeSVG,
+  BellPlusSVG,
+  AirPlaneSVG,
+  ShoppingCartPlusSVG,
+  SnowFlowerSVG
 };
 </script>
