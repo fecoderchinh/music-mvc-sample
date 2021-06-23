@@ -37,6 +37,10 @@ export default {
           name: 'Đơn từ website',
           closeTag: true,
         },
+        {
+          name: 'Anh Long',
+          closeTag: true,
+        },
       ],
     };
   },

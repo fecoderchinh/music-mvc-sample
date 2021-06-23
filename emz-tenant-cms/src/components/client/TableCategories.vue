@@ -9,8 +9,8 @@
       </tr>
       <tr class="pl-3" v-if="allCheckStatus.length === 0">
         <th>
-          <div class="table-categories__header-content cursor-pointer" @click="selectAll = !selectAll">
-            <FilterSVG class="w-8 sm:w-6 fill-menuIcon"/>
+          <div class="table-categories__header-content cursor-pointer text-menuIcon" @click="selectAll = !selectAll">
+            <ActionCheckbox/>
           </div>
         </th>
         <th>
@@ -101,12 +101,10 @@ import Table from '@/components/client/Table.vue';
 // import CheckType from '@/components/client/CheckType.vue';
 import Pagination from "@/components/client/Pagination";
 
-import {
-  FilterSVG,
-} from '../SVGs.vue';
 import ModalDanhMucSp from "@/components/client/ModalDanhMucSp";
 import ModalDanhMucSpAuto from "@/components/client/ModalDanhMucSpAuto";
 import TableActions from "@/components/client/TableActions";
+import ActionCheckbox from "@/components/client/ActionCheckbox";
 // import ModalUpdatePrice from "@/components/client/ModalUpdatePrice";
 // import ModalCancelOrder from "@/components/client/ModalCancelOrder";
 // import ModalConfirmOrderContent from "@/components/client/ModalConfirmOrderContent";
@@ -115,56 +113,16 @@ import TableActions from "@/components/client/TableActions";
 
 export default {
   components: {
+    ActionCheckbox,
     TableActions,
     // Loader,
-    FilterSVG,
     // CheckType,
     Table,
     Pagination
   },
   data() {
     return {
-      showAction: false,
-      showMenu: true,
       allCheckStatus: [],
-      // tableActionsData: [
-      //   {
-      //     label: 'Đã gói hàng',
-      //   },
-      //   {
-      //     label: 'Giao hàng',
-      //   },
-      //   {
-      //     label: 'Xác nhận thanh toán',
-      //     modal: ModalConfirmOrderContent,
-      //     width: 500,
-      //   },
-      //   {
-      //     label: 'Hủy đơn hàng',
-      //     modal: ModalCancelOrder,
-      //     width: 720,
-      //   },
-      //   {
-      //     label: 'Hoàn đơn hàng',
-      //     modal: ModalReturnOrderContent,
-      //     width: 720,
-      //   },
-      //   {
-      //     label: 'In đơn hàng',
-      //     modal: ModalUpdatePrice,
-      //     width: 500,
-      //   },
-      //   {
-      //     label: 'Lưu trữ',
-      //     reduceAttention: true,
-      //   },
-      //   {
-      //     label: 'Hủy lưu trữ',
-      //   },
-      //   {
-      //     label: 'Xóa đơn hàng',
-      //   },
-      // ],
       tableActionsData: [
         {
           label: 'Ẩn danh mục',

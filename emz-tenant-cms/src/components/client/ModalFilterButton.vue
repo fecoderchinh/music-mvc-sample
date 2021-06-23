@@ -1,7 +1,7 @@
 <template>
-  <Button @click="openModal" button-class="cms-button cms-button-white ml-5 group">
+  <Button @click="openModal" button-class="cms-button filter-button cms-button-white ml-5 no-py group">
     <template slot="name">
-      <EllipseSVG class="w-4 h-4 fill-menuIcon group-hover:fill-buttonAndURL transform rotate-180"/>
+      <HamburgerSVG class="w-6 fill-current"/>
     </template>
   </Button>
 </template>
@@ -12,13 +12,13 @@ import Button from '@/components/client/Button.vue';
 import ModalFilterForm from '@/components/client/ModalFilterForm.vue';
 
 import {
-  EllipseSVG,
+  HamburgerSVG,
 } from '@/components/SVGs.vue';
 
 export default {
   components: {
     Button,
-    EllipseSVG,
+    HamburgerSVG,
   },
   methods: {
     openModal() {
@@ -39,4 +39,10 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.cms-button {
+  &.filter-button {
+    padding: 0 .75rem !important;
+  }
+}
+</style>

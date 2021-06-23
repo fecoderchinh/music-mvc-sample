@@ -14,7 +14,7 @@
             <span class="inline-flex">{{ data.name }}</span>
             <template v-if="data.closeTag">
               <span @click="removeTag(index)">
-                <CloseSVG class="inline-flex w-3 ml-3 fill-placeholderStyle group-hover:fill-menuIcon"/>
+                <CloseSVG class="inline-flex w-3 ml-3 fill-current hover:fill-buttonAndURL"/>
               </span>
             </template>
           </template>

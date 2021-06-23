@@ -48,19 +48,19 @@ export default {
             @apply transform rotate-180;
           }
         }
-        &:first-child {
-          @apply mr-4 #{!important};
-        }
-        &:last-child {
-          @apply ml-1 #{!important};
-        }
-        &:not(:last-child) {
-          @apply mr-3;
-        }
+        //&:first-child {
+        //  @apply mr-4 #{!important};
+        //}
+        //&:last-child {
+        //  @apply ml-1 #{!important};
+        //}
+        //&:not(:last-child) {
+        //  @apply mr-3;
+        //}
         a {
           @apply text-menuIcon text-base font-medium;
           &:not(.arrow) {
-            @apply pb-1;
+            @apply pb-1 px-2;
           }
           &:hover, &:focus {
             @apply text-buttonAndURL;

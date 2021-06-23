@@ -49,9 +49,13 @@ export default {
   data() {
     return {
       optionDataSelect1: [
-        { name: 'Lọc ngày đặt' },
-        { name: 'Lặt ngày đọc' },
-        { name: 'Lọc ngặt đày' },
+        { name: 'Hôm nay' },
+        { name: 'Hôm qua' },
+        { name: '3 ngày qua' },
+        { name: '7 ngày qua' },
+        { name: '1 tháng qua' },
+        { name: 'Tùy chỉnh' },
+        { name: 'Tất cả' },
       ],
       optionDataSelect2: [
         { name: 'Lọc nguồn đơn' },

@@ -30,7 +30,12 @@ export default {};
     }
     &-body {
       @apply relative;
-      th {
+      tr {
+        &:hover {
+          @apply bg-cmsLightBlue bg-opacity-10 #{!important};
+        }
+      }
+      td {
         @apply cms-typo text-13px text-menuItem;
       }
     }

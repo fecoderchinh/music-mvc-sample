@@ -2,10 +2,15 @@
   <!-- eslint-disable max-len -->
   <Table class="table-orderlist">
     <thead class="box-table-header table-orderlist__header" slot="header">
-      <tr class="pl-3">
+      <tr v-if="allCheckStatus.length !== 0">
+        <TableActions @closeAction="action()" :optionData="tableActionsData" :isFull="allCheckStatus.length === optionDataTable.length">
+          <span slot="content">{{ allCheckStatus.length }} phiên bản được chọn</span>
+        </TableActions>
+      </tr>
+      <tr class="pl-3" v-if="allCheckStatus.length === 0">
         <th>
-          <div class="table-orderlist__header-content">
-            <FilterSVG class="w-6 fill-menuIcon"/>
+          <div class="table-categories__header-content cursor-pointer text-menuIcon" @click="selectAll = !selectAll">
+            <ActionCheckbox/>
           </div>
         </th>
         <th>
@@ -62,15 +67,26 @@
     </thead>
     <tbody class="box-table-body table-orderlist__body" slot="body">
 
-      <tr v-for="(data, index) in optionDataTable" :key="data.id" class="pl-3">
+      <tr v-for="(data, index) in optionDataTable" :key="data.id" class="pl-3" :class="data.isArchive ? 'opacity-50' : null">
         <td>
           <div class="table-orderlist__body-content">
-            <CheckType :id="data.id" main-class="sm:ml-0"/>
+            <div class="cms-checkbox">
+              <input
+                  :id="data.id"
+                  type="checkbox"
+                  :value="data.id"
+                  v-model="allCheckStatus"
+              />
+              <label :for="data.id" class="text-standardCMS text-menuItem text-14px">
+                <span class="square"><span class="square-inner"></span></span>
+                <slot name="text"></slot>
+              </label>
+            </div>
           </div>
         </td>
         <td>
           <div class="table-orderlist__body-content">
-            <h3 class="cms-typo text-13px text-menuItem truncate">
+            <h3 class="cms-typo text-13px text-menuItem">
               <a href="#" @click.self.prevent="openModal" :class="hasNotify( index ) + 'hover:text-buttonAndURL'">
                 #{{ data.id }}
               </a>
@@ -104,7 +120,7 @@
         <td>
           <div class="table-orderlist__body-content">
             <h3 class="cms-typo text-13px text-menuItem truncate">
-              <a href="#" :class="formatPaidStatusClass( data.paidStatus ) + ' px-3 py-1 text-menuItem font-lato font-medium text-13px rounded-full'">{{ formatPaidStatusName(data.paidStatus) }}</a>
+              <a href="#" :class="formatPaidStatusClass( data.paidStatus ) + ' px-3 block truncate text-menuItem font-lato font-medium text-13px rounded-full'">{{ formatPaidStatusName(data.paidStatus) }}</a>
             </h3>
           </div>
         </td>
@@ -134,26 +150,71 @@
 
 <script>
 import Table from '@/components/client/Table.vue';
-import CheckType from '@/components/client/CheckType.vue';
+// import CheckType from '@/components/client/CheckType.vue';
 import Pagination from "@/components/client/Pagination";
 
 import ModalOrderDetail from './ModalOrderDetail.vue';
 
 import {
-  FilterSVG,
   ArrowSVG,
 } from '../SVGs.vue';
+import ModalConfirmOrderContent from "@/components/client/ModalConfirmOrderContent";
+import ModalCancelOrder from "@/components/client/ModalCancelOrder";
+import ModalReturnOrderContent from "@/components/client/ModalReturnOrderContent";
+import ModalUpdatePrice from "@/components/client/ModalUpdatePrice";
+import TableActions from "@/components/client/TableActions";
+import ActionCheckbox from "@/components/client/ActionCheckbox";
 
 export default {
   components: {
+    ActionCheckbox,
+    TableActions,
     Table,
-    FilterSVG,
     ArrowSVG,
-    CheckType,
+    // CheckType,
     Pagination
   },
   data() {
     return {
+      allCheckStatus: [],
+      tableActionsData: [
+        {
+          label: 'Đã gói hàng',
+        },
+        {
+          label: 'Giao hàng',
+        },
+        {
+          label: 'Xác nhận thanh toán',
+          modal: ModalConfirmOrderContent,
+          width: 500,
+        },
+        {
+          label: 'Hủy đơn hàng',
+          modal: ModalCancelOrder,
+          width: 720,
+        },
+        {
+          label: 'Hoàn đơn hàng',
+          modal: ModalReturnOrderContent,
+          width: 720,
+        },
+        {
+          label: 'In đơn hàng',
+          modal: ModalUpdatePrice,
+          width: 500,
+        },
+        {
+          label: 'Lưu trữ',
+          reduceAttention: true,
+        },
+        {
+          label: 'Hủy lưu trữ',
+        },
+        {
+          label: 'Xóa đơn hàng',
+        },
+      ],
       optionDataTable: [
         {
           id: '1001',
@@ -181,12 +242,13 @@ export default {
           id: '1003',
           orderSource: 'Lazada Đồ Câu Pzoom',
           orderDate: '15/12/2019 14:25',
-          customerName: 'Lý Liên Kiệt',
+          customerName: 'Lý Tiểu Long',
           price: 23456000,
           paidStatus: 1,
           shippingStatus: 2,
-          lineThrough: true,
+          lineThrough: false,
           notify: true,
+          isArchive: true,
         },
         {
           id: '1004',
@@ -195,7 +257,18 @@ export default {
           customerName: 'Lý Liên Kiệt',
           price: 23456000,
           paidStatus: 1,
-          shippingStatus: 1,
+          shippingStatus: 2,
+          lineThrough: true,
+          notify: true,
+        },
+        {
+          id: '1005',
+          orderSource: 'Lazada Đồ Câu Pzoom',
+          orderDate: '15/12/2019 14:25',
+          customerName: 'Lý Liên Kiệt',
+          price: 23456000,
+          paidStatus: 3,
+          shippingStatus: 3,
           lineThrough: true,
           notify: true,
         },
@@ -209,7 +282,9 @@ export default {
         case 1:
           str = 'bg-cmsOrangeNotify'; break; // unpaid
         case 2:
-          str = ''; break; // paid
+          str = 'bg-cmsGreenNotify'; break;
+        case 3:
+          str = 'bg-sidebarHover'; break; // paid
         default: break;
       }
 
@@ -222,6 +297,8 @@ export default {
           str = 'Chưa thanh toán'; break; // unpaid
         case 2:
           str = 'Đã thanh toán'; break; // paid
+        case 3:
+          str = 'Đã thanh toán'; break; // paid
         default: break;
       }
 
@@ -231,9 +308,11 @@ export default {
       let str;
       switch (num) {
         case 1:
-          str = ''; break; // shipped
+          str = 'bg-cmsOrangeNotify'; break; // unpaid
         case 2:
-          str = 'bg-cmsRedNotify'; break; // wait-transfer
+          str = 'bg-cmsGreenNotify'; break;
+        case 3:
+          str = 'bg-cmsRedNotify'; break; // paid
         default: break;
       }
 
@@ -243,9 +322,11 @@ export default {
       let str;
       switch (num) {
         case 1:
-          str = 'Đã giao hàng'; break; // shipped
+          str = 'Chưa giao hàng'; break;
         case 2:
-          str = 'Chờ chuyển hoàn'; break; // wait-transfer
+          str = 'Đã giao hàng'; break;
+        case 3:
+          str = 'Chờ chuyển hoàn'; break;
         default: break;
       }
 
@@ -285,6 +366,27 @@ export default {
 
       this.$modal.show(ModalOrderDetail, options, style, events);
     },
+    action() {
+      this.selectAll = !this.selectAll
+    },
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.optionDataTable ? this.allCheckStatus.length === this.optionDataTable.length : false;
+      },
+      set: function (value) {
+        var selected = [];
+
+        if (value) {
+          this.optionDataTable.forEach(function (data) {
+            selected.push(data.id);
+          });
+        }
+
+        this.allCheckStatus = selected;
+      }
+    }
   },
 };
 </script>
@@ -350,6 +452,15 @@ export default {
       &__body {
         &-content {
           width: calc( 100% - 1.25rem );
+          .has-notify {
+            @apply relative;
+            &:after {
+              @apply absolute w-2 h-2 rounded-full bg-cmsRed;
+              content: '';
+              top: -6px;
+              right: -7px;
+            }
+          }
         }
         tr {
           @apply py-15px border-b;

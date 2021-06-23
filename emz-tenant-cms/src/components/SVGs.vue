@@ -38,6 +38,7 @@
 * 36. MenubarSVG
 * 37. LongArrowNewSVG
 * 38. DoubleAngleSVG
+* 39. HamburgerSVG
 */
 export const EllipseSVG = {
   render() {
@@ -204,7 +205,7 @@ export const CircleSVG = {
 export const CloseSVG = {
   render() {
     return (
-      <svg viewBox="0 0 14 15">
+      <svg viewBox="0 0 14 15" fill="currentColor">
         <polygon id="path-1" class="st1" points="14,1.9 12.6,0.5 7,6.1 1.4,0.5 0,1.9 5.6,7.5 0,13.1 1.4,14.5 7,8.9 12.6,14.5 14,13.1 8.4,7.5"/>
       </svg>
     );
@@ -417,19 +418,36 @@ export const DoubleAngleSVG = {
   render() {
     return (
         <svg viewBox="0 0 25 21">
-          <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="7" y="5" width="7" height="11">
+          <mask id="DoubleAngleSVGMask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="7" y="5" width="7" height="11">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3644 14.3556L9.5172 10.5L13.3644 6.6444L12.18 5.46L7.14 10.5L12.18 15.54L13.3644 14.3556Z" fill="white"/>
           </mask>
-          <g mask="url(#mask0)">
+          <g mask="url(#DoubleAngleSVGMask0)">
             <rect width="21" height="21" fill="currentColor"/>
           </g>
-          <mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="11" y="5" width="7" height="11">
+          <mask id="DoubleAngleSVGMask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="11" y="5" width="7" height="11">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M17.3644 14.3556L13.5172 10.5L17.3644 6.6444L16.18 5.46L11.14 10.5L16.18 15.54L17.3644 14.3556Z" fill="white"/>
           </mask>
-          <g mask="url(#mask1)">
+          <g mask="url(#DoubleAngleSVGMask1)">
             <rect x="4" width="21" height="21" fill="#currentColor"/>
           </g>
         </svg>
+
+    );
+  },
+};
+
+export const HamburgerSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 24 24">
+          <mask id="HamburgerSVGMask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="6" width="18" height="12">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6V8H21V6H3ZM10 18H14V16H10V18ZM18 13H6V11H18V13Z" fill="white"/>
+          </mask>
+          <g mask="url(#HamburgerSVGMask0)">
+            <rect x="-3" y="1" width="24" height="24" fill="currentColor"/>
+          </g>
+        </svg>
+
 
     );
   },
@@ -473,6 +491,7 @@ export default {
   SquareSVG,
   MenubarSVG,
   LongArrowNewSVG,
-  DoubleAngleSVG
+  DoubleAngleSVG,
+  HamburgerSVG
 };
 </script>
