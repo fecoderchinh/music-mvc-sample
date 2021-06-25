@@ -1,9 +1,12 @@
 <template>
   <!-- eslint-disable max-len -->
-  <div class="flex py-16 items-center justify-center bg-white border">
-    <div class="px-5">
+  <div class="flex items-center justify-center bg-white">
+    <template v-if="image">
+      <img :src="image" alt="" class="w-full object-contain"/>
+    </template>
+    <div class="px-5" v-else>
       <SquareSVG class="w-20 h-20 mb-5 mx-auto fill-placeholderStyle hover:fill-placeholderStyle"/>
-      <Button button-class="cms-button cms-button-blue">
+      <Button button-class="cms-button cms-button-blue" @click="$emit('click')">
         <template slot="name">
           Upload ảnh
         </template>
@@ -24,6 +27,7 @@ export default {
     Button,
     SquareSVG,
   },
+  props: ['image']
 };
 </script>
 

@@ -4,7 +4,7 @@
       <label class="cursor-pointer">Ảnh đại diện</label>
     </template>
     <template slot="content">
-      <ImageUploader/>
+      <ImageUploader :image="image" @click="$emit('click')"/>
     </template>
   </Widget>
 </template>
@@ -18,5 +18,6 @@ export default {
     Widget,
     ImageUploader,
   },
+  props: ['image']
 };
 </script>

@@ -74,6 +74,7 @@
           <WidgetRadioStatusSaved/>
 
           <WidgetImageUploader/>
+          <WidgetImageUploader image="https://picsum.photos/400/300"/>
 
           <Widget>
             <template slot="title">
