@@ -3,7 +3,7 @@
   <Box>
     <template slot="content">
 
-      <div class="cms-label text-14px mb-4">
+      <div class="cms-label text-14px mb-3">
         <label for="add-product-name" class="cursor-pointer text-14px text-labelAndTitle">
           Tên sản phẩm
         </label>

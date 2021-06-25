@@ -1,13 +1,15 @@
 <template>
-  <div v-if="loading" class="cms-loader" ref="cmsLoader">
-    <div class="spinner"></div>
+  <div v-if="loading" class="cms-loader" ref="cmsLoader" :class="innerStage ? 'absolute' : 'fixed'">
+    <Spinner class="w-10 h-10 border-4"/>
   </div>
 </template>
 
 <script>
+import Spinner from "@/components/client/Spinner";
 export default {
   name: "Loader",
-  props: ["loading"],
+  components: {Spinner},
+  props: ["loading", "innerStage"],
   data() {
     return {
       height: 0,
@@ -26,7 +28,7 @@ export default {
       if(this.$refs.cmsLoader) {
         this.height = this.$refs.cmsLoader.parentElement.offsetHeight
         this.$refs.cmsLoader.style.height = this.height+"px"
-        this.$refs.cmsLoader.style.paddingLeft = this.sidebarWidth+"px"
+        if(!this.innerStage) this.$refs.cmsLoader.style.paddingLeft = this.sidebarWidth+"px"
       }
     }
   }
@@ -36,25 +38,10 @@ export default {
 <style lang="scss">
 .cms-loader {
   //@apply absolute top-0 right-0 bottom-0 left-0 w-full flex justify-center items-center z-50 select-none;
-  @apply fixed top-0 right-0 bottom-0 left-0 w-full flex justify-center items-center z-20 select-none;
+  @apply top-0 right-0 bottom-0 left-0 w-full flex justify-center items-center z-20 select-none;
   &:before {
     content: '';
     @apply absolute top-0 right-0 bottom-0 left-0 w-full h-full bg-black opacity-50;
-  }
-  .spinner {
-    @apply w-10 h-10 border-solid;
-    border-width: 5px;
-    border-color: rgba(255,255,255,.1);
-    border-right-color: orange;
-    border-radius: 50%;
-    animation: spinner 1s linear infinite;
-  }
-  @keyframes spinner {
-    from {
-      transform: rotate(0deg);
-    } to {
-        transform: rotate(360deg);
-      }
   }
 }
 </style>

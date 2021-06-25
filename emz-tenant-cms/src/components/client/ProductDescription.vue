@@ -3,7 +3,7 @@
   <Box>
     <template slot="content">
 
-      <div class="cms-label text-14px mb-5">
+      <div class="cms-label text-14px mb-3">
         <label class="cursor-pointer text-14px text-labelAndTitle">
           Đặc điểm nổi bật <span class="text-cmsRed">*</span>
         </label>
@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="cms-label text-14px mb-5">
+      <div class="cms-label text-14px mb-3">
         <label class="cursor-pointer text-14px text-labelAndTitle">
           Mô tả sản phẩm chi tiết <span class="text-cmsRed">*</span>
         </label>

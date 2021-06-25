@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full overflow-hidden">
+  <div class="w-full overflow-hidden relative">
     <Table class="table-category-condition-auto">
       <tbody class="box-table-body table-category-condition-auto__body" slot="body">
 
@@ -29,7 +29,10 @@
       </tr>
       </tbody>
       <p class="cms-typo text-13px text-buttonAndURL mt-5 text-center" slot="outside">
-        <a href="#">Xem thêm</a>
+        <a href="#" @click.prevent="showLoader = !showLoader">
+          <Spinner v-if="showLoader" class="inline-block w-5 h-5 border-2"/>
+          <template v-else>Xem thêm</template>
+        </a>
       </p>
     </Table>
   </div>
@@ -42,16 +45,19 @@ import {
   SquareSVG,
   CloseSVG
 } from '@/components/SVGs'
+import Spinner from "@/components/client/Spinner";
 
 export default {
   name: "TableConditionAuto",
   components: {
+    Spinner,
     SquareSVG,
     CloseSVG,
     Table
   },
   data() {
     return {
+      showLoader: false,
       optionDataTable: [
         {
           img: 'https://picsum.photos/40',
@@ -74,7 +80,7 @@ export default {
         },
       ],
     };
-  },
+  }
 }
 </script>
 
@@ -94,9 +100,9 @@ export default {
             max-width: 60px;
           }
           &:nth-child(2) {
-            width: 630px;
-            min-width: 630px;
-            max-width: 630px;
+            width: 620px;
+            min-width: 620px;
+            max-width: 620px;
           }
         }
       }
@@ -117,9 +123,9 @@ export default {
             max-width: 60px;
           }
           &:nth-child(2) {
-            width: 630px;
-            min-width: 630px;
-            max-width: 630px;
+            width: 620px;
+            min-width: 620px;
+            max-width: 620px;
           }
         }
       }

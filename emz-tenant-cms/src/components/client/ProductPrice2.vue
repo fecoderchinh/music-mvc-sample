@@ -12,7 +12,7 @@
       <div class="grid grid-cols-3 sm:grid-cols-1 gap-5">
 
         <div class="col-span-1">
-          <div class="cms-label text-14px mb-4">
+          <div class="cms-label text-14px mb-3">
             <label for="gia-ban" class="cursor-pointer text-14px text-menuItem">
               Giá bán
             </label>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="col-span-1">
-          <div class="cms-label text-14px mb-4">
+          <div class="cms-label text-14px mb-3">
             <label for="gia-ao" class="inline-flex items-center cursor-pointer text-menuItem">
               Giá ảo
               <InformationSVG class="w-14px h-14px fill-buttonAndURL ml-1 inline -mt-px" />
@@ -53,7 +53,7 @@
         </div>
 
         <div class="col-span-1">
-          <div class="cms-label text-14px mb-4">
+          <div class="cms-label text-14px mb-3">
             <label for="gia-nhap" class="cursor-pointer text-14px text-menuItem">
               Giá nhập
             </label>
