@@ -22,8 +22,8 @@
 
     <div class="lg:flex flex-auto items-center md:gap-y-2 sm:gap-y-2 grid">
       <div class="cms-label flex flex-auto items-center text-14px text-labelAndTitle" v-if="this.orderCount">
-        <label class="cms-typo text-base text-cmsLightGreen">
-          <EllipseSVG class="w-5 mr-2 fill-menuIcon -mt-px inline" />
+        <label class="cms-typo text-base text-menuItem">
+          <ShoppingCartPlusSVG class="w-5 mr-2 fill-menuIcon -mt-px inline" />
           {{ this.orderCount }}
         </label>
       </div>
@@ -44,7 +44,7 @@ import ListItemWithIcon from '@/components/client/ListItemWithIcon.vue';
 import Button from '@/components/client/Button.vue';
 
 import {
-  EllipseSVG,
+  ShoppingCartPlusSVG,
 
   LongArrowSVG,
 } from '@/components/SVGs.vue';
@@ -52,7 +52,7 @@ import {
 export default {
   components: {
     ListItemWithIcon,
-    EllipseSVG,
+    ShoppingCartPlusSVG,
     Button,
     LongArrowSVG,
   },

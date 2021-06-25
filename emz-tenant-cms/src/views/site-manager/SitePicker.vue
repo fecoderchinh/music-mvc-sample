@@ -57,12 +57,12 @@ export default {
               name: 'Xem Website',
             },
             {
-              component: 'EllipseSVG',
+              component: 'ShieldSVG',
               link: '#',
               name: 'Nâng cấp',
             },
             {
-              component: 'EllipseSVG',
+              component: 'TagsSVG',
               link: '#',
               name: 'Sửa giao diện',
             },
@@ -82,12 +82,12 @@ export default {
               name: 'Xem Website',
             },
             {
-              component: 'EllipseSVG',
+              component: 'ShieldSVG',
               link: '#',
               name: 'Nâng cấp',
             },
             {
-              component: 'EllipseSVG',
+              component: 'TagsSVG',
               link: '#',
               name: 'Sửa giao diện',
             },
@@ -106,12 +106,12 @@ export default {
               name: 'Xem Website',
             },
             {
-              component: 'EllipseSVG',
+              component: 'ShieldSVG',
               link: '#',
               name: 'Nâng cấp',
             },
             {
-              component: 'EllipseSVG',
+              component: 'TagsSVG',
               link: '#',
               name: 'Sửa giao diện',
             },

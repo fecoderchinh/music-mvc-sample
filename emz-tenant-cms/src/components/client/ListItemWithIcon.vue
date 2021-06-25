@@ -1,7 +1,7 @@
 <template>
   <!-- eslint-disable max-len -->
   <ul class="list-none">
-    <li v-for="(data, index) in optionData" :key="index" class="inline-flex items-center mr-8">
+    <li v-for="(data, index) in optionData" :key="index" class="inline-flex items-center text-menuIcon mr-8">
       <component v-bind:is="data.component" :class="svgClass" />
       <a :href="data.link" @click="openModal(data.aModal)" :class="aClass">{{ data.name }}</a>
     </li>
@@ -47,6 +47,15 @@ import {
   SquareSVG,
   MenubarSVG,
 } from '../SVGs.vue';
+import {
+  ActionCheckboxSVG, AirPlaneSVG,
+  BellPlusSVG,
+  DashboardSVG,
+  DoubleAngleSVG,
+  HomeSVG,
+  LongArrowNewSVG, ShieldSVG, ShoppingCartPlusSVG, SnowFlowerSVG, TagsSVG,
+  UpgradeSVG
+} from "@/components/SVGs";
 
 export default {
   components: {
@@ -58,7 +67,7 @@ export default {
     InformationSVG,
     PlusSVG,
     AvatarSVG,
-    FilterSVG,
+    ActionCheckboxSVG,
     AccountCircleSVG,
     ALTSVG,
     LongArrowSVG,
@@ -86,11 +95,23 @@ export default {
     EyeSVG,
     SquareSVG,
     MenubarSVG,
+    LongArrowNewSVG,
+    DoubleAngleSVG,
+    FilterSVG,
+    DashboardSVG,
+    UpgradeSVG,
+    HomeSVG,
+    BellPlusSVG,
+    AirPlaneSVG,
+    ShoppingCartPlusSVG,
+    SnowFlowerSVG,
+    ShieldSVG,
+    TagsSVG
   },
   props: {
     svgClass: {
       type: String,
-      default: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
+      default: 'w-4 h-4 mr-2 -mt-px',
     },
     aClass: {
       type: String,

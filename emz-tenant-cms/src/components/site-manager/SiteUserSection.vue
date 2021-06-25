@@ -1,8 +1,8 @@
 <template>
   <!-- eslint-disable max-len -->
   <div class="flex">
-    <div class="w-20 min-w-20 max-w-20 mr-5 inline-flex items-center">
-      <AvatarSVG class="w-20 h-20 fill-cmsLightBlue hover:fill-cmsLightBlue hover:filter-none" />
+    <div class="w-20 min-w-20 max-w-20 mr-5 inline-flex text-menuIcon items-center">
+      <AvatarSVG class="w-20 h-20" />
     </div>
     <div class="inline-flex items-center flex-1 overflow-hidden">
       <div class="w-full">

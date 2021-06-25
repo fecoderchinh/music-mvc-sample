@@ -46,6 +46,8 @@
 * 44. AirPlaneSVG
 * 45. ShoppingCartPlusSVG
 * 46. SnowFlowerSVG
+* 50. ShieldSVG
+* 51. TagsSVG
 */
 export const EllipseSVG = {
   render() {
@@ -581,6 +583,36 @@ export const SnowFlowerSVG = {
   },
 };
 
+export const ShieldSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 21 21">
+          <mask id="ShieldSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="0" width="17" height="21">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.625 4.375L10.5 0.875L18.375 4.375V9.625C18.375 14.4812 15.015 19.0225 10.5 20.125C5.985 19.0225 2.625 14.4812 2.625 9.625V4.375ZM5.25 11.375L8.75 14.875L15.75 7.875L14.5162 6.6325L8.75 12.3988L6.48375 10.1413L5.25 11.375Z" fill="white"/>
+          </mask>
+          <g mask="url(#ShieldSVG0)">
+            <rect width="21" height="21" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
+export const TagsSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 21 21">
+          <mask id="TagsSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="2" width="19" height="18">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.9362 3.4825L19.2762 13.9563C19.6437 14.84 19.215 15.8637 18.3225 16.2312L11.8825 18.9C11.6637 18.9875 11.4362 19.0312 11.2087 19.0312C10.5262 19.0225 9.87875 18.62 9.6075 17.955L5.2675 7.48125C5.17125 7.25375 5.1275 7.0175 5.13625 6.78125C5.15375 6.1075 5.55624 5.4775 6.21249 5.20625L12.6612 2.5375C12.8887 2.44125 13.125 2.40625 13.3525 2.40625C14.0262 2.42375 14.665 2.82625 14.9362 3.4825ZM3.38625 17.6838L2.21375 17.1938C1.33 16.8263 0.901245 15.8025 1.26 14.91L3.38625 9.7825V17.6838ZM6.895 7.65625C6.41375 7.65625 6.02 7.2625 6.02 6.78125C6.02 6.3 6.41375 5.90625 6.895 5.90625C7.37625 5.90625 7.77 6.3 7.77 6.78125C7.77 7.2625 7.37625 7.65625 6.895 7.65625ZM6.895 19.0312C5.9325 19.0312 5.145 18.2438 5.145 17.2812V11.7338L8.16374 19.0312H6.895Z" fill="white"/>
+          </mask>
+          <g mask="url(#TagsSVG0)">
+            <rect width="21" height="21" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
 export default {
   EllipseSVG,
   AngleSVG,
@@ -627,6 +659,8 @@ export default {
   BellPlusSVG,
   AirPlaneSVG,
   ShoppingCartPlusSVG,
-  SnowFlowerSVG
+  SnowFlowerSVG,
+  ShieldSVG,
+  TagsSVG
 };
 </script>
