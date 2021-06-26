@@ -7,13 +7,74 @@
         <label class="cursor-pointer text-14px text-labelAndTitle">
           Xem trước kết quả Google
         </label>
-        <a href="#" class="text-standardCMS md:absolute sm:block top-0 right-0 text-buttonAndURL">Tùy chỉnh SEO</a>
+        <a href="javascript:void(0)" @click="showSettings = !showSettings" class="text-standardCMS md:absolute sm:block top-0 right-0 text-buttonAndURL">Tùy chỉnh SEO</a>
       </div>
 
-      <div class="w-full flex flex-col space-y-1 google-search-display">
-        <a href="#" class="text-standardCMS">Combo cần câu gia đình</a>
-        <span class="text-standardCMS">https://tulinh-salon.dkz.vn/combo1</span>
-        <p class="text-standardCMS">Nếu bạn đang có kế hoạch đi câu cuối tuần này, vậy thì cùng DulichToday điểm qua danh sách những địa điểm câu cá tại Hà Nội trong bảng tóm tắt dưới đây ...</p>
+      <div class="w-full flex flex-col space-y-1 google-search-display" v-if="(seoTitle === '' && seoContent === '' && seoURL === '')">
+        <p class="text-standardCMS">Xin hãy nhập Tiêu đề và Mô tả để xem trước kết quả tìm kiếm của danh mục này</p>
+      </div>
+
+      <div class="w-full flex flex-col space-y-1 google-search-display" v-else>
+        <a href="#" class="text-standardCMS">{{ seoTitle }}</a>
+        <span class="text-standardCMS">{{ seoURL }}</span>
+        <p class="text-standardCMS">{{ seoContent }}</p>
+      </div>
+
+      <div class="w-full border-t mt-5 pt-5" :class="showSettings ? 'h-auto block' : 'h-0 hidden'">
+        <div class="cms-label text-14px">
+          <label class="cursor-pointer text-14px text-labelAndTitle">
+            Tùy chỉnh SEO
+          </label>
+        </div>
+        <div class="w-full mt-3">
+
+          <div class="cms-label text-14px">
+            <label class="cursor-pointer text-14px text-labelAndTitle">
+              Thẻ tiêu đề
+            </label>
+            <span class="text-standardCMS md:absolute sm:block top-0 right-0 text-menuIcon">Số kí tự đã dùng: <span class="text-menuItem">{{ seoTitle.length }}/70</span></span>
+          </div>
+
+          <InputType
+              id="seo-title"
+              name="seo-title"
+              button="reset"
+              v-model="seoTitle"
+              input-class="cms-input__default">
+          </InputType>
+        </div>
+
+        <div class="w-full mt-5">
+
+          <div class="cms-label text-14px">
+            <label class="cursor-pointer text-14px text-labelAndTitle">
+              Mô tả
+            </label>
+            <span class="text-standardCMS md:absolute sm:block top-0 right-0 text-menuIcon">Số kí tự đã dùng: <span class="text-menuItem">{{ seoContent.length }}/360</span></span>
+          </div>
+
+          <div class="w-full no-mb">
+            <textarea v-model="seoContent" id="seo-content" name="seo-content" class="bg-white h-16 w-full px-3 py-2 rounded border text-sm focus:outline-none text-14px font-lato text-menuItem"></textarea>
+          </div>
+        </div>
+
+        <div class="w-full mt-5">
+
+          <div class="cms-label text-14px">
+            <label class="cursor-pointer text-14px text-labelAndTitle">
+              Đường dẫn / Alias
+            </label>
+          </div>
+
+          <InputType
+              id="seo-url"
+              name="seo-url"
+              button="reset"
+              v-model="seoURL"
+              placeholder="https://tulinh-salon.dkz.vn/combo1"
+              input-class="cms-input__default">
+          </InputType>
+        </div>
       </div>
 
     </template>
@@ -22,10 +83,20 @@
 
 <script>
 import Box from '@/components/client/Box.vue';
+import InputType from "@/components/client/InputType";
 
 export default {
   components: {
+    InputType,
     Box,
+  },
+  data() {
+    return {
+      seoTitle: '',
+      seoContent: '',
+      seoURL: '',
+      showSettings: false
+    }
   },
 };
 </script>
