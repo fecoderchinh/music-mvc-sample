@@ -52,6 +52,12 @@ import ListItemWithIcon from './ListItemWithIcon.vue';
 import Footer from './Footer.vue';
 import Button from './Button.vue';
 
+import {
+  PrintSVG,
+  DownloadSVG,
+  CancelSVG
+} from '@/components/SVGs'
+
 export default {
   components: {
     ProductAdvanceSearch,
@@ -66,19 +72,19 @@ export default {
     return {
       listItemData: [
         {
-          component: 'EllipseSVG',
+          component: PrintSVG,
           componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
           link: '#',
           name: 'In đơn',
         },
         {
-          component: 'EllipseSVG',
+          component: DownloadSVG,
           componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
           link: '#',
           name: 'Lưu trữ',
         },
         {
-          component: 'EllipseSVG',
+          component: CancelSVG,
           componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
           link: '#',
           name: 'Hủy đơn',

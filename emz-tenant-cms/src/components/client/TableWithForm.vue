@@ -4,9 +4,9 @@
     <tbody class="box-table-body table-withform__body" slot="body">
       <tr class="border-b py-3" v-for="(data, dataIndex) in optionDataTable" :key="dataIndex">
         <td>
-          <div class="table-withform__body-content">
+          <div class="table-withform__body-content text-menuIcon">
             <img src="https://picsum.photos/60" class="mx-auto" v-if="data.img">
-            <SquareSVG class="w-60px fill-menuIcon" v-else/>
+            <NoImgSVG class="w-60px" v-else/>
           </div>
         </td>
         <td>
@@ -44,7 +44,7 @@
         </td>
         <td>
           <div class="w-full">
-            <a href="#" class="group"><DeleteSVG class="w-14px h-icon -mt-px fill-menuIcon group-hover:fill-buttonAndURL ml-auto"/></a>
+            <a href="#" class="text-menuIcon hover:text-buttonAndURL"><DeleteSVG class="w-icon h-icon -mt-px ml-auto"/></a>
           </div>
         </td>
       </tr>
@@ -58,7 +58,7 @@ import Table from '@/components/client/Table.vue';
 import {
   EllipseSVG,
   DeleteSVG,
-  SquareSVG,
+  NoImgSVG,
 } from '@/components/SVGs.vue';
 
 export default {
@@ -66,7 +66,7 @@ export default {
     Table,
     EllipseSVG,
     DeleteSVG,
-    SquareSVG,
+    NoImgSVG,
   },
   data() {
     return {

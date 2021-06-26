@@ -48,16 +48,16 @@
       <div class="w-full py-10px no-mb border-t">
         <ul class="list-none md:h-8 md:text-right px-5">
           <li class="inline mr-3">
-            <Button button-class="bg-cmsGray group text-menuItem text-14px font-lato font-medium hover:text-white w-30px h-30px px-3 relative">
+            <Button button-class="bg-cmsGray text-white hover:text-menuItem text-14px font-lato font-medium w-30px h-30px px-3 relative">
               <template slot="name">
-                <LongArrowSVG class="absolute top-50 left-50 transform -translate-x-1/2 -translate-y-1/2 w-4 fill-white group-hover:fill-white"/>
+                <LongArrowSVG class="absolute top-50 left-50 transform -translate-x-1/2 -translate-y-1/2 w-4 rotate-180"/>
               </template>
             </Button>
           </li>
           <li class="inline">
-            <Button button-class="bg-cmsGray group text-menuItem text-14px font-lato font-medium hover:text-white w-30px h-30px px-3 relative">
+            <Button button-class="bg-cmsGray text-white hover:text-menuItem text-14px font-lato font-medium w-30px h-30px px-3 relative">
               <template slot="name">
-                <LongArrowSVG class="absolute top-50 left-50 transform -translate-x-1/2 -translate-y-1/2 w-4 fill-white group-hover:fill-white transform rotate-180"/>
+                <LongArrowSVG class="absolute top-50 left-50 transform -translate-x-1/2 -translate-y-1/2 w-4 transform"/>
               </template>
             </Button>
           </li>
