@@ -79,7 +79,7 @@ import ProductImages from '@/components/client/ProductImages.vue';
 import ProductPrice from '@/components/client/ProductPrice.vue';
 import ProductDescription from '@/components/client/ProductDescription.vue';
 import ProductStock2 from '@/components/client/ProductStock2.vue';
-import ProductAttributes2 from '@/components/client/ProductAttributes2.vue';
+import ProductAttributes2 from '@/components/client/ProductAttributes.vue';
 import ProductSearchDisplay from '@/components/client/ProductSearchDisplay.vue';
 import WidgetRadioStatus from '@/components/client/WidgetRadioStatus.vue';
 import WidgetMergeBoxes from '@/components/client/WidgetMergeBoxes.vue';
