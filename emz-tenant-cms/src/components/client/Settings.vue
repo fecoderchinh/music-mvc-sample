@@ -5,7 +5,7 @@
       <div class="col-span-2 sm:col-span-6" v-for="(data, index) in optionData" :key="index">
         <div class="grid grid-cols-4 gap-5 p-10px group hover:bg-sidebarHover">
           <div class="col-span-1">
-            <div class="w-50px h-50px flex items-center bg-gray-400 justify-center text-menuIcon" v-if="data.component">
+            <div class="w-50px h-50px flex items-center bg-gray-400 justify-center text-menuIcon group-hover:text-buttonAndURL" v-if="data.component">
               <component v-bind:is="data.component" class="w-8 h-8" />
             </div>
           </div>
