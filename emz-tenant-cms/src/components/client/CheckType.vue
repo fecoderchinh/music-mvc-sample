@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
-  <div class="cms-checkbox">
+  <div class="cms-checkbox" :class="mainClass">
 
     <input type="checkbox" :value="val" v-model="checked" @change="onChange" />
 
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  props: ['id', 'value', 'val', 'labelClass'],
+  props: ['id', 'value', 'val', 'labelClass', 'mainClass'],
   data () {
     return {
       checkedProxy: false
