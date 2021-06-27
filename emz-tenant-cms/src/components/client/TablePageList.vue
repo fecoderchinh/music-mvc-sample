@@ -2,10 +2,15 @@
   <!-- eslint-disable max-len -->
   <Table class="table-pagelist">
     <thead class="box-table-header table-pagelist__header" slot="header">
-      <tr class="pl-3">
+      <tr v-if="allCheckStatus.length !== 0">
+        <TableActions @closeAction="action()" :optionData="tableActionsData" :isFull="allCheckStatus.length === optionDataTable.length">
+          <span slot="content">{{ allCheckStatus.length }} phiên bản được chọn</span>
+        </TableActions>
+      </tr>
+      <tr class="pl-3" v-if="allCheckStatus.length === 0">
         <th>
-          <div class="table-pagelist__header-content">
-            <FilterSVG class="w-6 fill-menuIcon"/>
+          <div class="table-pagelist__header-content" @click="selectAll = !selectAll">
+            <ActionCheckbox/>
           </div>
         </th>
         <th>
@@ -43,7 +48,17 @@
       <tr v-for="(data, index) in optionDataTable" :key="index" class="pl-3">
         <td>
           <div class="table-pagelist__body-content">
-            <CheckType :id="'pagelist-'+index" main-class="sm:ml-0"/>
+            <div class="cms-checkbox">
+              <input
+                  :id="data.id"
+                  type="checkbox"
+                  :value="data.id"
+                  v-model="allCheckStatus"
+              />
+              <label :for="data.id" class="text-standardCMS text-menuItem text-14px">
+                <span class="square"><span class="square-inner"></span></span>
+              </label>
+            </div>
           </div>
         </td>
         <td>
@@ -86,24 +101,35 @@
 
 <script>
 import Table from '@/components/client/Table.vue';
-import CheckType from '@/components/client/CheckType.vue';
 import Pagination from "@/components/client/Pagination";
 
-import {
-  FilterSVG,
-} from '@/components/SVGs.vue';
+import TableActions from "@/components/client/TableActions";
+import ActionCheckbox from "@/components/client/ActionCheckbox";
 
 export default {
   components: {
+    ActionCheckbox,
+    TableActions,
     Table,
-    FilterSVG,
-    CheckType,
     Pagination
   },
   data() {
     return {
+      allCheckStatus: [],
+      tableActionsData: [
+        {
+          label: 'Hiển thị',
+        },
+        {
+          label: 'Ẩn trang',
+        },
+        {
+          label: 'Xóa trang',
+        },
+      ],
       optionDataTable: [
         {
+          id: '1',
           title: 'Hướng dẫn',
           content: 'Bước 1: Truy cập website và lựa chọn sản phẩm cần mua để mua hàng Bước 2: Click và sản phẩm muốn mua, màn hình hiển thị ra po...',
           author: 'Chỉnh Chỉn Chu',
@@ -111,6 +137,7 @@ export default {
           update: '30/12/2019  1:33',
         },
         {
+          id: '2',
           title: 'Điều khoản',
           content: 'Khi quý khách truy cập vào trang web của chúng tôi có nghĩa là quý khách đồng ý với các điều khoản này. Trang web có quyền th...',
           author: 'Mem Lang Thang',
@@ -118,6 +145,7 @@ export default {
           update: '30/12/2019  1:33',
         },
         {
+          id: '3',
           title: 'Chính sách',
           content: 'Cám ơn quý khách đã quan tâm và truy cập vào website. Chúng tôi tôn trọng và cam kết sẽ bảo mật những thông tin mang tính riê...',
           author: 'Mem Lang Thang',
@@ -125,6 +153,7 @@ export default {
           update: '30/12/2019  1:33',
         },
         {
+          id: '4',
           title: 'Liên hệ',
           content: 'Trang liên hệ',
           author: 'Mem Lang Thang',
@@ -132,6 +161,7 @@ export default {
           update: '30/12/2019  1:33',
         },
         {
+          id: '5',
           title: 'Giới thiệu',
           content: 'Xin mời nhập nội dung tại đây',
           author: 'Mem Lang Thang',
@@ -140,6 +170,29 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    action() {
+      this.selectAll = !this.selectAll
+    },
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.optionDataTable ? this.allCheckStatus.length === this.optionDataTable.length : false;
+      },
+      set: function (value) {
+        var selected = [];
+
+        if (value) {
+          this.optionDataTable.forEach(function (data) {
+            selected.push(data.id);
+          });
+        }
+
+        this.allCheckStatus = selected;
+      }
+    }
   },
 };
 </script>
@@ -159,8 +212,8 @@ export default {
               max-width: 50px;
             }
             &:nth-child(2) {
-              min-width: 730px;
-              max-width: 730px;
+              min-width: 710px;
+              max-width: 710px;
             }
             &:nth-child(3) {
               min-width: 120px;
@@ -189,8 +242,8 @@ export default {
               max-width: 50px;
             }
             &:nth-child(2) {
-              min-width: 730px;
-              max-width: 730px;
+              min-width: 710px;
+              max-width: 710px;
             }
             &:nth-child(3) {
               min-width: 120px;
