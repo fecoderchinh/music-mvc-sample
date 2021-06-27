@@ -133,10 +133,13 @@ export default {
       allCheckStatus: [],
       tableActionsData: [
         {
-          label: 'Action 1',
+          label: 'Duyệt đăng',
         },
         {
-          label: 'Action 2',
+          label: 'Trả lời',
+        },
+        {
+          label: 'Xóa bình luận',
         },
       ],
       optionDataTable: [

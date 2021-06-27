@@ -2,7 +2,17 @@
   <!-- eslint-disable max-len -->
   <div class="cms-tabs" :class="mainClass">
     <div class="cms-tabs-header sm:flex-col">
-      <slot name="tab-right"></slot>
+      <template v-if="modal && modalName">
+        <Button
+            @click="openModal(modal, modalWidth)"
+            class="absolute right-0 top-0"
+            button-class="cms-button cms-button-blue"
+        >
+          <template slot="name">
+            {{ modalName }}
+          </template>
+        </Button>
+      </template>
       <ul class="cms-tabs-header-list sm:flex-col">
         <li
           class="cms-tabs-header-list-item"
@@ -11,7 +21,7 @@
           v-bind:class="{
             'bg-white transition duration-400 tab--active': activeTab === tab.tabId
           }"
-          v-on:click="switchTab(tab.tabId);"
+          v-on:click="switchTab(tab);"
         >
           <slot :name="tabHeadSlotName(tab.tabId)">{{ tab.tabName }} </slot>
         </li>
@@ -24,8 +34,10 @@
 </template>
 
 <script>
+import Button from "@/components/client/Button";
+
 export default {
-  components: {},
+  components: {Button},
   props: {
     initialTab: String,
     mainClass: String,
@@ -34,6 +46,9 @@ export default {
   data() {
     return {
       activeTab: this.initialTab,
+      modal: {},
+      modalName: '',
+      modalWidth: '',
     };
   },
   computed: {
@@ -46,9 +61,30 @@ export default {
       return `tab-head-${tabName}`;
     },
 
-    switchTab(tabName) {
-      this.activeTab = tabName;
+    switchTab(tab) {
+      this.activeTab = tab.tabId;
+      this.getModal(tab)
     },
+
+    openModal(modal, width=1200) {
+      const options = {
+        class: 'cms-modal',
+      };
+      const style = {
+        width: width, height: 'auto', shiftX: 0.5, adaptive: true,
+      };
+      const events = {
+        // opened: () => console.log('Opened'),
+        closed: () => this.$emit('close'),
+      };
+
+      this.$modal.show(modal, options, style, events);
+    },
+    getModal(tab) {
+      this.modal = tab.modal
+      this.modalName = tab.modalName
+      this.modalWidth = tab.modalWidth
+    }
   },
 };
 </script>

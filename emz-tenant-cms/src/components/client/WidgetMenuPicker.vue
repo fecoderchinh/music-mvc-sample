@@ -3,7 +3,7 @@
   <div>
     <Widget>
 
-      <div class="flex flex-auto mb-4" slot="title">
+      <div class="flex flex-auto" slot="title">
         <div class="cms-label flex flex-auto items-center text-14px text-labelAndTitle">
           <label for="add-tag" class="inline-flex items-center cursor-pointer">
             Gắn lên menu
@@ -16,6 +16,9 @@
 
       <div class="grid grid-cols-6 gap-5" slot="content">
         <div class="col-span-6">
+          <p class="cms-typo text-14px text-menuItem">
+            Thêm vào menu
+          </p>
           <div class="w-full">
             <InlineTags :option-data="this.optionDataTags" tagClass="inline-tag__button-blue"/>
           </div>
