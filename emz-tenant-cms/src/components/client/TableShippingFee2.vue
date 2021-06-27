@@ -37,7 +37,7 @@
         </th>
       </tr>
     </thead>
-    <tbody class="box-table-body table-shippingfee__body" slot="body">
+    <tbody class="box-table-body noHover table-shippingfee__body" slot="body">
       <tr v-for="(data, index) in optionDataTable" :key="index">
         <td>
           <div class="table-shippingfee__body-content">

@@ -15,9 +15,11 @@
       </div>
     </div>
 
-    <div class="search-box-content-order-table" :class="optionDataTable.length > 5 ? 'table-overflow' : ''">
+    <div class="search-box-content-order-table" :class="optionDataTable.length > 5 ? 'table-overflow' : ''" :style="{
+      'max-height': this.limitHeigth+'px'
+    }">
 
-      <table class="w-full">
+      <table id="advanceSearchTable" class="w-full">
         <tbody>
           <tr class="hover:bg-gray-200" v-for="(data, dataIndex) in optionDataTable" :key="dataIndex" @click="data.rowCheck = !data.rowCheck" :class="data.rowCheck ? 'bg-gray-200' : ''">
             <td>
@@ -109,6 +111,7 @@ export default {
   },
   data() {
     return {
+      limitHeigth: 0,
       optionDataTable: [
         {
           rowCheck: false,
@@ -185,6 +188,21 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.limitHeigth = this.limitHeight()
+  },
+  created() {
+    this.limitHeigth = this.limitHeight()
+  },
+  methods: {
+    limitHeight() {
+      let height = 0
+      for(let i=0;i<5;i++) {
+        height += document.getElementById("advanceSearchTable").rows[i].offsetHeight
+      }
+      return height
+    }
+  }
 };
 </script>
 
@@ -214,7 +232,7 @@ export default {
             }
             tr {
               td {
-                @apply py-2;
+                @apply p-2;
                 &:first-child {
                   @apply pl-5;
                 }
@@ -222,19 +240,19 @@ export default {
                   @apply pr-5 text-right;
                 }
                 &:nth-child(1) {
-                  width: 5%;
+                  width: 30px;
                 }
                 &:nth-child(2) {
-                  width: 10%;
+                  width: 70px;
                 }
                 &:nth-child(3) {
-                  width: 45%;
+                  width: 325px;
                 }
                 &:nth-child(4) {
-                  width: 20%;
+                  width: 145px;
                 }
                 &:nth-child(5) {
-                  width: 20%;
+                  width: 145px;
                 }
               }
             }

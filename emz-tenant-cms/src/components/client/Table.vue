@@ -30,13 +30,15 @@ export default {};
     }
     &-body {
       @apply relative;
-      tr {
-        &:hover {
-          @apply bg-cmsLightBlue bg-opacity-10 #{!important};
-        }
-      }
       td {
         @apply cms-typo text-13px text-menuItem;
+      }
+      &:not(.noHover) {
+        tr {
+          &:hover {
+            @apply bg-cmsLightBlue bg-opacity-10 #{!important};
+          }
+        }
       }
     }
     &-header, &-body, &-footer {
