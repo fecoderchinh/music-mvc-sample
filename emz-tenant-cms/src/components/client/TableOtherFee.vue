@@ -70,7 +70,7 @@
       <td>
         <div class="flex justify-between">
           <a href="#" class="text-buttonAndURL cms-typo text-14px">Sửa</a>
-          <a href="#" class="flex items-center"><DeleteSVG class="w-3 fill-menuIcon"/></a>
+          <a href="#" class="flex items-center text-menuIcon hover:text-buttonAndURL"><DeleteSVG class="w-icon"/></a>
         </div>
       </td>
     </tr>
