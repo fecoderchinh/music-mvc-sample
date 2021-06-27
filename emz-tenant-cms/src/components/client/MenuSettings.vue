@@ -12,7 +12,7 @@
               Menu và danh sách liên kết giúp khách hàng duyệt web của bạn dễ dàng hơn.
             </li>
             <li class="text-menuItem text-13px relative">
-              Bạn có thể áp dụng chúng cho giao diện của bạn trong Chỉnh sửa giao diện.
+              Bạn có thể áp dụng chúng cho giao diện của bạn trong <a href="javascript:void(0)" class="text-buttonAndURL">Chỉnh sửa giao diện</a>.
             </li>
           </ul>
         </div>

@@ -48,7 +48,7 @@
                               input-class="cms-input__default"/>
                         </div>
                         <div class="w-auto text-center text-placeholderStyle ml-3">
-                          <DeleteSVG class="w-4 inline -mt-1 fill-current"/>
+                          <DeleteSVG class="w-icon inline -mt-1 fill-current"/>
                         </div>
                       </div>
                       <div class="table-row w-full">
@@ -96,7 +96,7 @@
                               input-class="cms-input__default"/>
                         </div>
                         <div class="w-auto text-center text-placeholderStyle ml-3">
-                          <DeleteSVG class="w-4 inline -mt-1 fill-current"/>
+                          <DeleteSVG class="w-icon inline -mt-1 fill-current"/>
                         </div>
                       </div>
                       <div class="table-row w-full">

@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
-  <div class="grid grid-cols-4 gap-5">
+  <div class="grid grid-cols-4 gap-x-5 gap-y-6">
 
     <template v-for="(data, index) in optionDataTable">
       <div class="xl:col-span-1 lg:col-span-2 md:col-span-2 sm:col-span-4" :key="index">
@@ -12,36 +12,27 @@
 
         <div
           :class="[
-            'w-full mt-5 mb-10px',
+            'w-full mt-3 mb-15px',
             !data.default ? 'pt-5px' : null
           ]">
           <img :src="data.img" alt="" class="w-full">
         </div>
 
         <div class="w-full flex" v-if="data.default">
-          <div class="flex-1">
-            <Button button-class="cms-button cms-button-blue w-full">
-              <template slot="name">
-                Xem kho giao diện
-              </template>
-            </Button>
+          <div class="flex-1 text-center">
+            <a href="javascript:void(0)" class="text-buttonAndURL cms-typo text-14px">Xem kho giao diện</a>
           </div>
         </div>
 
-        <div class="w-full flex" v-else>
-          <div class="flex-auto">
-            <Button button-class="cms-button cms-button-blue">
-              <template slot="name">
-                Chỉnh sửa
-              </template>
-            </Button>
+        <div class="w-full flex flex-wrap items-center" v-else>
+          <div class="flex-auto mr-3">
+            <a href="javascript:void(0)" class="text-buttonAndURL cms-typo text-14px">Chỉnh sửa</a>
           </div>
-          <div class="flex-auto flex justify-end">
-            <Button button-class="cms-button cms-button-white">
-              <template slot="name">
-                Đặt làm mặc định
-              </template>
-            </Button>
+          <div class="flex-auto mr-3">
+            <a href="javascript:void(0)" class="text-buttonAndURL cms-typo text-14px">Nhân bản</a>
+          </div>
+          <div class="flex-auto mr-3">
+            <a href="javascript:void(0)" class="text-buttonAndURL cms-typo text-14px">Đặt mặc định</a>
           </div>
         </div>
 
@@ -52,12 +43,7 @@
 </template>
 
 <script>
-import Button from '@/components/client/Button.vue';
-
 export default {
-  components: {
-    Button,
-  },
   data() {
     return {
       optionDataTable: [
