@@ -70,8 +70,7 @@
             <label class="select-none cursor-pointer">Địa chỉ lấy hàng</label>
           </div>
           <p class="cms-typo text-14px mb-15px text-menuItem">
-            Hệ thống sẽ tính toán phí vận chuyển dựa trên địa chỉ lấy hàng  để chuyển đến các khu vực khách hàng. <br>
-            Đây là những địa chỉ có tích chọn ĐỊA CHỈ LẤY HÀNG trong cấu hình cửa hàng.
+            Hệ thống sẽ tính toán phí vận chuyển dựa trên địa chỉ lấy hàng  để chuyển đến các khu vực khách hàng.
           </p>
         </div>
 
@@ -79,23 +78,23 @@
 
       <div class="grid grid-cols-6 gap-5">
 
-<!--        <div class="col-span-6">-->
-<!--          <ul class="list-none mb-3 -mt-px sm:grid sm:gap-2 cms-typo">-->
-<!--            <li class="inline-flex sm:flex">-->
-<!--              <Radio id="radio1" name="radio" label-class="text-14px text-menuItem">-->
-<!--                <template slot="radio-text"><span class="ml-2">Cho tất cả các vực</span></template>-->
-<!--              </Radio>-->
-<!--            </li>-->
-<!--            <li class="inline-flex sm:flex">-->
-<!--              <Radio id="radio2" name="radio" label-class="md:ml-10 text-14px text-menuItem" checked>-->
-<!--                <template slot="radio-text"><span class="ml-2">Theo từng khu vực</span></template>-->
-<!--              </Radio>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--          <div class="w-full select-none">-->
-<!--            <ShippingFeeAdvanceSearch/>-->
-<!--          </div>-->
-<!--        </div>-->
+        <div class="col-span-6">
+          <ul class="list-none mb-3 -mt-px sm:grid sm:gap-2 cms-typo">
+            <li class="inline-flex sm:flex">
+              <Radio id="radio1" name="radio" label-class="text-14px text-menuItem">
+                <template slot="radio-text"><span class="ml-2">Cho tất cả các vực</span></template>
+              </Radio>
+            </li>
+            <li class="inline-flex sm:flex">
+              <Radio id="radio2" name="radio" label-class="md:ml-10 text-14px text-menuItem" checked>
+                <template slot="radio-text"><span class="ml-2">Theo từng khu vực</span></template>
+              </Radio>
+            </li>
+          </ul>
+          <div class="w-full select-none">
+            <ShippingFeeAdvanceSearch/>
+          </div>
+        </div>
 
         <div class="col-span-6">
           <ShippingAreaPicker/>
@@ -129,21 +128,21 @@
 import Modal from '@/components/client/Modal.vue';
 import InputType from '@/components/client/InputType.vue';
 import SelectOption from '@/components/client/SelectOption.vue';
-// import Radio from '@/components/client/Radio.vue';
+import Radio from '@/components/client/Radio.vue';
 import Button from '@/components/client/Button.vue';
 import ShippingAreaPicker from '@/components/client/ShippingAreaPicker.vue';
 
-// import ShippingFeeAdvanceSearch from '@/components/client/ShippingFeeAdvanceSearch.vue';
+import ShippingFeeAdvanceSearch from '@/components/client/ShippingFeeAdvanceSearch.vue';
 
 export default {
   components: {
     Modal,
     InputType,
     SelectOption,
-    // Radio,
+    Radio,
     Button,
     ShippingAreaPicker,
-    // ShippingFeeAdvanceSearch,
+    ShippingFeeAdvanceSearch,
   },
   data() {
     return {

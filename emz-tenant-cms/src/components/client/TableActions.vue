@@ -1,7 +1,7 @@
 <template>
   <!-- eslint-disable max-len -->
-  <ul class="cms-table-actions list-none flex items-center select-none" @click.stop>
-    <li class="inline mr-5 ml-2">
+  <ul class="cms-table-actions flex flex-wrap items-center list-none select-none" @click.stop>
+    <li class="inline-flex mr-5 my-1" :class="firstItemCss">
       <a href="#" class="inline-flex items-center text-13px text-menuItem border px-1 py-px rounded" @click.prevent="$emit('closeAction')">
         <div class="cms-checkbox mr-3 mt-px">
           <input type="checkbox">
@@ -17,7 +17,7 @@
       v-for="(data, index) in optionData"
       :key="index"
       :class="[
-          'inline',
+          'inline-flex my-1',
           index + 1 !== optionData.length ? 'mr-5' : null,
           data.reduceAttention ? 'opacity-25' : null
            ]">
@@ -30,7 +30,11 @@
 export default {
   props: {
     optionData: Array,
-    isFull: Boolean
+    isFull: Boolean,
+    firstItemCss: {
+      type: String,
+      default: 'ml-2'
+    }
   },
   methods: {
     openModal(data, w) {

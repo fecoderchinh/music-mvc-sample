@@ -14,7 +14,9 @@
 
       <template slot="under-form">
         <!-- advance-search-box -->
-        <AdvanceSearchBox v-click-outside="hide" mainClass="widget-box" v-if="showAdvanceSearch"/>
+        <AdvanceSearchBox v-click-outside="hide" mainClass="widget-box" v-if="showAdvanceSearch">
+          <AdvanceSearchTable slot="content"/>
+        </AdvanceSearchBox>
         <!-- end advance-search-box -->
       </template>
 
@@ -30,9 +32,11 @@ import ClickOutside from 'vue-click-outside';
 import {
   SearchSVG,
 } from '@/components/SVGs.vue';
+import AdvanceSearchTable from "@/components/client/AdvanceSearchTable";
 
 export default {
   components: {
+    AdvanceSearchTable,
     InputType,
     SearchSVG,
     AdvanceSearchBox,

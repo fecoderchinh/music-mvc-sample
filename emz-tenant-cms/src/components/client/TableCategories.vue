@@ -54,7 +54,6 @@
                 />
                 <label :for="data.id" class="text-standardCMS text-menuItem text-14px">
                   <span class="square"><span class="square-inner"></span></span>
-                  <slot name="text"></slot>
                 </label>
               </div>
           </div>
