@@ -16,7 +16,7 @@
               <template slot="text"><h3 class="ml-2">{{ statusText(data.status) }}</h3></template>
             </CheckType>
             <h3 class="text-labelAndTitle"><strong>{{ data.connectName }}</strong></h3>
-            <h3 class="text-menuItem mt-2">{{ data.content }}</h3>
+            <h3 class="text-menuItem mt-2" v-html="data.content">{{ data.content }}</h3>
           </div>
           <template slot="label">Chỉnh sửa</template>
         </BoxPartner>
@@ -51,7 +51,7 @@ export default {
           status: false,
           connectURL: '#',
           connectName: 'Thanh toán chuyển khoản',
-          content: 'Vietcombank - Số tài khoản 302131315615545.  Ghi chú khi ck là mã đơn hàng',
+          content: 'Vietcombank - Số tài khoản <strong>302131315615545</strong>.  Ghi chú khi ck là mã đơn hàng',
         },
       ],
     };
