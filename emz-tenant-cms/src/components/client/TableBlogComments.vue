@@ -2,10 +2,15 @@
   <!-- eslint-disable max-len -->
   <Table class="table-blogcomments">
     <thead class="box-table-header table-blogcomments__header" slot="header">
-      <tr class="pl-3">
+      <tr v-if="allCheckStatus.length !== 0">
+        <TableActions @closeAction="action()" :optionData="tableActionsData" :isFull="allCheckStatus.length === optionDataTable.length">
+          <span slot="content">{{ allCheckStatus.length }} phiên bản được chọn</span>
+        </TableActions>
+      </tr>
+      <tr class="pl-3" v-if="allCheckStatus.length === 0">
         <th>
-          <div class="table-blogcomments__header-content">
-            <FilterSVG class="w-6 fill-menuIcon"/>
+          <div class="table-blogcomments__header-content" @click="selectAll = !selectAll">
+            <ActionCheckbox/>
           </div>
         </th>
         <th>
@@ -46,7 +51,17 @@
       <tr v-for="(data, index) in optionDataTable" :key="index" class="pl-3">
         <td>
           <div class="table-blogcomments__body-content">
-            <CheckType :id="'blogcomments-'+index" main-class="sm:ml-0"/>
+            <div class="cms-checkbox">
+              <input
+                  :id="data.id"
+                  type="checkbox"
+                  :value="data.id"
+                  v-model="allCheckStatus"
+              />
+              <label :for="data.id" class="text-standardCMS text-menuItem text-14px">
+                <span class="square"><span class="square-inner"></span></span>
+              </label>
+            </div>
           </div>
         </td>
         <td>
@@ -99,24 +114,34 @@
 
 <script>
 import Table from '@/components/client/Table.vue';
-import CheckType from '@/components/client/CheckType.vue';
 
 import {
-  FilterSVG,
   SquareSVG,
 } from '@/components/SVGs.vue';
+import TableActions from "@/components/client/TableActions";
+import ActionCheckbox from "@/components/client/ActionCheckbox";
 
 export default {
   components: {
+    ActionCheckbox,
+    TableActions,
     Table,
-    FilterSVG,
-    CheckType,
     SquareSVG,
   },
   data() {
     return {
+      allCheckStatus: [],
+      tableActionsData: [
+        {
+          label: 'Action 1',
+        },
+        {
+          label: 'Action 2',
+        },
+      ],
       optionDataTable: [
         {
+          id: '1',
           img: 'https://picsum.photos/60',
           commentator: 'Mem Lang Thang',
           cmtDate: '30/12/2019  1:33',
@@ -124,6 +149,7 @@ export default {
           cmtContent: 'Tốc độ bán hàng online mùa covid tăng nhanh từng ngày',
         },
         {
+          id: '2',
           img: 'https://picsum.photos/60',
           commentator: 'NameLong',
           cmtDate: '30/12/2019  1:33',
@@ -131,6 +157,7 @@ export default {
           cmtContent: 'Tốc độ bán hàng online mùa covid tăng nhanh từng ngày',
         },
         {
+          id: '3',
           img: 'https://picsum.photos/60',
           commentator: 'NameLong',
           cmtDate: '30/12/2019  1:33',
@@ -139,6 +166,29 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    action() {
+      this.selectAll = !this.selectAll
+    },
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.optionDataTable ? this.allCheckStatus.length === this.optionDataTable.length : false;
+      },
+      set: function (value) {
+        var selected = [];
+
+        if (value) {
+          this.optionDataTable.forEach(function (data) {
+            selected.push(data.id);
+          });
+        }
+
+        this.allCheckStatus = selected;
+      }
+    }
   },
 };
 </script>
