@@ -56,6 +56,9 @@ export default {
       return `tab-panel-${this.activeTab}`;
     },
   },
+  created() {
+    this.getModal(this.tabs[0])
+  },
   methods: {
     tabHeadSlotName(tabName) {
       return `tab-head-${tabName}`;
