@@ -400,11 +400,20 @@
   @apply cursor-not-allowed;
 }
 .disabled .cms-label h2,
-.disabled h3,
-.disabled a {
+.disabled h3, h3.disabled,
+.disabled a, a.disabled {
   @apply text-placeholderStyle !important;
 }
-.disabled button {
+.disabled {
+    @apply text-placeholderStyle select-none opacity-50;
+}
+.disabled:hover,
+.disabled:hover *,
+.disabled:focus,
+.disabled:focus *{
+    @apply text-placeholderStyle;
+}
+.disabled button, button.disabled {
   @apply bg-gray-400 text-placeholderStyle select-none;
 }
 .disabled button:hover,
