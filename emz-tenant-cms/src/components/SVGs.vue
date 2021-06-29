@@ -56,6 +56,7 @@
 * 57. UploadSVG
 * 58. VoucherSVG
 * 59. CommentSVG
+* 60. CheckSVG
 */
 export const EllipseSVG = {
   render() {
@@ -808,6 +809,21 @@ export const CloudUploadSVG = {
             <path fill-rule="evenodd" clip-rule="evenodd" d="M15 5C19.55 5 23.3375 8.2375 24.1875 12.55C27.4375 12.775 30 15.45 30 18.75C30 22.2 27.2 25 23.75 25H7.5C3.3625 25 0 21.6375 0 17.5C0 13.6375 2.925 10.45 6.6875 10.05C8.25 7.05 11.3875 5 15 5ZM17.5 21.25V16.25H21.25L15 10L8.75 16.25H12.5V21.25H17.5Z" fill="white"/>
           </mask>
           <g mask="url(#CloudUploadSVG0)">
+            <rect width="30" height="30" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
+export const CheckSVG = {
+  render() {
+    return (
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="CheckSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="4" y="6" width="23" height="18">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.25 20.2123L6.0375 14.9998L4.2625 16.7623L11.25 23.7498L26.25 8.7498L24.4875 6.9873L11.25 20.2123Z" fill="white"/>
+          </mask>
+          <g mask="url(#CheckSVG0)">
             <rect width="30" height="30" fill="currentColor"/>
           </g>
         </svg>
