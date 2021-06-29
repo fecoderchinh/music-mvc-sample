@@ -45,6 +45,41 @@ export default {
       &__control, &__menu {
         @apply border-gray-400;
       }
+      &__menu {
+        @apply py-0;
+        scrollbar-color: grey #eee;
+        scrollbar-width: thin;
+        &::-webkit-scrollbar {
+          width: 5px;
+          height: 5px;
+        }
+        &::-webkit-scrollbar-track {
+          @apply bg-gray-200;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+          @apply bg-gray-400;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+          @apply bg-gray-500;
+        }
+      }
+      &__option {
+        @apply py-2;
+        &--highlight {
+          @apply bg-sidebarHover;
+          svg {
+            @apply fill-buttonAndURL;
+          }
+          .vue-treeselect__label {
+            @apply text-buttonAndURL;
+          }
+        }
+      }
+      &__label {
+        @apply text-menuItem;
+      }
       .vue-treeselect__single-value,
       .vue-treeselect__placeholder {
         @apply mt-1;
