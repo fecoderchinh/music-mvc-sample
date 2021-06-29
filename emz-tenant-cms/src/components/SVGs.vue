@@ -800,61 +800,22 @@ export const ShoppingCartSVG = {
   },
 };
 
+export const CloudUploadSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 30 30">
+          <mask id="CloudUploadSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="5" width="30" height="20">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M15 5C19.55 5 23.3375 8.2375 24.1875 12.55C27.4375 12.775 30 15.45 30 18.75C30 22.2 27.2 25 23.75 25H7.5C3.3625 25 0 21.6375 0 17.5C0 13.6375 2.925 10.45 6.6875 10.05C8.25 7.05 11.3875 5 15 5ZM17.5 21.25V16.25H21.25L15 10L8.75 16.25H12.5V21.25H17.5Z" fill="white"/>
+          </mask>
+          <g mask="url(#CloudUploadSVG0)">
+            <rect width="30" height="30" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
 export default {
   EllipseSVG,
-  // AngleSVG,
-  // ArrowSVG,
-  // SearchSVG,
-  // QuestionOutlineSVG,
-  // InformationSVG,
-  // PlusSVG,
-  // AvatarSVG,
-  // ActionCheckboxSVG,
-  // AccountCircleSVG,
-  // ALTSVG,
-  // LongArrowSVG,
-  // CalendarSVG,
-  // CheckboxSVG,
-  // CheckboxCircleSVG,
-  // CircleSVG,
-  // CloseSVG,
-  // GlobeWWWSVG,
-  // SixDotsSVG,
-  // CashSVG,
-  // CashFillSVG,
-  // DeleteSVG,
-  // QuestionSVG,
-  // MinusSVG,
-  // SquareRadiusSVG,
-  // TruckFillSVG,
-  // TruckSVG,
-  // TruckCashSVG,
-  // AddLibrarySVG,
-  // LocationSVG,
-  // NotifySVG,
-  // PaymentSVG,
-  // SettingSVG,
-  // EyeSVG,
-  // SquareSVG,
-  // MenubarSVG,
-  // LongArrowNewSVG,
-  // DoubleAngleSVG,
-  // FilterSVG,
-  // DashboardSVG,
-  // UpgradeSVG,
-  // HomeSVG,
-  // BellPlusSVG,
-  // AirPlaneSVG,
-  // ShoppingCartPlusSVG,
-  // SnowFlowerSVG,
-  // ShieldSVG,
-  // TagsSVG,
-  // NoImgSVG,
-  // PrintSVG,
-  // DownloadSVG,
-  // CancelSVG,
-  // CheckedFileSVG,
-  // UploadSVG,
-  // VoucherSVG
 };
 </script>

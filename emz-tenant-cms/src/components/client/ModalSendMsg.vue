@@ -16,8 +16,13 @@
             <div class="cms-label text-14px mb-3 text-labelAndTitle">
               <label class="select-none cursor-pointer">Chọn ảnh đại diện</label>
             </div>
-            <div class="w-full">
-              <SquareSVG class="mb-5 mx-auto fill-placeholderStyle hover:fill-placeholderStyle"/>
+            <div class="w-full avatarPicker">
+              <div class="absolute top-50 left-50 transform -translate-x-1/2 -translate-y-1/2 text-menuItem">
+                <CloudUploadSVG class="w-8 mx-auto"/>
+                <p class="text-center cms-typo text-14px">
+                  Tải ảnh lên
+                </p>
+              </div>
             </div>
             <div class="w-full text-buttonAndURL text-14px">
               <ModalGallery />
@@ -55,7 +60,7 @@ import InputType from '@/components/client/InputType.vue';
 import ModalGallery from '@/components/client/ModalGallery.vue';
 
 import {
-  SquareSVG,
+  CloudUploadSVG
 } from '@/components/SVGs.vue';
 
 export default {
@@ -63,8 +68,8 @@ export default {
     Box,
     Select2,
     InputType,
-    SquareSVG,
     ModalGallery,
+    CloudUploadSVG
   },
   data() {
     return {
