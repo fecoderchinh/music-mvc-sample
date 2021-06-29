@@ -2,10 +2,15 @@
   <!-- eslint-disable max-len -->
   <Table class="table-customer">
     <thead class="box-table-header table-customer__header" slot="header">
-      <tr class="pl-3">
+      <tr v-if="allCheckStatus.length !== 0">
+        <TableActions @closeAction="action()" :optionData="tableActionsData" :isFull="allCheckStatus.length === optionDataTable.length">
+          <span slot="content">{{ allCheckStatus.length }} phiên bản được chọn</span>
+        </TableActions>
+      </tr>
+      <tr class="pl-3" v-if="allCheckStatus.length === 0">
         <th>
-          <div class="table-customer__header-content">
-            <FilterSVG class="w-8 sm:w-6 fill-menuIcon"/>
+          <div class="table-customer__header-content" @click="selectAll = !selectAll">
+            <ActionCheckbox/>
           </div>
         </th>
         <th>
@@ -66,18 +71,26 @@
       <tr v-for="(data, index) in optionDataTable" :key="index" class="pl-3">
         <td>
           <div class="table-customer__body-content">
-            <CheckType
-              :id="data.name + '-' + index"
-              main-class="sm:ml-0"/>
+            <div class="cms-checkbox">
+              <input
+                  :id="data.id"
+                  type="checkbox"
+                  :value="data.id"
+                  v-model="allCheckStatus"
+              />
+              <label :for="data.id" class="text-standardCMS text-menuItem text-14px">
+                <span class="square"><span class="square-inner"></span></span>
+              </label>
+            </div>
           </div>
         </td>
         <td>
-          <div class="table-customer__body-content">
+          <div class="table-customer__body-content text-menuIcon">
             <template v-if="data.img">
               <img :src="data.img" alt="" class="rounded-full">
             </template>
             <template v-else>
-              <AvatarSVG class="w-10 h-10 fill-placeholderStyle hover:fill-placeholderStyle"/>
+              <AvatarSVG class="w-10 h-10"/>
             </template>
           </div>
         </td>
@@ -139,28 +152,38 @@
 
 <script>
 import Table from '@/components/client/Table.vue';
-import CheckType from '@/components/client/CheckType.vue';
 import Pagination from "@/components/client/Pagination";
 
 import ModalCustomerDetail from '@/components/client/ModalCustomerDetail.vue';
 
 import {
-  FilterSVG,
   AvatarSVG,
 } from '../SVGs.vue';
+import TableActions from "@/components/client/TableActions";
+import ActionCheckbox from "@/components/client/ActionCheckbox";
 
 export default {
   components: {
+    ActionCheckbox,
+    TableActions,
     Table,
-    FilterSVG,
-    CheckType,
     AvatarSVG,
     Pagination
   },
   data() {
     return {
+      allCheckStatus: [],
+      tableActionsData: [
+        {
+          label: 'Action 1',
+        },
+        {
+          label: 'Action 2',
+        },
+      ],
       optionDataTable: [
         {
+          id: '1',
           img: 'https://picsum.photos/40',
           name: 'NameLongLong@gmail.com',
           phone: '0978 254 123',
@@ -171,6 +194,7 @@ export default {
           total: 965362000,
         },
         {
+          id: '2',
           name: 'Nhiên Pro',
           phone: '—',
           email: 'Nhienpro@gmail.com',
@@ -180,6 +204,7 @@ export default {
           total: 965362000,
         },
         {
+          id: '3',
           img: 'https://picsum.photos/40',
           name: 'NameLongLong@gmail.com',
           phone: '0978 254 123',
@@ -190,6 +215,7 @@ export default {
           total: 965362000,
         },
         {
+          id: '4',
           name: 'Nhiên Pro',
           phone: '—',
           email: 'Nhienpro@gmail.com',
@@ -199,6 +225,7 @@ export default {
           total: 965362000,
         },
         {
+          id: '5',
           img: 'https://picsum.photos/40',
           name: 'NameLongLong@gmail.com',
           phone: '0978 254 123',
@@ -209,6 +236,7 @@ export default {
           total: 965362000,
         },
         {
+          id: '6',
           name: 'Nhiên Pro',
           phone: '—',
           email: 'Nhienpro@gmail.com',
@@ -218,6 +246,7 @@ export default {
           total: 965362000,
         },
         {
+          id: '7',
           img: 'https://picsum.photos/40',
           name: 'NameLongLong@gmail.com',
           phone: '0978 254 123',
@@ -228,6 +257,7 @@ export default {
           total: 965362000,
         },
         {
+          id: '8',
           name: 'Nhiên Pro',
           phone: '—',
           email: 'Nhienpro@gmail.com',
@@ -257,6 +287,27 @@ export default {
 
       this.$modal.show(ModalCustomerDetail, options, style, events);
     },
+    action() {
+      this.selectAll = !this.selectAll
+    },
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.optionDataTable ? this.allCheckStatus.length === this.optionDataTable.length : false;
+      },
+      set: function (value) {
+        var selected = [];
+
+        if (value) {
+          this.optionDataTable.forEach(function (data) {
+            selected.push(data.id);
+          });
+        }
+
+        this.allCheckStatus = selected;
+      }
+    }
   },
 };
 </script>

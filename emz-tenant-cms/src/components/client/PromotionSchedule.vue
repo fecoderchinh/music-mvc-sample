@@ -43,10 +43,13 @@
 
         <div class="col-span-1 sm:col-span-2">
           <div class="cms-label text-14px mb-4">
-            <label for="add-product-name" class="cursor-pointer text-14px text-labelAndTitle">
-              <CheckboxSVG class="w-4 h-4 fill-buttonAndURL inline mr-2"/>
-              <span class="-mt-px">Thời gian kết thúc</span>
-            </label>
+            <CheckType
+                id="add-product-name"
+                slot="tab-right">
+              <template slot="text"><h3 class="ml-2">
+                Thời gian kết thúc
+              </h3></template>
+            </CheckType>
           </div>
           <div class="grid grid-cols-2">
             <div class="col-span-1">
@@ -82,15 +85,15 @@ import InputType from '@/components/client/InputType.vue';
 
 import {
   CalendarSVG,
-  CheckboxSVG,
 } from '../SVGs.vue';
+import CheckType from "@/components/client/CheckType";
 
 export default {
   components: {
+    CheckType,
     Box,
     InputType,
     CalendarSVG,
-    CheckboxSVG,
   },
 };
 </script>

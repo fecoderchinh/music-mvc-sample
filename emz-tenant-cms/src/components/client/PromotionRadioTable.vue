@@ -7,12 +7,12 @@
 
           <tr v-for="(data, index) in optionDataTable" :key="index" class="no-px">
             <td class="col">
-              <div class="inner-col">
+              <div class="inner-col text-menuIcon">
                 <template v-if="( data.img )">
                   <img :src="data.img" alt="">
                 </template>
                 <template v-else>
-                  <SquareSVG class="w-60px h-60px fill-white hover:fill-white"/>
+                  <NoImgSVG class="w-60px h-60px"/>
                 </template>
               </div>
             </td>
@@ -39,14 +39,14 @@
 <script>
 import {
   CloseSVG,
-  SquareSVG,
+  NoImgSVG,
   EllipseSVG,
 } from '../SVGs.vue';
 
 export default {
   components: {
     CloseSVG,
-    SquareSVG,
+    NoImgSVG,
     EllipseSVG,
   },
   data() {

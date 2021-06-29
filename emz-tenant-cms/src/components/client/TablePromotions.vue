@@ -2,10 +2,15 @@
   <!-- eslint-disable max-len -->
   <Table class="table-promotions">
     <thead class="box-table-header table-promotions__header" slot="header">
-      <tr class="pl-3">
+      <tr v-if="allCheckStatus.length !== 0">
+        <TableActions @closeAction="action()" :optionData="tableActionsData" :isFull="allCheckStatus.length === optionDataTable.length">
+          <span slot="content">{{ allCheckStatus.length }} phiên bản được chọn</span>
+        </TableActions>
+      </tr>
+      <tr class="pl-3" v-if="allCheckStatus.length === 0">
         <th>
-          <div class="table-promotions__header-content">
-            <FilterSVG class="w-8 sm:w-6 fill-menuIcon"/>
+          <div class="table-promotions__header-content" @click="selectAll = !selectAll">
+            <ActionCheckbox/>
           </div>
         </th>
         <th>
@@ -49,9 +54,17 @@
         <tr v-for="(data, index) in optionDataTable" :key="index" class="pl-3">
           <td>
             <div class="table-promotions__body-content">
-              <CheckType
-                :id="data.name"
-                main-class="sm:ml-0"/>
+              <div class="cms-checkbox">
+                <input
+                    :id="data.id"
+                    type="checkbox"
+                    :value="data.id"
+                    v-model="allCheckStatus"
+                />
+                <label :for="data.id" class="text-standardCMS text-menuItem text-14px">
+                  <span class="square"><span class="square-inner"></span></span>
+                </label>
+              </div>
             </div>
           </td>
           <td>
@@ -103,26 +116,36 @@
 
 <script>
 import Table from '@/components/client/Table.vue';
-import CheckType from '@/components/client/CheckType.vue';
 import Pagination from "@/components/client/Pagination";
 
 import {
-  FilterSVG,
   EllipseSVG,
 } from '../SVGs.vue';
+import TableActions from "@/components/client/TableActions";
+import ActionCheckbox from "@/components/client/ActionCheckbox";
 
 export default {
   components: {
+    ActionCheckbox,
+    TableActions,
     Table,
-    FilterSVG,
-    CheckType,
     EllipseSVG,
     Pagination
   },
   data() {
     return {
+      allCheckStatus: [],
+      tableActionsData: [
+        {
+          label: 'Action 1',
+        },
+        {
+          label: 'Action 2',
+        },
+      ],
       optionDataTable: [
         {
+          id: '1',
           category: 'Voucher',
           name: 'trian2010',
           list: [
@@ -138,6 +161,7 @@ export default {
           end: '30/12/2019',
         },
         {
+          id: '2',
           category: 'Flash sale',
           name: '21 - 23h 20/11/2020',
           list: [
@@ -149,6 +173,7 @@ export default {
           end: '23H 29/10/2020',
         },
         {
+          id: '3',
           category: 'CTKM',
           name: 'Tháng tư về',
           list: [
@@ -172,6 +197,27 @@ export default {
 
       return str;
     },
+    action() {
+      this.selectAll = !this.selectAll
+    },
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.optionDataTable ? this.allCheckStatus.length === this.optionDataTable.length : false;
+      },
+      set: function (value) {
+        var selected = [];
+
+        if (value) {
+          this.optionDataTable.forEach(function (data) {
+            selected.push(data.id);
+          });
+        }
+
+        this.allCheckStatus = selected;
+      }
+    }
   },
 };
 </script>

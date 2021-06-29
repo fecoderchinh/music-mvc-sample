@@ -4,8 +4,8 @@
     <div class="col-span-3 sm:col-span-6" v-for="(data, index) in optionData" :key="index">
       <div class="grid grid-cols-5 gap-5 p-10px group hover:bg-sidebarHover">
         <div class="col-span-1">
-          <div class="w-50px h-50px flex items-center bg-gray-400 justify-center" v-if="data.component">
-            <component v-bind:is="data.component" class="w-8 h-8 fill-menuIcon group-hover:fill-buttonAndURL hover:filter-none" />
+          <div class="w-50px h-50px flex items-center bg-gray-400 justify-center text-menuIcon group-hover:text-buttonAndURL" v-if="data.component">
+            <component v-bind:is="data.component" class="w-10" />
           </div>
         </div>
         <div class="col-span-4">
@@ -36,7 +36,7 @@ import ModalCreateComboProductContent from '@/components/client/ModalCreateCombo
 
 import {
   TruckSVG,
-  TruckCashSVG,
+  TruckFillSVG,
   GlobeWWWSVG,
   LocationSVG,
 } from '@/components/SVGs.vue';
@@ -45,7 +45,7 @@ export default {
   components: {
     Button,
     TruckSVG,
-    TruckCashSVG,
+    TruckFillSVG,
     GlobeWWWSVG,
     LocationSVG,
   },
@@ -53,7 +53,7 @@ export default {
     return {
       optionData: [
         {
-          component: 'TruckSVG',
+          component: 'TruckFillSVG',
           type: 'Voucher',
           title: 'Mã khuyến mãi - Voucher',
           content: 'Tạo mã khuyến mãi cho một hoặc một số sản phẩm. Dùng bán voucher cho khách hoặc tặng khách hàng.',
@@ -61,7 +61,7 @@ export default {
           modalWidth: 1200,
         },
         {
-          component: 'TruckCashSVG',
+          component: 'TruckSVG',
           type: 'Flash sale',
           title: 'Flash Sale - Bán chớp nhoáng',
           content: 'Giảm giá trong vài giờ cho các sản phẩm được chọn. Thường dùng để tạo các khuyễn mãi kích cầu hàng ngày.',

@@ -1,7 +1,7 @@
 <template>
   <!-- eslint-disable max-len -->
   <ul class="list-none">
-    <li v-for="(data, index) in optionData" :key="index" class="inline-flex items-center text-menuIcon mr-8">
+    <li v-for="(data, index) in optionData" :key="index" class="inline-flex items-center mr-8" :class="color">
       <component v-bind:is="data.component" :class="svgClass" />
       <a :href="data.link" @click="openModal(data.aModal)" :class="aClass">{{ data.name }}</a>
     </li>
@@ -14,6 +14,10 @@ export default {
     svgClass: {
       type: String,
       default: 'w-4 h-4 mr-2 -mt-px',
+    },
+    color: {
+      type: String,
+      default: 'text-menuIcon',
     },
     aClass: {
       type: String,
