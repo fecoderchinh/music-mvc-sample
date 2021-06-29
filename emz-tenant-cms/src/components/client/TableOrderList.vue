@@ -153,7 +153,7 @@ import Table from '@/components/client/Table.vue';
 // import CheckType from '@/components/client/CheckType.vue';
 import Pagination from "@/components/client/Pagination";
 
-import ModalOrderDetail from './ModalOrderDetail.vue';
+import ModalOrderDetail from '@/components/client/ModalOrderDetail';
 
 import {
   ArrowSVG,
@@ -164,6 +164,7 @@ import ModalReturnOrderContent from "@/components/client/ModalReturnOrderContent
 import ModalUpdatePrice from "@/components/client/ModalUpdatePrice";
 import TableActions from "@/components/client/TableActions";
 import ActionCheckbox from "@/components/client/ActionCheckbox";
+import ModalDeleteOrder from "@/components/client/ModalDeleteOrder";
 
 export default {
   components: {
@@ -213,6 +214,8 @@ export default {
         },
         {
           label: 'Xóa đơn hàng',
+          modal: ModalDeleteOrder,
+          width: 500,
         },
       ],
       optionDataTable: [
