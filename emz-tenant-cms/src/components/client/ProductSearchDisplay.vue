@@ -66,14 +66,17 @@
             </label>
           </div>
 
-          <InputType
-              id="seo-url"
-              name="seo-url"
-              button="reset"
-              v-model="seoURL"
-              placeholder="https://tulinh-salon.dkz.vn/combo1"
-              input-class="cms-input__default">
-          </InputType>
+          <InputGroup>
+            <div class="cms-input" slot="group">
+              <span class="input-group-text flex text-menuItem font-lato font-medium text-14px" id="basic-addon3">https://tulinh-salon.dkz.vn/</span>
+              <InputType
+                  placeholder="combo1"
+                  id="seo-url"
+                  name="seo-url"
+                  v-model="seoURL"
+                  input-class="cms-input__default"/>
+            </div>
+          </InputGroup>
         </div>
       </div>
 
@@ -84,9 +87,11 @@
 <script>
 import Box from '@/components/client/Box.vue';
 import InputType from "@/components/client/InputType";
+import InputGroup from "@/components/client/InputGroup";
 
 export default {
   components: {
+    InputGroup,
     InputType,
     Box,
   },

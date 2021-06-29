@@ -13,8 +13,8 @@ export default {
 <style lang="scss">
   .cms__input-group {
     > * {
-      @apply flex flex-wrap items-stretch w-full;
-      > * {
+      @apply flex flex-wrap items-center w-full;
+      > .control, > input, > select, > button {
         @apply block flex-auto;
         width: 1%;
         input {
