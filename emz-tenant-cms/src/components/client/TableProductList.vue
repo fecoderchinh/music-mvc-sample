@@ -2,10 +2,19 @@
   <!-- eslint-disable max-len -->
   <Table class="table-productlist">
     <thead class="box-table-header table-productlist__header" slot="header">
-      <tr class="pl-3">
+      <tr v-if="allCheckStatus.length !== 0" class="pl-2">
+        <TableActions
+            @closeAction="action()"
+            :optionData="tableActionsData"
+            :isFull="allCheckStatus.length === optionDataTable.length"
+            firstItemCss="">
+          <span slot="content">{{ allCheckStatus.length }} phiên bản được chọn</span>
+        </TableActions>
+      </tr>
+      <tr class="pl-3" v-if="allCheckStatus.length === 0">
         <th>
-          <div class="table-productlist__header-content">
-            <FilterSVG class="w-6 fill-menuIcon"/>
+          <div class="table-productlist__header-content" @click="selectAll = !selectAll">
+            <ActionCheckbox/>
           </div>
         </th>
         <th>
@@ -66,7 +75,10 @@
       <tr v-for="(data, index) in optionDataTable" :key="index" class="pl-3">
         <td>
           <div class="table-productlist__body-content">
-            <CheckType :id="data.source" main-class="sm:ml-0"/>
+            <CheckType
+                main-class="ml-0"
+                v-model="allCheckStatus"
+                :val="data.id"/>
           </div>
         </td>
         <td>
@@ -138,20 +150,59 @@ import Pagination from "@/components/client/Pagination";
 import ModalProductDetail from '@/components/client/ModalProductDetail.vue';
 import ModalProductDetailSaved from '@/components/client/ModalProductDetailSaved.vue';
 
-import {
-  FilterSVG,
-} from '../SVGs.vue';
 import http from '@/config/http';
+import TableActions from "@/components/client/TableActions";
+import ActionCheckbox from "@/components/client/ActionCheckbox";
+import ModalAddTags from "@/components/client/ModalAddTags";
+import ModalAddCategories from "@/components/client/ModalAddCategories";
 
 export default {
   components: {
+    ActionCheckbox,
+    TableActions,
     Table,
-    FilterSVG,
     CheckType,
     Pagination
   },
   data() {
     return {
+      allCheckStatus: [],
+      tableActionsData: [
+        {
+          label: 'Sửa sản phẩm',
+        },
+        {
+          label: 'Đăng bán',
+        },
+        {
+          label: 'Ngừng bán',
+        },
+        {
+          label: 'Xóa sản phẩm',
+        },
+        {
+          label: 'Thêm tags',
+          modal: ModalAddTags,
+          width: 500
+        },
+        {
+          label: 'Xóa tags',
+        },
+        {
+          label: 'Thêm vào danh mục',
+          modal: ModalAddCategories,
+          width: 500
+        },
+        {
+          label: 'Xóa khỏi danh mục',
+        },
+        {
+          label: 'Ngừng bán khi hết hàng',
+        },
+        {
+          label: 'Bán tiếp khi hết hàng',
+        }
+      ],
       optionDataTable: [
         {
           img: 'https://picsum.photos/60',
@@ -246,6 +297,27 @@ export default {
 
       this.$modal.show(Modal, options, style, events);
     },
+    action() {
+      this.selectAll = !this.selectAll
+    },
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.optionDataTable ? this.allCheckStatus.length === this.optionDataTable.length : false;
+      },
+      set: function (value) {
+        var selected = [];
+
+        if (value) {
+          this.optionDataTable.forEach(function (data) {
+            selected.push(data.id);
+          });
+        }
+
+        this.allCheckStatus = selected;
+      }
+    }
   },
 };
 </script>
@@ -271,9 +343,9 @@ export default {
               max-width: 80px;
             }
             &:nth-child(3) {
-              width: 285px;
-              min-width: 285px;
-              max-width: 285px;
+              width: 275px;
+              min-width: 275px;
+              max-width: 275px;
             }
             &:nth-child(4) {
               width: 190px;
@@ -301,9 +373,9 @@ export default {
               max-width: 115px;
             }
             &:nth-child(9) {
-              width: 90px;
-              min-width: 90px;
-              max-width: 90px;
+              width: 100px;
+              min-width: 100px;
+              max-width: 100px;
             }
           }
         }
@@ -329,9 +401,9 @@ export default {
               max-width: 80px;
             }
             &:nth-child(3) {
-              width: 285px;
-              min-width: 285px;
-              max-width: 285px;
+              width: 275px;
+              min-width: 275px;
+              max-width: 275px;
             }
             &:nth-child(4) {
               width: 190px;
@@ -359,9 +431,9 @@ export default {
               max-width: 115px;
             }
             &:nth-child(9) {
-              width: 90px;
-              min-width: 90px;
-              max-width: 90px;
+              width: 100px;
+              min-width: 100px;
+              max-width: 100px;
             }
           }
         }

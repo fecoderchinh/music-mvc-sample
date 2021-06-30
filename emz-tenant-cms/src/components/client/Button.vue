@@ -73,6 +73,12 @@ export default {
           @apply text-base;
         }
       }
+      &-sm {
+        @apply font-normal py-1 px-3;
+        @media (min-width: 1025px) {
+          @apply text-xs;
+        }
+      }
     }
   }
 </style>

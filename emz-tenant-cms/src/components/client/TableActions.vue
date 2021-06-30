@@ -1,7 +1,7 @@
 <template>
   <!-- eslint-disable max-len -->
   <ul class="cms-table-actions flex flex-wrap items-center list-none select-none" @click.stop>
-    <li class="inline-flex mr-5 my-1" :class="firstItemCss">
+    <li class="inline-flex mr-3 my-1" :class="firstItemCss">
       <a href="#" class="inline-flex items-center text-13px text-menuItem border px-1 py-px rounded" @click.prevent="$emit('closeAction')">
         <div class="cms-checkbox mr-3 mt-px">
           <input type="checkbox">
@@ -18,16 +18,23 @@
       :key="index"
       :class="[
           'inline-flex my-1',
-          index + 1 !== optionData.length ? 'mr-5' : null,
+          index + 1 !== optionData.length ? 'mr-3' : null,
           data.reduceAttention ? 'opacity-25' : null
            ]">
-      <h3 @click="openModal(data.modal, data.width)">{{ data.label }}</h3>
+      <Button button-class="cms-button cms-button-blue cms-button-sm"
+              @click="openModal(data.modal, data.width)">
+        <template slot="name">
+          {{ data.label }}
+        </template>
+      </Button>
     </li>
   </ul>
 </template>
 
 <script>
+import Button from "@/components/client/Button";
 export default {
+  components: {Button},
   props: {
     optionData: Array,
     isFull: Boolean,

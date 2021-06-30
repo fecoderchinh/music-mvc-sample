@@ -7,7 +7,7 @@
         @click="removeTag(tag)"
       ><CloseSVG class="tag-input-svg"/></button>
     </li>
-    <input class="tag-input-text" :placeholder="placeholder"
+    <input class="tag-input-text" v-if="canBackspace" :placeholder="placeholder"
       v-model="input"
       @keydown.backspace="handleBackspace"
       @keydown.enter.prevent="addTag"
@@ -34,6 +34,10 @@ export default {
       type: String,
       default: 'Add tag ...',
     },
+    canBackspace: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -60,8 +64,10 @@ export default {
       this.input = '';
     },
     handleBackspace() {
-      if (this.newTag.length === 0) {
-        this.$emit('update', this.tags.slice(0, -1));
+      if(this.canBackspace) {
+        if (this.newTag.length === 0) {
+          this.$emit('update', this.tags.slice(0, -1));
+        }
       }
     },
   },

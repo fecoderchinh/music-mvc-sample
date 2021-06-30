@@ -10,7 +10,7 @@
       @select="mySelectEvent($event)"
       style="width: 100%"
       :placeholder="placeholder" />
-      <TagInput v-model="myValue" v-if="settings.multiple && myValue" placeholder=""/>
+      <TagInput v-model="myValue" v-if="settings.multiple && myValue" placeholder="" :canBackspace="false"/>
   </div>
 </template>
 <script>
