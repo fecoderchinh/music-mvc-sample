@@ -38,7 +38,7 @@
             <a href="#">Đổi tên</a>
           </li>
           <li class="inline">
-            <a href="#">Sao chép</a>
+            <a href="javascript:void(0)" @click="openModal">Sao chép</a>
           </li>
         </ul>
         <Button class="md:absolute -top-10px right-0 sm:block sm:mt-3" button-class="cms-button cms-button-blue">
@@ -56,10 +56,27 @@
 
 <script>
 import Button from '@/components/client/Button.vue';
+import ModalDuplicateItem from "@/components/client/ModalDuplicateItem";
 
 export default {
   components: {
     Button,
+  },
+  methods: {
+    openModal() {
+      const options = {
+        class: 'cms-modal',
+      };
+      const style = {
+        width: 500, height: 'auto', shiftX: 0.5, adaptive: true,
+      };
+      const events = {
+        // opened: () => console.log('Opened'),
+        closed: () => this.$emit('close'),
+      };
+
+      this.$modal.show(ModalDuplicateItem, options, style, events);
+    },
   },
 };
 </script>

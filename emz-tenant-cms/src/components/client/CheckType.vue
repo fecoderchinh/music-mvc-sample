@@ -1,11 +1,9 @@
 <template>
   <!-- eslint-disable max-len -->
   <div class="cms-checkbox" :class="mainClass">
-
-    <input type="checkbox" :value="val" v-model="checked" @change="onChange" />
-
-    <label class="text-standardCMS text-menuItem text-14px" :class="labelClass" @click="labelClick">
-      <span class="square" :class="checkedProxy ? 'checked' : null"><span class="square-inner"></span></span>
+    <label class="text-standardCMS text-menuItem text-14px" :class="labelClass">
+      <input type="checkbox" :value="val" v-model="checked" @change="onChange" />
+      <span class="square"><span class="square-inner"></span></span>
       <slot name="text"></slot>
     </label>
   </div>
@@ -22,7 +20,7 @@ export default {
   computed: {
     checked: {
       get () {
-        return this.checkedProxy
+        return this.value
       },
       set (val) {
         this.checkedProxy = val
@@ -34,10 +32,6 @@ export default {
     onChange: function(e) {
       this.$emit('input', this.checkedProxy)
     },
-    labelClick() {
-      this.checkedProxy = !this.checkedProxy
-      this.$emit('input', this.checkedProxy)
-    }
   }
 };
 </script>
@@ -69,6 +63,25 @@ export default {
         }
       }
     }
+    &+ span.square {
+      // @apply transition duration-200;
+      &.checked {
+        @apply bg-buttonAndURL border-buttonAndURL;
+        & > span {
+          @apply block border transform rotate-45;
+          border-width: 0 2px 2px 0;
+        }
+      }
+      &.minus {
+        > span {
+          @apply transform rotate-90;
+          left: 5px;
+          width: .1rem;
+          border-width: 0;
+          background: #fff;
+        }
+      }
+    }
     &:checked {
       &+ label {
         > span {
@@ -77,6 +90,13 @@ export default {
             @apply block border transform rotate-45;
             border-width: 0 2px 2px 0;
           }
+        }
+      }
+      &+ span {
+        @apply bg-buttonAndURL border-buttonAndURL;
+        & > span {
+          @apply block border transform rotate-45;
+          border-width: 0 2px 2px 0;
         }
       }
     }

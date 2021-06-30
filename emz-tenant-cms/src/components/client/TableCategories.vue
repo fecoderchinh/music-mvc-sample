@@ -45,17 +45,25 @@
       <tr v-for="(data, index) in optionDataTable" :key="index" class="pl-3">
         <td>
           <div class="table-categories__body-content">
-              <div class="cms-checkbox">
-                <input
-                    :id="data.id"
-                    type="checkbox"
-                    :value="data.id"
-                    v-model="allCheckStatus"
-                />
-                <label :for="data.id" class="text-standardCMS text-menuItem text-14px">
-                  <span class="square"><span class="square-inner"></span></span>
-                </label>
-              </div>
+
+<!--            CHECKBOX DEFAULT-->
+<!--              <div class="cms-checkbox">-->
+<!--                <input-->
+<!--                    :id="data.id"-->
+<!--                    type="checkbox"-->
+<!--                    :value="data.id"-->
+<!--                    v-model="allCheckStatus"-->
+<!--                />-->
+<!--                <label :for="data.id" class="text-standardCMS text-menuItem text-14px">-->
+<!--                  <span class="square"><span class="square-inner"></span></span>-->
+<!--                </label>-->
+<!--              </div>-->
+
+<!--            CHECKBOX COMPONENT # CÁCH 2-->
+              <CheckType
+                  main-class="ml-0 no-mr"
+                  v-model="allCheckStatus"
+                  :val="data.id"/>
           </div>
         </td>
         <td>
@@ -104,6 +112,7 @@ import ModalDanhMucSp from "@/components/client/ModalDanhMucSp";
 import ModalDanhMucSpAuto from "@/components/client/ModalDanhMucSpAuto";
 import TableActions from "@/components/client/TableActions";
 import ActionCheckbox from "@/components/client/ActionCheckbox";
+import CheckType from "@/components/client/CheckType";
 // import ModalUpdatePrice from "@/components/client/ModalUpdatePrice";
 // import ModalCancelOrder from "@/components/client/ModalCancelOrder";
 // import ModalConfirmOrderContent from "@/components/client/ModalConfirmOrderContent";
@@ -112,6 +121,7 @@ import ActionCheckbox from "@/components/client/ActionCheckbox";
 
 export default {
   components: {
+    CheckType,
     ActionCheckbox,
     TableActions,
     // Loader,
