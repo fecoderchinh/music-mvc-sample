@@ -14,7 +14,7 @@ export default {
   .cms__input-group {
     > * {
       @apply flex flex-wrap items-center w-full;
-      > .control, > input, > select, > button {
+      > .control, > input, > select, > button, > .cms-input {
         @apply block flex-auto;
         width: 1%;
         input {

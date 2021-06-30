@@ -425,6 +425,15 @@
   @apply bg-gray-400 text-placeholderStyle outline-none;
 }
 
+.absoluteSquare {
+    @apply w-full h-full relative;
+}
+.absoluteSquare:before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+}
+
 /***********************************************************************************\
       HOVER AND FOCUS
 \***********************************************************************************/

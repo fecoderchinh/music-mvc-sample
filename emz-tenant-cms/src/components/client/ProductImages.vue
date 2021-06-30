@@ -10,8 +10,8 @@
         <a href="#" class="text-standardCMS absolute top-0 right-0 text-buttonAndURL">Thêm ảnh sản phẩm</a>
       </div>
 
-      <div class="grid grid-cols-5 gap-5 gallery">
-        <div class="col-span-2 sm:col-span-5 gallery-left">
+      <div class="grid grid-cols-10 gap-5 gallery" v-if="data">
+        <div class="col-span-4 md:row-span-2 sm:col-span-10">
           <div class="bg-black">
             <img src="https://picsum.photos/350" class="mx-auto">
             <div class="gallery-meta">
@@ -29,66 +29,83 @@
             </div>
           </div>
         </div>
-        <div class="col-span-3 sm:col-span-5 gallery-right">
-          <div class="grid grid-cols-3 sm:grid-cols-1 gap-5">
-            <div class="gallery-item">
-              <div class="bg-black">
-                <img src="https://picsum.photos/350" class="mx-auto">
-                <div class="gallery-meta">
-                  <ul class="list-none flex items-center justify-center">
-                    <li class="inline-flex text-white hover:text-buttonAndURL">
-                      <EyeSVG class="w-icon"/>
-                    </li>
-                    <li class="inline-flex border p-3 mx-2 text-white hover:text-buttonAndURL">
-                      <ALTSVG class="w-8"/>
-                    </li>
-                    <li class="inline-flex text-white hover:text-buttonAndURL">
-                      <DeleteSVG class="w-icon"/>
-                    </li>
-                  </ul>
-                </div>
+        <div class="col-span-2 sm:col-span-10 gallery-right">
+          <div class="gallery-item">
+            <div class="bg-black">
+              <img src="https://picsum.photos/350" class="mx-auto">
+              <div class="gallery-meta">
+                <ul class="list-none flex items-center justify-center">
+                  <li class="inline-flex text-white hover:text-buttonAndURL">
+                    <EyeSVG class="w-icon"/>
+                  </li>
+                  <li class="inline-flex border p-3 mx-2 text-white hover:text-buttonAndURL">
+                    <ALTSVG class="w-8"/>
+                  </li>
+                  <li class="inline-flex text-white hover:text-buttonAndURL">
+                    <DeleteSVG class="w-icon"/>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="gallery-item">
-              <div class="bg-gray-300">
-                <div class="onHover fill-menuIcon">
-                  <PlusSVG class="w-icon"/>
-                </div>
-                <SquareSVG class="fill-white border"/>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-10">
+          <div class="gallery-item">
+            <div class="absoluteSquare border">
+              <div class="onHover fill-menuIcon">
+                <PlusSVG class="w-icon"/>
               </div>
             </div>
-            <div class="gallery-item">
-              <div class="bg-gray-300">
-                <div class="onHover fill-menuIcon">
-                  <PlusSVG class="w-icon"/>
-                </div>
-                <SquareSVG class="fill-white border"/>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-10">
+          <div class="gallery-item">
+            <div class="absoluteSquare border">
+              <div class="onHover fill-menuIcon">
+                <PlusSVG class="w-icon"/>
               </div>
+
             </div>
-            <div class="gallery-item">
-              <div class="bg-gray-300">
-                <div class="onHover fill-menuIcon">
-                  <PlusSVG class="w-icon"/>
-                </div>
-                <SquareSVG class="fill-white border"/>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-10">
+          <div class="gallery-item">
+            <div class="absoluteSquare border">
+              <div class="onHover fill-menuIcon">
+                <PlusSVG class="w-icon"/>
               </div>
+
             </div>
-            <div class="gallery-item">
-              <div class="bg-gray-300">
-                <div class="onHover fill-menuIcon">
-                  <PlusSVG class="w-icon"/>
-                </div>
-                <SquareSVG class="fill-white border"/>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-10">
+          <div class="gallery-item">
+            <div class="absoluteSquare border">
+              <div class="onHover fill-menuIcon">
+                <PlusSVG class="w-icon"/>
               </div>
+
             </div>
-            <div class="gallery-item">
-              <div class="bg-gray-300">
-                <div class="onHover fill-menuIcon">
-                  <PlusSVG class="w-icon"/>
-                </div>
-                <SquareSVG class="fill-white border"/>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-10">
+          <div class="gallery-item">
+            <div class="absoluteSquare border">
+              <div class="onHover fill-menuIcon">
+                <PlusSVG class="w-icon"/>
               </div>
+
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-10 gap-5 gallery" v-else>
+        <div class="col-span-10 row-span-2 border rounded max-h-64 h-64 hover:border-buttonAndURL">
+          <div class="absolute top-50 left-50 transform -translate-x-1/2 -translate-y-1/2 text-menuIcon">
+            <NoImgSVG class="w-8 mx-auto"/>
+            <p class="text-center cms-typo text-14px">
+              Kéo thả file ảnh vào đây để thêm mới
+            </p>
           </div>
         </div>
       </div>
@@ -100,22 +117,23 @@
 import Box from '@/components/client/Box.vue';
 
 import {
-  SquareSVG,
   EyeSVG,
   ALTSVG,
   DeleteSVG,
-  PlusSVG
+  PlusSVG,
+  NoImgSVG
 } from '@/components/SVGs.vue';
 
 export default {
   components: {
     Box,
-    SquareSVG,
     EyeSVG,
     ALTSVG,
     DeleteSVG,
-    PlusSVG
+    PlusSVG,
+    NoImgSVG
   },
+  props: ['data']
 };
 </script>
 
