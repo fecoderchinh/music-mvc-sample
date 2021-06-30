@@ -6,7 +6,7 @@
       <h3 class="text-18px cms-typo text-labelAndTitle">
         <Button button-class="inline hover:shadow-none focus:outline-none no-effect" @click="$emit('close')">
           <template slot="name">
-            <LongArrowSVG class="w-4 transform rotate-180 mr-3 inline"/>
+            <LongArrowSVG class="w-4 transform rotate-180 mr-3 inline transform rotate-180"/>
             Thư viện ảnh đại diện
           </template>
         </Button>
