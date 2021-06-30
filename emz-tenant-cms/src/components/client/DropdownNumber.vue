@@ -6,24 +6,9 @@
         {{ currentLabel }}
       </span>
     </button>
-    <Dropdown :show="this.dropDownOpen" v-click-outside="hideOnClickOutside" class="z-10" dropdown-class="w-full no-top-arrow dropdown-custom-mt">
-      <a href="#" class="cms-dropdown__item">
-        Tên sản phẩm
-      </a>
-      <a href="#" class="cms-dropdown__item">
-        Giá sản phẩm
-      </a>
-      <a href="#" class="cms-dropdown__item">
-        Thương hiệu
-      </a>
-      <a href="#" class="cms-dropdown__item">
-        Loại sản phẩm
-      </a>
-      <a href="#" class="cms-dropdown__item">
-        Được tag với
-      </a>
-      <a href="#" class="cms-dropdown__item">
-        Số lượng còn
+    <Dropdown :show="this.dropDownOpen" v-click-outside="hideOnClickOutside" class="z-10" dropdown-class="w-full no-top-arrow dropdown-custom-mt dropdown__time cms-scrollbar no-py">
+      <a href="javascript:void(0)" @click="getNumber(i)" class="cms-dropdown__item" v-for="(n, i) in range+1" :key="i">
+        {{ i }}
       </a>
     </Dropdown>
   </div>
@@ -40,8 +25,9 @@ export default {
   props: {
     label: {
       type: String,
-      default: '+ Thêm điều kiện'
-    }
+      default: 'Phút'
+    },
+    range: Number
   },
   data() {
     return {
@@ -53,6 +39,9 @@ export default {
     hideOnClickOutside() {
       this.dropDownOpen = false;
     },
+    getNumber(n) {
+      this.currentLabel = n === 0 ? '00' : n
+    }
   },
   mounted() {
     this.popupItem = this.$el;
@@ -66,5 +55,9 @@ export default {
 <style lang="scss">
 .dropdown-custom-mt {
   @apply mt-3 #{!important};
+}
+.dropdown__time {
+  max-height: 180px;
+  overflow-y: scroll;
 }
 </style>

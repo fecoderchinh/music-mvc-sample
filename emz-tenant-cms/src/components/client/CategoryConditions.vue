@@ -32,12 +32,32 @@
       </div>
 
       <div class="w-full" v-if="auto">
+        <div class="w-full mb-3">
+          <InputGroup>
+            <div slot="group">
+              <span class="cms-typo text-14px text-menuItem mr-3">Sản phẩm được thêm tự động nếu thỏa mãn</span>
+              <Radio
+                  id="radio-category-condition-3"
+                  name="radio-category-condition-2"
+                  label-class="mr-3 mt-3 md:mt-0"
+                  checked>
+                <template slot="radio-text">Tất cả các điều kiện</template>
+              </Radio>
+              <Radio
+                  id="radio-category-condition-4"
+                  name="radio-category-condition-2"
+                  label-class="mr-3 mt-3 md:mt-0">
+                <template slot="radio-text">Một trong các điều kiện</template>
+              </Radio>
+            </div>
+          </InputGroup>
+        </div>
         <div class="table w-full">
           <div class="table-row w-full">
             <div class="table-cell">
               <div class="grid grid-cols-4 sm:grid-cols-1 gap-5">
                 <div class="col-span-1">
-                  <SelectOption :option-data="this.optionDataSelect1"/>
+                  <DropdownCondition label="Tên sản phẩm"/>
                 </div>
                 <div class="col-span-1">
                   <SelectOption :option-data="this.optionDataSelect2"/>
@@ -52,8 +72,8 @@
                 </div>
               </div>
             </div>
-            <div class="w-auto text-center text-placeholderStyle ml-3">
-              <DeleteSVG class="w-4 inline -mt-1 fill-current"/>
+            <div class="w-auto text-center text-placeholderStyle hover:text-buttonAndURL cursor-pointer ml-3">
+              <DeleteSVG class="w-icon inline -mt-1"/>
             </div>
           </div>
         </div>
@@ -90,9 +110,11 @@ import ProductAdvanceSearch from "@/components/client/ProductAdvanceSearch";
 import {
   DeleteSVG,
 } from '@/components/SVGs';
+import InputGroup from "@/components/client/InputGroup";
 
 export default {
   components: {
+    InputGroup,
     Box,
     Radio,
     SelectOption,

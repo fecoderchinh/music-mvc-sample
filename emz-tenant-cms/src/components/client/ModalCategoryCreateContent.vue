@@ -17,45 +17,22 @@
 
           <div class="grid grid-cols-6 gap-5">
 
-            <div class="col-span-2 sm:col-span-6">
+            <div class="col-span-6">
               <div class="cms-label text-14px mb-4">
-                <label for="add-category-name" class="cursor-pointer text-14px text-labelAndTitle">
+                <label for="modal-danhmuc-sp-auto-1" class="cursor-pointer text-14px text-labelAndTitle">
                   Tên danh mục
                 </label>
               </div>
               <div class="w-full">
                 <InputType
-                  id="add-category-name"
-                  name="add-category-name"
-                  placeholder="Nhập tên danh mục"
-                  button="reset"
-                  input-class="cms-input__default"
-                  button-class="absolute right-0 top-50 transform -translate-y-1/2 mr-4 focus:outline-none">
+                    id="modal-danhmuc-sp-auto-1"
+                    name="modal-danhmuc-sp-auto-1"
+                    placeholder="Nhập tên danh mục"
+                    button="reset"
+                    input-class="cms-input__default"
+                    button-class="absolute right-0 top-50 transform -translate-y-1/2 mr-4 focus:outline-none">
                 </InputType>
               </div>
-            </div>
-
-            <div class="col-span-2 sm:col-span-6">
-              <div class="cms-label text-14px mb-4">
-                <label for="add-category-name" class="cursor-pointer text-14px text-labelAndTitle">
-                  Thêm vào menu<span class="cms-lato text-cmsRed text-14px">*</span>
-                </label>
-              </div>
-              <div class="w-full">
-                <ModalMenuPicker/>
-                <div class="w-full">
-                  <InlineTags :option-data="this.optionDataTags" tagClass="inline-tag__button-blue"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-span-2 sm:col-span-6">
-              <div class="cms-label text-14px mb-4">
-                <label for="add-category-name" class="cursor-pointer text-14px text-labelAndTitle">
-                  Loại danh mục<span class="cms-lato text-cmsRed text-14px">*</span>
-                </label>
-              </div>
-              <SelectOption :option-data="this.optionDataSelect1"/>
             </div>
 
           </div>
@@ -71,10 +48,8 @@
         <div class="col-span-6 xl:col-span-2">
 
           <WidgetRadioStatus/>
-          <WidgetRadioStatusSaved/>
 
-          <WidgetImageUploader/>
-          <WidgetImageUploader image="https://picsum.photos/400/300"/>
+          <WidgetImageUploader @click="uploadImage" :image="imgUrl"/>
 
           <Widget>
             <template slot="title">
@@ -138,7 +113,6 @@ import ModalMenuPicker from '@/components/client/ModalMenuPicker.vue';
 import Widget from "@/components/client/Widget";
 import WidgetRadioStatus from '@/components/client/WidgetRadioStatus.vue';
 import WidgetImageUploader from '@/components/client/WidgetImageUploader.vue';
-import WidgetRadioStatusSaved from "@/components/client/settings/WidgetRadioStatusSaved";
 
 export default {
   components: {
@@ -154,10 +128,10 @@ export default {
     WidgetRadioStatus,
     WidgetImageUploader,
     ModalMenuPicker,
-    WidgetRadioStatusSaved,
   },
   data() {
     return {
+      imgUrl: '',
       optionDataTags: [
         {
           name: 'Chờ lấy hàng',
@@ -172,6 +146,12 @@ export default {
       ],
     };
   },
+  methods: {
+    uploadImage() {
+      if(this.imgUrl) this.imgUrl = ''
+      else this.imgUrl = 'https://picsum.photos/400/300'
+    }
+  }
 };
 </script>
 

@@ -345,7 +345,7 @@ export default {
               }
               &:after {
                 content: '';
-                width: calc( 100% - 10px );
+                width: calc( 100% );
                 @apply bg-cmsLightBlue bg-opacity-10 h-full absolute top-0 left-0;
                 @apply border-t border-l border-r border-cmsLightBlue border-opacity-25;
               }
@@ -434,7 +434,7 @@ export default {
             }
             &:nth-child(10), &:nth-child(13) {
               &:after {
-                width: calc( 100% - 10px );
+                width: calc( 100% );
               }
             }
             &:nth-child(8), &:nth-child(9), &:nth-child(11), &:nth-child(12) {

@@ -53,7 +53,7 @@
               <div class="table-cell">
                 <div class="grid grid-cols-4 sm:grid-cols-1 gap-5">
                   <div class="col-span-1">
-                    <SelectOption :option-data="this.optionDataSelect1"/>
+                    <DropdownCondition label="Tên sản phẩm"/>
                   </div>
                   <div class="col-span-1">
                     <SelectOption :option-data="this.optionDataSelect2"/>
@@ -68,8 +68,8 @@
                   </div>
                 </div>
               </div>
-              <div class="w-auto text-center text-placeholderStyle ml-3">
-                <DeleteSVG class="w-4 inline -mt-1 fill-current"/>
+              <div class="w-auto text-center text-placeholderStyle hover:text-buttonAndURL cursor-pointer ml-3">
+                <DeleteSVG class="w-icon inline -mt-1"/>
               </div>
             </div>
           </div>
@@ -117,10 +117,12 @@ import {
   DeleteSVG
 }
 from '@/components/SVGs';
+import DropdownCondition from "@/components/client/DropdownCondition";
 
 export default {
   name: "ModalDsThoaManContent",
   components: {
+    DropdownCondition,
     Modal,
     Button,
     LongArrowSVG,
