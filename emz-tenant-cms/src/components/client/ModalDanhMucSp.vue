@@ -79,7 +79,7 @@
 
           <WidgetRadioStatus/>
 
-          <WidgetImageUploader/>
+          <WidgetImageUploader @click="uploadImage" :image="imgUrl"/>
 
           <Widget>
             <template slot="title">
@@ -164,6 +164,7 @@ export default {
   },
   data() {
     return {
+      imgUrl: '',
       optionDataTags: [
         {
           name: 'Chờ lấy hàng',
@@ -181,6 +182,12 @@ export default {
       ],
     };
   },
+  methods: {
+    uploadImage() {
+      if(this.imgUrl) this.imgUrl = ''
+      else this.imgUrl = 'https://picsum.photos/400/300'
+    }
+  }
 };
 </script>
 
