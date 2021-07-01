@@ -2,10 +2,15 @@
   <!-- eslint-disable max-len -->
   <Table class="table-stock">
     <thead class="box-table-header table-stock__header" slot="header">
-      <tr class="pl-3">
+      <tr v-if="allCheckStatus.length !== 0" class="pb-3">
+        <TableActions @closeAction="action()" :optionData="tableActionsData" :isFull="allCheckStatus.length === optionDataTable.length">
+          <span slot="content">{{ allCheckStatus.length }} phiên bản được chọn</span>
+        </TableActions>
+      </tr>
+      <tr class="pl-3" v-if="allCheckStatus.length === 0" @click="selectAll = !selectAll">
         <th>
           <div class="table-stock__header-content">
-            <FilterSVG class="w-8 sm:w-6 fill-menuIcon"/>
+            <ActionCheckbox/>
           </div>
         </th>
         <th>
@@ -40,9 +45,9 @@
           </div>
         </th>
         <th>
-          <div class="table-stock__header-content text-left">
-            <h3 class="cms-typo text-14px text-buttonAndURL">
-              Tổng SL
+          <div class="table-stock__header-content text-right">
+            <h3 class="cms-typo text-14px text-labelAndTitle">
+              Số lượng
             </h3>
           </div>
         </th>
@@ -66,9 +71,18 @@
       <tr v-for="(data, index) in optionDataTable" :key="index" class="pl-3 group">
         <td>
           <div class="table-stock__body-content">
-            <CheckType
-              :id="data.row3"
-              main-class="sm:ml-0"/>
+            <!--            CHECKBOX DEFAULT-->
+            <div class="cms-checkbox">
+              <input
+                  :id="data.id"
+                  type="checkbox"
+                  :value="data.id"
+                  v-model="allCheckStatus"
+              />
+              <label :for="data.id" class="text-standardCMS text-menuItem text-14px">
+                <span class="square"><span class="square-inner"></span></span>
+              </label>
+            </div>
           </div>
         </td>
         <td>
@@ -180,28 +194,44 @@
 
 <script>
 import Table from '@/components/client/Table.vue';
-import CheckType from '@/components/client/CheckType.vue';
 import InputType from '@/components/client/InputType.vue';
 
 import {
-  FilterSVG,
   EllipseSVG,
   SquareSVG,
 } from '../SVGs.vue';
+import TableActions from "@/components/client/TableActions";
+import ActionCheckbox from "@/components/client/ActionCheckbox";
 
 export default {
   components: {
+    ActionCheckbox,
+    TableActions,
     Table,
-    FilterSVG,
-    CheckType,
     InputType,
     EllipseSVG,
     SquareSVG,
   },
   data() {
     return {
+      allCheckStatus: [],
+      tableActionsData: [
+        {
+          label: 'Cập nhật kho',
+        },
+        {
+          label: 'Chỉnh sửa hàng loạt',
+        },
+        {
+          label: 'Tiếp tục bán khi hết hàng',
+        },
+        {
+          label: 'Ngừng bán khi hết hàng',
+        }
+      ],
       optionDataTable: [
         {
+          id: '1',
           row2: 'https://picsum.photos/60',
           row3: 'Combo cần câu cá',
           row3attr: [
@@ -236,6 +266,7 @@ export default {
           row13clr: 'cmsGray',
         },
         {
+          id: '2',
           row2: 'https://picsum.photos/60',
           row3: 'Combo cần câu cá cho gia đình, thư giản cuối tuần',
           row4: 'sku-2',
@@ -256,6 +287,7 @@ export default {
           row13clr: 'cmsGray',
         },
         {
+          id: '3',
           row3: 'Combo cần câu cá cho gia đình, thư giản cuối tuần',
           row4: 'sku-2',
           row5: 95362000,
@@ -289,6 +321,27 @@ export default {
 
       return str;
     },
+    action() {
+      this.selectAll = !this.selectAll
+    },
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.optionDataTable ? this.allCheckStatus.length === this.optionDataTable.length : false;
+      },
+      set: function (value) {
+        var selected = [];
+
+        if (value) {
+          this.optionDataTable.forEach(function (data) {
+            selected.push(data.id);
+          });
+        }
+
+        this.allCheckStatus = selected;
+      }
+    }
   },
 };
 </script>
@@ -301,12 +354,13 @@ export default {
           width: calc( 100% - 1.25rem );
         }
         tr {
+          @apply border-b;
           th {
-            @apply py-3 border-b;
+            @apply py-3;
             &:nth-child(1) {
-              width: 70px;
-              min-width: 70px;
-              max-width: 70px;
+              width: 40px;
+              min-width: 40px;
+              max-width: 40px;
             }
             &:nth-child(2) {
               width: 80px;
@@ -334,9 +388,9 @@ export default {
               max-width: 100px;
             }
             &:nth-child(7) {
-              width: 70px;
-              min-width: 70px;
-              max-width: 70px;
+              width: 100px;
+              min-width: 100px;
+              max-width: 100px;
             }
             &:nth-child(8), &:nth-child(9) {
               @apply relative;
@@ -368,15 +422,16 @@ export default {
           width: calc( 100% - 1.25rem );
         }
         tr {
+          @apply border-b;
           &:hover, .active {
             @apply bg-gray-200;
           }
           td {
-            @apply py-15px border-b;
+            @apply py-15px;
             &:nth-child(1) {
-              width: 70px;
-              min-width: 70px;
-              max-width: 70px;
+              width: 40px;
+              min-width: 40px;
+              max-width: 40px;
             }
             &:nth-child(2) {
               width: 80px;
@@ -404,9 +459,9 @@ export default {
               max-width: 100px;
             }
             &:nth-child(7) {
-              width: 70px;
-              min-width: 70px;
-              max-width: 70px;
+              width: 100px;
+              min-width: 100px;
+              max-width: 100px;
             }
             &:nth-child(8), &:nth-child(9), &:nth-child(10),
             &:nth-child(11), &:nth-child(12), &:nth-child(13){
