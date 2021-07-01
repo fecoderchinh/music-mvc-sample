@@ -57,6 +57,8 @@
 * 58. VoucherSVG
 * 59. CommentSVG
 * 60. CheckSVG
+* 61. SendSVG
+* 62. BackspaceSVG
 */
 export const EllipseSVG = {
   render() {
@@ -370,9 +372,14 @@ export const TruckCashSVG = {
 export const AddLibrarySVG = {
   render() {
     return (
-      <svg viewBox="0 0 18 18">
-        <path id="path-1" class="st1" d="M2.3,4H0.7v11.7c0,0.9,0.8,1.7,1.7,1.7H14v-1.7H2.3V4L2.3,4z M15.7,0.7h-10C4.8,0.7,4,1.4,4,2.3v10C4,13.3,4.8,14,5.7,14h10c0.9,0,1.7-0.8,1.7-1.7v-10C17.3,1.4,16.6,0.7,15.7,0.7L15.7,0.7z M14.8,8.2h-3.3v3.3H9.8V8.2H6.5V6.5h3.3V3.2h1.7v3.3h3.3V8.2L14.8,8.2z"/>
-      </svg>
+        <svg viewBox="0 0 20 20">
+          <mask id="AddLibrarySVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="18" height="18">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.6667 1.66675H6.66669C5.75002 1.66675 5.00002 2.41675 5.00002 3.33341V13.3334C5.00002 14.2501 5.75002 15.0001 6.66669 15.0001H16.6667C17.5834 15.0001 18.3334 14.2501 18.3334 13.3334V3.33341C18.3334 2.41675 17.5834 1.66675 16.6667 1.66675ZM3.33335 5.00008H1.66669V16.6667C1.66669 17.5834 2.41669 18.3334 3.33335 18.3334H15V16.6667H3.33335V5.00008ZM12.5 9.16675H15.8334V7.50008H12.5V4.16675H10.8334V7.50008H7.50002V9.16675H10.8334V12.5001H12.5V9.16675Z" fill="white"/>
+          </mask>
+          <g mask="url(#AddLibrarySVG0)">
+            <rect width="20" height="20" fill="currentColor"/>
+          </g>
+        </svg>
     );
   },
 };
@@ -825,6 +832,36 @@ export const CheckSVG = {
           </mask>
           <g mask="url(#CheckSVG0)">
             <rect width="30" height="30" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
+export const SendSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 20 20">
+          <mask id="SendSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="2" width="19" height="16">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.67484 17.5L19.1665 10L1.67484 2.5L1.6665 8.33333L14.1665 10L1.6665 11.6667L1.67484 17.5Z" fill="white"/>
+          </mask>
+          <g mask="url(#SendSVG0)">
+            <rect width="20" height="20" fill="currentColor"/>
+          </g>
+        </svg>
+    );
+  },
+};
+
+export const BackspaceSVG = {
+  render() {
+    return (
+        <svg viewBox="0 0 20 20">
+          <mask id="BackspaceSVG0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="2" width="20" height="16">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.83333 2.5H18.3333C19.25 2.5 20 3.25 20 4.16667V15.8333C20 16.75 19.25 17.5 18.3333 17.5H5.83333C5.25833 17.5 4.80833 17.2 4.50833 16.7583L0 10L4.50833 3.23333C4.80833 2.79167 5.25833 2.5 5.83333 2.5ZM14.6583 14.1667L15.8333 12.9917L12.8417 10L15.8333 7.00833L14.6583 5.83333L11.6667 8.825L8.675 5.83333L7.5 7.00833L10.4917 10L7.5 12.9917L8.675 14.1667L11.6667 11.175L14.6583 14.1667Z" fill="white"/>
+          </mask>
+          <g mask="url(#BackspaceSVG0)">
+            <rect width="20" height="20" fill="currentColor"/>
           </g>
         </svg>
     );

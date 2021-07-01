@@ -5,8 +5,8 @@
     <div class="w-full border-b">
       <div class="w-full py-10px px-5 no-mb bg-sidebarHover">
         <div class="w-full flex">
-          <div class="w-4 min-w-4 max-w-4 mr-5 inline-flex items-center">
-            <AddLibrarySVG class="w-4 h-4 fill-buttonAndURL hover:fill-buttonAndURL hover:filter-none" />
+          <div class="w-4 min-w-4 max-w-4 mr-5 inline-flex items-center text-buttonAndURL">
+            <AddLibrarySVG class="w-icon" />
           </div>
           <div class="inline-flex items-center flex-1 overflow-hidden">
             <ModalQuickAdd/>

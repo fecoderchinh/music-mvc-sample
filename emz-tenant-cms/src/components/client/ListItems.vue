@@ -77,7 +77,10 @@ import ListItemWithIcon from '@/components/client/ListItemWithIcon.vue';
 
 import {
   EllipseSVG,
+  PrintSVG,
+  AddLibrarySVG
 } from '@/components/SVGs.vue';
+import ModalCancelOrderTicketContent from "@/components/client/ModalCancelOrderTicketContent";
 
 export default {
   components: {
@@ -88,16 +91,18 @@ export default {
     return {
       listItemData: [
         {
-          component: 'EllipseSVG',
-          componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
+          component: PrintSVG,
+          componentClass: 'w-icon',
           link: '#',
-          name: 'In đơn',
+          name: 'In đơn hàng',
         },
         {
-          component: 'EllipseSVG',
-          componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
+          component: AddLibrarySVG,
+          componentClass: 'w-icon',
           link: '#',
           name: 'Đặt lại',
+          aModal: ModalCancelOrderTicketContent,
+          modalWidth: 500
         },
       ],
     };

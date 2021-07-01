@@ -111,6 +111,13 @@ import Button from '@/components/client/Button.vue';
 import ListItemWithIcon from '@/components/client/ListItemWithIcon.vue';
 import ModalCancelOrderTicket from '@/components/client/ModalCancelOrderTicket.vue';
 
+import {
+  BackspaceSVG,
+  DownloadSVG,
+  PrintSVG,
+  SendSVG
+} from '@/components/SVGs'
+
 export default {
   components: {
     Modal,
@@ -125,25 +132,25 @@ export default {
     return {
       listItemData: [
         {
-          component: 'EllipseSVG',
-          componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
+          component: PrintSVG,
+          componentClass: 'w-icon',
           link: '#',
           name: 'In vận đơn',
         },
         {
-          component: 'EllipseSVG',
+          component: SendSVG,
           componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
           link: '#',
           name: 'Gửi yêu cầu',
         },
         {
-          component: 'EllipseSVG',
+          component: DownloadSVG,
           componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
           link: '#',
           name: 'Lưu trữ phiếu',
         },
         {
-          component: 'EllipseSVG',
+          component: BackspaceSVG,
           componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
           link: '#',
           name: 'Hủy giao hàng',
