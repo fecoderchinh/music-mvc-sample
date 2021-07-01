@@ -29,16 +29,7 @@
       </div>
 
       <div class="grid-cols">
-        <div class="w-full">
-          <InputType
-            id="search-product-name-combo"
-            name="search-product-name-combo"
-            placeholder="Tìm kiếm sản phẩm"
-            button="reset"
-            input-class="cms-input__default"
-            button-class="absolute right-0 top-50 transform -translate-y-1/2 mr-4 focus:outline-none">
-          </InputType>
-        </div>
+        <ProductAdvanceSearch/>
       </div>
 
       <div class="grid grid-cols-6 gap-5">
@@ -76,9 +67,11 @@
 <script>
 import Box from '@/components/client/Box.vue';
 import InputType from '@/components/client/InputType.vue';
+import ProductAdvanceSearch from "@/components/client/ProductAdvanceSearch";
 
 export default {
   components: {
+    ProductAdvanceSearch,
     Box,
     InputType,
   },

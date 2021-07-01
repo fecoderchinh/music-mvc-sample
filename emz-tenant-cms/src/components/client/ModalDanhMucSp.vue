@@ -64,7 +64,7 @@
                 </label>
                 <ProductAdvanceSearch class="mb-5"/>
                 <SelectOption class="mb-5" :option-data="this.optionDataSelect3"/>
-                <TableConditionAuto/>
+                <TableCondition/>
               </div>
             </template>
           </Box>
@@ -144,7 +144,7 @@ import WidgetImageUploader from '@/components/client/WidgetImageUploader.vue';
 
 import Box from "@/components/client/Box";
 import ProductAdvanceSearch from "@/components/client/ProductAdvanceSearch";
-import TableConditionAuto from "@/components/client/TableConditionAuto";
+import TableCondition from "@/components/client/TableCondition";
 
 export default {
   components: {
@@ -160,7 +160,7 @@ export default {
     ModalMenuPicker,
     Box,
     ProductAdvanceSearch,
-    TableConditionAuto
+    TableCondition
   },
   data() {
     return {

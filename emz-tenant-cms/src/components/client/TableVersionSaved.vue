@@ -2,15 +2,15 @@
   <!-- eslint-disable max-len -->
   <Table class="table-version-saved">
     <thead class="box-table-header table-version-saved__header" slot="header">
-      <tr v-if="showAction">
-        <TableActions @closeAction="action()" :optionData="tableActionsData">
-          <span slot="content">6 phiên bản được chọn</span>
+      <tr v-if="allCheckStatus.length !== 0">
+        <TableActions @closeAction="action()" :optionData="tableActionsData" :isFull="allCheckStatus.length === optionDataTable.length">
+          <span slot="content">{{ allCheckStatus.length }} phiên bản được chọn</span>
         </TableActions>
       </tr>
-      <tr v-if="showMenu">
+      <tr class="pl-3" v-if="allCheckStatus.length === 0">
         <th>
-          <div class="table-version-saved__header-content" @click="action()">
-            <FilterSVG class="w-8 sm:w-6 fill-menuIcon"/>
+          <div class="table-version-saved__header-content" @click="selectAll = !selectAll">
+            <ActionCheckbox/>
           </div>
         </th>
         <th>
@@ -71,16 +71,24 @@
     <tbody class="box-table-body table-version-saved__body" slot="body">
       <template v-for="(data, index) in optionDataTable">
         <tr
+            class="pl-3"
           :class="[
             !data.disabled ? 'table-version-saved__disabled' : null
           ]"
           :key="index">
           <td>
             <div class="table-version-saved__body-content">
-              <CheckType
-                main-class="mt-2"
-                :id="'checkVersion-'+index">
-              </CheckType>
+              <div class="cms-checkbox">
+                <input
+                    :id="data.id"
+                    type="checkbox"
+                    :value="data.id"
+                    v-model="allCheckStatus"
+                />
+                <label :for="data.id" class="text-standardCMS text-menuItem text-14px">
+                  <span class="square"><span class="square-inner"></span></span>
+                </label>
+              </div>
             </div>
           </td>
           <td>
@@ -126,7 +134,7 @@
                 :name="data.price"
                 :value="data.price"
                 input-class="cms-input__with-letter cms-input__text-13px"
-                button-class="absolute right-0 top-0 pt-1 mt-px mr-3 focus:outline-none no-effect">
+                button-class="absolute right-0 top-0 h-full mr-3 focus:outline-none no-effect">
                 <template slot="button-text"><span class="cms-typo text-14px text-placeholderStyle">đ</span></template>
               </InputType>
             </div>
@@ -138,7 +146,7 @@
                 :name="data.vprice"
                 :value="data.vprice"
                 input-class="cms-input__with-letter cms-input__text-13px"
-                button-class="absolute right-0 top-0 pt-1 mt-px mr-3 focus:outline-none no-effect">
+                button-class="absolute right-0 top-0 h-full mr-3 focus:outline-none no-effect">
                 <template slot="button-text"><span class="cms-typo text-14px text-placeholderStyle">đ</span></template>
               </InputType>
             </div>
@@ -150,7 +158,7 @@
                 :name="data.iprice"
                 :value="data.iprice"
                 input-class="cms-input__with-letter cms-input__text-13px"
-                button-class="absolute right-0 top-0 pt-1 mt-px mr-3 focus:outline-none no-effect">
+                button-class="absolute right-0 top-0 h-full mr-3 focus:outline-none no-effect">
                 <template slot="button-text"><span class="cms-typo text-14px text-placeholderStyle">đ</span></template>
               </InputType>
             </div>
@@ -189,13 +197,13 @@
             <div class="w-full text-center">
               <ul class="list-none">
                 <li class="inline">
-                  <a href="#">
-                    <EyeSVG class="w-4 fill-menuIcon inline mr-3"/>
+                  <a href="#" class="text-menuIcon hover:text-buttonAndURL cursor-pointer">
+                    <EyeSVG class="w-icon inline mr-3"/>
                   </a>
                 </li>
                 <li class="inline">
-                  <a href="#">
-                    <DeleteSVG class="w-3 fill-menuIcon inline mr-3"/>
+                  <a href="#" class="text-menuIcon hover:text-buttonAndURL cursor-pointer">
+                    <DeleteSVG class="w-icon inline mr-3"/>
                   </a>
                 </li>
                 <li class="inline">
@@ -215,7 +223,6 @@
 
 <script>
 import Table from '@/components/client/Table.vue';
-import CheckType from '@/components/client/CheckType.vue';
 import InputType from '@/components/client/InputType.vue';
 
 import TableActions from '@/components/client/TableActions.vue';
@@ -224,26 +231,24 @@ import ModalUpdatePrice from '@/components/client/ModalUpdatePrice.vue';
 
 import {
   SquareSVG,
-  FilterSVG,
   EyeSVG,
   DeleteSVG,
 } from '@/components/SVGs.vue';
+import ActionCheckbox from "@/components/client/ActionCheckbox";
 
 export default {
   components: {
+    ActionCheckbox,
     Table,
-    CheckType,
     SquareSVG,
     InputType,
-    FilterSVG,
     EyeSVG,
     DeleteSVG,
     TableActions,
   },
   data() {
     return {
-      showAction: false,
-      showMenu: true,
+      allCheckStatus: [],
       tableActionsData: [
         {
           label: 'Xóa phiên bản',
@@ -315,9 +320,26 @@ export default {
   },
   methods: {
     action() {
-      this.showAction = !this.showAction;
-      this.showMenu = !this.showMenu;
+      this.selectAll = !this.selectAll
     },
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.optionDataTable ? this.allCheckStatus.length === this.optionDataTable.length : false;
+      },
+      set: function (value) {
+        var selected = [];
+
+        if (value) {
+          this.optionDataTable.forEach(function (data) {
+            selected.push(data.id);
+          });
+        }
+
+        this.allCheckStatus = selected;
+      }
+    }
   },
 };
 </script>
@@ -326,8 +348,19 @@ export default {
   .table {
     &-version-saved {
       &__disabled {
-        * {
-          @apply text-placeholderStyle fill-placeholderStyle filter-grayscale opacity-75;
+        > td {
+          @apply text-placeholderStyle fill-placeholderStyle;
+          &:hover, &:focus {
+            @media (min-width: 992px) {
+              //@apply bg-cmsLightBlue bg-opacity-10 #{!important};
+              background: #eff8fd !important;
+            }
+          }
+          > div {
+            input, a {
+              @apply text-opacity-50 #{!important};
+            }
+          }
         }
       }
       &__header {
@@ -407,6 +440,20 @@ export default {
         }
         tr {
           @apply py-10px;
+          &:hover, &:focus {
+            > td {
+              &:nth-child(1),
+              &:nth-child(2),
+              &:nth-child(3),
+              &:nth-child(4),
+              &:nth-child(5) {
+                @media (min-width: 992px) {
+                  //@apply bg-opacity-0 #{!important};
+                  background: #eff8fd;
+                }
+              }
+            }
+          }
           > td {
             &:nth-child(1),
             &:nth-child(2),

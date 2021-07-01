@@ -8,7 +8,7 @@
 
 <script>
 import Button from '@/components/client/Button.vue';
-import ModalMenuPickerContent from '@/components/client/ModalMenuPickerContent.vue';
+import ModalMenuPickerCollapse from '@/components/client/ModalMenuPickerCollapse';
 
 export default {
   components: {
@@ -33,7 +33,7 @@ export default {
         closed: () => this.$emit('close'),
       };
 
-      this.$modal.show(ModalMenuPickerContent, options, style, events);
+      this.$modal.show(ModalMenuPickerCollapse, options, style, events);
     },
   },
 };

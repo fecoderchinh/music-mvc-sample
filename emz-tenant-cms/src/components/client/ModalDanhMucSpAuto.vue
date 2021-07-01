@@ -142,14 +142,13 @@
                       <ModalDsThoaMan/>
                     </div>
                     <div class="col-span-6">
-                      <TableConditionAuto class="mt-5"/>
+                      <TableCondition class="mt-5"/>
                     </div>
                   </div>
                 </div>
 
                 <div class="w-full" v-else>
-                  <ProductAdvanceSearch class="mb-5"/>
-                  <TableConditionAuto/>
+                  <TableCondition/>
                 </div>
 
               </div>
@@ -231,7 +230,7 @@ import WidgetImageUploader from '@/components/client/WidgetImageUploader.vue';
 
 import Box from "@/components/client/Box";
 import ProductAdvanceSearch from "@/components/client/ProductAdvanceSearch";
-import TableConditionAuto from "@/components/client/TableConditionAuto";
+import TableCondition from "@/components/client/TableCondition";
 import DropdownCondition from "@/components/client/DropdownCondition";
 import ModalDsThoaMan from "@/components/client/ModalDsThoaMan";
 import Radio from "@/components/client/Radio";
@@ -256,7 +255,7 @@ export default {
     ModalMenuPicker,
     Box,
     ProductAdvanceSearch,
-    TableConditionAuto,
+    TableCondition,
     DeleteSVG,
     DropdownCondition,
     ModalDsThoaMan,

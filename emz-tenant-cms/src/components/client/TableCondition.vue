@@ -32,8 +32,8 @@
           </div>
         </td>
         <td>
-          <div class="table-category-condition__body-content">
-            <a href="#" class="text-menuIcon"><CloseSVG class="mx-auto w-4 max-w-10 min-w-10 fill-current"/></a>
+          <div class="w-full text-right">
+            <a href="#" class="text-menuIcon"><CloseSVG class="w-icon inline"/></a>
           </div>
         </td>
       </tr>
@@ -64,30 +64,30 @@ export default {
         {
           img: 'https://picsum.photos/40',
           name: 'Combo cần câu cá',
-          count: '1,789 sản phẩm',
+          count: '— 987 sp - 18 loại',
           price: '123,321,000đ',
         },
         {
           img: 'https://picsum.photos/40',
           name: 'Cần bạo lực',
-          count: '18 sản phẩm',
+          count: '— 7 sp - 6 loại',
           price: '3,321,000đ',
         },
         {
           img: 'https://picsum.photos/40',
           name: 'Combo cần câu cá cho gia đình, thư giản cuối tuần',
-          count: '0 sản phẩm',
+          count: '— 987 sp - 18 loại',
           price: '21,000đ',
         },
         {
           img: 'https://picsum.photos/40',
           name: 'Cần lure siêu chắc',
-          count: '12 sản phẩm',
+          count: '— 12 sp - 4 loại',
           price: '321,000đ',
         },
         {
           name: 'Cần đánh lục xa bờ Navigod',
-          count: '356 sản phẩm',
+          count: '— 356 sp - 15 loại',
           price: '3,321,000đ',
         },
       ],
@@ -107,24 +107,29 @@ export default {
         @apply py-10px border-b;
         th {
           &:nth-child(1) {
-            width: 60px;
+            width: auto;
             min-width: 60px;
             max-width: 60px;
           }
           &:nth-child(2) {
-            width: 280px;
-            min-width: 280px;
-            max-width: 280px;
+            width: 100%;
+            min-width: 250px;
+            max-width: 250px;
           }
           &:nth-child(3) {
-            width: 150px;
+            width: auto;
             min-width: 150px;
             max-width: 150px;
           }
           &:nth-child(4) {
-            width: 150px;
+            width: auto;
             min-width: 150px;
             max-width: 150px;
+          }
+          &:nth-child(5) {
+            width: auto;
+            min-width: 60px;
+            max-width: 60px;
           }
         }
       }
@@ -140,24 +145,29 @@ export default {
         }
         td {
           &:nth-child(1) {
-            width: 60px;
+            width: auto;
             min-width: 60px;
             max-width: 60px;
           }
           &:nth-child(2) {
-            width: 280px;
-            min-width: 280px;
-            max-width: 280px;
+            width: 100%;
+            min-width: 230px;
+            max-width: 230px;
           }
           &:nth-child(3) {
-            width: 150px;
+            width: auto;
             min-width: 150px;
             max-width: 150px;
           }
           &:nth-child(4) {
-            width: 150px;
+            width: auto;
             min-width: 150px;
             max-width: 150px;
+          }
+          &:nth-child(5) {
+            width: auto;
+            min-width: 60px;
+            max-width: 60px;
           }
         }
       }

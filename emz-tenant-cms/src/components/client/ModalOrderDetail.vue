@@ -139,19 +139,19 @@ export default {
         },
         {
           component: SendSVG,
-          componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
+          componentClass: 'w-icon',
           link: '#',
           name: 'Gửi yêu cầu',
         },
         {
           component: DownloadSVG,
-          componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
+          componentClass: 'w-icon',
           link: '#',
           name: 'Lưu trữ phiếu',
         },
         {
           component: BackspaceSVG,
-          componentClass: 'w-4 h-4 mr-2 fill-menuIcon -mt-px',
+          componentClass: 'w-icon',
           link: '#',
           name: 'Hủy giao hàng',
         },

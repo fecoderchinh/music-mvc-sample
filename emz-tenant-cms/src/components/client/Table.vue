@@ -21,7 +21,7 @@ export default {};
 <style lang="scss">
   .box-table {
     table {
-      @apply mx-auto;
+      @apply w-full mx-auto;
     }
     &-header {
       th {
@@ -36,7 +36,7 @@ export default {};
       &:not(.noHover) {
         tr {
           &:hover {
-            @apply bg-cmsLightBlue bg-opacity-10 #{!important};
+            @apply bg-cmsLightBlue bg-opacity-10;
           }
         }
       }

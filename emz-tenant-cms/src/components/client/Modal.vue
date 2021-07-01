@@ -6,8 +6,8 @@
       <slot name="header">
         default header
       </slot>
-      <button type="button" 
-        class="modal-default-button group hover:shadow-none focus:outline-none no-effect" 
+      <button type="button"
+        class="modal-default-button group hover:shadow-none focus:outline-none no-effect"
         @click.stop="closeModal">
         <CloseSVG class="w-14px h-14px fill-placeholderStyle group-hover:fill-buttonAndURL"/>
       </button>
