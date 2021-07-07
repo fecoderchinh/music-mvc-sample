@@ -3,7 +3,7 @@
         <div class="flex flex-wrap">
 
             <!-- eslint-disable max-len -->
-            <div class="bg-white w-3/4 md:w-1/3 lg:w-64 fixed top-0 lg:pt-0 md:pt-16 sm:pt-16 md:left-0 h-screen lg:block border-r z-30 shadow overflow-hidden h-full" :class="onToggled ? '' : 'hidden'">
+            <div class="bg-white w-3/4 md:w-1/3 lg:w-64 fixed top-0 lg:pt-0 md:pt-16 sm:pt-16 md:left-0 h-screen lg:block z-30 overflow-hidden h-full" :class="onToggled ? '' : 'hidden'">
               <Sidebar />
               <a href="#" @click.self.prevent="onToggled = false" class="fixed inset-0 z-20" v-if="onToggled"></a>
             </div>

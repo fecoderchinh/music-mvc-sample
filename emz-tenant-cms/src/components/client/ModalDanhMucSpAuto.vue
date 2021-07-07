@@ -169,8 +169,15 @@
 
           <Widget>
             <template slot="title">
-              <label class="cursor-pointer">Gắn lên menu</label>
-              <ModalMenuPicker class="absolute top-0 right-0" button-class="text-buttonAndURL bg-transparent no-effect"/>
+              <div class="flex items-center relative whitespace-no-wrap">
+                <label class="cursor-pointer">Gắn lên menu</label>
+                <ModalPicker
+                    class="inline-flex ml-auto"
+                    :current-modal="treeModal[1]"
+                >
+                  <a href="javascript:void(0)" class="font-lato font-medium text-14px text-buttonAndURL xl:text-right block">Chọn menu</a>
+                </ModalPicker>
+              </div>
             </template>
             <template slot="content">
               <h3 class="text-standardCMS text-menuIcon">Gắn danh mục vào Menu</h3>
@@ -222,8 +229,6 @@ import ProductSearchDisplay from '@/components/client/ProductSearchDisplay.vue';
 import InlineTags from '@/components/client/InlineTags.vue';
 import SelectOption from '@/components/client/SelectOption.vue';
 
-import ModalMenuPicker from '@/components/client/ModalMenuPicker.vue';
-
 import Widget from "@/components/client/Widget";
 import WidgetRadioStatus from '@/components/client/WidgetRadioStatus.vue';
 import WidgetImageUploader from '@/components/client/WidgetImageUploader.vue';
@@ -239,9 +244,13 @@ import {
   DeleteSVG
 } from '@/components/SVGs'
 import InputGroup from "@/components/client/InputGroup";
+import ModalPicker from "@/components/client/ModalPicker";
+import ModalDanhMucSpAuto from "@/components/client/ModalDanhMucSpAuto";
+import ModalMenuPickerCollapse from "@/components/client/ModalMenuPickerCollapse";
 
 export default {
   components: {
+    ModalPicker,
     InputGroup,
     Modal,
     InputType,
@@ -252,7 +261,6 @@ export default {
     Widget,
     WidgetRadioStatus,
     WidgetImageUploader,
-    ModalMenuPicker,
     Box,
     ProductAdvanceSearch,
     TableCondition,
@@ -280,6 +288,20 @@ export default {
       optionDataSelect3: [
         { name: 'Theo ngày tạo: Từ mới đến cũ' },
       ],
+      treeModal: [
+        {
+          id: 'modal-1',
+          name: ModalDanhMucSpAuto,
+          width: 1200,
+          shiftX: 0
+        },
+        {
+          id: 'modal-2',
+          name: ModalMenuPickerCollapse,
+          width: 720,
+          shiftX: 0
+        }
+      ]
     };
   },
   methods: {

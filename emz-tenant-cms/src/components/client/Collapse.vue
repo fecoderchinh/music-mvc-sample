@@ -3,7 +3,7 @@
   <Card class="cms-collapse">
     <h3 class="cms-collapse__header" slot="header" @click="toggle">
       <AngleSVG
-          class="fill-menuIcon h-3 w-3 inline hover:fill-buttonAndURL mr-4 transform"
+          class="h-3 w-3 inline mr-4 transform"
           :class="show ? 'rotate-0' : '-rotate-90'"/>{{ header }}
     </h3>
     <div class="cms-collapse__body cms-scrollbar" slot="body">
@@ -56,7 +56,10 @@ export default {
     @apply p-0;
   }
   &__header {
-    @apply block cursor-pointer cms-typo text-14px text-labelAndTitle;
+    @apply block cursor-pointer cms-typo text-14px text-menuItem;
+    &:hover, &:focus {
+      @apply text-buttonAndURL;
+    }
   }
   &__body {
     @apply flex flex-col justify-start pl-12 pr-5 overflow-y-auto;

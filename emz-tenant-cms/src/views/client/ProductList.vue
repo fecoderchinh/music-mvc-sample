@@ -11,7 +11,14 @@
             <ModalCreateComboProduct/>
           </li>
           <li class="inline sm:mr-0 sm:mb-3">
-            <ModalProductCreate/>
+            <ModalPicker
+                :root="treeModal1[1]">
+              <Button button-class="w-full cms-button cms-button-blue">
+                <template slot="name">
+                  Thêm danh mục
+                </template>
+              </Button>
+            </ModalPicker>
           </li>
         </ul>
       </template>
@@ -37,13 +44,32 @@ import ModalCreateComboProduct from '@/components/client/ModalCreateComboProduct
 import ModalProductCreate from '@/components/client/ModalProductCreate.vue';
 import ProductList from '@/components/client/ProductList.vue';
 import Header from '@/components/client/Header.vue';
+import ModalPicker from "@/components/client/ModalPicker";
+import Button from "@/components/client/Button";
 
 export default {
   components: {
+    Button,
+    ModalPicker,
     ModalCreateComboProduct,
-    ModalProductCreate,
     ProductList,
     Header,
   },
+  data () {
+    return {
+      treeModal1: [
+        {
+          id: 'modal-0',
+          name: ''
+        },
+        {
+          id: 'modal-1',
+          name: ModalProductCreate,
+          width: 1200,
+          shiftX: 0
+        }
+      ]
+    }
+  }
 };
 </script>

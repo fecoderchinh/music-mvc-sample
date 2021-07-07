@@ -1,33 +1,77 @@
 <template>
   <!-- eslint-disable max-len -->
-  <Modal @close="$emit('close')" :showFooter="false">
+  <Modal @close="$emit('close')" :showFooter="false" :isBack="isBack">
 
     <div class="flex items-center" slot="header">
       <h3 class="text-18px cms-typo text-labelAndTitle">
-        <Button button-class="inline hover:shadow-none focus:outline-none no-effect" @click="$emit('close')">
-          <template slot="name">
-            <LongArrowSVG class="w-4 fill-labelAndTitle mr-3 inline transform rotate-180"/>
-            Chọn menu
-          </template>
-        </Button>
-
+        Chọn menu
       </h3>
     </div>
 
     <div class="grid gap-5" slot="body">
 
+      <Collapse header="Footer">
+        <ul v-for="(data, index) in list2" :key="index" :class="[index+1 === list2.length ? 'pb-5' : null]">
+          <MenuNested v-if="data.children" :nested="data.children"/>
+          <li
+              v-else
+              class="flex flex-col pt-5">
+            <div class="flex">
+              <a href="javascript:void(0)" class="flex-1 cms-typo text-14px text-menuItem">
+                {{ data.name }}
+              </a>
+              <a href="javascript:void(0)" class="flex-1 text-right cms-typo text-14px text-buttonAndURL">
+                Thêm vào
+              </a>
+            </div>
+          </li>
+        </ul>
+      </Collapse>
+
       <Collapse header="Danh mục chính">
         <ul>
           <li
               v-for="(data, index) in list1" :key="index"
-              class="flex pt-5"
+              class="flex flex-col pt-5"
               :class="[ index+1 === list1.length ? 'pb-5' : null ]">
-            <a href="javascript:void(0)" class="flex-1 cms-typo text-14px text-menuItem">
-              {{ data.name }}
-            </a>
-            <a href="javascript:void(0)" class="flex-1 text-right cms-typo text-14px text-buttonAndURL">
-              Thêm vào
-            </a>
+              <div class="flex">
+                <a href="javascript:void(0)" class="flex-1 cms-typo text-14px text-menuItem">
+                  {{ data.name }}
+                </a>
+                <a href="javascript:void(0)" class="flex-1 text-right cms-typo text-14px text-buttonAndURL">
+                  Thêm vào
+                </a>
+              </div>
+            <ul class="pl-5 flex flex-col" v-if="data.level2">
+              <li
+                  v-for="(data2, index2) in data.level2" :key="index2"
+                  class="flex flex-col pt-5"
+                  :class="[ index2+1 === data.level2.length ? 'pb-5' : null ]">
+                <div class="flex">
+                  <a href="javascript:void(0)" class="flex-1 cms-typo text-14px text-menuItem">
+                    {{ data2.name }}
+                  </a>
+                  <a href="javascript:void(0)" class="flex-1 text-right cms-typo text-14px text-buttonAndURL">
+                    Thêm vào
+                  </a>
+                </div>
+                <ul class="pl-5 flex flex-col" v-if="data2.level3">
+                  <li
+                      v-for="(data3, index3) in data2.level3" :key="index3"
+                      class="flex flex-col pt-5"
+                      :class="[ index3+1 === data2.level3.length ? 'pb-5' : null ]">
+                    <div class="flex">
+                      <a href="javascript:void(0)" class="flex-1 cms-typo text-14px text-menuItem">
+                        {{ data3.name }}
+                      </a>
+                      <a href="javascript:void(0)" class="flex-1 text-right cms-typo text-14px text-buttonAndURL">
+                        Thêm vào
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </li>
         </ul>
       </Collapse>
@@ -119,20 +163,18 @@
 
 <script>
 import Modal from '@/components/client/Modal.vue';
-import Button from '@/components/client/Button.vue';
 
-import {
-  LongArrowSVG,
-} from '@/components/SVGs.vue';
 import Collapse from "@/components/client/Collapse";
+
+import MenuNested from "@/components/client/MenuNested";
 
 export default {
   components: {
     Collapse,
     Modal,
-    Button,
-    LongArrowSVG,
+    MenuNested
   },
+  props: ['isBack'],
   data() {
     return {
       list1: [
@@ -140,7 +182,7 @@ export default {
           name: 'Trang chủ'
         },
         {
-          name: 'Sản phẩm'
+          name: 'Sản phẩm',
         },
         {
           name: 'Tin tức'
@@ -157,8 +199,50 @@ export default {
           name: 'Tìm kiếm'
         },
         {
+          name: 'Giới thiệu',
+          children : {
+            name: 'Trang chủ',
+            leaf: false,
+            expanded: false,
+            children: [{
+              name: 'Sản phẩm',
+              leaf: false,
+              expanded: false,
+              children: [
+                {
+                  name: 'Tin tức',
+                },
+                {
+                  name: 'Giới thiệu',
+                  leaf: true,
+                },
+                {
+                  name: 'Tin tức',
+                  leaf: false,
+                  expanded: false,
+                  children: []
+                },
+                {
+                  name: 'Giới thiệu',
+                  leaf: true
+                },
+                {
+                  name: 'Liên hệ',
+                  leaf: true
+                }
+              ]
+            }]
+          },
+        },
+        {
+          name: 'Tin tức'
+        },
+        {
           name: 'Giới thiệu'
         },
+        {
+          name: 'Liên hệ'
+        }
       ],
       list3: [
         {
@@ -212,6 +296,14 @@ export default {
         {
           name: 'Quy định sử dụng'
         }
+      ],
+      treeModal1: [
+        {
+          id: 'id',
+          name: 'object',
+          width: 720,
+          shiftX: 0
+        },
       ]
     };
   },

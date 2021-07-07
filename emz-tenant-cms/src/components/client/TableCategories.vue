@@ -74,7 +74,10 @@
         <td>
           <div class="table-categories__body-content">
             <h3 class="cms-typo text-13px text-buttonAndURL">
-              <a href="#" @click.self.prevent="openModal(data.modal, data.modalW)">{{ data.source }}</a>
+              <ModalPicker
+                  :root="data.modal">
+                <a href="javascript:void(0)">{{ data.source }}</a>
+              </ModalPicker>
             </h3>
           </div>
         </td>
@@ -113,6 +116,7 @@ import ModalDanhMucSpAuto from "@/components/client/ModalDanhMucSpAuto";
 import TableActions from "@/components/client/TableActions";
 import ActionCheckbox from "@/components/client/ActionCheckbox";
 import CheckType from "@/components/client/CheckType";
+import ModalPicker from "@/components/client/ModalPicker";
 // import ModalUpdatePrice from "@/components/client/ModalUpdatePrice";
 // import ModalCancelOrder from "@/components/client/ModalCancelOrder";
 // import ModalConfirmOrderContent from "@/components/client/ModalConfirmOrderContent";
@@ -121,6 +125,7 @@ import CheckType from "@/components/client/CheckType";
 
 export default {
   components: {
+    ModalPicker,
     CheckType,
     ActionCheckbox,
     TableActions,
@@ -153,8 +158,12 @@ export default {
           source: 'Modal danh mục sản phẩm',
           status: 'Hiển thị web',
           condition: 'Chứa từ tóc',
-          modal: ModalDanhMucSp,
-          modalW: 1200,
+          modal: {
+            id: 'modalDanhMucSp',
+            name: ModalDanhMucSp,
+            width: 1200,
+            shiftX: 0
+          }
         },
         {
           id: "row2",
@@ -162,27 +171,31 @@ export default {
           source: 'Modal danh mục sản phẩm - Tự động',
           status: 'Ẩn',
           condition: 'Không chứa từ máy',
-          modal: ModalDanhMucSpAuto,
-          modalW: 1200,
+          modal: {
+            id: 'modalDanhMucSpAuto',
+            name: ModalDanhMucSpAuto,
+            width: 1200,
+            shiftX: 0
+          }
         },
       ],
     };
   },
   methods: {
-    openModal(m, w = 1200) {
-      const options = {
-        class: 'cms-modal',
-      };
-      const style = {
-        width: w, height: 'auto', shiftX: 0.5, adaptive: true,
-      };
-      const events = {
-        // opened: () => console.log('Opened'),
-        closed: () => this.$emit('close'),
-      };
-
-      this.$modal.show(m, options, style, events);
-    },
+    // openModal(m, w = 1200) {
+    //   const options = {
+    //     class: 'cms-modal',
+    //   };
+    //   const style = {
+    //     width: w, height: 'auto', shiftX: 0.5, adaptive: true,
+    //   };
+    //   const events = {
+    //     // opened: () => console.log('Opened'),
+    //     closed: () => this.$emit('close'),
+    //   };
+    //
+    //   this.$modal.show(m, options, style, events);
+    // },
     action() {
       this.selectAll = !this.selectAll
     },

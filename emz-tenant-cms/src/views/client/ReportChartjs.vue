@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
-  <Box classes="relative no-mb">
+  <Box classes="relative no-mb no-b">
     <line-chart :chart-data="datacollection" :options="dataOptions" slot="content"/>
   </Box>
 </template>

@@ -8,7 +8,14 @@
       <template slot="right">
         <ul class="list-none md:ml-auto">
           <li class="inline sm:mr-0 sm:mb-3">
-            <ModalCategoryCreate/>
+            <ModalPicker
+                :root="treeModal1[1]">
+              <Button button-class="w-full cms-button cms-button-blue">
+                <template slot="name">
+                  Thêm danh mục
+                </template>
+              </Button>
+            </ModalPicker>
           </li>
         </ul>
       </template>
@@ -31,14 +38,34 @@
 
 <script>
 import Header from '@/components/client/Header.vue';
-import ModalCategoryCreate from '@/components/client/ModalCategoryCreate.vue';
 import Categories from '@/components/client/Categories.vue';
+import ModalCategoryCreateContent from "@/components/client/ModalCategoryCreateContent";
+import ModalPicker from "@/components/client/ModalPicker";
+import Button from "@/components/client/Button";
 
 export default {
   components: {
+    Button,
+    ModalPicker,
     Header,
-    ModalCategoryCreate,
     Categories,
   },
+  data() {
+    return {
+      currentComponent: '',
+      treeModal1: [
+        {
+          id: 'modal-0',
+          name: ''
+        },
+        {
+          id: 'modal-1',
+          name: ModalCategoryCreateContent,
+          width: 1200,
+          shiftX: 0
+        }
+      ]
+    }
+  }
 };
 </script>

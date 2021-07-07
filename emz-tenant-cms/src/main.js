@@ -27,6 +27,8 @@ Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
 Vue.config.productionTip = false
 // Vue.use(abilitiesPlugin, ability)
 
+Vue.prototype.$dataModals = []
+
 new Vue({
   router,
   store,

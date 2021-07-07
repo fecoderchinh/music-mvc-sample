@@ -6,7 +6,6 @@
       <h3 class="text-18px cms-typo text-labelAndTitle">
         <Button button-class="inline hover:shadow-none focus:outline-none no-effect" @click="$emit('close')">
           <template slot="name">
-            <LongArrowSVG class="w-4 fill-labelAndTitle mr-3 inline transform rotate-180"/>
             Danh mục thêm sản phẩm tự động
           </template>
         </Button>
@@ -113,7 +112,6 @@ import Radio from "@/components/client/Radio";
 import TableCondition from "@/components/client/TableCondition";
 
 import {
-  LongArrowSVG,
   DeleteSVG
 }
 from '@/components/SVGs';
@@ -125,7 +123,6 @@ export default {
     DropdownCondition,
     Modal,
     Button,
-    LongArrowSVG,
     InputType,
     SelectOption,
     DeleteSVG,

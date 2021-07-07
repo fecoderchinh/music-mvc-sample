@@ -3,7 +3,7 @@
   <div id="main-sidebar" class="overflow-hidden h-full bg-white relative z-30">
 
     <!-- eslint-disable max-len -->
-    <div class="w-full h-16 border-b flex px-4 justify-center items-center md:hidden sm:hidden lg:flex">
+    <div class="w-full h-16 shadow -mt-px flex px-4 justify-center items-center md:hidden sm:hidden lg:flex">
         <p class="font-semibold text-3xl text-blue-400 pl-4">
             <img src="https://picsum.photos/240/60" class="mx-auto">
         </p>
@@ -34,7 +34,7 @@
             <input type="checkbox" class="dd-input" checked>
 
             <ul class="dd-menu">
-              <li v-for="(subData, subIndex) in data.subMenu" :key="subIndex">
+              <li v-for="(subData, subIndex) in data.subMenu" :key="subIndex" :class="{'current-menu':subData.subUrl === selected}" @click="selected = subData.subUrl">
                 <div class="w-full flex items-center h-35px rounded-lg cursor-pointer text-menuIcon hover:text-buttonAndURL">
                   <component v-bind:is="subData.subComponent" class="h-icon w-icon mr-5 -mt-px" />
                   <a href="#" class="text-standardCMS text-menuItem flex-auto" v-if="subData.modal" @click.self.prevent="openModal(subData.modal, subData.modalW)">{{ subData.subItem }}</a>
@@ -91,6 +91,8 @@ export default {
   },
   data() {
     return {
+      selected: undefined,
+      currentRoute: '',
       menuData: [
         {
           item: 'Tổng quan',
@@ -331,11 +333,18 @@ export default {
 </script>
 
 <style lang="scss">
+.current-menu {
+  @apply bg-gray-100;
+  svg, a {
+    @apply text-buttonAndURL;
+  }
+}
   .single-item {
     & > div {
       @apply rounded-none;
       &:hover, &:focus {
-        @apply bg-sidebarHover;
+        //@apply bg-sidebarHover;
+        @apply bg-gray-100;
         & > svg {
           @apply fill-buttonAndURL;
           -webkit-filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .3));
@@ -365,7 +374,8 @@ export default {
         & > div {
           @apply rounded-none;
           &:hover, &:focus {
-            @apply bg-sidebarHover;
+            //@apply bg-sidebarHover;
+            //@apply bg-gray-100;
             & > svg {
               @apply fill-buttonAndURL;
               -webkit-filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .3));

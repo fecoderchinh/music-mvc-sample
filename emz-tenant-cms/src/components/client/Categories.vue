@@ -3,7 +3,7 @@
   <div class="w-full">
 
     <!-- box content -->
-    <div class="grid-box no-px">
+    <div class="grid-box no-px no-b">
 
 <!--      <Loader/>-->
 

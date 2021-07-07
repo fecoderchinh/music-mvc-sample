@@ -73,9 +73,9 @@ export const EllipseSVG = {
 export const AngleSVG = {
   render() {
     return (
-      <svg viewBox="0 0 10 5">
-          <polygon id="Icon" class="st0" points="0,0 5,5 10,0 "/>
-      </svg>
+        <svg viewBox="0 0 10 5">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L5 5L10 0H0Z" fill="currentColor"/>
+        </svg>
     );
   },
 };

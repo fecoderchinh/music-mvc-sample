@@ -18,10 +18,15 @@ export default {
     buttonClass: {
       type: String,
       default: 'w-full cms-button cms-button-blue'
+    },
+    isBack: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
     openModal() {
+      this.$modal.hideAll()
       const options = {
         class: 'cms-modal',
       };
@@ -31,10 +36,22 @@ export default {
       const events = {
         // opened: () => console.log('Opened'),
         closed: () => this.$emit('close'),
+        'before-open': this.beforeOpen,
+        'before-close': this.beforeClose,
       };
 
       this.$modal.show(ModalMenuPickerCollapse, options, style, events);
     },
+    beforeOpen () {
+      // this.$modal.hide(this.$parent)
+    },
+    beforeClose () {
+      // console.log('Closing...')
+      // // What a gamble... 50% chance to cancel closing
+      // if (Math.random() < 0.5) {
+      //   event.cancel()
+      // }
+    }
   },
 };
 </script>

@@ -14,7 +14,7 @@
             <span class="inline-flex">{{ data.name }}</span>
             <template v-if="data.closeTag">
               <span @click="removeTag(index)">
-                <CloseSVG class="inline-flex w-3 ml-3 fill-current hover:fill-buttonAndURL"/>
+                <CloseSVG class="inline-flex w-2 -mt-px ml-3 fill-current hover:fill-buttonAndURL"/>
               </span>
             </template>
           </template>
@@ -73,8 +73,9 @@ export default {
     }
     &__button {
       &-default {
-        @apply cms-typo bg-gray-200 rounded text-placeholderStyle;
+        @apply cms-typo bg-gray-200 text-placeholderStyle;
         @apply py-1 px-3 text-13px;
+        border-radius: 2px;
       }
       &-blue {
         @apply cms-typo bg-gray-200 border text-buttonAndURL;

@@ -3,10 +3,13 @@
   <div class="modal-container" @click="modalClick">
 
     <div class="modal-header">
+      <span v-if="isBack" class="inline-flex -mt-px cursor-pointer text-labelAndTitle" @click="closeModal">
+        <LongArrowSVG class="w-4 mr-3 inline transform rotate-180"/>
+      </span>
       <slot name="header">
         default header
       </slot>
-      <button type="button"
+      <button v-if="!isBack" type="button"
         class="modal-default-button group hover:shadow-none focus:outline-none no-effect"
         @click.stop="closeModal">
         <CloseSVG class="w-14px h-14px fill-placeholderStyle group-hover:fill-buttonAndURL"/>
@@ -31,11 +34,13 @@
 <script>
 import {
   CloseSVG,
+  LongArrowSVG
 } from '@/components/SVGs.vue';
 
 export default {
   components: {
     CloseSVG,
+    LongArrowSVG
   },
   props: {
     name: String,
@@ -48,6 +53,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    isBack: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     closeModal() {

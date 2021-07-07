@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
-  <div class="w-full bg-gray-200 shadow md:h-16 sm:h-auto md:px-5 border-b sm:max-flex-col md:flex items-center justify-start">
+  <div class="w-full bg-gray-200 shadow md:h-16 sm:h-auto md:px-5 sm:max-flex-col md:flex items-center justify-start">
     <div class="flex flex-auto sm:p-3 sm:px-5 md:p-0 md:border-0 sm:border-b">
       <strong class="cms-typo text-base text-labelAndTitle">
         Something chưa được lưu

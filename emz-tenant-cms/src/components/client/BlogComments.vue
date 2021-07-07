@@ -3,7 +3,7 @@
   <div class="w-full">
 
     <!-- box content -->
-    <div class="grid-box no-p">
+    <div class="grid-box no-p no-b">
 
       <Tabs :tabs="tabs" :initialTab="initialTab" main-class="filter-tabs">
 

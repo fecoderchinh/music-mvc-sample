@@ -9,14 +9,14 @@
       </div>
     </div>
     <div class="w-full -ml-px">
-      <div class="flex">
+      <div class="flex inline-input">
         <div class="flex flex-auto">
           <InputType
             input-type="text"
             id="search-customer"
             name="search-customer"
             placeholder="Tìm kiếm bài viết"
-            input-class="cms-input__with-icon rounded-l-none"
+            input-class="cms-input__with-icon"
             button-class="absolute right-0 top-50 transform -translate-y-1/2 mr-4 focus:outline-none">
             <template slot="button-text"><SearchSVG class="h-4 w-4 fill-menuIcon" /></template>
           </InputType>

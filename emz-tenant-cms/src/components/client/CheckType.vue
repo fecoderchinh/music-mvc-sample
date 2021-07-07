@@ -65,6 +65,8 @@ export default {
     }
     &+ span.square {
       // @apply transition duration-200;
+      border-radius: 2px;
+      border-color: #d8dde6;
       &.checked {
         @apply bg-buttonAndURL border-buttonAndURL;
         & > span {
@@ -117,6 +119,8 @@ export default {
   .square {
     @apply w-4 max-w-4 min-w-4 h-4 max-h-4 min-h-4 inline-block border-2 border-gray-500 relative;
     top: -1px;
+    border-radius: 2px;
+    border-color: #d8dde6;
     &-inner {
       @apply w-1 h-2 bg-transparent absolute hidden;
       top: 2px;
