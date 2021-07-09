@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
-  <Modal @close="$emit('close')">
+  <Modal @close="$emit('close')" :isBack="isBack" @back="onBack">
 
     <div class="flex items-center" slot="header">
       <h3 class="text-18px cms-typo text-labelAndTitle">
@@ -139,7 +139,13 @@ export default {
     WidgetRadioStatus,
     WidgetImageUploader,
   },
-  props: ['dataModals'],
+  props: {
+    isBack: Boolean,
+    onBack: {
+      type: Function,
+      default: () => {}
+    }
+  },
   data() {
     return {
       imgUrl: '',
@@ -157,13 +163,13 @@ export default {
       ],
       modalComponent: [
         {
-          id: 'modal-1',
+          id: 'modalCategoryCreateContent-1',
           name: ModalCategoryCreateContent,
           width: 1200,
           shiftX: 0
         },
         {
-          id: 'modal-2',
+          id: 'modalCategoryCreateContent-2',
           name: ModalMenuPickerCollapse,
           width: 720,
           shiftX: 0

@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
-  <Modal @close="$emit('close')" :isBack="isBack">
+  <Modal @close="$emit('close')" :isBack="isBack" @back="onBack">
 
     <div class="flex items-center" slot="header">
       <h3 class="text-18px cms-typo text-labelAndTitle">
@@ -66,7 +66,13 @@ export default {
     Modal,
     Button,
   },
-  props: ['isBack'],
+  props: {
+    isBack: Boolean,
+    onBack: {
+      type: Function,
+      default: () => {}
+    }
+  },
   data() {
     return {
       tags: [],

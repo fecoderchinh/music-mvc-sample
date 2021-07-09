@@ -23,7 +23,7 @@
         </td>
         <td>
           <div class="table-category-condition-auto__body-content">
-            <a href="#" class="text-menuIcon"><CloseSVG class="ml-auto w-4 max-w-10 min-w-10 fill-current"/></a>
+            <a href="#" class="text-menuIcon"><CloseSVG class="ml-auto w-3 max-w-10 min-w-10 fill-current"/></a>
           </div>
         </td>
       </tr>

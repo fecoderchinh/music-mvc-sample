@@ -26,8 +26,8 @@
 
             <div class="dd-button group hover:bg-sidebarHover items-center">
               <span class="flex-auto uppercase">{{ data.item }}</span>
-              <div class="flex">
-                <ArrowSVG class="w-3 h-3 flex-auto ml-auto group-hover:fill-buttonAndURL -mt-px"/>
+              <div class="flex text-menuItem" @click="dropdownToggle = ! dropdownToggle">
+                <ArrowSVG class="w-3 h-3 flex-auto ml-auto fill-current group-hover:fill-buttonAndURL -mt-px"/>
               </div>
             </div>
 
@@ -93,6 +93,7 @@ export default {
     return {
       selected: undefined,
       currentRoute: '',
+      dropdownToggle: false,
       menuData: [
         {
           item: 'Tổng quan',

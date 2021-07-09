@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
-  <Modal @close="$emit('close')" @mclick.stop>
+  <Modal @close="$emit('close')" @mclick.stop :isBack="isBack" @back="onBack">
 
     <div class="flex items-center" slot="header">
       <h3 class="text-18px cms-typo text-labelAndTitle">
@@ -150,6 +150,13 @@ export default {
     CheckType,
     SelectOption,
     Button,
+  },
+  props: {
+    isBack: Boolean,
+    onBack: {
+      type: Function,
+      default: () => {}
+    }
   },
   data() {
     return {

@@ -9,7 +9,12 @@
             <AddLibrarySVG class="w-icon" />
           </div>
           <div class="inline-flex items-center flex-1 overflow-hidden">
-            <ModalQuickAdd/>
+            <ModalPicker
+                class="w-full"
+                :current-modal="modalComponent[0]"
+            >
+              <h3 class="cms-typo text-14px text-buttonAndURL max-w-full truncate cursor-pointer">Thêm nhanh sản phẩm hoặc dịch vụ</h3>
+            </ModalPicker>
           </div>
         </div>
       </div>
@@ -90,7 +95,6 @@
 <script>
 import CheckType from '@/components/client/CheckType.vue';
 import Button from '@/components/client/Button.vue';
-import ModalQuickAdd from '@/components/client/ModalQuickAdd.vue';
 
 import {
   EllipseSVG,
@@ -98,16 +102,18 @@ import {
   LongArrowSVG,
   SquareSVG,
 } from '../SVGs.vue';
+import ModalPicker from "@/components/client/ModalPicker";
+import ModalQuickAddContent from "@/components/client/ModalQuickAddContent";
 
 export default {
   components: {
+    ModalPicker,
     EllipseSVG,
     AddLibrarySVG,
     Button,
     LongArrowSVG,
     CheckType,
     SquareSVG,
-    ModalQuickAdd,
   },
   data() {
     return {
@@ -186,6 +192,14 @@ export default {
           price: '3,321,000đ',
         },
       ],
+      modalComponent: [
+        {
+          id: 'advanceSearchTable-1',
+          name: ModalQuickAddContent,
+          width: 720,
+          shiftX: 0
+        },
+      ]
     };
   },
   mounted() {

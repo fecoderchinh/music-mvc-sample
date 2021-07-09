@@ -18,7 +18,7 @@ export default {
         @apply block flex-auto;
         width: 1%;
         input {
-          @apply rounded-none text-center;
+          @apply rounded-none;
         }
         &:first-child {
           input {

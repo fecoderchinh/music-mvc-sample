@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
-  <Modal @close="$emit('close')" :showFooter="false" :isBack="isBack">
+  <Modal @close="$emit('close')" :showFooter="false" :isBack="isBack" @back="onBack">
 
     <div class="flex items-center" slot="header">
       <h3 class="text-18px cms-typo text-labelAndTitle">
@@ -9,6 +9,15 @@
     </div>
 
     <div class="grid gap-5" slot="body">
+
+      <Collapse header="TEST MODAL">
+        <ModalPicker
+            class="inline-flex ml-auto"
+            :current-modal="treeModal2[0]"
+        >
+          <a href="javascript:void(0)" class="font-lato font-medium text-14px text-buttonAndURL xl:text-right block">add tags</a>
+        </ModalPicker>
+      </Collapse>
 
       <Collapse header="Footer">
         <ul v-for="(data, index) in list2" :key="index" :class="[index+1 === list2.length ? 'pb-5' : null]">
@@ -167,14 +176,23 @@ import Modal from '@/components/client/Modal.vue';
 import Collapse from "@/components/client/Collapse";
 
 import MenuNested from "@/components/client/MenuNested";
+import ModalPicker from "@/components/client/ModalPicker";
+import ModalAddTags from "@/components/client/ModalAddTags";
 
 export default {
   components: {
+    ModalPicker,
     Collapse,
     Modal,
     MenuNested
   },
-  props: ['isBack'],
+  props: {
+    isBack: Boolean,
+    onBack: {
+      type: Function,
+      default: () => {}
+    }
+  },
   data() {
     return {
       list1: [
@@ -304,6 +322,14 @@ export default {
           width: 720,
           shiftX: 0
         },
+      ],
+      treeModal2: [
+        {
+          id: 'modalMenuPickerCollapse-1',
+          name: ModalAddTags,
+          width: 720,
+          shiftX: 0
+        }
       ]
     };
   },

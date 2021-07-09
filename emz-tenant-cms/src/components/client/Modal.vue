@@ -3,7 +3,7 @@
   <div class="modal-container" @click="modalClick">
 
     <div class="modal-header">
-      <span v-if="isBack" class="inline-flex -mt-px cursor-pointer text-labelAndTitle" @click="closeModal">
+      <span v-if="isBack" class="inline-flex -mt-px cursor-pointer text-labelAndTitle" @click="eventOnBack">
         <LongArrowSVG class="w-4 mr-3 inline transform rotate-180"/>
       </span>
       <slot name="header">
@@ -56,6 +56,10 @@ export default {
     isBack: {
       type: Boolean,
       default: false
+    },
+    onBack: {
+      type: Function,
+      default: () => {}
     }
   },
   methods: {
@@ -65,6 +69,10 @@ export default {
     modalClick(event) {
       this.$emit('mclick', event);
     },
+    eventOnBack() {
+      this.onBack()
+      this.$emit('back')
+    }
   },
 };
 </script>
@@ -92,7 +100,7 @@ export default {
     }
     .modal {
       &-header {
-        @apply flex relative items-center p-5 border-b;
+        @apply flex relative items-center px-5 py-3 border-b;
       }
       &-body {
         @apply p-5;
@@ -103,7 +111,7 @@ export default {
         }
       }
       &-footer {
-        @apply bg-gray-200 p-5;
+        @apply bg-gray-200 px-5 py-3;
       }
       &-default-button {
         @apply absolute top-50 right-0 transform -translate-y-1/2 mr-5;

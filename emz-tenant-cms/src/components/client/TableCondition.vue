@@ -33,7 +33,7 @@
         </td>
         <td>
           <div class="w-full text-right">
-            <a href="#" class="text-menuIcon"><CloseSVG class="w-icon inline"/></a>
+            <a href="#" class="text-menuIcon"><CloseSVG class="w-3 inline"/></a>
           </div>
         </td>
       </tr>

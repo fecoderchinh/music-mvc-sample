@@ -68,13 +68,13 @@
 
           <InputGroup>
             <div class="cms-input" slot="group">
-              <span class="input-group-text flex text-menuItem font-lato font-medium text-14px" id="basic-addon3">https://tulinh-salon.dkz.vn/</span>
+              <span class="input-group-text flex text-menuItem font-lato font-medium text-14px h-10 leading-10 px-2 border border-r-0 rounded-l" id="basic-addon3">https://tulinh-salon.dkz.vn/</span>
               <InputType
                   placeholder="combo1"
                   id="seo-url"
                   name="seo-url"
                   v-model="seoURL"
-                  input-class="cms-input__default"/>
+                  input-class="cms-input__default text-left"/>
             </div>
           </InputGroup>
         </div>
