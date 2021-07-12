@@ -34,6 +34,13 @@
         <th>
           <div class="table-categories__header-content text-left">
             <h3 class="cms-typo text-14px text-labelAndTitle">
+              Loại danh mục
+            </h3>
+          </div>
+        </th>
+        <th>
+          <div class="table-categories__header-content text-left">
+            <h3 class="cms-typo text-14px text-labelAndTitle">
               Điều kiện
             </h3>
           </div>
@@ -85,6 +92,13 @@
           <div class="table-categories__body-content">
             <h3 class="cms-typo text-13px text-menuItem">
               {{ data.status }}
+            </h3>
+          </div>
+        </td>
+        <td>
+          <div class="table-categories__body-content">
+            <h3 class="cms-typo text-13px text-menuItem">
+              {{ data.type }}
             </h3>
           </div>
         </td>
@@ -157,6 +171,7 @@ export default {
           img: 'https://picsum.photos/60',
           source: 'Modal danh mục sản phẩm',
           status: 'Hiển thị web',
+          type: 'Thủ công',
           condition: 'Chứa từ tóc',
           modal: {
             id: 'modalDanhMucSp',
@@ -170,6 +185,7 @@ export default {
           img: 'https://picsum.photos/60',
           source: 'Modal danh mục sản phẩm - Tự động',
           status: 'Ẩn',
+          type: 'Tự động',
           condition: 'Không chứa từ máy',
           modal: {
             id: 'modalDanhMucSpAuto',
@@ -242,19 +258,24 @@ export default {
               max-width: 80px;
             }
             &:nth-child(3) {
-              width: 397px;
+              width: 100%;
               min-width: 397px;
               max-width: 397px;
             }
             &:nth-child(4) {
-              width: 310px;
-              min-width: 310px;
-              max-width: 310px;
+              width: 210px;
+              min-width: 210px;
+              max-width: 210px;
             }
             &:nth-child(5) {
-              width: 310px;
-              min-width: 310px;
-              max-width: 310px;
+              width: 200px;
+              min-width: 200px;
+              max-width: 200px;
+            }
+            &:nth-child(6) {
+              width: 210px;
+              min-width: 210px;
+              max-width: 210px;
             }
           }
         }
@@ -280,19 +301,24 @@ export default {
               max-width: 80px;
             }
             &:nth-child(3) {
-              width: 397px;
+              width: 100%;
               min-width: 397px;
               max-width: 397px;
             }
             &:nth-child(4) {
-              width: 310px;
-              min-width: 310px;
-              max-width: 310px;
+              width: 210px;
+              min-width: 210px;
+              max-width: 210px;
             }
             &:nth-child(5) {
-              width: 310px;
-              min-width: 310px;
-              max-width: 310px;
+              width: 200px;
+              min-width: 200px;
+              max-width: 200px;
+            }
+            &:nth-child(6) {
+              width: 210px;
+              min-width: 210px;
+              max-width: 210px;
             }
           }
         }

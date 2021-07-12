@@ -50,7 +50,8 @@ export default {
 
       const options = {
         classes: 'cms-modal absolute',
-        clickToClose: parseInt(currentIndex) === 0,
+        // clickToClose: parseInt(currentIndex) === 0,
+        clickToClose: false, // disabled background close event
         name: this.current.id
       };
       const style = {
@@ -87,7 +88,8 @@ export default {
         }
         const options = {
           classes: 'cms-modal absolute',
-          clickToClose: index === 0,
+          // clickToClose: index === 0,
+          clickToClose: false, // disabled background close event
           name: this.$dataModals[index].id
         };
         const style = {

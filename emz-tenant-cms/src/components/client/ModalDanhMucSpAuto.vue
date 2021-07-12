@@ -139,7 +139,12 @@
                       <DropdownCondition/>
                     </div>
                     <div class="col-span-6 md:col-span-2 flex items-center">
-                      <ModalDsThoaMan/>
+                      <ModalPicker
+                          class="w-full"
+                          :current-modal="treeModal[2]"
+                      >
+                        <h3 class="cms-typo text-14px text-buttonAndURL max-w-full truncate cursor-pointer">Thêm nhanh sản phẩm hoặc dịch vụ</h3>
+                      </ModalPicker>
                     </div>
                     <div class="col-span-6">
                       <TableCondition class="mt-5"/>
@@ -237,7 +242,6 @@ import Box from "@/components/client/Box";
 import ProductAdvanceSearch from "@/components/client/ProductAdvanceSearch";
 import TableCondition from "@/components/client/TableCondition";
 import DropdownCondition from "@/components/client/DropdownCondition";
-import ModalDsThoaMan from "@/components/client/ModalDsThoaMan";
 import Radio from "@/components/client/Radio";
 
 import {
@@ -247,6 +251,7 @@ import InputGroup from "@/components/client/InputGroup";
 import ModalPicker from "@/components/client/ModalPicker";
 import ModalDanhMucSpAuto from "@/components/client/ModalDanhMucSpAuto";
 import ModalMenuPickerCollapse from "@/components/client/ModalMenuPickerCollapse";
+import ModalDsThoaManContent from "@/components/client/ModalDsThoaManContent";
 
 export default {
   components: {
@@ -266,7 +271,6 @@ export default {
     TableCondition,
     DeleteSVG,
     DropdownCondition,
-    ModalDsThoaMan,
     Radio
   },
   data() {
@@ -290,18 +294,24 @@ export default {
       ],
       treeModal: [
         {
-          id: 'modal-1',
+          id: 'modalDanhMucSpAuto-1',
           name: ModalDanhMucSpAuto,
           width: 1200,
           shiftX: 0
         },
         {
-          id: 'modal-2',
+          id: 'modalDanhMucSpAuto-2',
           name: ModalMenuPickerCollapse,
           width: 720,
           shiftX: 0
-        }
-      ]
+        },
+        {
+          id: 'modalDanhMucSpAuto-3',
+          name: ModalDsThoaManContent,
+          width: 720,
+          shiftX: 0
+        },
+      ],
     };
   },
   methods: {

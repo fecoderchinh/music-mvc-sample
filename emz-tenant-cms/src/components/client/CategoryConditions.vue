@@ -83,7 +83,12 @@
             <DropdownCondition/>
           </div>
           <div class="col-span-6 md:col-span-2 flex items-center">
-            <ModalDsThoaMan/>
+            <ModalPicker
+                class="w-full"
+                :current-modal="treeModal[0]"
+            >
+              <h3 class="cms-typo text-14px text-buttonAndURL max-w-full truncate cursor-pointer">Thêm nhanh sản phẩm hoặc dịch vụ</h3>
+            </ModalPicker>
           </div>
         </div>
       </div>
@@ -103,7 +108,6 @@ import Radio from '@/components/client/Radio.vue';
 import SelectOption from '@/components/client/SelectOption.vue';
 import InputType from '@/components/client/InputType.vue';
 import DropdownCondition from '@/components/client/DropdownCondition.vue';
-import ModalDsThoaMan from "@/components/client/ModalDsThoaMan";
 import TableConditionAuto from "@/components/client/TableConditionAuto";
 import ProductAdvanceSearch from "@/components/client/ProductAdvanceSearch";
 
@@ -111,9 +115,12 @@ import {
   DeleteSVG,
 } from '@/components/SVGs';
 import InputGroup from "@/components/client/InputGroup";
+import ModalDsThoaManContent from "@/components/client/ModalDsThoaManContent";
+import ModalPicker from "@/components/client/ModalPicker";
 
 export default {
   components: {
+    ModalPicker,
     InputGroup,
     Box,
     Radio,
@@ -121,7 +128,6 @@ export default {
     InputType,
     DeleteSVG,
     DropdownCondition,
-    ModalDsThoaMan,
     TableConditionAuto,
     ProductAdvanceSearch
   },
@@ -138,6 +144,14 @@ export default {
         { name: 'ccc' },
         { name: 'ddd' },
       ],
+      treeModal: [
+        {
+          id: 'categoryConditions-1',
+          name: ModalDsThoaManContent,
+          width: 720,
+          shiftX: 0
+        },
+      ]
     };
   },
 };

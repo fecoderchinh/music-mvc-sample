@@ -1,15 +1,10 @@
 <template>
   <!-- eslint-disable max-len -->
-  <Modal @close="$emit('close')">
+  <Modal @close="$emit('close')" :isBack="isBack" @back="onBack">
 
     <div class="flex items-center" slot="header">
       <h3 class="text-18px cms-typo text-labelAndTitle">
-        <Button button-class="inline hover:shadow-none focus:outline-none no-effect" @click="$emit('close')">
-          <template slot="name">
-            Danh mục thêm sản phẩm tự động
-          </template>
-        </Button>
-
+        Danh mục thêm sản phẩm tự động
       </h3>
     </div>
 
@@ -128,6 +123,13 @@ export default {
     DeleteSVG,
     Radio,
     TableCondition
+  },
+  props: {
+    isBack: Boolean,
+    onBack: {
+      type: Function,
+      default: () => {}
+    }
   },
   data() {
     return {
