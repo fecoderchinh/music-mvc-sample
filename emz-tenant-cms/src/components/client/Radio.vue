@@ -68,14 +68,18 @@ export default {
       }
     }
     .circle {
-      @apply w-4 h-4 inline-block mr-2 rounded-full border-2 border-gray-500 relative;
+      @apply inline-block mr-2 rounded-full border-2 border-gray-500 relative;
+      width: 20px;
+      height: 20px;
       @screen sm {
         @apply float-left mt-px;
       }
       &-inner {
-        @apply w-2 h-2 bg-transparent rounded-full absolute;
-        top: 2px;
-        left: 2px;
+        @apply bg-transparent rounded-full absolute transform -translate-x-1/2 -translate-y-1/2;
+        width: 10px;
+        height: 10px;
+        top: 50%;
+        left: 50%;
       }
     }
   }

@@ -7,17 +7,17 @@
     <template slot="content">
       <ul class="list-none mb-3 -mt-px sm:grid sm:gap-2">
         <li class="inline-flex sm:flex mr-3">
-          <Radio id="radio-status-1" name="radio" label-class="text-14px text-labelAndTitle">
+          <Radio @change="showForm = !showForm" :checked="showForm" id="radio-status-1" name="radio" label-class="text-14px text-labelAndTitle">
           <template slot="radio-text">Bán trên web</template>
         </Radio>
         </li>
         <li class="inline-flex sm:flex">
-          <Radio id="radio-status-2" name="radio" label-class="text-14px text-labelAndTitle" checked>
+          <Radio @change="showForm = !showForm" id="radio-status-2" name="radio" label-class="text-14px text-labelAndTitle" :checked="!showForm">
           <template slot="radio-text">Ẩn hiển thị</template>
         </Radio>
         </li>
       </ul>
-      <a href="#" class="font-lato font-medium text-14px text-buttonAndURL mt-3 block" :class="savedDate ? 'hidden' : null" @click.self.prevent="show">Đặt lịch hiển thị</a>
+      <a v-if="!showForm" href="#" class="font-lato font-medium text-14px text-buttonAndURL mt-3 block" :class="savedDate ? 'hidden' : null" @click.self.prevent="show">Đặt lịch hiển thị</a>
       <div v-if="showDate === true" class="grid grid-cols-6 gap-x-10 gap-y-5 mt-5">
         <div class="col-span-6 md:col-span-3">
           <InputGroup>
@@ -95,6 +95,7 @@ export default {
       showDate: false,
       savedDate: false,
       time1: null,
+      showForm: false
     };
   },
   methods: {

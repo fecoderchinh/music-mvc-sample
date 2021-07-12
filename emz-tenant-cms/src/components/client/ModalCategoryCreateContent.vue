@@ -19,7 +19,7 @@
 
             <div class="col-span-6">
               <div class="cms-label text-14px mb-4">
-                <label for="modal-danhmuc-sp-auto-1" class="cursor-pointer text-14px text-labelAndTitle">
+                <label for="modalCategoryCreateContent-1" class="cursor-pointer text-14px text-labelAndTitle">
                   Tên danh mục
                 </label>
               </div>
@@ -37,7 +37,25 @@
 
           </div>
 
-          <ProductDescription class="no-b no-px" />
+          <Box class="no-b no-px no-mb">
+            <template slot="content">
+
+              <div class="cms-label text-14px mb-5">
+                <label for="modalCategoryCreateContent-2" class="cursor-pointer text-14px text-labelAndTitle">
+                  Mô tả danh mục
+                </label>
+              </div>
+
+              <div class="w-full">
+                <div class="w-full no-mb">
+                  <textarea id="modal-danhmuc-sp-auto-2" class="bg-white h-16 w-full px-3 py-2 rounded border text-sm focus:outline-none text-14px font-lato text-menuItem"
+                            placeholder="Nhập mô tả cho danh mục"></textarea>
+                </div>
+              </div>
+
+            </template>
+          </Box>
+
           <CategoryConditions/>
           <ProductSearchDisplay />
 
@@ -109,7 +127,6 @@
 import Modal from '@/components/client/Modal.vue';
 import InputType from '@/components/client/InputType.vue';
 import Button from '@/components/client/Button.vue';
-import ProductDescription from '@/components/client/ProductDescription.vue';
 import CategoryConditions from '@/components/client/CategoryConditions.vue';
 import ProductSearchDisplay from '@/components/client/ProductSearchDisplay.vue';
 import InlineTags from '@/components/client/InlineTags.vue';
@@ -123,16 +140,17 @@ import WidgetImageUploader from '@/components/client/WidgetImageUploader.vue';
 import ModalPicker from "@/components/client/ModalPicker";
 
 import ModalCategoryCreateContent from "@/components/client/ModalCategoryCreateContent";
+import Box from "@/components/client/Box";
 
 export default {
   components: {
+    Box,
     ModalPicker,
     Modal,
     InputType,
     Button,
     InlineTags,
     SelectOption,
-    ProductDescription,
     CategoryConditions,
     ProductSearchDisplay,
     Widget,
