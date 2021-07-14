@@ -65,29 +65,7 @@
                 <ProductAdvanceSearch class="mb-5"/>
                 <SelectOption class="mb-5" :option-data="this.optionDataSelect3"/>
 
-                <div class="w-full mb-5">
-                  <div class="flex flex-wrap">
-
-                    <Radio
-                        id="radio-category-condition-1"
-                        name="radio-category-condition"
-                        label-class="text-labelAndTitle mr-3 md:mr-8 sm:mb-3"
-                        @change="auto = true" :checked="auto">
-                      <template slot="radio-text">Tự động thêm sản phẩm</template>
-                    </Radio>
-
-                    <Radio
-                        id="radio-category-condition-2"
-                        name="radio-category-condition"
-                        label-class="text-labelAndTitle mr-3 md:mr-8 sm:mb-3"
-                        @change="auto = false" :checked="!auto">
-                      <template slot="radio-text">Thêm sản phẩm thủ công</template>
-                    </Radio>
-
-                  </div>
-                </div>
-
-                <div class="w-full" v-if="auto">
+                <div class="w-full">
                   <div class="w-full mb-3">
                     <InputGroup>
                       <div slot="group">
@@ -152,7 +130,7 @@
                   </div>
                 </div>
 
-                <div class="w-full" v-else>
+                <div class="w-full">
                   <TableCondition/>
                 </div>
 

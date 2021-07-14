@@ -232,7 +232,8 @@ export default {
           }
           max-height: calc( 100vh - 110px - 5rem );
           &.table-overflow {
-            width: calc( 100% + 17px );
+            width: 100%;
+            //width: calc( 100% + 17px );
           }
           @screen sm {
             max-height: calc( 100vh - 180px - 5rem );

@@ -35,7 +35,7 @@
 
     <ul class="md:text-right sm:mt-5 list-none flex-1 items-center" slot="footer">
       <li class="inline mr-5">
-        <Button button-class="cms-button cms-button-white">
+        <Button button-class="cms-button cms-button-white" @click="onBack">
           <template slot="name">
             Hủy
           </template>

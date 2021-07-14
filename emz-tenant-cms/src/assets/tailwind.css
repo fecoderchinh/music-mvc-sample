@@ -117,8 +117,8 @@
       SIDEBAR
 \***********************************************************************************/
 #main-sidebar .list-sidebar {
-  @apply h-full;
-  width: calc(100% + 17px);
+  @apply h-full w-full;
+  /*width: calc(100% + 17px);*/
 }
 
 @media (pointer:coarse) {
@@ -492,4 +492,13 @@ select:focus {
 }
 .cms-scrollbar::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-500;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+.hide-scrollbar {
+    scrollbar-color: rgba(255,255,255, 0) rgba(255,255,255, 0);
+    scrollbar-width: thin;
 }

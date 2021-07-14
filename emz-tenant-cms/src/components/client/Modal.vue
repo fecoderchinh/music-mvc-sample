@@ -103,9 +103,11 @@ export default {
         @apply flex relative items-center px-5 py-3 border-b;
       }
       &-body {
-        @apply p-5;
+        @apply p-5 w-full;
         overflow-y: scroll;
-        width: calc( 100% + 20px );
+        //width: calc( 100% + 20px );
+        //width: -webkit-calc( 100% + 20px );
+        //width: -moz-calc( 100% + 20px );
         @media (pointer:coarse) {
           @apply w-full;
         }
