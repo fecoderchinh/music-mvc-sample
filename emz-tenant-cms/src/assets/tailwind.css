@@ -121,6 +121,10 @@
   /*width: calc(100% + 17px);*/
 }
 
+#main-sidebar .list-sidebar .ps {
+    @apply h-full;
+}
+
 @media (pointer:coarse) {
   #main-sidebar .list-sidebar {
     @apply w-full;

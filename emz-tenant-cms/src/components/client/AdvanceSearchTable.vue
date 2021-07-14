@@ -20,6 +20,11 @@
       </div>
     </div>
 
+    <perfect-scrollbar :options="{
+        maxScrollbarLength: 300,
+        minScrollbarLength: 100,
+      }">
+
     <div class="search-box-content-order-table" :class="optionDataTable.length > 5 ? 'table-overflow' : ''" :style="{
       'max-height': this.limitHeigth+'px'
     }">
@@ -60,6 +65,7 @@
       </table>
 
     </div>
+    </perfect-scrollbar>
 
     <div class="grid-cols">
       <div class="w-full py-10px no-mb border-t">
@@ -226,7 +232,7 @@ export default {
       @apply overflow-hidden;
       &-order {
         &-table {
-          @apply overflow-y-auto;
+          //@apply overflow-y-auto;
           @media (pointer:coarse) {
             @apply w-full;
           }

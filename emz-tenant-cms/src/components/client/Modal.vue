@@ -16,11 +16,17 @@
       </button>
     </div>
 
-    <div class="modal-body" :class="bodyHeight">
-      <slot name="body">
-        default body
-      </slot>
-    </div>
+    <perfect-scrollbar :options="{
+        maxScrollbarLength: 300,
+        minScrollbarLength: 100,
+      }">
+
+      <div class="modal-body" :class="bodyHeight">
+          <slot name="body">
+            default body
+          </slot>
+      </div>
+    </perfect-scrollbar>
 
     <div class="modal-footer" v-if="showFooter">
       <slot name="footer">
@@ -104,10 +110,13 @@ export default {
       }
       &-body {
         @apply p-5 w-full;
-        overflow-y: scroll;
+        //overflow-y: scroll;
         //width: calc( 100% + 20px );
         //width: -webkit-calc( 100% + 20px );
         //width: -moz-calc( 100% + 20px );
+        .ps {
+          @apply  h-full;
+        }
         @media (pointer:coarse) {
           @apply w-full;
         }

@@ -22,6 +22,14 @@ Vue.use(VueToastr, {
   /* OverWrite Plugin Options if you need */
 });
 Vue.use(VueNestable);
+
+
+import PerfectScrollbar from 'vue2-perfect-scrollbar'
+import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
+
+Vue.use(PerfectScrollbar)
+
+
 Vue.use(Vuex)
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
 Vue.config.productionTip = false

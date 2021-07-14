@@ -9,52 +9,56 @@
         </p>
     </div>
 
-    <div class="list-sidebar overflow-y-scroll relative overflow-y-scroll">
+    <div class="list-sidebar relative">
+      <perfect-scrollbar :options="{
+        maxScrollbarLength: 300,
+        minScrollbarLength: 100,
+      }">
+        <div class="flex flex-auto" v-for="(data, index) in menuData" :key="index" :class="classSingleItem(index)">
 
-      <div class="flex flex-auto" v-for="(data, index) in menuData" :key="index" :class="classSingleItem(index)">
-
-        <template v-if="( !data.subMenu || data.subMenu.length === 0 )">
-          <div class="pl-8 pr-4 w-full flex items-center h-35px pl-4 text-menuIcon hover:text-buttonAndURL rounded-lg cursor-pointer group group-hover:bg-sidebarHover">
-            <component v-bind:is="data.component" class="h-icon w-icon group-hover:fill-buttonAndURL mr-5 -mt-px" />
-            <a href="#" class="text-standardCMS text-menuItem flex-auto" v-if="data.modal" @click.self.prevent="openModal(data.modal, data.modalW)">{{ data.item }}</a>
-            <router-link :to="data.url" class="text-standardCMS text-menuItem flex-auto" v-else>{{ data.item }}</router-link>
-          </div>
-        </template>
-        <template v-else>
-
-          <label class="dropdown flex-auto flex-col">
-
-            <div class="dd-button group hover:bg-sidebarHover items-center">
-              <span class="flex-auto uppercase">{{ data.item }}</span>
-              <div class="flex text-menuItem" @click="dropdownToggle = ! dropdownToggle">
-                <ArrowSVG class="w-3 h-3 flex-auto ml-auto fill-current group-hover:fill-buttonAndURL -mt-px"/>
-              </div>
+          <template v-if="( !data.subMenu || data.subMenu.length === 0 )">
+            <div class="pl-8 pr-4 w-full flex items-center h-35px pl-4 text-menuIcon hover:text-buttonAndURL rounded-lg cursor-pointer group group-hover:bg-sidebarHover">
+              <component v-bind:is="data.component" class="h-icon w-icon group-hover:fill-buttonAndURL mr-5 -mt-px" />
+              <a href="#" class="text-standardCMS text-menuItem flex-auto" v-if="data.modal" @click.self.prevent="openModal(data.modal, data.modalW)">{{ data.item }}</a>
+              <router-link :to="data.url" class="text-standardCMS text-menuItem flex-auto" v-else>{{ data.item }}</router-link>
             </div>
+          </template>
+          <template v-else>
 
-            <input type="checkbox" class="dd-input" checked>
+            <label class="dropdown flex-auto flex-col">
 
-            <ul class="dd-menu">
-              <li v-for="(subData, subIndex) in data.subMenu" :key="subIndex" :class="{'current-menu':subData.subUrl === selected}" @click="selected = subData.subUrl">
-                <div class="w-full flex items-center h-35px rounded-lg cursor-pointer text-menuIcon hover:text-buttonAndURL">
-                  <component v-bind:is="subData.subComponent" class="h-icon w-icon mr-5 -mt-px" />
-                  <a href="#" class="text-standardCMS text-menuItem flex-auto" v-if="subData.modal" @click.self.prevent="openModal(subData.modal, subData.modalW)">{{ subData.subItem }}</a>
-                  <router-link :to="subData.subUrl" class="text-standardCMS text-menuItem flex-auto" v-else>{{ subData.subItem }}</router-link>
+              <div class="dd-button group hover:bg-sidebarHover items-center">
+                <span class="flex-auto uppercase">{{ data.item }}</span>
+                <div class="flex text-menuItem" @click="dropdownToggle = ! dropdownToggle">
+                  <ArrowSVG class="w-3 h-3 flex-auto ml-auto fill-current group-hover:fill-buttonAndURL -mt-px"/>
                 </div>
-              </li>
-            </ul>
+              </div>
 
-          </label>
-        </template>
-      </div>
+              <input type="checkbox" class="dd-input" checked>
 
-      <div class="single-item flex fixed bottom-0 h-35px bg-white flex-auto shadow-fixed w-2/3 md:w-1/3 lg:w-64">
-        <!-- eslint-disable max-len -->
-        <div class="pl-8 pr-4 w-full flex items-center h-35px pl-4 rounded-lg cursor-pointer text-menuIcon hover:text-buttonAndURL hover:bg-sidebarHover">
-          <SettingSVG class="h-icon w-icon mr-5"/>
-          <router-link to="/dashboard/settings"
-          class="text-standardCMS text-menuItem flex-auto font-medium">Cài đặt</router-link>
+              <ul class="dd-menu">
+                <li v-for="(subData, subIndex) in data.subMenu" :key="subIndex" :class="{'current-menu':subData.subUrl === selected}" @click="selected = subData.subUrl">
+                  <div class="w-full flex items-center h-35px rounded-lg cursor-pointer text-menuIcon hover:text-buttonAndURL">
+                    <component v-bind:is="subData.subComponent" class="h-icon w-icon mr-5 -mt-px" />
+                    <a href="#" class="text-standardCMS text-menuItem flex-auto" v-if="subData.modal" @click.self.prevent="openModal(subData.modal, subData.modalW)">{{ subData.subItem }}</a>
+                    <router-link :to="subData.subUrl" class="text-standardCMS text-menuItem flex-auto" v-else>{{ subData.subItem }}</router-link>
+                  </div>
+                </li>
+              </ul>
+
+            </label>
+          </template>
         </div>
-      </div>
+
+        <div class="single-item flex fixed bottom-0 h-35px bg-white flex-auto shadow-fixed w-2/3 md:w-1/3 lg:w-64">
+          <!-- eslint-disable max-len -->
+          <div class="pl-8 pr-4 w-full flex items-center h-35px pl-4 rounded-lg cursor-pointer text-menuIcon hover:text-buttonAndURL hover:bg-sidebarHover">
+            <SettingSVG class="h-icon w-icon mr-5"/>
+            <router-link to="/dashboard/settings"
+                         class="text-standardCMS text-menuItem flex-auto font-medium">Cài đặt</router-link>
+          </div>
+        </div>
+      </perfect-scrollbar>
     </div>
 
   </div>
