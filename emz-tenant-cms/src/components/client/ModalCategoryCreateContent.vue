@@ -105,7 +105,7 @@
 
     <ul class="md:text-right list-none flex-1 items-center" slot="footer">
       <li class="inline mr-5">
-        <Button button-class="cms-button cms-button-white">
+        <Button button-class="cms-button cms-button-white" @click="openDialog">
           <template slot="name">
             Hủy
           </template>
@@ -202,6 +202,65 @@ export default {
     uploadImage() {
       if(this.imgUrl) this.imgUrl = ''
       else this.imgUrl = 'https://picsum.photos/400/300'
+    },
+    openDialog() {
+      let currentIndex = Object.keys(this.$dataModals)[this.$dataModals.findIndex(x => x === this.$dataModals[this.$dataModals.length-1])]
+      let currentModal = this.$dataModals[this.$dataModals.length-1]
+
+      this.$modal.hide(this.$dataModals[this.$dataModals.length-1].id)
+
+      const data = {
+        isBack: parseInt(currentIndex) !== 0,
+        onBack: () => {
+          this.closed(currentIndex-1)
+        }
+      }
+
+      const options = {
+        classes: 'cms-modal absolute',
+        clickToClose: false, // disabled background close event
+        name: currentModal.id
+      };
+      const style = {
+        width: currentModal.width ? currentModal.width : 720, height: 'auto', shiftX: currentModal.shiftX ? currentModal.shiftX : 0, adaptive: true,
+      };
+      const events = {
+        'before-open': () => {
+          if(parseInt(currentIndex) > 0) {
+            this.$modal.hide(this.$dataModals[currentIndex-1].id)
+          }
+        },
+        opened: () => {
+          // console.log('event: opened')
+        },
+        'before-close': () => {
+          // console.log('event: before-close -> current data')
+        },
+        closed: () => {
+          // console.log('event: closed')
+          // this.$emit('close')
+        },
+      };
+
+      this.$modal.show('dialog', {
+        title: 'Cảnh báo',
+        text: 'Vui lòng đọc cảnh báo, không đọc cảnh báo thì ráng chịu',
+        buttons: [
+          {
+            title: 'Hủy',
+            handler: () => {
+              this.$modal.hide('dialog')
+            }
+          },
+          {
+            title: 'Quay lại',
+            handler: () => {
+              this.$modal.hide('dialog')
+              this.$modal.show(this.$dataModals[this.$dataModals.length-1].name, { ...data }, { ...options, ...style }, events)
+            }
+          },
+        ]
+      })
     }
   }
 };

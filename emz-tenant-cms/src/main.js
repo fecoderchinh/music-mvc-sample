@@ -31,7 +31,7 @@ Vue.use(PerfectScrollbar)
 
 
 Vue.use(Vuex)
-Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
+Vue.use(VModal, { dynamic: true, injectModalsContainer: true, dialog: true })
 Vue.config.productionTip = false
 // Vue.use(abilitiesPlugin, ability)
 

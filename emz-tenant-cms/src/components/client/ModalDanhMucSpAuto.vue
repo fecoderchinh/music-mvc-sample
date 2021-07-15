@@ -121,7 +121,7 @@
                           class="w-full"
                           :current-modal="treeModal[2]"
                       >
-                        <h3 class="cms-typo text-14px text-buttonAndURL max-w-full truncate cursor-pointer">Thêm nhanh sản phẩm hoặc dịch vụ</h3>
+                        <h3 class="cms-typo text-14px text-buttonAndURL max-w-full truncate cursor-pointer">Xem danh sách sản phẩm thỏa mãn</h3>
                       </ModalPicker>
                     </div>
                     <div class="col-span-6">

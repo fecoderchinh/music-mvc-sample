@@ -43,7 +43,7 @@ export default {
       const data = {
         isBack: parseInt(currentIndex) !== 0,
         onBack: () => {
-          console.log('onBack clicked')
+          // console.log('onBack clicked')
           this.closed(currentIndex-1)
         }
       }
@@ -59,20 +59,20 @@ export default {
       };
       const events = {
         'before-open': () => {
-          console.log('==================================================================================================')
-          console.log('event: before-open')
+          // console.log('==================================================================================================')
+          // console.log('event: before-open')
           if(parseInt(currentIndex) > 0) {
             this.$modal.hide(this.$dataModals[currentIndex-1].id)
           }
         },
         opened: () => {
-          console.log('event: opened')
+          // console.log('event: opened')
         },
         'before-close': () => {
-          console.log('event: before-close -> current data')
+          // console.log('event: before-close -> current data')
         },
         closed: () => {
-          console.log('event: closed')
+          // console.log('event: closed')
           // this.$emit('close')
         },
       };
@@ -98,23 +98,23 @@ export default {
 
         const events = {
           'before-open': () => {
-            console.log('==================================================================================================')
-            console.log('event: before-open')
-            console.log(this.$dataModals)
+            // console.log('==================================================================================================')
+            // console.log('event: before-open')
+            // console.log(this.$dataModals)
           },
           opened: () => {
-            console.log('event: opened')
+            // console.log('event: opened')
             this.$modal.hide(this.$dataModals[index+1].id)
             this.$dataModals.pop()
           },
           'before-close': () => {
-            console.log('event: before-close -> current data')
+            // console.log('event: before-close -> current data')
             if(this.$dataModals.length === 1) {
               this.$dataModals.length = 0
             }
           },
           closed: () => {
-            console.log('event: closed')
+            // console.log('event: closed')
             this.$emit('close')
           },
         };
