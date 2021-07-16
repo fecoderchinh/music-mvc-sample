@@ -62,8 +62,8 @@
                 <label class="cursor-pointer text-14px text-labelAndTitle">
                   Sản phẩm
                 </label>
-                <ProductAdvanceSearch class="mb-5"/>
-                <SelectOption class="mb-5" :option-data="this.optionDataSelect3"/>
+<!--                <ProductAdvanceSearch class="mb-5"/>-->
+                <SelectOption class="mb-5 mt-3" :option-data="this.optionDataSelect3"/>
 
                 <div class="w-full">
                   <div class="w-full mb-3">
@@ -217,7 +217,6 @@ import WidgetRadioStatus from '@/components/client/WidgetRadioStatus.vue';
 import WidgetImageUploader from '@/components/client/WidgetImageUploader.vue';
 
 import Box from "@/components/client/Box";
-import ProductAdvanceSearch from "@/components/client/ProductAdvanceSearch";
 import TableCondition from "@/components/client/TableCondition";
 import DropdownCondition from "@/components/client/DropdownCondition";
 import Radio from "@/components/client/Radio";
@@ -245,7 +244,6 @@ export default {
     WidgetRadioStatus,
     WidgetImageUploader,
     Box,
-    ProductAdvanceSearch,
     TableCondition,
     DeleteSVG,
     DropdownCondition,
