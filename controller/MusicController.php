@@ -1,5 +1,5 @@
 <?php 
-class Music{
+class MusicController{
     protected $model = '';
 
     public function __construct($model)

@@ -7,11 +7,11 @@ $uri0 = isset($uri[0]);
 $uri1 = isset($uri[1]);
 
 require_once "lib/Database.php";
-require_once "controller/Music.php";
+require_once "controller/MusicController.php";
 require_once "model/MusicModel.php";
 $db = new Database();
 $model = new MusicModel($db);
-$controller = new Music($model);
+$controller = new MusicController($model);
 
 if ($uri0 && $uri1 && $uri[0] === 'music' && $uri[1] === 'detail') {         // Detail
     $id = $_GET['id'];
