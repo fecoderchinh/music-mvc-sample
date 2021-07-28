@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% set title = 'Chi tiết bài hát' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>{{ music.name }}</h1>
+
+    <dl>
+        <dt>Tên bài hát : </dt>
+        <dd>{{ music.name }}</dd>
+        <dt>Ca sĩ : </dt>
+        <dd>{{ music.singer }}</dd>
+        <dt>Thể loại : </dt>
+        <dd>{{ music.category }}</dd>
+        <dt>Album : </dt>
+        <dd>{{ music.album }}</dd>
+        <dt>Năm phát hành : </dt>
+        <dd>{{ music.year }}</dd>
+    </dl>
+</div>
+{% endblock %}

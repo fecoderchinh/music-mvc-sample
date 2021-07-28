@@ -1,34 +1,26 @@
-<?php 
+<?php
 
-$request = preg_replace("|/*(.+?)/*$|", "\\1", $_SERVER['PATH_INFO']);
-$uri = explode('/', $request);
+    require __DIR__ . '/vendor/autoload.php';
 
-$uri0 = isset($uri[0]);
-$uri1 = isset($uri[1]);
+    /**
+     * Error and Exception handling
+     */
+    error_reporting(E_ALL);
+    set_error_handler('Core\Error::errorHandler');
+    set_exception_handler('Core\Error::exceptionHandler');
 
-require_once "lib/Database.php";
-require_once "controller/MusicController.php";
-require_once "model/MusicModel.php";
-$db = new Database();
-$model = new MusicModel($db);
-$controller = new MusicController($model);
 
-if ($uri0 && $uri1 && $uri[0] === 'music' && $uri[1] === 'detail') {         // Detail
-    $id = $_GET['id'];
-    $controller->detail($id);
-} elseif ($uri0 && $uri1 && $uri[0] === 'music' && $uri[1] === 'edit') {     // Edit
-    $id = $_GET['id'];
-    $controller->edit($id);
-} elseif ($uri0 && $uri1 && $uri[0] === 'music' && $uri[1] === 'delete') {   // Delete
-    $id = $_GET['id'];
-    $controller->delete($id);
-} elseif ($uri0 && $uri1 && $uri[0] === 'music' && $uri[1] === 'create') {   // Create
-    $controller->create();
-} elseif ($uri0 && $uri1 && $uri[0] === 'music' && $uri[1] === 'search') {   // Search
-    $controller->search();
-} elseif ($uri[0] === 'music' || $uri[0] === '') {                                             // Index
-    $controller->index();
-} else {                                                                       // 404
-    header('HTTP/1.1 404 Not Found');
-    echo '<html><body><h1>404</h1><br><br><h2>Trang không tìm thấy</h2></body></html>';
-}
+    /**
+     * Routing
+     */
+    $r = new \Handling\Routing();
+
+    // Add the routes
+    $r->routes('', ['controller' => 'MusicController', 'action' => 'index']);
+    $r->routes('music', ['controller' => 'MusicController', 'action' => 'index']);
+    $r->routes('music/detail/{id:\d+}', ['controller' => 'MusicController', 'action' => 'detail']);
+    $r->routes('music/create', ['controller' => 'MusicController', 'action' => 'create']);
+    $r->routes('music/edit/{id:\d+}', ['controller' => 'MusicController', 'action' => 'edit']);
+    $r->routes('music/delete/{id:\d+}', ['controller' => 'MusicController', 'action' => 'delete']);
+
+    $r->dispatch($_SERVER['QUERY_STRING']);

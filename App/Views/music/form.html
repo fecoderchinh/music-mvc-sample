@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% if status == 'create' %}
+    {% set title = 'Thêm bài hát mới' %}
+    {% set label = 'Thêm' %}
+    {% set action = '/music/create' %}
+{% else %}
+    {% set title = 'Cập nhật bài hát' %}
+    {% set label = 'Cập nhật' %}
+    {% set action = '/music/edit/'~form.id %}
+{% endif %}
+
+{% set name = form.name is not empty ? form.name : null %}
+{% set singer = form.singer is not empty ? form.singer : null %}
+{% set category = form.category is not empty ? form.category : null %}
+{% set album = form.album is not empty ? form.album : null %}
+{% set year = form.year is not empty ? form.year : null %}
+{% set id = form.id is not empty ? form.id : null %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>{{ title }}</h1>
+
+    <form action="{{ action }}" method="post" id="form">
+        {% if id is not empty %}
+        <input type="hidden" name="id" value="{{ id }}">
+        {% endif %}
+
+        <div class="form-group">
+            <label for="name">Tên bài hát</label>
+            <input name="name" type="text" value="{{ name }}" class="form-control" id="name" placeholder="Nhập tên bài hát">
+        </div>
+
+        <div class="form-group">
+            <label for="singer">Ca sĩ</label>
+            <input name="singer" type="text" value="{{ singer }}" class="form-control" id="singer" placeholder="Nhập tên ca sĩ">
+        </div>
+
+        <div class="form-group">
+            <label for="category">Thể loại</label>
+            <input name="category" type="text" value="{{ category }}" class="form-control" id="category" placeholder="Nhập thể loại">
+        </div>
+
+        <div class="form-group">
+            <label for="album">Album</label>
+            <input name="album" type="text" value="{{ album }}" class="form-control" id="album" placeholder="Album">
+        </div>
+
+        <div class="form-group">
+            <label for="year">Năm phát hành</label>
+            <input name="year" type="text" value="{{ year }}" class="form-control" id="year" placeholder="Năm phát hành, vd: 2021">
+        </div>
+
+        <button class="btn btn-primary" type="submit">{{ label }}</button>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/asset/css/validate/screen.css"/>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/asset/js/jquery.validate.js"></script>
+
+<script type="text/javascript">
+    $( document ).ready( function () {
+
+        $("#form").validate({
+            rules: {
+                name: "required",
+                singer: "required",
+                category: "required",
+                album: "required",
+                year: "required",
+            },
+            messages: {
+                name: "Tên bài hát không được để trống",
+                singer: "Tên ca sĩ không được để trống",
+                category: "Tên thể loại không được để trống",
+                album: "Tên album không được để trống",
+                year: "Năm phát hành không được để trống"
+            }
+        });
+    } );
+</script>
+{% endblock %}

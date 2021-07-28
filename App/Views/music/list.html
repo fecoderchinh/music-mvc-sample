@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% set title = 'Bài hát yêu thích' %}
+
+{% set count = 0 %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div style="text-align: center;"><h1>{{ title }}</h1></div>
+    <br>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tiêu đề</th>
+                <th>Ca sĩ</th>
+                <th>Thể loại</th>
+                <th>Album</th>
+                <th>Năm phát hành</th>
+                <th>Chi tiết</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for m in music %}
+            <tr>
+                <td>{% set count  = count + 1 %} {{ count }}</td>
+                <td>{{ m.name|e }}</td>
+                <td>{{ m.singer|e }}</td>
+                <td>{{ m.category|e }}</td>
+                <td>{{ m.album|e }}</td>
+                <td>{{ m.year|e }}</td>
+                <td><a href="/music/detail/{{ m.id }}" class="btn btn-success btn-xs"> Chi tiết</a></td>
+                <td><a href="/music/edit/{{ m.id }}" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit"></span> Sửa</a></td>
+                <td><a href="/music/delete/{{ m.id }}" onclick="return confirm('Bạn muốn xóa bài hát này?')" class="btn btn-danger btn-xs"> <span class="glyphicon glyphicon-trash"></span> Xóa</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="/music/create" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Thêm mới</a>
+</div>
+
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/asset/DataTables/datatables.min.css"/>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/asset/DataTables/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.table').DataTable();
+    } );
+</script>
+{% endblock %}

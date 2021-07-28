@@ -1476,7 +1476,7 @@
                         rowData.arrayFilter = rowData.arrayTotals;
                     }
                     var _loop_1 = function (dataP) {
-                        // If both view Total and cascadePanes have been selected and the count of the row
+                        // If both Views Total and cascadePanes have been selected and the count of the row
                         //  is not 0 then add it to pane
                         // Do this also if the viewTotal option has been selected and cascadePanes has not
                         if (dataP && ((rowData.bins[dataP.filter] !== undefined &&

@@ -6396,7 +6396,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 	// Normalize "" and auto
 	val = parseFloat( val ) || 0;
 
-	// Adjust for the element's box model
+	// Adjust for the element's box Models
 	return ( val +
 		boxModelAdjustment(
 			elem,
@@ -12095,7 +12095,7 @@ return jQuery;
 	/**
 	 * Convert from camel case parameters to Hungarian, based on a Hungarian map
 	 * created by _fnHungarianMap.
-	 *  @param {object} src The model object which holds all parameters that can be
+	 *  @param {object} src The Models object which holds all parameters that can be
 	 *    mapped.
 	 *  @param {object} user The object to convert from camel case to Hungarian.
 	 *  @param {boolean} force When set to `true`, properties which already have a
@@ -19687,7 +19687,7 @@ return jQuery;
 	 * either the 1.9 style Hungarian notation, or the 1.10+ style camelCase
 	 * parameters.
 	 *
-	 *  @param {object} src The model object which holds all parameters that can be
+	 *  @param {object} src The Models object which holds all parameters that can be
 	 *    mapped.
 	 *  @param {object} user The object to convert from camel case to Hungarian.
 	 *  @param {boolean} force When set to `true`, properties which already have a
@@ -22508,7 +22508,7 @@ return jQuery;
 	
 	
 	/*
-	 * Developer note - See note in model.defaults.js about the use of Hungarian
+	 * Developer note - See note in Models.defaults.js about the use of Hungarian
 	 * notation and camel case.
 	 */
 	
@@ -25083,7 +25083,7 @@ return jQuery;
 	
 	
 	
-	// Built in type detection. See model.ext.aTypes for information about
+	// Built in type detection. See Models.ext.aTypes for information about
 	// what is required from this methods.
 	$.extend( DataTable.ext.type.detect, [
 		// Plain numbers - first since V8 detects some plain numbers as dates
@@ -25138,7 +25138,7 @@ return jQuery;
 	
 	
 	
-	// Filter formatting functions. See model.ext.ofnSearch for information about
+	// Filter formatting functions. See Models.ext.ofnSearch for information about
 	// what is required from these methods.
 	// 
 	// Note that additional search methods are added for the html numbers and
@@ -26771,10 +26771,10 @@ $.extend( AutoFill.prototype, {
 
 	/**
 	 * Move the window and DataTables scrolling during a drag to scroll new
-	 * content into view. This is done by proximity to the edge of the scrolling
+	 * content into Views. This is done by proximity to the edge of the scrolling
 	 * container of the mouse - for example near the top edge of the window
 	 * should scroll up. This is a little complicated as there are two elements
-	 * that can be scrolled - the window and the DataTables scrolling view port
+	 * that can be scrolled - the window and the DataTables scrolling Views port
 	 * (if scrollX and / or scrollY is enabled).
 	 *
 	 * @param  {object} e Mouse move event object
@@ -30990,7 +30990,7 @@ return DataTable.Responsive;
                         rowData.arrayFilter = rowData.arrayTotals;
                     }
                     var _loop_1 = function (dataP) {
-                        // If both view Total and cascadePanes have been selected and the count of the row
+                        // If both Views Total and cascadePanes have been selected and the count of the row
                         //  is not 0 then add it to pane
                         // Do this also if the viewTotal option has been selected and cascadePanes has not
                         if (dataP && ((rowData.bins[dataP.filter] !== undefined &&
