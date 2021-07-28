@@ -2,8 +2,6 @@
 
 {% set title = 'Bài hát yêu thích' %}
 
-{% set count = 0 %}
-
 {% block title %} {{ title }} {% endblock %}
 
 {% block body %}
@@ -31,7 +29,7 @@
 
             {% for m in music %}
             <tr>
-                <td>{% set count  = count + 1 %} {{ count }}</td>
+                <td>{{ loop.index }}</td>
                 <td>{{ m.name|e }}</td>
                 <td>{{ m.singer|e }}</td>
                 <td>{{ m.category|e }}</td>
