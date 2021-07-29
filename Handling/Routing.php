@@ -14,7 +14,7 @@ class Routing extends Router {
      * @param $route
      * @param array $param
      * */
-    public function routes($route, $param = []) {
+    public function routes($route, array $param = []) {
         $this->addLastSlash($route, $param);
     }
 
@@ -23,7 +23,7 @@ class Routing extends Router {
      * @param $route
      * @param array $param
      * */
-    public function addLastSlash($route, $param = []) {
+    public function addLastSlash($route, array $param = []) {
         $this->add(rtrim($route, '/ '), $param);
         $this->add(rtrim($route, '/ ').'/', $param);
     }
