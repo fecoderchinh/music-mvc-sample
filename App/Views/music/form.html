@@ -22,40 +22,44 @@
 {% block body %}
 
 <div class="container">
-    <h1>{{ title }}</h1>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1>{{ title }}</h1>
 
-    <form action="{{ action }}" method="post" id="form">
-        {% if id is not empty %}
-        <input type="hidden" name="id" value="{{ id }}">
-        {% endif %}
+            <form action="{{ action }}" method="post" id="form">
+                {% if id is not empty %}
+                <input type="hidden" name="id" value="{{ id }}">
+                {% endif %}
 
-        <div class="form-group">
-            <label for="name">Tên bài hát</label>
-            <input name="name" type="text" value="{{ name }}" class="form-control" id="name" placeholder="Nhập tên bài hát">
+                <div class="form-group">
+                    <label for="name">Tên bài hát</label>
+                    <input name="name" type="text" value="{{ name }}" class="form-control" id="name" placeholder="Nhập tên bài hát">
+                </div>
+
+                <div class="form-group">
+                    <label for="singer">Ca sĩ</label>
+                    <input name="singer" type="text" value="{{ singer }}" class="form-control" id="singer" placeholder="Nhập tên ca sĩ">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Thể loại</label>
+                    <input name="category" type="text" value="{{ category }}" class="form-control" id="category" placeholder="Nhập thể loại">
+                </div>
+
+                <div class="form-group">
+                    <label for="album">Album</label>
+                    <input name="album" type="text" value="{{ album }}" class="form-control" id="album" placeholder="Album">
+                </div>
+
+                <div class="form-group">
+                    <label for="year">Năm phát hành</label>
+                    <input name="year" type="text" value="{{ year }}" class="form-control" id="year" placeholder="Năm phát hành, vd: 2021">
+                </div>
+
+                <button class="btn btn-primary" type="submit">{{ label }}</button>
+            </form>
         </div>
-
-        <div class="form-group">
-            <label for="singer">Ca sĩ</label>
-            <input name="singer" type="text" value="{{ singer }}" class="form-control" id="singer" placeholder="Nhập tên ca sĩ">
-        </div>
-
-        <div class="form-group">
-            <label for="category">Thể loại</label>
-            <input name="category" type="text" value="{{ category }}" class="form-control" id="category" placeholder="Nhập thể loại">
-        </div>
-
-        <div class="form-group">
-            <label for="album">Album</label>
-            <input name="album" type="text" value="{{ album }}" class="form-control" id="album" placeholder="Album">
-        </div>
-
-        <div class="form-group">
-            <label for="year">Năm phát hành</label>
-            <input name="year" type="text" value="{{ year }}" class="form-control" id="year" placeholder="Năm phát hành, vd: 2021">
-        </div>
-
-        <button class="btn btn-primary" type="submit">{{ label }}</button>
-    </form>
+    </div>
 </div>
 
 {% endblock %}
