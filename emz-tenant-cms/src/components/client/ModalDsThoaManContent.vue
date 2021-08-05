@@ -1,10 +1,10 @@
 <template>
   <!-- eslint-disable max-len -->
-  <Modal @close="$emit('close')" :isBack="isBack" @back="onBack">
+  <Modal @close="$emit('close')" :isBack="isBack" @back="onBack" :show-footer="false">
 
     <div class="flex items-center" slot="header">
       <h3 class="text-18px cms-typo text-labelAndTitle">
-        Danh mục thêm sản phẩm tự động
+        Danh sách lọc sản phẩm
       </h3>
     </div>
 
@@ -12,23 +12,23 @@
 
       <div class="grid grid-cols-6 gap-5">
 
-        <div class="col-span-6">
-          <div class="cms-label text-14px mb-3 text-labelAndTitle">
-            <label for="modal-ds-thoa-man-1" class="select-none cursor-pointer">Tên danh mục</label>
-          </div>
-          <div class="w-full select-none">
-            <InputType
-                main-class="search-bar"
-                id="modal-ds-thoa-man-1"
-                name="modal-ds-thoa-man-1"
-                value="iPhone 12"
-                input-class="cms-input__default">
-            </InputType>
-          </div>
-        </div>
+<!--        <div class="col-span-6">-->
+<!--          <div class="cms-label text-14px mb-3 text-labelAndTitle">-->
+<!--            <label for="modal-ds-thoa-man-1" class="select-none cursor-pointer">Tên danh mục</label>-->
+<!--          </div>-->
+<!--          <div class="w-full select-none">-->
+<!--            <InputType-->
+<!--                main-class="search-bar"-->
+<!--                id="modal-ds-thoa-man-1"-->
+<!--                name="modal-ds-thoa-man-1"-->
+<!--                value="iPhone 12"-->
+<!--                input-class="cms-input__default">-->
+<!--            </InputType>-->
+<!--          </div>-->
+<!--        </div>-->
 
         <div class="col-span-6 md:col-span-2 flex items-center">
-          <h3 class="text-standardCMS text-menuItem">Sản phẩm sẽ được thêm tự động nếu thỏa mãn</h3>
+          <h3 class="text-standardCMS text-menuItem">Sản phẩm được lọc nếu thoả mãn</h3>
         </div>
 
         <div class="col-span-6 md:col-span-4 flex sm:flex-col flex-wrap">
@@ -66,11 +66,27 @@
                 <DeleteSVG class="w-icon inline -mt-1"/>
               </div>
             </div>
+            <div class="table-row w-full">
+              <div class="grid grid-cols-6 gap-5 mt-5">
+                <div class="col-span-6 md:col-span-2">
+                  <DropdownCondition/>
+                </div>
+                <div class="col-span-6 md:col-span-3 flex items-center">
+<!--                  <ModalPicker-->
+<!--                      class="w-full"-->
+<!--                      :current-modal="treeModal[0]"-->
+<!--                  >-->
+<!--                    <h3 class="cms-typo text-14px text-buttonAndURL max-w-full truncate cursor-pointer">Xem danh sách sản phẩm thỏa mãn</h3>-->
+<!--                  </ModalPicker>-->
+                  <h3 class="cms-typo text-14px text-buttonAndURL max-w-full truncate cursor-pointer">Lọc danh sách sản phẩm thoả mãn</h3>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="col-span-6">
-          <h3 class="text-standardCMS text-labelAndTitle my-5">Các sản phẩm thỏa mãn điều kiện sẽ được thêm tự động vào danh mục này:</h3>
+          <h3 class="text-standardCMS text-labelAndTitle mb-5">Danh sách sản phẩm thoả mãn điều kiện lọc</h3>
           <TableCondition/>
         </div>
 
@@ -111,6 +127,7 @@ import {
 }
 from '@/components/SVGs';
 import DropdownCondition from "@/components/client/DropdownCondition";
+import ModalDsThoaManContent from "@/components/client/ModalDsThoaManContent";
 
 export default {
   name: "ModalDsThoaManContent",
@@ -142,6 +159,14 @@ export default {
         {
           name: 'Chứa từ'
         }
+      ],
+      treeModal: [
+        {
+          id: 'categoryConditions-1',
+          name: ModalDsThoaManContent,
+          width: 720,
+          shiftX: 0
+        },
       ]
     }
   }

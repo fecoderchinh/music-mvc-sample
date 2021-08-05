@@ -34,8 +34,9 @@
           <tr class="hover:bg-gray-200" v-for="(data, dataIndex) in optionDataTable" :key="dataIndex" @click="data.rowCheck = !data.rowCheck" :class="data.rowCheck ? 'bg-gray-200' : ''">
             <td>
               <CheckType
-                mainClass="no-mr"
-                :checked="data.rowCheck"/>
+                  main-class="ml-0 no-mr"
+                  v-model="allCheckStatus"
+                  :val="data.id"/>
             </td>
             <td class="">
               <div>
@@ -68,26 +69,30 @@
     </perfect-scrollbar>
 
     <div class="grid-cols">
-      <div class="w-full py-10px no-mb border-t">
+      <div class="w-full py-10px no-mb border-t relative">
+        <div class="md:absolute block left-0 ml-5 md:ml-10 mt-3 md:mt-0 top-50 transform -translate-y-1/2">
+          <a href="javascript:void(0)" class="inline-flex items-center text-13px text-menuItem" @click="selectAll = !selectAll">
+            <div class="cms-checkbox mr-3 mt-px">
+              <input type="checkbox">
+              <label class="text-standardCMS text-menuItem text-14px">
+                <span class="square" :class="allCheckStatus.length > 0 ? 'checked' : null"><span class="square-inner"></span></span>
+              </label>
+            </div>
+            Chọn tất cả ({{ allCheckStatus.length }})
+          </a>
+        </div>
         <ul class="list-none md:h-8 md:text-right px-5">
-          <li class="inline mr-10">
-            <Button button-class="bg-buttonAndURL rounded-sm group text-menuItem text-14px font-lato font-medium hover:text-white w-16 h-30px px-3 relative">
+          <li class="inline mr-5">
+            <Button button-class="cms-button-gray rounded-sm group text-menuItem text-14px font-lato font-medium hover:text-white w-16 h-30px px-3 relative">
               <template slot="name">
-                <span class="absolute top-50 left-50 transform -translate-x-1/2 -translate-y-1/2 text-white text-14px group-hover:fill-white">Chọn</span>
-              </template>
-            </Button>
-          </li>
-          <li class="inline mr-3">
-            <Button button-class="bg-cmsGray text-white hover:text-menuItem text-14px font-lato font-medium w-30px h-30px px-3 relative">
-              <template slot="name">
-                <LongArrowSVG class="absolute top-50 left-50 transform -translate-x-1/2 -translate-y-1/2 w-4 rotate-180"/>
+                <span class="text-menuItem text-14px">Hủy</span>
               </template>
             </Button>
           </li>
           <li class="inline">
-            <Button button-class="bg-cmsGray text-white hover:text-menuItem text-14px font-lato font-medium w-30px h-30px px-3 relative">
+            <Button button-class="bg-buttonAndURL rounded-sm group text-menuItem text-14px font-lato font-medium hover:text-white w-16 h-30px px-3 relative">
               <template slot="name">
-                <LongArrowSVG class="absolute top-50 left-50 transform -translate-x-1/2 -translate-y-1/2 w-4 transform"/>
+                <span class="text-white text-14px group-hover:fill-white">Thêm</span>
               </template>
             </Button>
           </li>
@@ -105,7 +110,6 @@ import Button from '@/components/client/Button.vue';
 import {
   EllipseSVG,
   AddLibrarySVG,
-  LongArrowSVG,
   SquareSVG,
 } from '../SVGs.vue';
 import ModalPicker from "@/components/client/ModalPicker";
@@ -117,16 +121,16 @@ export default {
     EllipseSVG,
     AddLibrarySVG,
     Button,
-    LongArrowSVG,
     CheckType,
     SquareSVG,
   },
   data() {
     return {
+      allCheckStatus: [],
       limitHeigth: 0,
       optionDataTable: [
         {
-          rowCheck: false,
+          id: '001',
           img: 'https://picsum.photos/40',
           name: 'Combo cần câu cá',
           props: [
@@ -143,7 +147,7 @@ export default {
           price: '123,321,000đ',
         },
         {
-          rowCheck: false,
+          id: '002',
           img: 'https://picsum.photos/40',
           name: 'Cần bạo lực',
           props: [
@@ -164,14 +168,14 @@ export default {
           price: '3,321,000đ',
         },
         {
-          rowCheck: false,
+          id: '003',
           img: 'https://picsum.photos/40',
           name: 'Combo cần câu cá cho gia đình, thư giản cuối tuần',
           count: '0 sản phẩm',
           price: '21,000đ',
         },
         {
-          rowCheck: false,
+          id: '004',
           img: 'https://picsum.photos/40',
           name: 'Cần lure siêu chắc',
           props: [
@@ -192,7 +196,7 @@ export default {
           price: '321,000đ',
         },
         {
-          rowCheck: false,
+          id: '005',
           name: 'Cần đánh lục xa bờ Navigod',
           count: '356 sản phẩm',
           price: '3,321,000đ',
@@ -215,6 +219,9 @@ export default {
     this.limitHeigth = this.limitHeight()
   },
   methods: {
+    action() {
+      this.selectAll = !this.selectAll
+    },
     limitHeight() {
       let height = 0
       for(let i=0;i<5;i++) {
@@ -222,7 +229,25 @@ export default {
       }
       return height
     }
-  }
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.optionDataTable ? this.allCheckStatus.length === this.optionDataTable.length : false;
+      },
+      set: function (value) {
+        var selected = [];
+
+        if (value) {
+          this.optionDataTable.forEach(function (data) {
+            selected.push(data.id);
+          });
+        }
+
+        this.allCheckStatus = selected;
+      }
+    }
+  },
 };
 </script>
 
@@ -236,21 +261,21 @@ export default {
           @media (pointer:coarse) {
             @apply w-full;
           }
-          max-height: calc( 100vh - 110px - 5rem );
+          //max-height: calc( 100vh - 110px - 5rem );
           &.table-overflow {
             width: 100%;
             //width: calc( 100% + 17px );
           }
-          @screen sm {
-            max-height: calc( 100vh - 180px - 5rem );
-          }
-          @media (max-width: 425px) {
-            max-height: calc( 100vh - 220px - 5rem );
-          }
+          //@screen sm {
+          //  max-height: calc( 100vh - 180px - 5rem );
+          //}
+          //@media (max-width: 425px) {
+          //  max-height: calc( 100vh - 220px - 5rem );
+          //}
           table {
-            @screen sm {
-              width: 200vw;
-            }
+            //@screen sm {
+            //  width: 200vw;
+            //}
             tr {
               td {
                 @apply p-2;
@@ -261,19 +286,26 @@ export default {
                   @apply pr-5 text-right;
                 }
                 &:nth-child(1) {
-                  width: 30px;
+                  min-width: 40px;
+                  max-width: 40px;
                 }
                 &:nth-child(2) {
-                  width: 70px;
+                  min-width: 70px;
+                  max-width: 70px;
                 }
                 &:nth-child(3) {
-                  width: 325px;
+                  width: 100%;
+                  min-width: 300px;
+                  max-width: 300px;
                 }
                 &:nth-child(4) {
-                  width: 145px;
+                  min-width: 145px;
+                  max-width: 145px;
                 }
                 &:nth-child(5) {
-                  width: 145px;
+                  width: 100%;
+                  min-width: 145px;
+                  max-width: 145px;
                 }
               }
             }

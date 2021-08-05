@@ -21,6 +21,6 @@ export default {
 
 <style lang="scss">
   .grid-box {
-    @apply block flex-auto bg-white rounded border border-gray-300 p-5 mb-5 relative;
+    @apply block flex-auto bg-white rounded p-5 mb-5 relative;
   }
 </style>

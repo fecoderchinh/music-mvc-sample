@@ -16,7 +16,7 @@
             name="add-product-name"
             placeholder="Nhập tên danh mục"
             button="reset"
-            input-class="pr-10"
+            input-class="pr-10 cms-input__default"
             button-class="absolute right-0 top-50 transform -translate-y-1/2 mr-4 focus:outline-none">
           </InputType>
         </div>

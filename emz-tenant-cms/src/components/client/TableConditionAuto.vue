@@ -100,9 +100,12 @@ export default {
             max-width: 60px;
           }
           &:nth-child(2) {
-            width: 620px;
+            width: 100%;
             min-width: 620px;
             max-width: 620px;
+          }
+          &:last-child {
+            width: 100%;
           }
         }
       }
@@ -123,9 +126,12 @@ export default {
             max-width: 60px;
           }
           &:nth-child(2) {
-            width: 620px;
+            width: 100%;
             min-width: 620px;
             max-width: 620px;
+          }
+          &:last-child {
+            width: 100%;
           }
         }
       }

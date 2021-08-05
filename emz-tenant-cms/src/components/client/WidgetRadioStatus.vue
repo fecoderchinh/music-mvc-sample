@@ -5,7 +5,7 @@
       <label for="search-customer" class="cursor-pointer">Trạng thái</label>
     </template>
     <template slot="content">
-      <ul class="list-none mb-3 -mt-px sm:grid sm:gap-2">
+      <ul class="list-none -mt-px sm:grid sm:gap-2">
         <li class="inline-flex sm:flex mr-3">
           <Radio @change="showForm = !showForm" :checked="showForm" id="radio-status-1" name="radio" label-class="text-14px text-labelAndTitle">
           <template slot="radio-text">Bán trên web</template>

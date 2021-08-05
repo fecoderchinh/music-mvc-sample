@@ -8,14 +8,19 @@
       <template slot="right">
         <ul class="list-none md:ml-auto">
           <li class="inline sm:mr-0 sm:mb-3">
-            <ModalPicker
-                :root="treeModal1[1]">
-              <Button button-class="w-full cms-button cms-button-blue">
-                <template slot="name">
-                  Thêm danh mục
-                </template>
-              </Button>
-            </ModalPicker>
+<!--            <ModalPicker-->
+<!--                :root="treeModal1[1]">-->
+<!--              <Button button-class="w-full cms-button cms-button-blue">-->
+<!--                <template slot="name">-->
+<!--                  Thêm danh mục-->
+<!--                </template>-->
+<!--              </Button>-->
+<!--            </ModalPicker>-->
+            <Button link="/dashboard/category-create" button-class="cms-button cms-button-blue">
+              <template slot="name">
+                Thêm danh mục
+              </template>
+            </Button>
           </li>
         </ul>
       </template>
@@ -40,13 +45,11 @@
 import Header from '@/components/client/Header.vue';
 import Categories from '@/components/client/Categories.vue';
 import ModalCategoryCreateContent from "@/components/client/ModalCategoryCreateContent";
-import ModalPicker from "@/components/client/ModalPicker";
 import Button from "@/components/client/Button";
 
 export default {
   components: {
     Button,
-    ModalPicker,
     Header,
     Categories,
   },

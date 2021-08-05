@@ -2,7 +2,7 @@
   <!-- eslint-disable max-len -->
   <div class="relative">
     <Breadcrumb>
-      <a href="/dashboard/categories" slot="content">Danh sách sản phẩm</a>
+      <a href="/dashboard/categories" slot="content">Danh mục sản phẩm</a>
     </Breadcrumb>
 
     <!-- box title -->
@@ -20,19 +20,59 @@
         <CategoryConditions />
         <ProductSearchDisplay />
 
+      </div>
+      <!-- end column -->
+
+      <!-- column -->
+      <div class="col-span-6 xl:col-span-2">
+
+        <WidgetRadioStatus/>
+        <WidgetImageUploader @click="uploadImage" :image="imgUrl"/>
+
+        <Widget>
+          <template slot="title">
+            <div class="flex items-center relative whitespace-no-wrap">
+              <label class="cursor-pointer">Gắn lên menu</label>
+              <ModalPicker
+                  class="inline-flex ml-auto"
+                  :current-modal="modalComponent[1]"
+              >
+                <a href="javascript:void(0)" class="font-lato font-medium text-14px text-buttonAndURL xl:text-right block">Chọn menu</a>
+              </ModalPicker>
+            </div>
+          </template>
+          <template slot="content">
+            <h3 class="text-standardCMS text-menuIcon">Gắn danh mục vào Menu</h3>
+            <InlineTags :option-data="this.optionDataTags" tagClass="inline-tag__button-blue"/>
+          </template>
+        </Widget>
+
+        <Widget>
+          <template slot="title">
+            <label class="cursor-pointer">Khung giao diện</label>
+          </template>
+          <template slot="content">
+            <SelectOption :option-data="this.optionDataSelect2"/>
+          </template>
+        </Widget>
+
+      </div>
+      <!-- end column -->
+
+      <div class="col-span-6">
         <div class="w-full no-pb md:pt-5">
           <div class="grid-cols relative">
-            <div class="md:absolute top-0 left-0">
-              <ul class="list-none">
-                <li class="inline mr-8 sm:mr-5 sm:mb-3">
-                  <Button button-class="cms-button bg-cmsOrange text-white">
-                    <template slot="name">
-                      Xóa something
-                    </template>
-                  </Button>
-                </li>
-              </ul>
-            </div>
+<!--            <div class="md:absolute top-0 left-0">-->
+<!--              <ul class="list-none">-->
+<!--                <li class="inline mr-8 sm:mr-5 sm:mb-3">-->
+<!--                  <Button button-class="cms-button bg-cmsOrange text-white">-->
+<!--                    <template slot="name">-->
+<!--                      Xóa something-->
+<!--                    </template>-->
+<!--                  </Button>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
             <div class="md:absolute top-0 right-0">
               <ul class="list-none">
                 <li class="inline mr-5 sm:mb-3">
@@ -56,31 +96,6 @@
 
         <Footer class="text-center"/>
       </div>
-      <!-- end column -->
-
-      <!-- column -->
-      <div class="col-span-6 xl:col-span-2">
-
-        <WidgetRadioStatus/>
-
-        <WidgetImageUploader/>
-
-        <Widget>
-          <template slot="title">
-            <label class="cursor-pointer text-14px text-labelAndTitle">
-              Gắn vào Menu
-            </label>
-            <a href="#" class="text-standardCMS absolute top-0 right-0 text-buttonAndURL">Chọn Menu</a>
-          </template>
-          <template slot="content">
-            <div class="w-full">
-              <p class="text-standardCMS text-menuItem">Gắn Danh mục vào Menu</p>
-            </div>
-          </template>
-        </Widget>
-
-      </div>
-      <!-- end column -->
 
     </div>
 
@@ -98,9 +113,16 @@ import CategoryConditions from '@/components/client/CategoryConditions.vue';
 import ProductSearchDisplay from '@/components/client/ProductSearchDisplay.vue';
 import Button from '@/components/client/Button.vue';
 import Footer from '@/components/client/Footer.vue';
+import ModalPicker from "@/components/client/ModalPicker";
+import InlineTags from "@/components/client/InlineTags";
+import ModalMenuPickerCollapse from "@/components/client/ModalMenuPickerCollapse";
+import SelectOption from "@/components/client/SelectOption";
 
 export default {
   components: {
+    SelectOption,
+    InlineTags,
+    ModalPicker,
     Breadcrumb,
     Header,
     Widget,
@@ -114,12 +136,37 @@ export default {
   },
   data() {
     return {
+      imgUrl: '',
       optionDataSelect: [
         { name: 'Cửa hàng chính' },
         { name: 'Cửa hàng phụ' },
         { name: 'Cửa hàng phụ phụ' },
       ],
+      optionDataTags: [
+        {
+          name: 'Chờ lấy hàng',
+          closeTag: true,
+        },
+      ],
+      optionDataSelect2: [
+        { name: 'collection' },
+      ],
+      modalComponent: [
+        {},
+        {
+          id: 'pageCategoryCreate-2',
+          name: ModalMenuPickerCollapse,
+          width: 720,
+          shiftX: 0
+        }
+      ]
     };
   },
+  methods: {
+    uploadImage() {
+      if(this.imgUrl) this.imgUrl = ''
+      else this.imgUrl = 'https://picsum.photos/400/300'
+    },
+  }
 };
 </script>
