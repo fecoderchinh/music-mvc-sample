@@ -1,5 +1,8 @@
 <?php
 namespace Core;
+
+use App\Config;
+
 /**
  * View
  *
@@ -45,6 +48,8 @@ class View
             $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/App/Views');
             $twig = new \Twig\Environment($loader);
         }
+
+        $twig->addGlobal('base_url', Config::APP_SLUG);
 
         echo $twig->render($template, $args);
     }

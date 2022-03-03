@@ -17,6 +17,13 @@ Thanks for the material and knowledge resources from [daveh/php-mvc](https://git
 ## Required
 * PHP 5.0 or PHP 7
 * WAMPP,XAMPP,etc
+* Composer
+
+## Installations
+1. Run `composer install`
+2. Change and import `db.sql` into `phpmyadmin`
+2. Go to `App/Config.php` and custom the params to fit with your project.
+3. Enjoy.
 
 
 ## Results

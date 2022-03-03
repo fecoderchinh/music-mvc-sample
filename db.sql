@@ -11,7 +11,7 @@ create table music(
 	primary key (id)
 );
 
-drop table music;
+-- drop table music;
 
 INSERT INTO music (name, singer, category, album, year) VALUES
 ('THE PLAYAH', 'Soobin x SlimV', 'Special Performance', 'Soobin 1', 2021),

@@ -9,6 +9,13 @@ class Config
 {
 
     /**
+     * App slug
+     * This is required to be same as the root directory.
+     * @var string
+     */
+    const APP_SLUG = '/music-mvc-sample/';
+
+    /**
      * Database host
      * @var string
      */
@@ -30,7 +37,7 @@ class Config
      * Database password
      * @var string
      */
-    const DB_PASSWORD = 'root';
+    const DB_PASSWORD = '';
 
     /**
      * Show or hide error messages on screen

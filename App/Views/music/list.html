@@ -35,25 +35,25 @@
                 <td>{{ m.category|e }}</td>
                 <td>{{ m.album|e }}</td>
                 <td>{{ m.year|e }}</td>
-                <td><a href="/music/detail/{{ m.id }}" class="btn btn-success btn-xs"> Chi tiết</a></td>
-                <td><a href="/music/edit/{{ m.id }}" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit"></span> Sửa</a></td>
-                <td><a href="/music/delete/{{ m.id }}" onclick="return confirm('Bạn muốn xóa bài hát này?')" class="btn btn-danger btn-xs"> <span class="glyphicon glyphicon-trash"></span> Xóa</a></td>
+                <td><a href="{{ base_url }}music/detail/{{ m.id }}" class="btn btn-success btn-xs"> Chi tiết</a></td>
+                <td><a href="{{ base_url }}music/edit/{{ m.id }}" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit"></span> Sửa</a></td>
+                <td><a href="{{ base_url }}music/delete/{{ m.id }}" onclick="return confirm('Bạn muốn xóa bài hát này?')" class="btn btn-danger btn-xs"> <span class="glyphicon glyphicon-trash"></span> Xóa</a></td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
-    <a href="/music/create" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Thêm mới</a>
+    <a href="{{ base_url }}music/create" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Thêm mới</a>
 </div>
 
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="/asset/DataTables/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{ base_url }}asset/DataTables/datatables.min.css"/>
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="/asset/DataTables/datatables.min.js"></script>
+<script type="text/javascript" src="{{ base_url }}asset/DataTables/datatables.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.table').DataTable();
