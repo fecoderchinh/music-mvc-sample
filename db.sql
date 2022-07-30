@@ -1,7 +1,10 @@
-create database mvc;
+create database IF NOT EXISTS mvc;
 use mvc;
 
-create table music(
+DROP TABLE IF EXISTS `music`;
+FLUSH TABLES `music`;
+
+create table IF NOT EXISTS music(
 	id bigint not null auto_increment,
 	name varchar(250) not null,
 	singer varchar(250) not null,
@@ -10,8 +13,6 @@ create table music(
 	year year(4) not null,
 	primary key (id)
 );
-
--- drop table music;
 
 INSERT INTO music (name, singer, category, album, year) VALUES
 ('THE PLAYAH', 'Soobin x SlimV', 'Special Performance', 'Soobin 1', 2021),
